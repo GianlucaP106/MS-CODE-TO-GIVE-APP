@@ -17,7 +17,7 @@ public class Image {
     private Gleaner gleaner;
 
     @ManyToOne
-    private Organization foodBank;
+    private Organization organization;
 
     @ManyToOne
     private GleanerGroup gleanerGroup;
@@ -58,6 +58,32 @@ public class Image {
     public void setIamgeType(String iamgeType) {
         this.iamgeType = iamgeType;
     }
+    public Gleaner getGleaner() {
+        return gleaner;
+    }
+    public void setGleaner(Gleaner gleaner) {
+        this.gleaner = gleaner;
+    }
+    public Organization getOrganization() {
+        return organization;
+    }
+    public void setOrganization(Organization organization) {
+        this.organization = organization;
+    }
+    public GleanerGroup getGleanerGroup() {
+        return gleanerGroup;
+    }
+    public void setGleanerGroup(GleanerGroup gleanerGroup) {
+        this.gleanerGroup = gleanerGroup;
+    }
+    public Producer getProducer() {
+        return producer;
+    }
+    public void setProducer(Producer producer) {
+        this.producer = producer;
+    }
+
+    
 
     
 }
