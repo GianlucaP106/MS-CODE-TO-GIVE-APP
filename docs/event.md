@@ -1,35 +1,12 @@
-https://www.restapitutorial.com/httpstatuscodes.html
+[http statues](https://www.restapitutorial.com/httpstatuscodes.html)
 # Endpoints
-
-
-### method: GET
-### path name: /event/get-by-username/?username=username
-### request PARAMETERS:
-```JSON
-{
-    "eventName": "eventName"
-}
-```
-### response BODY:
-```JSON
-{
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
-}
-```
-#### else status(404) // not found
 
 ### method: PUT
 ### path name: /event/update
 ### request PARAMETERS:
 ```JSON
 {
+    "id" : "id",
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
     "description": "description",
@@ -38,7 +15,44 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "postalCode": "postalCode",
     "city": "city",
+    "isUrgent": "isUrgent"
 }
 ```
-
 #### successful ? status(404) : status(404) // not found
+
+
+### method : GET 
+### path name : /event/get-with-filters
+### request body
+```JSON
+{
+    "id" : "id",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+    "isUrgent": "isUrgent",
+    "radius" : "radius"
+}
+```
+### return 
+```JSON
+{
+    "status" : "200",
+    "id" : "id",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+    "isUrgent": "isUrgent"
+}
+```
+### else status 404

@@ -1,4 +1,4 @@
-https://www.restapitutorial.com/httpstatuscodes.html
+[http statues](https://www.restapitutorial.com/httpstatuscodes.html)
 # Endpoints
 
 #### method: POST
@@ -6,6 +6,28 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
+    "producer" : "producerID",
+    "farm" : {
+        "id" : "id",
+        "farmName": "farmName",
+        "description": "description",
+        "missionStatement": "missionStatement",
+        "imageURL": "imageURL",
+        "address": "address",
+        "postalCode": "postalCode",
+        "city": "city",
+    }
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: GET
+### path name: /farm/get-by-filter
+### request PARAMETERS:
+```JSON
+{
+    "id" : "id",
     "farmName": "farmName",
     "description": "description",
     "missionStatement": "missionStatement",
@@ -13,22 +35,13 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "postalCode": "postalCode",
     "city": "city",
-}
-```
-#### response: successful ? status(201) : status(406)
-
-
-### method: GET
-### path name: /farm/get-by-farmname/?username=username
-### request PARAMETERS:
-```JSON
-{
-    "farmName": "farmName"
+    "radius" : "radius",
 }
 ```
 ### response BODY:
 ```JSON
 {
+    "id" : "id",
     "farmName": "farmName",
     "description": "description",
     "missionStatement": "missionStatement",
@@ -41,44 +54,12 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### else status(406)
 
 
-### method : GET
-### path name: /farm/get-by-producerName?userName=userName
-### request parameter :
-```JSON
-{
-    "username" : "username"
-}
-```
-### response
-```JSON
-{
-    "producer" :{
-        "firstName": "firsname",
-        "lastName": "lastname",
-        "email": "email",
-        "username": "username",
-        "password": "password",
-        "phoneNumber": "phoneNumber"
-    },
-    "farms" : [
-        {
-            "farmName": "farmName",
-            "description": "description",
-            "missionStatement": "missionStatement",
-            "imageURL": "imageURL",
-            "address": "address",
-            "postalCode": "postalCode",
-            "city": "city",
-        }
-    ]
-}
-```
-
 ### method: PUT
 ### path name: /farm/update
 ### request PARAMETERS:
 ```JSON
 {
+    "farmID" : "id",
     "farmName": "farmName",
     "description": "description",
     "missionStatement": "missionStatement",
@@ -88,6 +69,5 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
 }
 ```
-
 #### successful ? status(406) : status(406)
 

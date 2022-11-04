@@ -16,7 +16,6 @@ public class GleanerRegistration {
 
     @OneToOne
     private Gleaner volunteer;
-
     
     private int volunteerGroup; 
     private boolean isOwner;

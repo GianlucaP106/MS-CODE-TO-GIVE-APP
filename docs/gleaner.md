@@ -1,4 +1,4 @@
-https://www.restapitutorial.com/httpstatuscodes.html
+[http statues](https://www.restapitutorial.com/httpstatuscodes.html)
 # Endpoints
 
 #### Create
@@ -21,18 +21,26 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### response: successful ? status(201) : status(406)
 
 
-
 ### method: GET
 ### path name: /gleaner/get-by-username/?username=username
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username"
+    "firstName": "firsname",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
 }
 ```
 ### response BODY:
 ```JSON
 {
+    "ID": "ID",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
@@ -46,14 +54,12 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```
 #### else status(406)
 
-
-
-
 ### method: PUT
 ### path name: /gleaner/update
 ### request PARAMETERS:
 ```JSON
 {
+    "ID": "ID",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
@@ -65,9 +71,19 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address"
 }
 ```
-
 #### successful ? status(406) : status(406)
 
+
 ### method : POST
-### path name : gleaner/eventRegister/event
+### path name: /gleaner/eventRegister
+### request PARAMETERS:
+```JSON
+{
+    "gleanerID" : "gleanerID",
+    "eventID" : "eventID",
+    "isOwner" : "isOwner",
+
+}
+```
+
 

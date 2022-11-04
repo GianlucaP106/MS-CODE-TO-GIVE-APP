@@ -21,6 +21,7 @@ public class Event {
     private int requiredGleaners;
     private int maxGleaners;
     private String description;
+    private boolean isUrgent;
 
     @OneToOne
     private Farm farm;
@@ -83,6 +84,14 @@ public class Event {
 
     public void setFarm(Farm farm) {
         this.farm = farm;
+    }
+
+    public boolean isUrgent() {
+        return isUrgent;
+    }
+
+    public void setUrgent(boolean isUrgent) {
+        this.isUrgent = isUrgent;
     }
 
 }

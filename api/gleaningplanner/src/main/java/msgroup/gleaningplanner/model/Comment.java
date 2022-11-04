@@ -16,7 +16,6 @@ public class Comment {
     private int ID;
 
     private Date date;
-
     private String comment;
 
     @ManyToOne
@@ -33,6 +32,9 @@ public class Comment {
 
     @ManyToOne
     private Farm farm;
+
+    @ManyToOne
+    private Event event;
 
     public int getID() {
         return ID;
