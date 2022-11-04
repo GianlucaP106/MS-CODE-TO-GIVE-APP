@@ -5,7 +5,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -18,10 +17,15 @@ public class Produce {
     @OneToOne
     private ProduceType producerType;
     
+    // if foodbank then this is limitation
+    // if event, then this is available  
     private double amount;
 
     @ManyToOne
-    private Event event;
+    private Event event;  // event and foodbank cannot both be not null
+
+    @ManyToOne 
+    private FoodBank foodBank;
     
     public Produce() {}
 

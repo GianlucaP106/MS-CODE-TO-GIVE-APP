@@ -19,6 +19,7 @@ public class Event {
     private String eventName;
 
     private int requiredGleaners;
+    private int maxGleaners;
 
     private Date date;
 
@@ -60,6 +61,12 @@ public class Event {
         this.date = date;
     }
 
-    
+    public int getMaxGleaners() {
+        return maxGleaners;
+    }
+
+    public void setMaxGleaners(int maxGleaners) {
+        this.maxGleaners = maxGleaners;
+    }
 
 }

@@ -11,6 +11,7 @@ public class FoodBank {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
+
     private String bankName;
     private String address;
     private String city;
