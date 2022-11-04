@@ -39,7 +39,7 @@ else status(406)
     "username": "username"
 }
 ```
-response BODY:
+### response BODY:
 ```JSON
 {
     "firstName": "firsname",
@@ -62,7 +62,7 @@ else status(406)
 }
 ```
 ```JSON
-response BODY:
+### response BODY:
 {
     "username": "username",
     "password": "password",
@@ -76,65 +76,71 @@ else status(406)
 ```
 
 
+### method: GET
+### path name: /organization/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /organization/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
-response BODY:
+```
+### response BODY:
+```JSON
 {
-    username: "username",
-    password: "password,
-    orgName: "orgName",
-    description: "description",
-    missionStatement: "missionStatement",
-    imageURL: "imageURL",
-    address: "address",
-    city: "city",
-    postalCode: "postalCode",
+    "username": "username",
+    "password": "password",
+    "orgName": "orgName",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "city": "city",
+    "postalCode": "postalCode",
 }
 else status(406)
 ```
 
+### method: GET
+### path name: /farm/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /farm/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
-response BODY:
+```
+### response BODY:
+```JSON
 {
-    farmName: "farmName",
-    description: "description",
-    missionStatement: "missionStatement",
-    imageURL: "imageURL",
-    address: "address",
-    postalCode: "postalCode",
-    city: "city",
+    "farmName": "farmName",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
 }
 else status(406)
 ```
 
+### method: GET
+### path name: /event/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /event/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
-response BODY:
+```
+### response BODY:
+```JSON
 {
-    eventName: "eventName",
-    neededGleaners: "neededGleaners",
-    description: "description",
-    missionStatement: "missionStatement",
-    imageURL: "imageURL",
-    address: "address",
-    postalCode: "postalCode",
-    city: "city",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
 }
 else status(406)
 ```
