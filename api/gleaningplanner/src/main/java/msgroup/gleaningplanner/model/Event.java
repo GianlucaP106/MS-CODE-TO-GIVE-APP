@@ -26,7 +26,6 @@ public class Event {
     @ManyToMany
     private Set<Gleaner> gleaners;
     
-
     public Event() {}
 
     public int getID() {
