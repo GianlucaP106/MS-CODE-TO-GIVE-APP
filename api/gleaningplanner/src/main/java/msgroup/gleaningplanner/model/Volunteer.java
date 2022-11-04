@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Gleaner extends User{
+public class Volunteer extends User{
 
 
     @Id
@@ -18,7 +18,7 @@ public class Gleaner extends User{
     private String phoneNumber;
 
 
-    public Gleaner() {
+    public Volunteer() {
         super();
     }
 

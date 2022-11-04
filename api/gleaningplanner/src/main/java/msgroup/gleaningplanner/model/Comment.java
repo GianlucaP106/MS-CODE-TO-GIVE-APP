@@ -19,7 +19,7 @@ public class Comment {
     private String comment;
 
     @ManyToOne
-    private Gleaner gleaner;
+    private Volunteer volunteer;
 
     @ManyToOne
     private Organization organization;
@@ -52,12 +52,12 @@ public class Comment {
         this.date = date;
     }
 
-    public Gleaner getGleaner() {
-        return gleaner;
+    public Volunteer getVolunteer() {
+        return volunteer;
     }
 
-    public void setGleaner(Gleaner gleaner) {
-        this.gleaner = gleaner;
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
     }
 
     public Organization getOrganization() {

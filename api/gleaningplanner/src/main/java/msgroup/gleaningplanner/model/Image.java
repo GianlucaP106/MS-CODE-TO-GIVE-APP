@@ -14,7 +14,7 @@ public class Image {
     private int ID;
     
     @ManyToOne
-    private Gleaner gleaner;
+    private Volunteer volunteer;
 
     @ManyToOne
     private Organization organization;
@@ -58,11 +58,11 @@ public class Image {
     public void setIamgeType(String iamgeType) {
         this.iamgeType = iamgeType;
     }
-    public Gleaner getGleaner() {
-        return gleaner;
+    public Volunteer getGleaner() {
+        return volunteer;
     }
-    public void setGleaner(Gleaner gleaner) {
-        this.gleaner = gleaner;
+    public void setVolunteer(Volunteer volunteer) {
+        this.volunteer = volunteer;
     }
     public Organization getOrganization() {
         return organization;
