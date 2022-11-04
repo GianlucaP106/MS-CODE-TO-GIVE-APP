@@ -27,8 +27,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
     "address": "address"
 }
-else status(406)
 ```
+#### else status(406)
 
 
 ### method: GET
@@ -49,8 +49,8 @@ else status(406)
     "password": "password",
     "phoneNumber": "phoneNumber"
 }
-else status(406)
 ```
+#### else status(406)
 
 
 ### method: GET
@@ -72,8 +72,8 @@ else status(406)
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
 }
-else status(406)
 ```
+#### else status(406)
 
 
 ### method: GET
@@ -97,8 +97,8 @@ else status(406)
     "city": "city",
     "postalCode": "postalCode",
 }
-else status(406)
 ```
+#### else status(406)
 
 ### method: GET
 ### path name: /farm/get-by-username/?username=username
@@ -119,8 +119,8 @@ else status(406)
     "postalCode": "postalCode",
     "city": "city",
 }
-else status(406)
 ```
+#### else status(406)
 
 ### method: GET
 ### path name: /event/get-by-username/?username=username
@@ -142,8 +142,8 @@ else status(406)
     "postalCode": "postalCode",
     "city": "city",
 }
-else status(406)
 ```
+#### else status(406)
 
 
 
