@@ -8,14 +8,14 @@ import javax.persistence.OneToOne;
 
 
 @Entity
-public class GleanerRegistration {
+public class VolunteerRegistration {
 
     @Id
     @GeneratedValue(strategy =  GenerationType.IDENTITY)
     private int ID;
 
     @OneToOne
-    private Gleaner volunteer;
+    private Volunteer volunteer;
 
     
     private int volunteerGroup; 
@@ -24,17 +24,17 @@ public class GleanerRegistration {
     @OneToOne
     private Event event;
     
-    public GleanerRegistration() {}
+    public VolunteerRegistration() {}
     
     public int getID() {
         return ID;
     }
     
-    public Gleaner getVolunteer() {
+    public Volunteer getVolunteer() {
         return volunteer;
     }
 
-    public void setVolunteer(Gleaner volunteer) {
+    public void setVolunteer(Volunteer volunteer) {
         this.volunteer = volunteer;
     }
     
