@@ -67,3 +67,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```
 
 #### successful ? status(406) : status(406)
+
+### method : POST
+### path name : gleaner/eventRegister/event
+

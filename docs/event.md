@@ -7,7 +7,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username"
+    "eventName": "eventName"
 }
 ```
 ### response BODY:
@@ -23,25 +23,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
 }
 ```
-#### else status(406)
-
-#### method: POST
-#### path name: /event/register
-#### body params (inputs): 
-```JSON
-{
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
-}
-```
-#### response: successful ? status(201) : status(406)
-
+#### else status(404) // not found
 
 ### method: PUT
 ### path name: /event/update
@@ -59,4 +41,4 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 
-#### successful ? status(406) : status(406)
+#### successful ? status(404) : status(404) // not found

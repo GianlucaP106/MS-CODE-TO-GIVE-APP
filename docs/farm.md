@@ -41,6 +41,38 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### else status(406)
 
 
+### method : GET
+### path name: /farm/get-by-producerName?userName=userName
+### request parameter :
+```JSON
+{
+    "username" : "username"
+}
+```
+### response
+```JSON
+{
+    "producer" :{
+        "firstName": "firsname",
+        "lastName": "lastname",
+        "email": "email",
+        "username": "username",
+        "password": "password",
+        "phoneNumber": "phoneNumber"
+    },
+    "farms" : [
+        {
+            "farmName": "farmName",
+            "description": "description",
+            "missionStatement": "missionStatement",
+            "imageURL": "imageURL",
+            "address": "address",
+            "postalCode": "postalCode",
+            "city": "city",
+        }
+    ]
+}
+```
 
 ### method: PUT
 ### path name: /farm/update
