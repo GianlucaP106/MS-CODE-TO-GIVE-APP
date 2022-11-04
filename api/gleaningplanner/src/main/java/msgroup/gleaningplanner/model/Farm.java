@@ -74,6 +74,5 @@ public class Farm {
     public void setPostalCode(String postalCode) {
         this.postalCode = postalCode;
     }
-
     
 }

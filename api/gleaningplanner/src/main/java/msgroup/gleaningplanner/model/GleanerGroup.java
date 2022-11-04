@@ -6,8 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class GleanerGroup {
-
+public class GleanerGroup extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +18,6 @@ public class GleanerGroup {
     private String missionStatement;
     private String imageURL;
 
-    
     public GleanerGroup() {
         super();
     }
