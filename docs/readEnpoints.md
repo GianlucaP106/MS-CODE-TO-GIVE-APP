@@ -5,6 +5,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 #### Read
 
+
+```JSON
 method: GET
 path name: /gleaner/get-by-username/?username=username
 request PARAMETERS:
@@ -24,7 +26,10 @@ response BODY:
     address: "address"
 }
 else status(406)
+```
 
+
+```JSON
 method: GET
 path name: /producer/get-by-username/?username=username
 request PARAMETERS:
@@ -41,8 +46,10 @@ response BODY:
     phoneNumber: "phoneNumber"
 }
 else status(406)
+```
 
 
+```JSON
 method: GET
 path name: /gleaner-group/get-by-username/?username=username
 request PARAMETERS:
@@ -60,7 +67,10 @@ response BODY:
     imageURL: "imageURL",
 }
 else status(406)
+```
 
+
+```JSON
 method: GET
 path name: /organization/get-by-username/?username=username
 request PARAMETERS:
@@ -80,7 +90,9 @@ response BODY:
     postalCode: "postalCode",
 }
 else status(406)
+```
 
+```JSON
 method: GET
 path name: /farm/get-by-username/?username=username
 request PARAMETERS:
@@ -98,7 +110,9 @@ response BODY:
     city: "city",
 }
 else status(406)
+```
 
+```JSON
 method: GET
 path name: /event/get-by-username/?username=username
 request PARAMETERS:
@@ -117,7 +131,7 @@ response BODY:
     city: "city",
 }
 else status(406)
-
+```
 
 
 

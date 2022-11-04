@@ -4,7 +4,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### CRUD
 
 #### Create
-
+```JSON
 method: POST
 path name: /gleaner/register
 body params (inputs): 
@@ -20,7 +20,9 @@ body params (inputs):
     address: "address"
 }
 response: successful ? status(201) : status(406)
+```
 
+```JSON
 method: POST
 path name: /producer/register
 body params (inputs): 
@@ -33,7 +35,9 @@ body params (inputs):
     phoneNumber: "phoneNumber"
 }
 response: successful ? status(201) : status(406)
+```
 
+```JSON
 method: POST
 path name: /gleaner-group/register
 body params (inputs): 
@@ -47,7 +51,9 @@ body params (inputs):
     imageURL: "imageURL",
 }
 response: successful ? status(201) : status(406)
+```
 
+```JSON
 method: POST
 path name: /organization/register
 body params (inputs): 
@@ -63,7 +69,9 @@ body params (inputs):
     postalCode: "postalCode",
 }
 response: successful ? status(201) : status(406)
+```
 
+```JSON
 method: POST
 path name: /farm/register
 body params (inputs): 
@@ -77,7 +85,10 @@ body params (inputs):
     city: "city",
 }
 response: successful ? status(201) : status(406)
+```
 
+
+```JSON
 method: POST
 path name: /event/register
 body params (inputs): 
@@ -92,7 +103,7 @@ body params (inputs):
     city: "city",
 }
 response: successful ? status(201) : status(406)
-
+```
 
 
 
