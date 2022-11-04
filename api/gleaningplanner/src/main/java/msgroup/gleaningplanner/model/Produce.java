@@ -17,15 +17,15 @@ public class Produce {
     @OneToOne
     private ProduceType producerType;
     
-    // if foodbank then this is limitation
+    // if organization then this is limitation
     // if event, then this is available  
     private double amount;
 
     @ManyToOne
-    private Event event;  // event and foodbank cannot both be not null
+    private Event event;  // event and organization cannot both be not null
 
     @ManyToOne 
-    private FoodBank foodBank;
+    private Organization organization;
     
     public Produce() {}
 

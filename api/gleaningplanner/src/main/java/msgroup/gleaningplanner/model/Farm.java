@@ -13,13 +13,10 @@ public class Farm {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
-    private long longitude;
-    private long latitude;
     private String farmName;
     private double surfaceArea;
-    private String address;
-    private String city;
-    private String postalCode;
+    private long longitude;
+    private long latitude;
     
     @ManyToOne
     private Producer producer;
@@ -55,24 +52,6 @@ public class Farm {
     }
     public void setSurfaceArea(double surfaceArea) {
         this.surfaceArea = surfaceArea;
-    }
-    public String getAddress() {
-        return address;
-    }
-    public void setAddress(String address) {
-        this.address = address;
-    }
-    public String getCity() {
-        return city;
-    }
-    public void setCity(String city) {
-        this.city = city;
-    }
-    public String getPostalCode() {
-        return postalCode;
-    }
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
     }
     
 }

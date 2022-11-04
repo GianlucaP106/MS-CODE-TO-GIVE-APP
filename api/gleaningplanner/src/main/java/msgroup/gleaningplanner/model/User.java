@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
 @MappedSuperclass
-public class User {
+public abstract class User {
 
     @Column(unique = true)
     private String username;

@@ -17,7 +17,7 @@ public class Image {
     private Gleaner gleaner;
 
     @ManyToOne
-    private FoodBank foodBank;
+    private Organization foodBank;
 
     @ManyToOne
     private GleanerGroup gleanerGroup;

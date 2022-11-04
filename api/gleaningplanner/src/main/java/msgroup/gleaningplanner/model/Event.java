@@ -1,13 +1,13 @@
 package msgroup.gleaningplanner.model;
 
 import java.sql.Date;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
+
 
 
 @Entity
@@ -20,11 +20,12 @@ public class Event {
 
     private int requiredGleaners;
     private int maxGleaners;
+    private String description;
+
+    @OneToOne
+    private Farm farm;
 
     private Date date;
-
-    @ManyToMany
-    private Set<Gleaner> gleaners;
     
     public Event() {}
 
@@ -66,6 +67,22 @@ public class Event {
 
     public void setMaxGleaners(int maxGleaners) {
         this.maxGleaners = maxGleaners;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Farm getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Farm farm) {
+        this.farm = farm;
     }
 
 }

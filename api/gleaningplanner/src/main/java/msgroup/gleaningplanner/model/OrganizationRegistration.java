@@ -27,11 +27,11 @@ public class OrganizationRegistration {
         ID = iD;
     }
 
-    public Organization getFoodBank() {
+    public Organization getOrganization() {
         return organization;
     }
 
-    public void setFoodBank(Organization organization) {
+    public void setOrganization(Organization organization) {
         this.organization = organization;
     }
 

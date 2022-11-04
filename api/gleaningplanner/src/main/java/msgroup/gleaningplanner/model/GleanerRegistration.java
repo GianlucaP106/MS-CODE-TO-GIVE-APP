@@ -1,10 +1,13 @@
 package msgroup.gleaningplanner.model;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+
+@Entity
 public class GleanerRegistration {
 
     @Id
@@ -12,30 +15,31 @@ public class GleanerRegistration {
     private int ID;
 
     @OneToOne
-    private Gleaner gleaner;
+    private Gleaner volunteer;
 
+    
     private int volunteerGroup; 
     private boolean isOwner;
-
+    
     @OneToOne
     private Event event;
-
+    
     public GleanerRegistration() {}
-
+    
     public int getID() {
         return ID;
     }
+    
+    public Gleaner getVolunteer() {
+        return volunteer;
+    }
 
+    public void setVolunteer(Gleaner volunteer) {
+        this.volunteer = volunteer;
+    }
+    
     public void setID(int iD) {
         ID = iD;
-    }
-
-    public Gleaner getGleaner() {
-        return gleaner;
-    }
-
-    public void setGleaner(Gleaner gleaner) {
-        this.gleaner = gleaner;
     }
 
     public Event getEvent() {

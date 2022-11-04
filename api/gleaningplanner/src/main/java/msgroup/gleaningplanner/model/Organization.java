@@ -13,17 +13,26 @@ public class Organization extends User{
     private int ID;
 
     private String organizationName;
-    private String address;
-    private String city;
-    private String postalCode;
+    private long longitude;
+    private long latitude;
     private String websiteLink;
     private String description;
     private String missionStatement;  
-    private String imageURL; 
-    
+    private String imageURL;
+    private int maxDistance;
+
     public Organization() {
         super();
     }
+    
+    public int getMaxDistance() {
+        return maxDistance;
+    }
+
+    public void setMaxDistance(int maxDistance) {
+        this.maxDistance = maxDistance;
+    }
+
 
     public String getWebsiteLink() {
         return websiteLink;
@@ -44,30 +53,6 @@ public class Organization extends User{
     }
     public void setBankName(String organizationName) {
         this.organizationName = organizationName;
-    }
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
     }
 
     public String getDescription() {
@@ -92,5 +77,29 @@ public class Organization extends User{
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
+    }
+
+    public long getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(long longitude) {
+        this.longitude = longitude;
+    }
+
+    public long getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(long latitude) {
+        this.latitude = latitude;
     }
 }
