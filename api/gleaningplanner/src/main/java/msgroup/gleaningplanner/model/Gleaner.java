@@ -16,6 +16,7 @@ public class Gleaner {
     private String lastName;
     private String email;
     private String phoneNumber;
+    private String postalCode;
 
 
     public Gleaner() {
