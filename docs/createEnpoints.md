@@ -1,10 +1,11 @@
-
+https://www.restapitutorial.com/httpstatuscodes.html
 # Endpoints
 
 ### CRUD
 
 #### Create
 
+method: POST
 path name: /gleaner/register
 body params (inputs): 
 {
@@ -15,8 +16,12 @@ body params (inputs):
     password: "password,
     phoneNumber: "phoneNumber"
     postalCode: "postalCode"
+    city: "city",
+    address: "address"
 }
+response: successful ? status(201) : status(406)
 
+method: POST
 path name: /producer/register
 body params (inputs): 
 {
@@ -27,7 +32,9 @@ body params (inputs):
     password: "password,
     phoneNumber: "phoneNumber"
 }
+response: successful ? status(201) : status(406)
 
+method: POST
 path name: /gleaner-group/register
 body params (inputs): 
 {
@@ -39,7 +46,9 @@ body params (inputs):
     missionStatement: "missionStatement",
     imageURL: "imageURL",
 }
+response: successful ? status(201) : status(406)
 
+method: POST
 path name: /organization/register
 body params (inputs): 
 {
@@ -53,16 +62,13 @@ body params (inputs):
     city: "city",
     postalCode: "postalCode",
 }
+response: successful ? status(201) : status(406)
 
+method: POST
 path name: /farm/register
 body params (inputs): 
 {
     farmName: "farmName",
-    longitude: "long
-
-
-    
-    orgName: "orgName",
     description: "description",
     missionStatement: "missionStatement",
     imageURL: "imageURL",
@@ -70,6 +76,22 @@ body params (inputs):
     postalCode: "postalCode",
     city: "city",
 }
+response: successful ? status(201) : status(406)
+
+method: POST
+path name: /event/register
+body params (inputs): 
+{
+    eventName: "eventName",
+    neededGleaners: "neededGleaners",
+    description: "description",
+    missionStatement: "missionStatement",
+    imageURL: "imageURL",
+    address: "address",
+    postalCode: "postalCode",
+    city: "city",
+}
+response: successful ? status(201) : status(406)
 
 
 
