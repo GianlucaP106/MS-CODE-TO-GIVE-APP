@@ -7,14 +7,14 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-public class FoodBankRegistration {
+public class OrganizationRegistration {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
     @OneToOne
-    private FoodBank foodBank;
+    private Organization organization;
 
     @OneToOne
     private Event event;
@@ -27,12 +27,12 @@ public class FoodBankRegistration {
         ID = iD;
     }
 
-    public FoodBank getFoodBank() {
-        return foodBank;
+    public Organization getFoodBank() {
+        return organization;
     }
 
-    public void setFoodBank(FoodBank foodBank) {
-        this.foodBank = foodBank;
+    public void setFoodBank(Organization organization) {
+        this.organization = organization;
     }
 
     public Event getEvent() {

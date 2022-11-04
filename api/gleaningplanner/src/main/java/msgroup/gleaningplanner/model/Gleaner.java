@@ -6,8 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Gleaner {
-
+public class Gleaner extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +15,6 @@ public class Gleaner {
     private String lastName;
     private String email;
     private String phoneNumber;
-
 
     public Gleaner() {
         super();

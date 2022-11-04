@@ -6,13 +6,13 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class FoodBank {
+public class Organization extends User{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
-    private String bankName;
+    private String organizationName;
     private String address;
     private String city;
     private String postalCode;
@@ -21,7 +21,7 @@ public class FoodBank {
     private String missionStatement;  
     private String imageURL; 
     
-    public FoodBank() {
+    public Organization() {
         super();
     }
 
@@ -40,10 +40,10 @@ public class FoodBank {
         ID = iD;
     }
     public String getBankName() {
-        return bankName;
+        return organizationName;
     }
-    public void setBankName(String bankName) {
-        this.bankName = bankName;
+    public void setBankName(String organizationName) {
+        this.organizationName = organizationName;
     }
 
     public String getAddress() {
