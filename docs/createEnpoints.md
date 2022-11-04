@@ -13,9 +13,9 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password,
-    "phoneNumber": "phoneNumber"
-    "postalCode": "postalCode"
+    "password": "password",
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
     "city": "city",
     "address": "address"
 }
@@ -31,7 +31,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password,
+    "password": "password",
     "phoneNumber": "phoneNumber"
 }
 ```
@@ -43,7 +43,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```JSON
 {
     "username": "username",
-    "password": "password,
+    "password": "password",
     "groupName": "groupName",
     "region": "region",
     "description": "description",
@@ -59,7 +59,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```JSON
 {
     "username": "username",
-    "password": "password,
+    "password": "password",
     "orgName": "orgName",
     "description": "description",
     "missionStatement": "missionStatement",
