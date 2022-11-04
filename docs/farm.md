@@ -19,11 +19,11 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: GET
-### path name: /farm/get-by-username/?username=username
+### path name: /farm/get-by-farmname/?username=username
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username"
+    "farmName": "farmName"
 }
 ```
 ### response BODY:
@@ -39,3 +39,23 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 #### else status(406)
+
+
+
+### method: PUT
+### path name: /farm/update
+### request PARAMETERS:
+```JSON
+{
+    "farmName": "farmName",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+}
+```
+
+#### successful ? status(406) : status(406)
+

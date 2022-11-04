@@ -41,3 +41,22 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 #### response: successful ? status(201) : status(406)
+
+
+### method: PUT
+### path name: /event/update
+### request PARAMETERS:
+```JSON
+{
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+}
+```
+
+#### successful ? status(406) : status(406)

@@ -18,9 +18,9 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address"
 }
 ```
-
-
 #### response: successful ? status(201) : status(406)
+
+
 
 ### method: GET
 ### path name: /gleaner/get-by-username/?username=username
@@ -45,3 +45,25 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 #### else status(406)
+
+
+
+
+### method: PUT
+### path name: /gleaner/update
+### request PARAMETERS:
+```JSON
+{
+    "firstName": "firsname",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
+}
+```
+
+#### successful ? status(406) : status(406)
