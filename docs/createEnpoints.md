@@ -22,10 +22,10 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```
 #### response: successful ? status(201) : status(406)
 
+#### method: POST
+#### path name: /producer/register
+#### body params (inputs): 
 ```JSON
-method: POST
-path name: /producer/register
-body params (inputs): 
 {
     "firstName": "firsname",
     "lastName": "lastname",
