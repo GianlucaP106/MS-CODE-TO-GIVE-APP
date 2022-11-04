@@ -6,65 +6,71 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### Read
 
 
+### method: GET
+### path name: /gleaner/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /gleaner/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
-response BODY:
+```
+### response BODY:
+```JSON
 {
-    firstName: "firsname",
-    lastName: "lastname",
-    email: "email",
-    username: "username",
-    password: "password,
-    phoneNumber: "phoneNumber"
-    postalCode: "postalCode",
-    city: "city",
-    address: "address"
+    "firstName": "firsname",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
 }
 else status(406)
 ```
 
 
+### method: GET
+### path name: /producer/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /producer/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
+```
 response BODY:
+```JSON
 {
-    firstName: "firsname",
-    lastName: "lastname",
-    email: "email",
-    username: "username",
-    password: "password,
-    phoneNumber: "phoneNumber"
+    "firstName": "firsname",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber"
 }
 else status(406)
 ```
 
 
+### method: GET
+### path name: /gleaner-group/get-by-username/?username=username
+### request PARAMETERS:
 ```JSON
-method: GET
-path name: /gleaner-group/get-by-username/?username=username
-request PARAMETERS:
 {
-    username: "username"
+    "username": "username"
 }
+```
+```JSON
 response BODY:
 {
-    username: "username",
-    password: "password,
-    groupName: "groupName",
-    region: "region",
-    description: "description",
-    missionStatement: "missionStatement",
-    imageURL: "imageURL",
+    "username": "username",
+    "password": "password",
+    "groupName": "groupName",
+    "region": "region",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
 }
 else status(406)
 ```
