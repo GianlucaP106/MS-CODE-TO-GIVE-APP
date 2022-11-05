@@ -25,11 +25,11 @@ public class LocationService {
         this.restTemplate = restTemplate;
     }
 
-    public boolean validatePostalCode(String postalCode){
+    public boolean validatePostalCode(String postalCode) {
         return postalCode.matches(postalCodeRegex);
     }
 
-    public boolean validateCity(String city){
+    public boolean validateCity(String city) {
         return city.matches(cityRegex);
     }
 
@@ -39,9 +39,12 @@ public class LocationService {
 
         // conditionally adding query params
         String queryParam = "canada, ";
-        if(address != null) queryParam += address;
-        if(city != null && city.matches(cityRegex)) queryParam += ", " + city;
-        if(postalCode != null && validatePostalCode(postalCode)) queryParam += ", " + postalCode;
+        if (address != null)
+            queryParam += address;
+        if (city != null && city.matches(cityRegex))
+            queryParam += ", " + city;
+        if (postalCode != null && validatePostalCode(postalCode))
+            queryParam += ", " + postalCode;
 
         String API_url_params = "access_key=" + API_key_param + "&query=" + queryParam;
 
@@ -49,30 +52,32 @@ public class LocationService {
         String queryURL = API_url + API_url_params;
 
         ResponseEntity<LocationAPITO> response = restTemplate.getForEntity(queryURL, LocationAPITO.class);
-        LocationAPITO body = response.getBody(); 
+        LocationAPITO body = response.getBody();
 
         System.out.println(queryURL);
 
-        if (response.getStatusCode() == HttpStatus.OK && body != null){
+        if (response.getStatusCode() == HttpStatus.OK && body != null) {
             List<LocationData> data = new ArrayList<>();
 
             // filtering to only have locations from canada.
             body.data.forEach(element -> {
-                if(element.country.toLowerCase().equals("canada")) data.add(element);
+                if (element.country.toLowerCase().equals("canada"))
+                    data.add(element);
             });
 
-            if(data.size() == 0){
+            if (data.size() == 0) {
                 return new ResponseEntity<LocationAPITO>(body, HttpStatus.NO_CONTENT);
             }
 
             body.data = data;
             return new ResponseEntity<LocationAPITO>(body, HttpStatus.OK);
+
         } else {
 
-            if(response.getStatusCode().value() >= 500)
+            if (response.getStatusCode().value() >= 500)
                 return new ResponseEntity<LocationAPITO>(new LocationAPITO(), HttpStatus.INTERNAL_SERVER_ERROR);
 
-            if(response.getStatusCode().value() >= 400)
+            if (response.getStatusCode().value() >= 400)
                 return new ResponseEntity<LocationAPITO>(new LocationAPITO(), HttpStatus.BAD_REQUEST);
 
             return null;

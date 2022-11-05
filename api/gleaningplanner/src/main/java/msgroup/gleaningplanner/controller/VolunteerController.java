@@ -65,7 +65,6 @@ public class VolunteerController {
         }
 
         return new ResponseEntity<VolunteerFilterTO>(new VolunteerFilterTO(volunteerTOs), HttpStatus.OK);
-
     }
 
 }

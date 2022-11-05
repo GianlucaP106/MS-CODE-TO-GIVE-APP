@@ -6,25 +6,23 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Organization extends User{
+public class Organization extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
     private String organizationName;
-    private long longitude;
-    private long latitude;
     private String websiteLink;
     private String description;
-    private String missionStatement;  
+    private String missionStatement;
     private String imageURL;
     private int maxDistance;
 
     public Organization() {
         super();
     }
-    
+
     public int getMaxDistance() {
         return maxDistance;
     }
@@ -33,7 +31,6 @@ public class Organization extends User{
         this.maxDistance = maxDistance;
     }
 
-
     public String getWebsiteLink() {
         return websiteLink;
     }
@@ -41,10 +38,11 @@ public class Organization extends User{
     public void setWebsiteLink(String websiteLink) {
         this.websiteLink = websiteLink;
     }
-    
+
     public int getID() {
         return ID;
     }
+
     public void setID(int iD) {
         ID = iD;
     }
@@ -79,21 +77,5 @@ public class Organization extends User{
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
-    }
-
-    public long getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
-    }
-
-    public long getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
     }
 }

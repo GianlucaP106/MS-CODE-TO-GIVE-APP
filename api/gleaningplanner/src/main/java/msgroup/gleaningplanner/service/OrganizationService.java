@@ -1,10 +1,10 @@
 package msgroup.gleaningplanner.service;
 
-import java.util.ArrayList;
-import java.util.List;
+import javax.tools.DocumentationTool.Location;
 
 import org.springframework.stereotype.Service;
 
+import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.repository.OrganizationRepository;
 
@@ -13,8 +13,11 @@ public class OrganizationService {
 
     private OrganizationRepository organizationRepository;
 
-    public OrganizationService(OrganizationRepository organizationRepository) {
+    private LocationService locationService;
+
+    public OrganizationService(OrganizationRepository organizationRepository, LocationService locationService) {
         this.organizationRepository = organizationRepository;
+        this.locationService = locationService;
     }
 
     public Organization createOrganization(
@@ -30,6 +33,8 @@ public class OrganizationService {
         int maxDistance, 
         String websiteLink) {
 
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+
             Organization newOrganization= new Organization();
             newOrganization.setUsername(username);
             newOrganization.setPassword(password);
@@ -39,9 +44,9 @@ public class OrganizationService {
             newOrganization.setMaxDistance(maxDistance);
             newOrganization.setWebsiteLink(websiteLink);
             newOrganization.setImageURL(imageURL);
-            // call method to convert TODO
-            newOrganization.setLatitude(0);
-            newOrganization.setLongitude(0);
+            // setting long and lat
+            newOrganization.setLatitude(location.data.get(0).latitude);
+            newOrganization.setLongitude(location.data.get(0).longitude);
             
             return organizationRepository.save(newOrganization);
             

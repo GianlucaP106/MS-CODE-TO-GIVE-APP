@@ -7,10 +7,12 @@ public class VolunteerTO {
     public String lastName;
     public String email;
     public String phoneNumber;
+    public String password;
     public String postalCode;
     public String address;
     public String city;
-    public String password;
+    public double latitude;
+    public double longitude;
 
     
     public VolunteerTO(int iD, String username, String firstName, String lastName, String email, String phoneNumber,
