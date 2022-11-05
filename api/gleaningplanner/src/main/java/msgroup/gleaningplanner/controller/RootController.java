@@ -1,6 +1,8 @@
 package msgroup.gleaningplanner.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.RequestEntity;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +23,7 @@ public class RootController {
     }
 
     @GetMapping("/testloc")
-    public LocationAPITO getLoc(){
+    public ResponseEntity<LocationAPITO> getLoc(){
         return locationService.transformToLatitudeLongitude(null, "H8P 1C6", "Montreal"); 
     }
 }
