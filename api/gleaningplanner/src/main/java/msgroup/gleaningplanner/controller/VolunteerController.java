@@ -19,7 +19,6 @@ import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.service.VolunteerService;
 
 @RestController
-
 public class VolunteerController {
 
     private VolunteerService volunteerService;
@@ -63,6 +62,7 @@ public class VolunteerController {
             incoming.city,
             incoming.password
             );
+
         List<VolunteerTO> volunteerTOs = new ArrayList<VolunteerTO>();
         for (Volunteer volunteer : filteredVolunteers) {
             if (volunteer != null) {
@@ -84,7 +84,6 @@ public class VolunteerController {
                 volunteerTOs.add(to);
             }
         }
-
         return new ResponseEntity<VolunteerFilterTO>(new VolunteerFilterTO(volunteerTOs), HttpStatus.OK);
     }
 

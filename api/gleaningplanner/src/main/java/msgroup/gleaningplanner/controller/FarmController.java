@@ -41,7 +41,7 @@ public class FarmController {
         return new ResponseEntity<FarmTO>(out, HttpStatus.OK);
     }
 
-    @GetMapping("/farm/get-by-filter")
+    @PostMapping("/farm/get-by-filter")
     public ResponseEntity<FarmFIlters> getFarmByFilter(@RequestBody FarmObjectDTO incoming){
         Set<Farm> filteredFarms = farmService.filterFarm(
             incoming.ID,
