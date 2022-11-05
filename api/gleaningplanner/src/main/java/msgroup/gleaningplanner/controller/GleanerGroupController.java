@@ -25,7 +25,7 @@ public class GleanerGroupController {
         this.gleanergroupService = gleanergroupService;
     }
 
-    @PostMapping("/producer/register")
+    @PostMapping("/gleaner-group/register")
     public ResponseEntity<GleanerGroupTO> createGleanerGroup(@RequestBody GleanerGroupTO incoming){
         GleanerGroup newGleanerGroup = gleanergroupService.createGleanerGroup(
             incoming.username, incoming.password, incoming.groupName,
