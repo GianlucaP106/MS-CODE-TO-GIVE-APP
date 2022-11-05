@@ -1,9 +1,10 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
-public class FarmTO {
+import java.util.List;
 
-    public int producerID;
-    public FarmObjectDTO farm;
+public class FarmFIlters {
+    
+    public List<FarmObjectDTO> farms;
 
     public static class FarmObjectDTO{
         public int id;
@@ -28,8 +29,4 @@ public class FarmTO {
         }
     }
 
-    public FarmTO(int producerID, FarmObjectDTO farm) {
-        this.producerID = producerID;
-        this.farm = farm;
-    }
 }

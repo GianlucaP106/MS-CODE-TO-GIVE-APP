@@ -31,8 +31,7 @@ public class FarmController {
         Farm newFarm = farmService.createFarm(incoming);
         FarmTO out = new FarmTO(
             newFarm.getProducer().getID(),
-            new FarmObjectDTO(newFarm.getID(), newFarm.getFarmName(), newFarm.getAddress(), newFarm.getPostalCode(), newFarm.getCity(), newFarm.getLongitude(), newFarm.getLatitude(), newFarm.getSurfaceArea()),
-            null
+            new FarmObjectDTO(newFarm.getID(), newFarm.getFarmName(), newFarm.getAddress(), newFarm.getPostalCode(), newFarm.getCity(), newFarm.getLongitude(), newFarm.getLatitude(), newFarm.getSurfaceArea())
         );
         return new ResponseEntity<FarmTO>(out, HttpStatus.OK);
     }

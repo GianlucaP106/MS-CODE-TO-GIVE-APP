@@ -6,12 +6,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
     "password": "password",
-    "phoneNumber": "phoneNumber"
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
 }
 ```
 #### response: successful ? status(201) : status(406)
