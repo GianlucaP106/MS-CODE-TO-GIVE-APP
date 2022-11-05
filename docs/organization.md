@@ -27,7 +27,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request body (attribute)
 ```JSON
 {
-    "id": "id",
+    "ID": "ID",
     "username": "username",
     "orgName": "orgName",
     "description": "description",
@@ -45,7 +45,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "organizations": [
         {
-            "id": "id",
+            "ID": "ID",
             "username": "username",
             "orgName": "orgName",
             "description": "description",
@@ -68,8 +68,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "organizationId": "organizationId",
-    "producerId": "producerId",
+    "organizationID": "organizationID",
+    "producerID": "producerID",
     "comment": "comment",
 }
 ```
@@ -81,8 +81,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "organizationId": "organizationId",
-    "gleanerId": "gleanerId",
+    "organizationID": "organizationID",
+    "gleanerID": "gleanerID",
     "comment": "comment",
 }
 ```
@@ -94,8 +94,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "organizationId": "organizationId",
-    "eventId": "eventId",
+    "organizationID": "organizationID",
+    "eventID": "eventID",
     "comment": "comment",
 }
 ```
@@ -107,8 +107,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "organizationId": "organizationId",
-    "gleanerGroupId": "gleanerGroupId",
+    "organizationID": "organizationID",
+    "gleanerGroupID": "gleanerGroupID",
     "comment": "comment",
 }
 ```
