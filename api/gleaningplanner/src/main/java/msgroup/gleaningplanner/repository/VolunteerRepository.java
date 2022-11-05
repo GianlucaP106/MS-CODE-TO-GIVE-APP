@@ -9,4 +9,6 @@ import msgroup.gleaningplanner.model.Volunteer;
 public interface VolunteerRepository extends CrudRepository<Volunteer, Integer>{
     
     public Volunteer findVolunteerByID(int ID);
+
+    public Volunteer findVolunteerByUsername(String Username);
 }

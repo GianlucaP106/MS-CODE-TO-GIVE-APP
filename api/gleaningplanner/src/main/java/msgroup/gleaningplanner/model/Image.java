@@ -30,7 +30,7 @@ public class Image {
 
     private String imageURL;
 
-    private String iamgeType; 
+    private String imageType; 
 
     public Farm getFarm() {
         return farm;
@@ -52,11 +52,11 @@ public class Image {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-    public String getIamgeType() {
-        return iamgeType;
+    public String getImageType() {
+        return imageType;
     }
-    public void setIamgeType(String iamgeType) {
-        this.iamgeType = iamgeType;
+    public void setImageType(String imageType) {
+        this.imageType = imageType;
     }
     public Volunteer getGleaner() {
         return volunteer;

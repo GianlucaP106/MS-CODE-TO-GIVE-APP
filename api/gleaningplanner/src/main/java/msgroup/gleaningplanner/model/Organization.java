@@ -48,12 +48,6 @@ public class Organization extends User{
     public void setID(int iD) {
         ID = iD;
     }
-    public String getBankName() {
-        return organizationName;
-    }
-    public void setBankName(String organizationName) {
-        this.organizationName = organizationName;
-    }
 
     public String getDescription() {
         return description;
