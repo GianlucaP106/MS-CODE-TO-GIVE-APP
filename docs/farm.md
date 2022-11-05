@@ -41,14 +41,18 @@
 ### response BODY:
 ```JSON
 {
-    "id" : "id",
-    "farmName": "farmName",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
+    "farms": [
+        {
+            "id" : "id",
+            "farmName": "farmName",
+            "description": "description",
+            "missionStatement": "missionStatement",
+            "imageURL": "imageURL",
+            "address": "address",
+            "postalCode": "postalCode",
+            "city": "city",
+        }
+    ]
 }
 ```
 #### else status(406)
