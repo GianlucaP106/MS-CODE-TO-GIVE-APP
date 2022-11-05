@@ -78,7 +78,7 @@ public class OrganizationService {
 
         Set<Organization> filtered = new HashSet<Organization>();
         
-        if (id != null) {
+        if (id != null && id > 0) {
             filtered.add(organizationRepository.findOrganizationByID(id));
             return filtered;
         }
@@ -88,13 +88,24 @@ public class OrganizationService {
             return filtered;
         }
         
-        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
-        
-        List<String> incoming = Arrays.asList(orgName, description, missionStatement, imageURL, address, city, postalCode, Double.toString(maxDistance), websiteLink, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));
+        String longitude = null;
+        String latitude = null;
+        if (address != null && postalCode != null && city != null) {
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+            latitude = Double.toString(location.data.get(0).latitude);
+            longitude = Double.toString(location.data.get(0).longitude);
+        }
+
+        String mD = null;
+        if (maxDistance != null) {
+            mD = Double.toString(maxDistance);
+        }
+
+        List<String> incoming = Arrays.asList(orgName, description, missionStatement, imageURL, address, city, postalCode, mD, websiteLink, latitude, longitude);
         List<String> organizationInfo;
         
         for (Organization organization : organizationRepository.findAll()) {
-            organizationInfo = Arrays.asList(organization.getOrganizationName(), organization.getDescription(), organization.getMissionStatement(), organization.getImageURL(), organization.getAddress(), organization.getCity(), organization.getPostalCode(), Double.toString(organization.getMaxDistance()), organization.getWebsiteLink(), Double.toString(organization.getLatitude()), Double.toString(organization.getLongitude()));
+            organizationInfo = Arrays.asList(organization.getOrganizationName(), organization.getDescription(), organization.getMissionStatement(), organization.getImageURL(), organization.getAddress(), organization.getCity(), organization.getPostalCode(), Double.toString(organization.getMaxDistance()), organization.getWebsiteLink(), latitude, longitude);
             boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
                 

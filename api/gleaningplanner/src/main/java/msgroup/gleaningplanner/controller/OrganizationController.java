@@ -33,33 +33,35 @@ public class OrganizationController {
     @PostMapping("/organization/register")
     public ResponseEntity<OrganizationTO> createOrganization(@RequestBody OrganizationTO incoming) {
         Organization newOrganization = organizationService.createOrganization(
-                                                                incoming.username,
-                                                                incoming.password,
-                                                                incoming.orgName,
-                                                                incoming.description,
-                                                                incoming.missionStatement,
-                                                                incoming.imageURL,
-                                                                incoming.address,
-                                                                incoming.city,
-                                                                incoming.postalCode,
-                                                                incoming.maxDistance,
-                                                                incoming.websiteLink
-                                                            );
-        OrganizationTO out = new OrganizationTO(newOrganization.getID(), 
-                                                newOrganization.getUsername(), 
-                                                newOrganization.getOrganizationName(), 
-                                                newOrganization.getDescription(), 
-                                                newOrganization.getMissionStatement(), 
-                                                newOrganization.getImageURL(), 
-                                                newOrganization.getAddress(), 
-                                                newOrganization.getPostalCode(),
-                                                newOrganization.getCity(), 
-                                                null, 
-                                                newOrganization.getMaxDistance(), 
-                                                newOrganization.getWebsiteLink(),
-                                                newOrganization.getLongitude(), 
-                                                newOrganization.getLatitude()
-                                            );
+            incoming.username,
+            incoming.password,
+            incoming.orgName,
+            incoming.description,
+            incoming.missionStatement,
+            incoming.imageURL,
+            incoming.address,
+            incoming.city,
+            incoming.postalCode,
+            incoming.maxDistance,
+            incoming.websiteLink
+        );
+
+        OrganizationTO out = new OrganizationTO(
+            newOrganization.getID(), 
+            newOrganization.getUsername(), 
+            newOrganization.getOrganizationName(), 
+            newOrganization.getDescription(), 
+            newOrganization.getMissionStatement(), 
+            newOrganization.getImageURL(), 
+            newOrganization.getAddress(), 
+            newOrganization.getPostalCode(),
+            newOrganization.getCity(), 
+            null, 
+            newOrganization.getMaxDistance(), 
+            newOrganization.getWebsiteLink(),
+            newOrganization.getLongitude(), 
+            newOrganization.getLatitude()
+        );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
     }
@@ -68,35 +70,36 @@ public class OrganizationController {
     public ResponseEntity<OrganizationTO> updateOrganization(@RequestBody OrganizationTO incoming) {
 
         Organization newOrganization = organizationService.updateOrganization(
-                                                                incoming.id,
-                                                                incoming.username,
-                                                                incoming.password,
-                                                                incoming.orgName,
-                                                                incoming.description,
-                                                                incoming.missionStatement,
-                                                                incoming.imageURL,
-                                                                incoming.address,
-                                                                incoming.postalCode,
-                                                                incoming.city,
-                                                                incoming.maxDistance,
-                                                                incoming.websiteLink
-                                                            );
+            incoming.id,
+            incoming.username,
+            incoming.password,
+            incoming.orgName,
+            incoming.description,
+            incoming.missionStatement,
+            incoming.imageURL,
+            incoming.address,
+            incoming.city,
+            incoming.postalCode,
+            incoming.maxDistance,
+            incoming.websiteLink
+        );
         
-        OrganizationTO out = new OrganizationTO(newOrganization.getID(), 
-                                                newOrganization.getUsername(), 
-                                                newOrganization.getOrganizationName(), 
-                                                newOrganization.getDescription(), 
-                                                newOrganization.getMissionStatement(), 
-                                                newOrganization.getImageURL(), 
-                                                newOrganization.getAddress(), 
-                                                newOrganization.getPostalCode(),
-                                                newOrganization.getCity(), 
-                                                null, 
-                                                newOrganization.getMaxDistance(), 
-                                                newOrganization.getWebsiteLink(),
-                                                newOrganization.getLongitude(), 
-                                                newOrganization.getLatitude()
-                                            );
+        OrganizationTO out = new OrganizationTO(
+            newOrganization.getID(), 
+            newOrganization.getUsername(), 
+            newOrganization.getOrganizationName(), 
+            newOrganization.getDescription(), 
+            newOrganization.getMissionStatement(), 
+            newOrganization.getImageURL(), 
+            newOrganization.getAddress(), 
+            newOrganization.getPostalCode(),
+            newOrganization.getCity(), 
+            null, 
+            newOrganization.getMaxDistance(), 
+            newOrganization.getWebsiteLink(),
+            newOrganization.getLongitude(), 
+            newOrganization.getLatitude()
+        );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
     }
