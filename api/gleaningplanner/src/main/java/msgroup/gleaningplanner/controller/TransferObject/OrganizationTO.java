@@ -1,7 +1,7 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
 public class OrganizationTO {
-    public int id;
+    public Integer id;
     public String username;
     public String orgName;
     public String description;
@@ -11,14 +11,14 @@ public class OrganizationTO {
     public String postalCode;
     public String city;
     public String password;
-    public double maxDistance;
+    public Double maxDistance;
     public String websiteLink;
-    public double longitude;
-    public double latitude;
+    public Double longitude;
+    public Double latitude;
 
-    public OrganizationTO(int id, String username, String orgName, String description, String missionStatement,
-            String imageURL, String address, String postalCode, String city, String password, double maxDistance,
-            String websiteLink, double latitude, double longitude) {
+    public OrganizationTO(Integer id, String username, String orgName, String description, String missionStatement,
+            String imageURL, String address, String postalCode, String city, String password, Double maxDistance,
+            String websiteLink, Double latitude, Double longitude) {
         this.id = id;
         this.username = username;
         this.orgName = orgName;

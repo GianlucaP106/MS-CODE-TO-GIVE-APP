@@ -71,13 +71,9 @@ public class Organization extends User {
         this.organizationName = organizationName;
     }
 
-
-
     public double getMaxDistance() {
         return maxDistance;
     }
-
-
 
     public void setMaxDistance(double maxDistance) {
         this.maxDistance = maxDistance;

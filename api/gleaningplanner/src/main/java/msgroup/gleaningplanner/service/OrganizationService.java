@@ -36,7 +36,7 @@ public class OrganizationService {
         String address, 
         String city, 
         String postalCode,
-        double maxDistance, 
+        Double maxDistance, 
         String websiteLink) {
 
             LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
@@ -61,12 +61,8 @@ public class OrganizationService {
             
     }
 
-    public Organization getOrganizationById(int id) {
-        return organizationRepository.findOrganizationByID(id);
-    }
-
     public Set<Organization> filterOrganizations(
-        int id,
+        Integer id,
         String username, 
         String password,
         String orgName, 
@@ -76,13 +72,13 @@ public class OrganizationService {
         String address, 
         String city, 
         String postalCode,
-        double maxDistance, 
+        Double maxDistance, 
         String websiteLink
     ) {
 
         Set<Organization> filtered = new HashSet<Organization>();
         
-        if (id != -1) {
+        if (id != null) {
             filtered.add(organizationRepository.findOrganizationByID(id));
             return filtered;
         }
@@ -99,18 +95,21 @@ public class OrganizationService {
         
         for (Organization organization : organizationRepository.findAll()) {
             organizationInfo = Arrays.asList(organization.getOrganizationName(), organization.getDescription(), organization.getMissionStatement(), organization.getImageURL(), organization.getAddress(), organization.getCity(), organization.getPostalCode(), Double.toString(organization.getMaxDistance()), organization.getWebsiteLink(), Double.toString(organization.getLatitude()), Double.toString(organization.getLongitude()));
+            boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
                 
                 if (incoming.get(index) != null && 
-                incoming.get(index).equals(organizationInfo.get(index))) filtered.add(organization);
+                !incoming.get(index).equals(organizationInfo.get(index))) valid = false;
             }
+
+            if (valid) filtered.add(organization);
         }
-        
+
         return filtered;
     }
 
     public Organization updateOrganization(
-        int id,
+        Integer id,
         String username, 
         String password,
         String orgName, 
@@ -120,7 +119,7 @@ public class OrganizationService {
         String address, 
         String city, 
         String postalCode,
-        double maxDistance, 
+        Double maxDistance, 
         String websiteLink
     ) {
 
@@ -132,7 +131,7 @@ public class OrganizationService {
         if (imageURL != null) {
             newOrganization.setImageURL(imageURL);
         }
-        if (maxDistance != -1){
+        if (maxDistance != null){
             newOrganization.setMaxDistance(maxDistance);
         }
         if (missionStatement != null) {
