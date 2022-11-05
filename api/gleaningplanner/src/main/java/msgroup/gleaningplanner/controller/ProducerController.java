@@ -2,6 +2,7 @@
 package msgroup.gleaningplanner.controller;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,7 +11,6 @@ import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
 import msgroup.gleaningplanner.model.Producer;
 
 @RestController
-
 public class ProducerController {
     private ProducerService producerService;
 
