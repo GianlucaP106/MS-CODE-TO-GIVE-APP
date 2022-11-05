@@ -7,7 +7,7 @@ public class GleanerGroupTO {
     public String region;
     public String description;
     public String missionStatement;
-    public String imageURl;
+    public String imageURL;
 
     public GleanerGroupTO(String username, String password,
     String groupName, String region, String description, 
@@ -18,6 +18,6 @@ public class GleanerGroupTO {
         this.region = region;
         this.description = description;
         this.missionStatement = missionStatement;
-        this.imageURl = imageURL;
+        this.imageURL = imageURL;
     }
 }
