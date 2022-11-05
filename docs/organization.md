@@ -16,24 +16,20 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "city": "city",
     "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
 }
 ```
 #### response: successful ? status(201) : status(406)
 
 
-### method: GET
-### path name: /organization/get-by-username/?username=username
-### request PARAMETERS:
+### method : GET 
+### path name : /organization/get-with-filters
+### request body
 ```JSON
 {
-    "username": "username"
-}
-```
-### response BODY:
-```JSON
-{
+    "id": "id",
     "username": "username",
-    "password": "password",
     "orgName": "orgName",
     "description": "description",
     "missionStatement": "missionStatement",
@@ -41,64 +37,31 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "city": "city",
     "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
 }
 ```
-#### else status(406)
-
-### method: GET
-### path name: /organization/get-events-by-id/?id=id
-### request PARAMETERS:
+### return 
 ```JSON
 {
-    "id": "id",
-}
-```
-### response BODY:
-```JSON
-{
-    "events": [
+    "organizations": [
         {
-            "id" : "id",
-            "eventName": "eventName",
+            "id": "id",
+            "username": "username",
+            "orgName": "orgName",
             "description": "description",
             "missionStatement": "missionStatement",
             "imageURL": "imageURL",
             "address": "address",
-            "postalCode": "postalCode",
             "city": "city",
+            "postalCode": "postalCode",
+            "maxDistance": "maxDistance",
+            "websiteLink": "websiteLink",
         }
     ]
 }
 ```
-#### else status(406)
-
-
-### method: GET
-### path name: /organization/get-events-by-username/?username=username
-### request PARAMETERS:
-```JSON
-{
-    "username": "username",
-}
-```
-### response BODY:
-```JSON
-{
-    "events": [
-        {
-            "id" : "id",
-            "eventName": "eventName",
-            "description": "description",
-            "missionStatement": "missionStatement",
-            "imageURL": "imageURL",
-            "address": "address",
-            "postalCode": "postalCode",
-            "city": "city",
-        }
-    ]
-}
-```
-#### else status(406)
+### else status 404
 
 
 ### method: POST
@@ -106,7 +69,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "organizationId": "organizationId",
     "producerId": "producerId",
     "comment": "comment",
 }
@@ -119,7 +82,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "organizationId": "organizationId",
     "gleanerId": "gleanerId",
     "comment": "comment",
 }
@@ -132,7 +95,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "organizationId": "organizationId",
     "eventId": "eventId",
     "comment": "comment",
 }
@@ -145,9 +108,30 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "organizationId": "organizationId",
     "gleanerGroupId": "gleanerGroupId",
     "comment": "comment",
 }
 ```
 #### response: successful ? status(201) : status(406)
+
+
+#### method: PUT
+#### path name: /organization/update
+#### body params (inputs): 
+```JSON
+{
+    "username": "username",
+    "password": "password",
+    "orgName": "orgName",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "city": "city",
+    "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
+}
+```
+#### successful ? status(404) : status(404) // not found

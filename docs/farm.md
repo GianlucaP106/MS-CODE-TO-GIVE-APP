@@ -19,8 +19,9 @@
     }
 }
 ```
-#### response: successful ? status(201) : status(406)
 
+
+#### response: successful ? status(201) : status(406)
 
 ### method: GET
 ### path name: /farm/get-by-filter
@@ -41,14 +42,18 @@
 ### response BODY:
 ```JSON
 {
-    "id" : "id",
-    "farmName": "farmName",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
+    "farms": [
+        {
+            "id" : "id",
+            "farmName": "farmName",
+            "description": "description",
+            "missionStatement": "missionStatement",
+            "imageURL": "imageURL",
+            "address": "address",
+            "postalCode": "postalCode",
+            "city": "city",
+        }
+    ]
 }
 ```
 #### else status(406)

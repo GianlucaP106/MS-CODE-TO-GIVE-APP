@@ -1,0 +1,7 @@
+.searchField {
+    margin-bottom: 0.5rem;
+}
+
+.searchField, .formControl {
+    padding: 2rem;
+}

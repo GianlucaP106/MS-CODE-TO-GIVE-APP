@@ -15,7 +15,10 @@ public class Volunteer extends User{
     private String lastName;
     private String email;
     private String phoneNumber;
+    private double latitude;
+    private double longitude;
 
+    
 
     public Volunteer() {
         super();
@@ -57,6 +60,22 @@ public class Volunteer extends User{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(double longitude) {
+        this.longitude = longitude;
     }
 
     

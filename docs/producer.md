@@ -17,26 +17,35 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### response: successful ? status(201) : status(406)
 
 
-### method: GET
-### path name: /producer/get-by-username/?username=username
-### request PARAMETERS:
+### method : GET 
+### path name : /producer/get-with-filters
+### request body
 ```JSON
 {
-    "username": "username"
-}
-```
-### response BODY:
-```JSON
-{
+    "id": "id",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password",
     "phoneNumber": "phoneNumber"
 }
 ```
-#### else status(406)
+### return 
+```JSON
+{
+    "producers": [
+        {
+            "id": "id",
+            "firstName": "firsname",
+            "lastName": "lastname",
+            "email": "email",
+            "username": "username",
+            "phoneNumber": "phoneNumber"
+        }
+    ]
+}
+```
+### else status 404
 
 
 ### method: GET
@@ -61,12 +70,12 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /producer/comment-gleaner/?username=username
+### path name: /producer/comment-volunteer/?username=username
 ### request BODY:
 ```JSON
 {
     "producerId": "producerId",
-    "gleanerId": "gleanerId",
+    "volunteerId": "volunteerId",
     "comment": "comment",
 }
 ```
@@ -110,3 +119,65 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 #### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /producer/create-event
+### request BODY:
+```JSON
+{
+    "id" : "id",
+    "farmId": "farmId",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+    "isUrgent": "isUrgent"
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: PUT
+### path name: /producer/update
+### request PARAMETERS:
+```JSON
+{
+    "id" : "id",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+    "isUrgent": "isUrgent"
+}
+```
+#### successful ? status(404) : status(404) // not found
+
+
+### method: PUT
+### path name: /producer/update-event
+### request PARAMETERS:
+```JSON
+{
+    "id" : "id",
+    "eventName": "eventName",
+    "neededGleaners": "neededGleaners",
+    "description": "description",
+    "missionStatement": "missionStatement",
+    "imageURL": "imageURL",
+    "address": "address",
+    "postalCode": "postalCode",
+    "city": "city",
+    "isUrgent": "isUrgent"
+}
+```
+#### successful ? status(404) : status(404) // not found
+

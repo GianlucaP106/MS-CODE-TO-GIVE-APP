@@ -3,11 +3,11 @@
 
 #### Create
 #### method: POST
-#### path name: /gleaner/register
+#### path name: /volunteer/register
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
@@ -22,15 +22,15 @@
 
 
 ### method: GET
-### path name: /gleaner/get-by-username/?username=username
+### path name: /volunteer/get-by-filter
 ### request PARAMETERS:
 ```JSON
 {
+    "id": "id",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password",
     "phoneNumber": "phoneNumber",
     "postalCode": "postalCode",
     "city": "city",
@@ -40,22 +40,25 @@
 ### response BODY:
 ```JSON
 {
-    "ID": "ID",
-    "firstName": "firsname",
-    "lastName": "lastname",
-    "email": "email",
-    "username": "username",
-    "password": "password",
-    "phoneNumber": "phoneNumber",
-    "postalCode": "postalCode",
-    "city": "city",
-    "address": "address"
+    "gleaners": [
+        {
+            "ID": "ID",
+            "firstName": "firsname",
+            "lastName": "lastname",
+            "email": "email",
+            "username": "username",
+            "phoneNumber": "phoneNumber",
+            "postalCode": "postalCode",
+            "city": "city",
+            "address": "address"
+        }
+    ]
 }
 ```
 #### else status(406)
 
 ### method: PUT
-### path name: /gleaner/update
+### path name: /volunteer/update
 ### request PARAMETERS:
 ```JSON
 {
@@ -75,20 +78,19 @@
 
 
 ### method : POST
-### path name: /gleaner/eventRegister
+### path name: /volunteer/eventRegister
 ### request PARAMETERS:
 ```JSON
 {
-    "gleanerID" : "gleanerID",
+    "volunteerId" : "volunteerId",
     "eventID" : "eventID",
-    "isOwner" : "isOwner",
 }
 ```
 #### successful ? status(201) : status(406)
 
 
 ### method: GET
-### path name: /gleaner/get-events/?username=username
+### path name: /volunteer/get-events/?username=username
 ### request PARAMETERS:
 ```JSON
 {
@@ -116,7 +118,7 @@
 
 
 ### method: GET
-### path name: /gleaner/get-comments/?username=username
+### path name: /volunteer/get-comments/?username=username
 ### request PARAMETERS:
 ```JSON
 {
@@ -137,11 +139,11 @@
 
 
 ### method: POST
-### path name: /gleaner/comment-producer/?username=username
+### path name: /volunteer/comment-producer/?username=username
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "volunteerId": "volunteerId",
     "producerId": "producerId",
     "comment": "comment",
 }
@@ -150,11 +152,11 @@
 
 
 ### method: POST
-### path name: /gleaner/comment-organization/?username=username
+### path name: /volunteer/comment-organization/?username=username
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "volunteerId": "volunteerId",
     "organizationId": "organizationId",
     "comment": "comment",
 }
@@ -163,11 +165,11 @@
 
 
 ### method: POST
-### path name: /gleaner/comment-event/?username=username
+### path name: /volunteer/comment-event/?username=username
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "volunteerId": "volunteerId",
     "eventId": "eventId",
     "comment": "comment",
 }
@@ -176,16 +178,56 @@
 
 
 ### method: POST
-### path name: /gleaner/comment-gleaner-group/?username=username
+### path name: /volunteer/comment-gleaner-group/?username=username
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "volunteerId": "volunteerId",
     "gleanerGroupId": "gleanerGroupId",
     "comment": "comment",
 }
 ```
 #### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /volunteer/accept-volunteer/?username=username
+### request BODY:
+```JSON
+{
+    "gleanerAcceptingId": "gleanerAcceptingId",
+    "gleanerRequestingId": "gleanerRequestingId",
+    "eventId": "eventId",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /volunteer/request-team
+### request BODY:
+```JSON
+{
+    "volunteerId": "volunteerId",
+    "volunteerGroupNumber": "volunteerGroupNumber",
+    "eventId": "eventId",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /volunteer/create-team
+### request BODY:
+```JSON
+{
+    "volunteerId": "volunteerId",
+    "eventId": "eventId",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
 
 
 

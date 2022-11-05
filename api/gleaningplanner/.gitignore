@@ -1,3 +1,4 @@
+api/gleaningplanner/src/main/resources/application.properties
 HELP.md
 .gradle
 build/
@@ -35,5 +36,3 @@ out/
 
 ### VS Code ###
 .vscode/
-
-application.properties
