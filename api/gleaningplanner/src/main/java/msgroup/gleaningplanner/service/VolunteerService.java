@@ -1,6 +1,5 @@
 package msgroup.gleaningplanner.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -9,18 +8,29 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
+import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 
 @Service
 public class VolunteerService {
 
     private VolunteerRepository volunteerRepository;
+    private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private LocationService locationService;
+    private EventRepository eventrRepository;
 
-    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
+    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
+                            EventRepository eventrRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
+
         this.volunteerRepository = volunteerRepository;
         this.locationService = locationService;
+        this.eventrRepository = eventrRepository;
+        this.volunteerRegistrationRepository = volunteerRegistrationRepository;
     }
 
     public Volunteer createVolunteer(String firstName, 
@@ -31,7 +41,8 @@ public class VolunteerService {
         String phoneNumber, 
         String address, 
         String postalCode, 
-        String city) {
+        String city
+    ) {
 
             Volunteer newVolunteer = new Volunteer();
             newVolunteer.setEmail(email);
@@ -53,7 +64,7 @@ public class VolunteerService {
     }
 
     public Set<Volunteer> filterVolunteers(
-    int ID ,
+    Integer ID ,
     String username,
     String firstName,
     String lastName,
@@ -66,7 +77,7 @@ public class VolunteerService {
 
         Set<Volunteer> filtered = new HashSet<Volunteer>();
 
-        if (ID != -1) {
+        if (ID != null && ID != 0 && ID > 0) {
             filtered.add(volunteerRepository.findVolunteerByID(ID));
             return filtered;
         }
@@ -75,26 +86,48 @@ public class VolunteerService {
             filtered.add(volunteerRepository.findVolunteerByUsername(username));
             return filtered;
         }
+        String latitude = null;
+        String longitude = null;
+        if (address != null && postalCode != null && city != null) {
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+            latitude = Double.toString(location.data.get(0).latitude);
+            longitude = Double.toString(location.data.get(0).longitude);
+        }
 
 
-        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
 
-
-        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, latitude , longitude, address, city, postalCode);
         List<String> volunteerInfo;
 
         for (Volunteer volunteer : volunteerRepository.findAll()) {
-            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()));
+            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()), volunteer.getAddress(), volunteer.getCity(), volunteer.getPostalCode());
+            boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
 
-                if (incoming.get(index) != null && 
-                incoming.get(index).equals(volunteerInfo.get(index))) filtered.add(volunteer); 
-
+                if (incoming.get(index) != null && !incoming.get(index).equals(volunteerInfo.get(index))) {
+                    valid = false;
+                }    
             }
+            if (valid) filtered.add(volunteer);
         }
 
         return filtered;
 
     }
-    
+
+    public VolunteerRegistration registerToEvent(RegistrationRequest incoming){
+        Volunteer volunteer = volunteerRepository.findVolunteerByID(incoming.volunteerID);
+        Event event = eventrRepository.findEventByID(incoming.evemtID);
+
+        VolunteerRegistration newRegistration = new VolunteerRegistration();
+        newRegistration.setVolunteer(volunteer);
+        newRegistration.setEvent(event);
+        newRegistration.setVolunteerGroupAccepted(false); 
+        newRegistration.setEventAccepted(false);
+        newRegistration.setOwner(false);
+        newRegistration.setVolunteerGroupNumber(0);
+
+        volunteerRegistrationRepository.save(newRegistration);
+        return newRegistration;
+    }
 }

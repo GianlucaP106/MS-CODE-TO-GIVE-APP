@@ -1,7 +1,7 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
 public class VolunteerTO {
-    public int ID;
+    public Integer ID;
     public String username;
     public String firstName;
     public String lastName;
@@ -10,8 +10,8 @@ public class VolunteerTO {
     public String postalCode;
     public String address;
     public String city;
-    public double latitude;
-    public double longitude;
+    public Double latitude;
+    public Double longitude;
     public String password;
 
     

@@ -1,5 +1,10 @@
 package msgroup.gleaningplanner.service;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.tools.DocumentationTool.Location;
 
 import org.springframework.stereotype.Service;
@@ -48,5 +53,102 @@ public class ProducerService {
         newProducer.setPostalCode(postalCode);
 
         return producerRepository.save(newProducer);
+    }
+
+    public Producer updateProducer(
+        Integer id,
+        String firstName,
+        String lastName,
+        String email,
+        String username,
+        String password,
+        String phoneNumber,
+        String address,
+        String postalCode,
+        String city)
+    {
+        Producer newProducer = producerRepository.findProducerByID(id);
+
+        if (firstName != null){
+            newProducer.setFirstName(firstName);
+        }
+        if (lastName != null) {
+            newProducer.setLastName(lastName);
+        }
+        if (email != null){
+            newProducer.setEmail(email);
+        }
+        if (username != null) {
+            newProducer.setUsername(username);
+        }
+        if (password != null) {
+            newProducer.setPassword(password);
+        }
+        if (phoneNumber != null) {
+            newProducer.setPhoneNumber(phoneNumber);
+        }
+        if (address != null && postalCode != null && city != null){
+            newProducer.setAddress(address);
+            newProducer.setPostalCode(postalCode);
+            newProducer.setCity(city);
+
+            LocationAPITO locationAPITO = locationService.transformToLatitudeLongitude(newProducer.getAddress(), newProducer.getPostalCode(), newProducer.getCity()).getBody();
+            newProducer.setLatitude(locationAPITO.data.get(0).latitude);
+            newProducer.setLongitude(locationAPITO.data.get(0).longitude);
+        }
+
+        return producerRepository.save(newProducer);
+    }
+
+    public Set<Producer> filterProducers(
+        Integer id,
+        String firstName,
+        String lastName,
+        String email,
+        String username,
+        String password,
+        String phoneNumber,
+        String address,
+        String postalCode,
+        String city
+    ) {
+        
+        Set<Producer> filtered = new HashSet<Producer>();
+
+        if (id != null && id > 0) {
+            filtered.add(producerRepository.findProducerByID(id));
+            return filtered;
+        }
+
+        if (username != null) {
+            filtered.add(producerRepository.findProducerByUsername(username));
+            return filtered;
+        }
+
+        String longitude = null;
+        String latitude = null;
+        if (address != null && postalCode != null && city != null) {
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+            latitude = Double.toString(location.data.get(0).latitude);
+            longitude = Double.toString(location.data.get(0).longitude);
+        }
+
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, address, address, postalCode, city, latitude, longitude);
+        List<String> producerInfo;
+
+        for (Producer producer: producerRepository.findAll()) {
+            producerInfo = Arrays.asList(producer.getFirstName(), producer.getLastName(), producer.getEmail(), producer.getPhoneNumber(), producer.getAddress(), producer.getPostalCode(), producer.getCity(), latitude, longitude);
+            boolean valid = true;
+            for (int index = 0; index < incoming.size(); index++) {
+
+                if (incoming.get(index) != null &&
+                !incoming.get(index).equals(producerInfo.get(index))) valid = false;
+            }
+
+            if (valid) filtered.add(producer);
+        }
+
+        
+        return filtered;
     }
 }

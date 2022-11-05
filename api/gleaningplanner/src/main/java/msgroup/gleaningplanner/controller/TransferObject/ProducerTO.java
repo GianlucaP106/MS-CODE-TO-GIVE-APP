@@ -1,6 +1,7 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
 public class ProducerTO {
+    public Integer id;
     public String username;
     public String firstName;
     public String lastName;
@@ -12,8 +13,9 @@ public class ProducerTO {
     public String postalCode;
     public double latitude;
     public double longitude;
-    public ProducerTO(String username, String firstName, String lastName, String email, String phoneNumber,
+    public ProducerTO(Integer id, String username, String firstName, String lastName, String email, String phoneNumber,
             String password, String city, String address, String postalCode, double latitude, double longitude) {
+        this.id = id;
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
