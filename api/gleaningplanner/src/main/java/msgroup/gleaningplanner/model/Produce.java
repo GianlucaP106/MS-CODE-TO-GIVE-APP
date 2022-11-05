@@ -15,7 +15,7 @@ public class Produce {
     private int ID;
 
     @OneToOne
-    private ProduceType producerType;
+    private ProduceType produceType;
     
     // if organization then this is limitation
     // if event, then this is available  
@@ -39,13 +39,13 @@ public class Produce {
     }
 
 
-    public ProduceType getProducerType() {
-        return producerType;
+    public ProduceType getProduceType() {
+        return produceType;
     }
 
 
-    public void setProducerType(ProduceType producerType) {
-        this.producerType = producerType;
+    public void setProduceType(ProduceType produceType) {
+        this.produceType = produceType;
     }
 
 

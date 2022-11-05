@@ -2,6 +2,7 @@ package msgroup.gleaningplanner.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,14 +29,26 @@ public class VolunteerController {
     @PostMapping("/volunteer/register")
     public ResponseEntity<VolunteerTO> createVolunteer(@RequestBody VolunteerTO incoming) {
         Volunteer newVolunteer = volunteerService.createVolunteer(incoming.firstName, incoming.lastName, incoming.email,incoming.username,incoming.password,incoming.phoneNumber,incoming.address,incoming.postalCode, incoming.city);
-        VolunteerTO out = new VolunteerTO(newVolunteer.getID(), newVolunteer.getUsername(), newVolunteer.getFirstName(), newVolunteer.getLastName(), newVolunteer.getEmail(), newVolunteer.getPhoneNumber(), "POSTAL", "address", "city", null);
+        VolunteerTO out = new VolunteerTO(
+            newVolunteer.getID(), 
+            newVolunteer.getUsername(), 
+            newVolunteer.getFirstName(), 
+            newVolunteer.getLastName(), 
+            newVolunteer.getEmail(), 
+            newVolunteer.getPhoneNumber(),
+            newVolunteer.getPostalCode(), 
+            newVolunteer.getAddress(), 
+            newVolunteer.getCity(), 
+            newVolunteer.getLatitude(), 
+            newVolunteer.getLongitude(), 
+            null
+        );
         return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
     }
 
     @GetMapping("/volunteer/get-by-filter")
     public ResponseEntity<VolunteerFilterTO> getVolunteerByFilter(@RequestBody VolunteerTO incoming) {
-        System.out.println("hellelelelelkelknrkfonfre ");
-        List<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
+        Set<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
             incoming.ID,
             incoming.username,
             incoming.firstName,
@@ -56,16 +69,17 @@ public class VolunteerController {
                 volunteer.getLastName(),
                 volunteer.getEmail(),
                 volunteer.getPhoneNumber(),
-                "postal",
-                "address",
-                "city",
+                volunteer.getPostalCode(),
+                volunteer.getAddress(),
+                volunteer.getCity(),
+                volunteer.getLatitude(),
+                volunteer.getLongitude(),
                 null
             );
             volunteerTOs.add(to);
         }
 
         return new ResponseEntity<VolunteerFilterTO>(new VolunteerFilterTO(volunteerTOs), HttpStatus.OK);
-
     }
 
 }

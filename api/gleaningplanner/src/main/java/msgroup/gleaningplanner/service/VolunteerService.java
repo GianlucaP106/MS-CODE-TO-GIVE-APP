@@ -1,21 +1,26 @@
 package msgroup.gleaningplanner.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Volunteer;
-import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 
 @Service
 public class VolunteerService {
 
     private VolunteerRepository volunteerRepository;
+    private LocationService locationService;
 
-    public VolunteerService(VolunteerRepository volunteerRepository) {
+    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
         this.volunteerRepository = volunteerRepository;
+        this.locationService = locationService;
     }
 
     public Volunteer createVolunteer(String firstName, 
@@ -34,16 +39,20 @@ public class VolunteerService {
             newVolunteer.setLastName(lastName);
             newVolunteer.setPassword(password);
             newVolunteer.setPhoneNumber(phoneNumber);
-            // call method to convert TODO
+
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+
             newVolunteer.setUsername(username);
-            newVolunteer.setLatitude(0);
-            newVolunteer.setLongitude(0);
-            
+            newVolunteer.setLatitude(location.data.get(0).latitude);
+            newVolunteer.setLongitude(location.data.get(0).longitude);
+            newVolunteer.setAddress(address);
+            newVolunteer.setCity(city);
+            newVolunteer.setPostalCode(postalCode);
             return volunteerRepository.save(newVolunteer);
             
     }
 
-    public List<Volunteer> filterVolunteers(
+    public Set<Volunteer> filterVolunteers(
     int ID ,
     String username,
     String firstName,
@@ -55,15 +64,36 @@ public class VolunteerService {
     String city,
     String password) {
 
-        List<Volunteer> filtered = new ArrayList<Volunteer>();
+        Set<Volunteer> filtered = new HashSet<Volunteer>();
 
         if (ID != -1) {
-            Volunteer volunteer = volunteerRepository.findVolunteerByID(ID);
-            filtered.add(volunteer);
+            filtered.add(volunteerRepository.findVolunteerByID(ID));
+            return filtered;
         }
         
-        return filtered;
+        if (username != null) {
+            filtered.add(volunteerRepository.findVolunteerByUsername(username));
+            return filtered;
+        }
 
+
+        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+
+
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));
+        List<String> volunteerInfo;
+
+        for (Volunteer volunteer : volunteerRepository.findAll()) {
+            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()));
+            for (int index = 0; index < incoming.size(); index++) {
+
+                if (incoming.get(index) != null && 
+                incoming.get(index).equals(volunteerInfo.get(index))) filtered.add(volunteer); 
+
+            }
+        }
+
+        return filtered;
 
     }
     

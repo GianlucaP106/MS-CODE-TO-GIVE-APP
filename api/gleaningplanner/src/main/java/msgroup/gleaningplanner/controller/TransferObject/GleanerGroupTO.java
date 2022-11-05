@@ -1,15 +1,15 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
-public class gleanerGroupTO {
+public class GleanerGroupTO {
     public String username;
     public String password;
     public String groupName;
     public String region;
     public String description;
     public String missionStatement;
-    public String imageURl;
+    public String imageURL;
 
-    public gleanerGroupTO(String username, String password,
+    public GleanerGroupTO(String username, String password,
     String groupName, String region, String description, 
     String missionStatement, String imageURL){
         this.username = username;
@@ -18,7 +18,6 @@ public class gleanerGroupTO {
         this.region = region;
         this.description = description;
         this.missionStatement = missionStatement;
-        this.imageURl = imageURL;
+        this.imageURL = imageURL;
     }
 }
-

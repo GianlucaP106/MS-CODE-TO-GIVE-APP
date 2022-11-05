@@ -1,5 +1,6 @@
 package msgroup.gleaningplanner.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,10 +14,12 @@ public class Volunteer extends User{
     private int ID;
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phoneNumber;
-    private double latitude;
-    private double longitude;
 
     
 
@@ -60,23 +63,5 @@ public class Volunteer extends User{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    
+    }    
 }

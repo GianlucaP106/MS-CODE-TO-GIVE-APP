@@ -10,11 +10,13 @@ public class VolunteerTO {
     public String postalCode;
     public String address;
     public String city;
+    public double latitude;
+    public double longitude;
     public String password;
 
     
     public VolunteerTO(int iD, String username, String firstName, String lastName, String email, String phoneNumber,
-            String postalCode, String address, String city, String password) {
+            String postalCode, String address, String city, double latitude, double longitude, String password) {
         ID = iD;
         this.username = username;
         this.firstName = firstName;
@@ -25,6 +27,8 @@ public class VolunteerTO {
         this.address = address;
         this.city = city;
         this.password = password;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
     
 }
