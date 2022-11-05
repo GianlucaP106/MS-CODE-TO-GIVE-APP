@@ -48,6 +48,7 @@ public class VolunteerController {
 
     @GetMapping("/volunteer/get-by-filter")
     public ResponseEntity<VolunteerFilterTO> getVolunteerByFilter(@RequestBody VolunteerTO incoming) {
+        
         Set<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
             incoming.ID,
             incoming.username,
@@ -59,24 +60,27 @@ public class VolunteerController {
             incoming.address,
             incoming.city,
             incoming.password
-        );
+            );
         List<VolunteerTO> volunteerTOs = new ArrayList<VolunteerTO>();
         for (Volunteer volunteer : filteredVolunteers) {
-            VolunteerTO to = new VolunteerTO(
-                volunteer.getID(),
-                volunteer.getUsername(),
-                volunteer.getFirstName(),
-                volunteer.getLastName(),
-                volunteer.getEmail(),
-                volunteer.getPhoneNumber(),
-                volunteer.getPostalCode(),
-                volunteer.getAddress(),
-                volunteer.getCity(),
-                volunteer.getLatitude(),
-                volunteer.getLongitude(),
-                null
-            );
-            volunteerTOs.add(to);
+            if (volunteer != null) {
+                VolunteerTO to = new VolunteerTO(
+                    volunteer.getID(),
+                    volunteer.getUsername(),
+                    volunteer.getFirstName(),
+                    volunteer.getLastName(),
+                    volunteer.getEmail(),
+                    volunteer.getPhoneNumber(),
+                    volunteer.getPostalCode(),
+                    volunteer.getAddress(),
+                    volunteer.getCity(),
+                    volunteer.getLatitude(),
+                    volunteer.getLongitude(),
+                    null
+                );
+
+                volunteerTOs.add(to);
+            }
         }
 
         return new ResponseEntity<VolunteerFilterTO>(new VolunteerFilterTO(volunteerTOs), HttpStatus.OK);
