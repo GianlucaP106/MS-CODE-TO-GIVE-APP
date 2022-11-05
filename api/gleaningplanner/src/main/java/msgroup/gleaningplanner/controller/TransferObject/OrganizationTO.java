@@ -11,13 +11,13 @@ public class OrganizationTO {
     public String postalCode;
     public String city;
     public String password;
-    public int maxDistance;
+    public double maxDistance;
     public String websiteLink;
     public double longitude;
     public double latitude;
 
     public OrganizationTO(int id, String username, String orgName, String description, String missionStatement,
-            String imageURL, String address, String postalCode, String city, String password, int maxDistance,
+            String imageURL, String address, String postalCode, String city, String password, double maxDistance,
             String websiteLink, double longitude, double latitude) {
         this.id = id;
         this.username = username;

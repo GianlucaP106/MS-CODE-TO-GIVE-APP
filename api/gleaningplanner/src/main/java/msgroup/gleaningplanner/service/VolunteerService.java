@@ -2,7 +2,9 @@ package msgroup.gleaningplanner.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -18,6 +20,7 @@ public class VolunteerService {
 
     public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
         this.volunteerRepository = volunteerRepository;
+        this.locationService = locationService;
     }
 
     public Volunteer createVolunteer(String firstName, 
@@ -36,16 +39,20 @@ public class VolunteerService {
             newVolunteer.setLastName(lastName);
             newVolunteer.setPassword(password);
             newVolunteer.setPhoneNumber(phoneNumber);
-            // call method to convert TODO
+
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+
             newVolunteer.setUsername(username);
-            newVolunteer.setLatitude(0);
-            newVolunteer.setLongitude(0);
-            
+            newVolunteer.setLatitude(location.data.get(0).latitude);
+            newVolunteer.setLongitude(location.data.get(0).longitude);
+            newVolunteer.setAddress(address);
+            newVolunteer.setCity(city);
+            newVolunteer.setPostalCode(postalCode);
             return volunteerRepository.save(newVolunteer);
             
     }
 
-    public List<Volunteer> filterVolunteers(
+    public Set<Volunteer> filterVolunteers(
     int ID ,
     String username,
     String firstName,
@@ -57,7 +64,7 @@ public class VolunteerService {
     String city,
     String password) {
 
-        List<Volunteer> filtered = new ArrayList<Volunteer>();
+        Set<Volunteer> filtered = new HashSet<Volunteer>();
 
         if (ID != -1) {
             filtered.add(volunteerRepository.findVolunteerByID(ID));

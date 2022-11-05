@@ -17,18 +17,10 @@ public class Organization extends User {
     private String description;
     private String missionStatement;
     private String imageURL;
-    private int maxDistance;
+    private double maxDistance;
 
     public Organization() {
         super();
-    }
-
-    public int getMaxDistance() {
-        return maxDistance;
-    }
-
-    public void setMaxDistance(int maxDistance) {
-        this.maxDistance = maxDistance;
     }
 
     public String getWebsiteLink() {
@@ -77,5 +69,17 @@ public class Organization extends User {
 
     public void setOrganizationName(String organizationName) {
         this.organizationName = organizationName;
+    }
+
+
+
+    public double getMaxDistance() {
+        return maxDistance;
+    }
+
+
+
+    public void setMaxDistance(double maxDistance) {
+        this.maxDistance = maxDistance;
     }
 }

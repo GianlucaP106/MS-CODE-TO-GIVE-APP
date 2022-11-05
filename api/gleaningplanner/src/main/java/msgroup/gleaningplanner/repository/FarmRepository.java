@@ -15,9 +15,5 @@ public interface FarmRepository extends CrudRepository<Farm, Integer>{
 
     public List<Farm> findAllFarmByFarmName(String farmName);
 
-    public List<Farm> findAllFarmByLongitude(long longitude);
-
-    public List<Farm> findAllFarmByLatitude(long latitude);
-
     public List<Farm> findAllFarmByProducer(Producer producer);
 }

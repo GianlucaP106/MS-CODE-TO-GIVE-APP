@@ -10,6 +10,9 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "password": "password",
     "groupName": "groupName",
     "region": "region",
+    "address": "address",
+    "city": "city",
+    "postalCode": "postalCode",
     "description": "description",
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
@@ -97,7 +100,10 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "description": "description",
             "missionStatement": "missionStatement",
             "imageURL": "imageURL",
-            "totalMembers": "totalMembers"
+            "totalMembers": "totalMembers",
+            "address": "address",
+            "city": "city",
+            "postalCode": "postalCode",
         }
     ]
 }
@@ -110,6 +116,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
+    "ID": "ID",
     "username": "username",
     "password": "password",
     "groupName": "groupName",
@@ -117,6 +124,9 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "description": "description",
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
+    "address": "address",
+    "city": "city",
+    "postalCode": "postalCode",
 }
 ```
 #### successful ? status(404) : status(404) // not found
