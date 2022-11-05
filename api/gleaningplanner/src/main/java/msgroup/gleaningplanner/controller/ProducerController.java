@@ -69,7 +69,7 @@ public class ProducerController {
                                                     
     }
 
-    @GetMapping("/producer/get-by-filter")
+    @PostMapping("/producer/get-by-filter")
     public ResponseEntity<ProducerFilterTO> getProducerByFilter(@RequestBody ProducerTO incoming){
         Set<Producer> filteredProducers = this.producerService.filterProducers(
             incoming.id,

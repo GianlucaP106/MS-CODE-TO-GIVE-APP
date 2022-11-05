@@ -1,6 +1,5 @@
 package msgroup.gleaningplanner.service;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -9,18 +8,29 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
+import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 
 @Service
 public class VolunteerService {
 
     private VolunteerRepository volunteerRepository;
+    private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private LocationService locationService;
+    private EventRepository eventrRepository;
 
-    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
+    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
+                            EventRepository eventrRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
+
         this.volunteerRepository = volunteerRepository;
         this.locationService = locationService;
+        this.eventrRepository = eventrRepository;
+        this.volunteerRegistrationRepository = volunteerRegistrationRepository;
     }
 
     public Volunteer createVolunteer(String firstName, 
@@ -104,5 +114,20 @@ public class VolunteerService {
         return filtered;
 
     }
-    
+
+    public VolunteerRegistration registerToEvent(RegistrationRequest incoming){
+        Volunteer volunteer = volunteerRepository.findVolunteerByID(incoming.volunteerID);
+        Event event = eventrRepository.findEventByID(incoming.evemtID);
+
+        VolunteerRegistration newRegistration = new VolunteerRegistration();
+        newRegistration.setVolunteer(volunteer);
+        newRegistration.setEvent(event);
+        newRegistration.setVolunteerGroupAccepted(false); 
+        newRegistration.setEventAccepted(false);
+        newRegistration.setOwner(false);
+        newRegistration.setVolunteerGroupNumber(0);
+
+        volunteerRegistrationRepository.save(newRegistration);
+        return newRegistration;
+    }
 }

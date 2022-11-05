@@ -103,7 +103,7 @@ public class OrganizationController {
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
     }
 
-    @GetMapping("/organization/get-by-filter")
+    @PostMapping("/organization/get-by-filter")
     public ResponseEntity<OrganizationFilterTO> getOrganizationByFilter(@RequestBody OrganizationTO incoming) {
         Set<Organization> filteredOrganizations = this.organizationService.filterOrganizations(
             incoming.id,
