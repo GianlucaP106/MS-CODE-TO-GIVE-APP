@@ -1,4 +1,4 @@
-package msgroup.gleaningplanner.Repositories;
+package msgroup.gleaningplanner.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;

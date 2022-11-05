@@ -1,4 +1,4 @@
-package msgroup.gleaningplanner.Repositories;
+package msgroup.gleaningplanner.repository;
 
 import java.util.List;
 
