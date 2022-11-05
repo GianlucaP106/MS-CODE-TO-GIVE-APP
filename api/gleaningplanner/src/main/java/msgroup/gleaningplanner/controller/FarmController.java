@@ -15,7 +15,6 @@ import msgroup.gleaningplanner.service.FarmService;
 
 @RestController
 public class FarmController {
-
     private FarmService farmService;
     private FarmRepository farmRepository; 
     private ProducerRepository producerRepository;
