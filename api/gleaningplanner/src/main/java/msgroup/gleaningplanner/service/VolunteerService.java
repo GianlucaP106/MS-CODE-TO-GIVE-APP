@@ -18,6 +18,7 @@ public class VolunteerService {
 
     public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
         this.volunteerRepository = volunteerRepository;
+        this.locationService = locationService;
     }
 
     public Volunteer createVolunteer(String firstName, 
@@ -36,11 +37,15 @@ public class VolunteerService {
             newVolunteer.setLastName(lastName);
             newVolunteer.setPassword(password);
             newVolunteer.setPhoneNumber(phoneNumber);
-            // call method to convert TODO
+
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+
             newVolunteer.setUsername(username);
-            newVolunteer.setLatitude(0);
-            newVolunteer.setLongitude(0);
-            
+            newVolunteer.setLatitude(location.data.get(0).latitude);
+            newVolunteer.setLongitude(location.data.get(0).longitude);
+            newVolunteer.setAddress(address);
+            newVolunteer.setCity(city);
+            newVolunteer.setPostalCode(postalCode);
             return volunteerRepository.save(newVolunteer);
             
     }

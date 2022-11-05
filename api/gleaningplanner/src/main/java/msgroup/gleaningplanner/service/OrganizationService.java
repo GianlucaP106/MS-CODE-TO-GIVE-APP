@@ -33,7 +33,7 @@ public class OrganizationService {
         String address, 
         String city, 
         String postalCode,
-        int maxDistance, 
+        double maxDistance, 
         String websiteLink) {
 
             LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
@@ -50,6 +50,9 @@ public class OrganizationService {
             // setting long and lat
             newOrganization.setLatitude(location.data.get(0).latitude);
             newOrganization.setLongitude(location.data.get(0).longitude);
+            newOrganization.setAddress(address);
+            newOrganization.setCity(city);
+            newOrganization.setPostalCode(postalCode);
             
             return organizationRepository.save(newOrganization);
             
