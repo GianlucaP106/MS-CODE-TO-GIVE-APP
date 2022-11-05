@@ -18,7 +18,7 @@ public class LocationService {
     private String postalCodeRegex = "/^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$/i";
     private String cityRegex = "/^([A-Za-z- ]+)$/i";
 
-    private String API_url = "http://api.positionstack.com/v1/forward?country=CA&";
+    private String API_url = "http://api.positionstack.com/v1/forward?country=CA&limit=1&";
 
     private final RestTemplate restTemplate;
 
