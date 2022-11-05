@@ -1,29 +1,56 @@
 import React, { Component } from 'react';
-import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { GoogleMap, LoadScript, Marker, Circle } from '@react-google-maps/api';
 
-const containerStyle = {
-  width: '400px',
-  height: '400px'
+const center = { // Montreal
+  lat: 45.5019,
+  lng: -73.5674
 };
 
-const center = {
-  lat: -3.745,
-  lng: -38.523
-};
+const options = {
+  strokeColor: '#FF0000',
+  strokeOpacity: 0.8,
+  strokeWeight: 2,
+  fillColor: '#FF0000',
+  fillOpacity: 0.35,
+  clickable: false,
+  draggable: false,
+  editable: false,
+  visible: true,
+  radius: 30000,
+  zIndex: 1
+}
 
 class Map extends Component {
+  state = {
+    location: center,
+    circleOptions: options
+  }
+
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition((geoLocation) => {
+      this.setState(
+        {
+          location: {
+            lat: geoLocation.coords.latitude,
+            lng: geoLocation.coords.longitude,
+          }
+        }
+      )
+    });
+  }
+
   render() {
     return (
       <LoadScript
         googleMapsApiKey=""
       >
         <GoogleMap
-          mapContainerStyle={containerStyle}
-          center={center}
+          mapContainerStyle={this.props.size}
+          center={this.state.location}
           zoom={10}
         >
-          { /* Child components, such as markers, info windows, etc. */ }
-          <></>
+          <Marker position={this.state.location}/>
+          <Circle position={this.state.location} options={options} />
         </GoogleMap>
       </LoadScript>
     )
