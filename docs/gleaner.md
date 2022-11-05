@@ -84,5 +84,109 @@
     "isOwner" : "isOwner",
 }
 ```
+#### successful ? status(201) : status(406)
+
+
+### method: GET
+### path name: /gleaner/get-events/?username=username
+### request PARAMETERS:
+```JSON
+{
+    "username": "username",
+}
+```
+### response BODY:
+```JSON
+{
+    "events": [
+        {
+            "id" : "id",
+            "eventName": "eventName",
+            "description": "description",
+            "missionStatement": "missionStatement",
+            "imageURL": "imageURL",
+            "address": "address",
+            "postalCode": "postalCode",
+            "city": "city",
+        }
+    ]
+}
+```
+#### else status(406)
+
+
+### method: GET
+### path name: /gleaner/get-comments/?username=username
+### request PARAMETERS:
+```JSON
+{
+    "username": "username",
+}
+```
+### response BODY:
+```JSON
+{
+    "comments": [
+        {
+            "comment": "comment"
+        }
+    ]
+}
+```
+#### else status(406)
+
+
+### method: POST
+### path name: /gleaner/comment-producer/?username=username
+### request BODY:
+```JSON
+{
+    "gleanerId": "gleanerId",
+    "producerId": "producerId",
+    "comment": "comment",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /gleaner/comment-organization/?username=username
+### request BODY:
+```JSON
+{
+    "gleanerId": "gleanerId",
+    "organizationId": "organizationId",
+    "comment": "comment",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /gleaner/comment-event/?username=username
+### request BODY:
+```JSON
+{
+    "gleanerId": "gleanerId",
+    "eventId": "eventId",
+    "comment": "comment",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
+### method: POST
+### path name: /gleaner/comment-gleaner-group/?username=username
+### request BODY:
+```JSON
+{
+    "gleanerId": "gleanerId",
+    "gleanerGroupId": "gleanerGroupId",
+    "comment": "comment",
+}
+```
+#### response: successful ? status(201) : status(406)
+
+
 
 
