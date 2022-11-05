@@ -1,5 +1,8 @@
 package msgroup.gleaningplanner.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.model.Volunteer;
@@ -38,6 +41,30 @@ public class VolunteerService {
             
             return volunteerRepository.save(newVolunteer);
             
+    }
+
+    public List<Volunteer> filterVolunteers(
+    int ID ,
+    String username,
+    String firstName,
+    String lastName,
+    String email,
+    String phoneNumber,
+    String postalCode,
+    String address,
+    String city,
+    String password) {
+
+        List<Volunteer> filtered = new ArrayList<Volunteer>();
+
+        if (ID != -1) {
+            Volunteer volunteer = volunteerRepository.findVolunteerByID(ID);
+            filtered.add(volunteer);
+        }
+        
+        return filtered;
+
+
     }
     
 }
