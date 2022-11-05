@@ -80,17 +80,19 @@ public class VolunteerService {
         LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
 
 
-        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude), address, city, postalCode);
         List<String> volunteerInfo;
 
         for (Volunteer volunteer : volunteerRepository.findAll()) {
-            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()));
+            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()), volunteer.getAddress(), volunteer.getCity(), volunteer.getPostalCode());
+            boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
 
-                if (incoming.get(index) != null && 
-                incoming.get(index).equals(volunteerInfo.get(index))) filtered.add(volunteer); 
-
+                if (incoming.get(index) != null && !incoming.get(index).equals(volunteerInfo.get(index))) {
+                    valid = false;
+                }    
             }
+            if (valid) filtered.add(volunteer);
         }
 
         return filtered;
