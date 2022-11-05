@@ -151,14 +151,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```JSON
 {
     "id" : "id",
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "imageURL": "imageURL",
+    "firstName": "firstName",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber",
     "address": "address",
-    "postalCode": "postalCode",
     "city": "city",
-    "isUrgent": "isUrgent"
+    "postalCode": "postalCode"
 }
 ```
 #### successful ? status(404) : status(404) // not found
