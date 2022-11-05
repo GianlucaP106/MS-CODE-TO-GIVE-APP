@@ -6,7 +6,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-
 @Entity
 public class VolunteerRegistration {
 
@@ -16,10 +15,27 @@ public class VolunteerRegistration {
 
     @OneToOne
     private Volunteer volunteer;
-
     
+    /**
+     * This variable represents the group number of a volunteer
+     */
     private int volunteerGroup; 
+
+    /**
+     * untill this boolean is true, the admin of a group has not yet accepted the 
+     * request of this volunteer 
+     */
+    private boolean volunteerGroupAccepted;
+
+    /**
+     * this means that the volunteer is the owner of the volunteerNumber group you currently have
+     */
     private boolean isOwner;
+
+    /**
+     * this variable shows if the 
+     */
+    private boolean eventAccepted;
     
     @OneToOne
     private Event event;
@@ -66,5 +82,20 @@ public class VolunteerRegistration {
         this.isOwner = isOwner;
     }
 
+    public boolean isVolunteerGroupAccepted() {
+        return volunteerGroupAccepted;
+    }
+
+    public void setVolunteerGroupAccepted(boolean volunteerGroupAccepted) {
+        this.volunteerGroupAccepted = volunteerGroupAccepted;
+    }
+
+    public boolean isEventAccepted() {
+        return eventAccepted;
+    }
+
+    public void setEventAccepted(boolean eventAccepted) {
+        this.eventAccepted = eventAccepted;
+    }
     
 }

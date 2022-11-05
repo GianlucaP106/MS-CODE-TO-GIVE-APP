@@ -8,7 +8,6 @@ import javax.persistence.Id;
 @Entity
 public class Volunteer extends User{
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;

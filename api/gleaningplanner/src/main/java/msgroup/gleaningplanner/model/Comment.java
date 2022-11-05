@@ -1,5 +1,4 @@
 package msgroup.gleaningplanner.model;
-
 import java.sql.Date;
 
 import javax.persistence.Entity;
@@ -16,7 +15,10 @@ public class Comment {
     private int ID;
 
     private Date date;
+
     private String comment;
+
+    private AuthorType authorType;
 
     @ManyToOne
     private Volunteer volunteer;
@@ -100,6 +102,20 @@ public class Comment {
         this.comment = comment;
     }
 
-    
+    public AuthorType getAuthorType() {
+        return authorType;
+    }
+
+    public void setAuthorType(AuthorType authorType) {
+        this.authorType = authorType;
+    }
+
+    public Event getEvent() {
+        return event;
+    }
+
+    public void setEvent(Event event) {
+        this.event = event;
+    }
     
 }
