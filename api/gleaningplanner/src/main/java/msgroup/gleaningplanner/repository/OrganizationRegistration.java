@@ -1,4 +1,4 @@
-package msgroup.gleaningplanner.Repositories;
+package msgroup.gleaningplanner.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrganizationRegistration extends CrudRepository<OrganizationRegistration, Integer>{
     
-    OrganizationRegistration findOrganizationRegistrationByID(int ID);
+    public OrganizationRegistration findOrganizationRegistrationByID(int ID);
 }
