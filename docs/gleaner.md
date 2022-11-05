@@ -7,7 +7,7 @@
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
