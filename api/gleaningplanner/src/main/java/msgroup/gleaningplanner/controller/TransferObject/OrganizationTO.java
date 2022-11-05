@@ -18,7 +18,7 @@ public class OrganizationTO {
 
     public OrganizationTO(int id, String username, String orgName, String description, String missionStatement,
             String imageURL, String address, String postalCode, String city, String password, double maxDistance,
-            String websiteLink, double longitude, double latitude) {
+            String websiteLink, double latitude, double longitude) {
         this.id = id;
         this.username = username;
         this.orgName = orgName;
@@ -31,8 +31,8 @@ public class OrganizationTO {
         this.password = password;
         this.maxDistance = maxDistance;
         this.websiteLink = websiteLink;
-        this.longitude = longitude;
         this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     
