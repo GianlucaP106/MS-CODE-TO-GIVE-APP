@@ -7,15 +7,25 @@ public class ProducerTO {
     public String email;
     public String phoneNumber;
     public String password;
-
-    public ProducerTO(String username, String firstName,
-    String lastName, String email, String phoneNumber, 
-    String password){
+    public String city;
+    public String address;
+    public String postalCode;
+    public double latitude;
+    public double longitude;
+    public ProducerTO(String username, String firstName, String lastName, String email, String phoneNumber,
+            String password, String city, String address, String postalCode, double latitude, double longitude) {
         this.username = username;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.password = password;
+        this.city = city;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
+
+    
 }

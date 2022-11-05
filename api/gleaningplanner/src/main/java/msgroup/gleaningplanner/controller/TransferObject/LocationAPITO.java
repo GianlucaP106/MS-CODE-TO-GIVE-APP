@@ -26,6 +26,15 @@ public class LocationAPITO implements Serializable{
         public String country_code;
         public String continent;
         public String label;
+        @Override
+        public String toString() {
+            return "LocationData [latitude=" + latitude + ", longitude=" + longitude + ", type=" + type + ", name="
+                    + name + ", number=" + number + ", postal_code=" + postal_code + ", street=" + street
+                    + ", confidence=" + confidence + ", region=" + region + ", region_code=" + region_code + ", county="
+                    + county + ", locality=" + locality + ", administrative_area=" + administrative_area
+                    + ", neighbourhood=" + neighbourhood + ", country=" + country + ", country_code=" + country_code
+                    + ", continent=" + continent + ", label=" + label + "]";
+        }
 
     }
 }
