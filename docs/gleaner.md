@@ -82,7 +82,6 @@
     "gleanerID" : "gleanerID",
     "eventID" : "eventID",
     "isOwner" : "isOwner",
-
 }
 ```
 

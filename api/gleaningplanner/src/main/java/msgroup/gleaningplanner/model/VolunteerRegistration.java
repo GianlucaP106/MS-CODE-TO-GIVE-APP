@@ -33,7 +33,7 @@ public class VolunteerRegistration {
     private boolean isOwner;
 
     /**
-     * this variable shows if the 
+     * this variable shows if the producer has accepted this member and its group to join the gleaning event
      */
     private boolean eventAccepted;
     
