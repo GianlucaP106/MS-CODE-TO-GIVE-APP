@@ -64,7 +64,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /organization/comment-producer/?username=username
+### path name: /organization/comment-producer/
 ### request BODY:
 ```JSON
 {
@@ -77,7 +77,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /organization/comment-gleaner/?username=username
+### path name: /organization/comment-gleaner/
 ### request BODY:
 ```JSON
 {
@@ -90,7 +90,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /organization/comment-event/?username=username
+### path name: /organization/comment-event/
 ### request BODY:
 ```JSON
 {
@@ -103,7 +103,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /organization/comment-gleaner-group/?username=username
+### path name: /organization/comment-gleaner-group/
 ### request BODY:
 ```JSON
 {
