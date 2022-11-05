@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
+import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.service.LocationService;
 import msgroup.gleaningplanner.service.OrganizationService;
@@ -23,11 +24,9 @@ import msgroup.gleaningplanner.service.OrganizationService;
 public class OrganizationController {
 
     private OrganizationService organizationService;
-    private LocationService locationService;
 
-    public OrganizationController(OrganizationService organizationService, LocationService locationService) {
+    public OrganizationController(OrganizationService organizationService) {
         this.organizationService = organizationService;
-        this.locationService = locationService;
     }
  
     @PostMapping("/organization/register")
@@ -143,6 +142,11 @@ public class OrganizationController {
         }
 
         return new ResponseEntity<OrganizationFilterTO>(new OrganizationFilterTO(organizationTOs), HttpStatus.OK);
-
     }
+
+
+//     @PostMapping("/organization/comment-event/")
+//     public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO comment) {
+
+//     }
 }

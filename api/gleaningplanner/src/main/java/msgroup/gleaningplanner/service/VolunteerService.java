@@ -31,7 +31,8 @@ public class VolunteerService {
         String phoneNumber, 
         String address, 
         String postalCode, 
-        String city) {
+        String city
+    ) {
 
             Volunteer newVolunteer = new Volunteer();
             newVolunteer.setEmail(email);

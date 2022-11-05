@@ -172,4 +172,6 @@ public class OrganizationService {
 
         return organizationRepository.save(newOrganization);
     }
+
+    // public Comment postCommentComment(String comment, String authorType, )
 }
