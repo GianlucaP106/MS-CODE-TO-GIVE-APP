@@ -6,25 +6,53 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Organization extends User{
+public class Organization extends User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
 
     private String organizationName;
-    private long longitude;
-    private long latitude;
+    private double longitude;
+    private double latitude;
     private String websiteLink;
     private String description;
-    private String missionStatement;  
+    private String missionStatement;
     private String imageURL;
     private int maxDistance;
+
+    private String address;
+    private String city;
+    private String postalCode;
 
     public Organization() {
         super();
     }
-    
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getPostalCode() {
+        return postalCode;
+    }
+
+    public void setPostalCode(String postalCode) {
+        this.postalCode = postalCode;
+    }
+
     public int getMaxDistance() {
         return maxDistance;
     }
@@ -33,7 +61,6 @@ public class Organization extends User{
         this.maxDistance = maxDistance;
     }
 
-
     public String getWebsiteLink() {
         return websiteLink;
     }
@@ -41,10 +68,11 @@ public class Organization extends User{
     public void setWebsiteLink(String websiteLink) {
         this.websiteLink = websiteLink;
     }
-    
+
     public int getID() {
         return ID;
     }
+
     public void setID(int iD) {
         ID = iD;
     }
@@ -81,19 +109,19 @@ public class Organization extends User{
         this.organizationName = organizationName;
     }
 
-    public long getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(long longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
 
-    public long getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(long latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 }
