@@ -6,14 +6,16 @@ import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
 import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.service.VolunteerService;
 
 @RestController
@@ -46,7 +48,7 @@ public class VolunteerController {
         return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
     }
 
-    @GetMapping("/volunteer/get-by-filter")
+    @PostMapping("/volunteer/get-by-filter")
     public ResponseEntity<VolunteerFilterTO> getVolunteerByFilter(@RequestBody VolunteerTO incoming) {
         
         Set<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
@@ -86,4 +88,15 @@ public class VolunteerController {
         return new ResponseEntity<VolunteerFilterTO>(new VolunteerFilterTO(volunteerTOs), HttpStatus.OK);
     }
 
+
+    @PostMapping("/volunteer/eventRegister")
+    public ResponseEntity<VolunteerRegistrationTO> registerToEvent(@RequestBody RegistrationRequest incoming){
+        VolunteerRegistration volunteerRegistration = volunteerService.registerToEvent(incoming);
+
+        VolunteerRegistrationTO out = new VolunteerRegistrationTO(volunteerRegistration.getID(), volunteerRegistration.getVolunteer().getID(), volunteerRegistration.getEvent().getID(), 
+        volunteerRegistration.getVolunteerGroupNumber(), volunteerRegistration.isVolunteerGroupAccepted(), volunteerRegistration.isOwner(), volunteerRegistration.isEventAccepted());
+
+        return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
+
+    }
 }
