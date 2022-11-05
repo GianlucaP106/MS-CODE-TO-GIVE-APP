@@ -7,7 +7,7 @@
 ```JSON
 {
     "producer" : "producerID",
-    "farm" : {
+    "farms" : {
         "id" : "id",
         "farmName": "farmName",
         "description": "description",
@@ -16,10 +16,12 @@
         "address": "address",
         "postalCode": "postalCode",
         "city": "city",
+        "longitude": "longitude",
+        "latitude": "latitude",
+        "surfaceArea": "surfaceArea"
     }
 }
 ```
-
 
 #### response: successful ? status(201) : status(406)
 
@@ -37,6 +39,9 @@
     "postalCode": "postalCode",
     "city": "city",
     "radius" : "radius",
+    "longitude": "longitude",
+    "latitude": "latitude",
+    "surfaceArea": "surfaceArea"
 }
 ```
 ### response BODY:
@@ -52,6 +57,9 @@
             "address": "address",
             "postalCode": "postalCode",
             "city": "city",
+            "longitude": "longitude",
+            "latitude": "latitude",
+            "surfaceArea": "surfaceArea"
         }
     ]
 }
@@ -72,6 +80,7 @@
     "address": "address",
     "postalCode": "postalCode",
     "city": "city",
+    "surfaceArea": "surfaceArea"
 }
 ```
 #### successful ? status(406) : status(406)

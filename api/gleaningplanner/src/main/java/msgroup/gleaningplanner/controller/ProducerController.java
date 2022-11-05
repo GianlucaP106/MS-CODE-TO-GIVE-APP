@@ -1,4 +1,3 @@
-
 package msgroup.gleaningplanner.controller;
 
 import org.springframework.http.HttpStatus;
@@ -7,7 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-//import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.service.ProducerService;
@@ -27,7 +25,6 @@ public class ProducerController {
         return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);
     }
 }
-
 
 /*String username, String firstName,
 String lastName, String email, String phoneNumber, 
