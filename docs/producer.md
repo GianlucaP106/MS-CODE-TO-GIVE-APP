@@ -6,12 +6,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
     "password": "password",
-    "phoneNumber": "phoneNumber"
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -131,7 +134,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "neededGleaners": "neededGleaners",
     "maxGleaners": "maxGleaners",
     "description": "description",
-    "missionStatement": "missionStatement",
     "imageURL": "imageURL",
     "address": "address",
     "postalCode": "postalCode",
@@ -152,7 +154,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
     "description": "description",
-    "missionStatement": "missionStatement",
     "imageURL": "imageURL",
     "address": "address",
     "postalCode": "postalCode",
@@ -172,7 +173,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
     "description": "description",
-    "missionStatement": "missionStatement",
     "imageURL": "imageURL",
     "address": "address",
     "postalCode": "postalCode",

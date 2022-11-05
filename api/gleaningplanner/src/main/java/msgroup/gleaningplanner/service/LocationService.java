@@ -17,7 +17,7 @@ public class LocationService {
     private String postalCodeRegex = "/^[ABCEGHJ-NPRSTVXY]\\d[ABCEGHJ-NPRSTV-Z][ -]?\\d[ABCEGHJ-NPRSTV-Z]\\d$/i";
     private String cityRegex = "/^([A-Za-z- ]+)$/i";
 
-    private String API_url = "http://api.positionstack.com/v1/forward?";
+    private String API_url = "http://api.positionstack.com/v1/forward?country=CA&limit=1&";
 
     private final RestTemplate restTemplate;
 
@@ -38,13 +38,13 @@ public class LocationService {
         String API_key_param = "82a01115f0f83cc61734000a40d1c31e";
 
         // conditionally adding query params
-        String queryParam = "canada, ";
+        String queryParam = "";
         if (address != null)
             queryParam += address;
         if (city != null && city.matches(cityRegex))
-            queryParam += ", " + city;
+            queryParam += " " + city;
         if (postalCode != null && validatePostalCode(postalCode))
-            queryParam += ", " + postalCode;
+            queryParam += " " + postalCode;
 
         String API_url_params = "access_key=" + API_key_param + "&query=" + queryParam;
 
@@ -61,8 +61,12 @@ public class LocationService {
 
             // filtering to only have locations from canada.
             body.data.forEach(element -> {
-                if (element.country.toLowerCase().equals("canada"))
+
+                System.out.println(element);
+                
+                if (element.country != null && element.country.toLowerCase().equals("canada")){
                     data.add(element);
+                }
             });
 
             if (data.size() == 0) {

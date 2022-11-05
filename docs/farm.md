@@ -6,18 +6,13 @@
 #### body params (inputs): 
 ```JSON
 {
-    "producer" : "producerID",
-    "farms" : {
-        "id" : "id",
+    "producerID" : "producerID",
+    "farm" : {
         "farmName": "farmName",
         "description": "description",
-        "missionStatement": "missionStatement",
-        "imageURL": "imageURL",
         "address": "address",
         "postalCode": "postalCode",
         "city": "city",
-        "longitude": "longitude",
-        "latitude": "latitude",
         "surfaceArea": "surfaceArea"
     }
 }
