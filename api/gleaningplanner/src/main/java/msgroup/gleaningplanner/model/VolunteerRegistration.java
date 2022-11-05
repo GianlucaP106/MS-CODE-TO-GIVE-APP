@@ -19,7 +19,7 @@ public class VolunteerRegistration {
     /**
      * This variable represents the group number of a volunteer
      */
-    private int volunteerGroup; 
+    private int volunteerGroupNumber; 
 
     /**
      * untill this boolean is true, the admin of a group has not yet accepted the 
@@ -66,16 +66,16 @@ public class VolunteerRegistration {
         this.event = event;
     }
 
-    public int getVolunteerGroup() {
-        return volunteerGroup;
-    }
-
-    public void setVolunteerGroup(int volunteerGroup) {
-        this.volunteerGroup = volunteerGroup;
-    }
-
     public boolean isOwner() {
         return isOwner;
+    }
+
+    public int getVolunteerGroupNumber() {
+        return volunteerGroupNumber;
+    }
+
+    public void setVolunteerGroupNumber(int volunteerGroupNumber) {
+        this.volunteerGroupNumber = volunteerGroupNumber;
     }
 
     public void setOwner(boolean isOwner) {

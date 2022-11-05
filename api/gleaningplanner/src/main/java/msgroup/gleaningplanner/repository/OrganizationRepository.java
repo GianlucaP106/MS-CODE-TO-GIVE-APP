@@ -19,4 +19,6 @@ public interface OrganizationRepository extends CrudRepository<Organization, Int
     public List<Organization> findAllOrganizationByLatitude(long latitude);
 
     public List<Organization> findAllOrganizationByMaxDistance(int maxDistance);
+
+    public Organization findOrganizationByUsername(String username);
 }

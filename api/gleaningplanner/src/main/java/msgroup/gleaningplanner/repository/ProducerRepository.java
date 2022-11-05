@@ -20,5 +20,5 @@ public interface ProducerRepository extends CrudRepository<Producer, Integer>{
 
     public Producer findProducerByPhoneNumber(String phoneNumber);
 
-    
+    public Producer findProducerByUsername(String username);
 }
