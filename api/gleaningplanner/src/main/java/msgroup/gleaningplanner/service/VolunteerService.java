@@ -53,7 +53,7 @@ public class VolunteerService {
     }
 
     public Set<Volunteer> filterVolunteers(
-    int ID ,
+    Integer ID ,
     String username,
     String firstName,
     String lastName,
@@ -66,7 +66,7 @@ public class VolunteerService {
 
         Set<Volunteer> filtered = new HashSet<Volunteer>();
 
-        if (ID != -1) {
+        if (ID != null && ID != 0 && ID > 0) {
             filtered.add(volunteerRepository.findVolunteerByID(ID));
             return filtered;
         }
@@ -75,12 +75,17 @@ public class VolunteerService {
             filtered.add(volunteerRepository.findVolunteerByUsername(username));
             return filtered;
         }
+        String latitude = null;
+        String longitude = null;
+        if (address != null && postalCode != null && city != null) {
+            LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
+            latitude = Double.toString(location.data.get(0).latitude);
+            longitude = Double.toString(location.data.get(0).longitude);
+        }
 
 
-        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
 
-
-        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude), address, city, postalCode);
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, latitude , longitude, address, city, postalCode);
         List<String> volunteerInfo;
 
         for (Volunteer volunteer : volunteerRepository.findAll()) {
