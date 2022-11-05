@@ -26,7 +26,7 @@ public class LocationService {
         // TODO: implement verification methods for address, postalcode and city
 
         // setting up URL information
-        String API_key_param = "";
+        String API_key_param = "82a01115f0f83cc61734000a40d1c31e";
 
         // conditionally adding query params
         String queryParam = "canada, ";

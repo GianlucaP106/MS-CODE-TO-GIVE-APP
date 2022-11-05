@@ -1,10 +1,12 @@
 package msgroup.gleaningplanner.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
@@ -13,8 +15,9 @@ import msgroup.gleaningplanner.repository.VolunteerRepository;
 public class VolunteerService {
 
     private VolunteerRepository volunteerRepository;
+    private LocationService locationService;
 
-    public VolunteerService(VolunteerRepository volunteerRepository) {
+    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService) {
         this.volunteerRepository = volunteerRepository;
     }
 
@@ -58,12 +61,33 @@ public class VolunteerService {
         List<Volunteer> filtered = new ArrayList<Volunteer>();
 
         if (ID != -1) {
-            Volunteer volunteer = volunteerRepository.findVolunteerByID(ID);
-            filtered.add(volunteer);
+            filtered.add(volunteerRepository.findVolunteerByID(ID));
+            return filtered;
         }
         
-        return filtered;
+        if (username != null) {
+            filtered.add(volunteerRepository.findVolunteerByUsername(username));
+            return filtered;
+        }
 
+
+        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city);
+
+
+        List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));
+        List<String> volunteerInfo;
+
+        for (Volunteer volunteer : volunteerRepository.findAll()) {
+            volunteerInfo = Arrays.asList(volunteer.getFirstName(), volunteer.getLastName(), volunteer.getEmail(), volunteer.getPhoneNumber(), Double.toString(volunteer.getLatitude()), Double.toString(volunteer.getLongitude()));
+            for (int index = 0; index < incoming.size(); index++) {
+
+                if (incoming.get(index) != null && 
+                incoming.get(index).equals(volunteerInfo.get(index))) filtered.add(volunteer); 
+
+            }
+        }
+
+        return filtered;
 
     }
     
