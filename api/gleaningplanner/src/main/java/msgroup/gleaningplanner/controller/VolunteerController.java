@@ -24,7 +24,7 @@ public class VolunteerController {
     @PostMapping("/volunteer/register")
     public ResponseEntity<VolunteerTO> createVolunteer(@RequestBody VolunteerTO incoming) {
         Volunteer newVolunteer = volunteerService.createVolunteer(incoming.firstName, incoming.lastName, incoming.email,incoming.username,incoming.password,incoming.phoneNumber,incoming.address,incoming.postalCode, incoming.city);
-        VolunteerTO out = new VolunteerTO(newVolunteer.getID(), newVolunteer.getUsername(), newVolunteer.getFirstName(), newVolunteer.getLastName(), newVolunteer.getEmail(), newVolunteer.getPhoneNumber(), "POSTAL", "address", "city", newVolunteer.getPassword());
+        VolunteerTO out = new VolunteerTO(newVolunteer.getID(), newVolunteer.getUsername(), newVolunteer.getFirstName(), newVolunteer.getLastName(), newVolunteer.getEmail(), newVolunteer.getPhoneNumber(), "POSTAL", "address", "city", null);
         return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
     }
 
