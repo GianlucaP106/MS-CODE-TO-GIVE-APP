@@ -36,7 +36,7 @@ public class FarmService {
         newFarm.setSurfaceArea(incomingFarm.surfaceArea);
         newFarm.setCity(incomingFarm.city);
         newFarm.setAddress(incomingFarm.address);
-        newFarm.setAddress(incomingFarm.postalCode);
+        newFarm.setPostalCode(incomingFarm.postalCode);
 
         LocationAPITO location = locationService.transformToLatitudeLongitude(newFarm.getAddress(), newFarm.getPostalCode(), newFarm.getCity()).getBody();
     
