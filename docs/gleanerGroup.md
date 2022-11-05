@@ -77,7 +77,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "id": "id",
     "username": "username",
-    "password": "password",
     "groupName": "groupName",
     "region": "region",
     "description": "description",
@@ -93,7 +92,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
         {   
             "id": "id",
             "username": "username",
-            "password": "password",
             "groupName": "groupName",
             "region": "region",
             "description": "description",

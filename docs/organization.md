@@ -30,7 +30,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "id": "id",
     "username": "username",
-    "password": "password",
     "orgName": "orgName",
     "description": "description",
     "missionStatement": "missionStatement",
@@ -49,7 +48,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
         {
             "id": "id",
             "username": "username",
-            "password": "password",
             "orgName": "orgName",
             "description": "description",
             "missionStatement": "missionStatement",
