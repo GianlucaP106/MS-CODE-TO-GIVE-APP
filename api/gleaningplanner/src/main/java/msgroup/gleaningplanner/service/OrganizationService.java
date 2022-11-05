@@ -1,5 +1,8 @@
 package msgroup.gleaningplanner.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.model.Organization;
@@ -14,7 +17,8 @@ public class OrganizationService {
         this.organizationRepository = organizationRepository;
     }
 
-    public Organization createOrganization(String username, 
+    public Organization createOrganization(
+        String username, 
         String password,
         String orgName, 
         String description, 
@@ -41,5 +45,33 @@ public class OrganizationService {
             
             return organizationRepository.save(newOrganization);
             
+    }
+
+    public Organization getOrganizationById(int id) {
+        return organizationRepository.findOrganizationByID(id);
+    }
+
+    public List<Organization> filterOrganizations(
+        int id,
+        String username, 
+        String password,
+        String orgName, 
+        String description, 
+        String missionStatement, 
+        String imageURL, 
+        String address, 
+        String city, 
+        String postalCode,
+        int maxDistance, 
+        String websiteLink
+    ) {
+
+        List<Organization> filtered = new ArrayList<Organization>();
+        
+        if (id != -1) {
+            Organization organization = organizationRepository.findOrganizationByID(id);
+            filtered.add(organization);
+        }
+        return filtered;
     }
 }
