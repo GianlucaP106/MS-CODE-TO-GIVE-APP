@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Volunteer;
-import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 
 @Service
@@ -71,7 +70,7 @@ public class VolunteerService {
         }
 
 
-        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city);
+        LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
 
 
         List<String> incoming = Arrays.asList(firstName, lastName, email, phoneNumber, Double.toString(location.data.get(0).latitude), Double.toString(location.data.get(0).longitude));

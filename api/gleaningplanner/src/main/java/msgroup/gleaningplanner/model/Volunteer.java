@@ -20,8 +20,6 @@ public class Volunteer extends User{
 
     @Column(unique = true)
     private String phoneNumber;
-    private double latitude;
-    private double longitude;
 
     
 
@@ -65,23 +63,5 @@ public class Volunteer extends User{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    public double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(double latitude) {
-        this.latitude = latitude;
-    }
-
-    public double getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(double longitude) {
-        this.longitude = longitude;
-    }
-
-    
+    }    
 }

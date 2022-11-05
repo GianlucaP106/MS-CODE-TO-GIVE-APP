@@ -15,16 +15,9 @@ public class Farm {
 
     private String farmName;
     private double surfaceArea;
-    private long longitude;
-    private long latitude;
     
     @ManyToOne
     private Producer producer;
-
-    private String address;
-    private String city;
-    private String postalCode; 
-
 
     public Farm() {}
 
@@ -36,52 +29,12 @@ public class Farm {
         this.producer = producer;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
-    }
-
     public int getID() {
         return ID;
     }
 
     public void setID(int iD) {
         ID = iD;
-    }
-
-    public long getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
-    }
-
-    public long getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
     }
 
     public String getFarmName() {

@@ -16,8 +16,6 @@ public class GleanerGroup extends User{
     private String description;
     private String missionStatement;
     private String imageURL;
-    private long longitude;
-    private long latitude;
     private String region;
 
     public GleanerGroup() {
@@ -70,22 +68,6 @@ public class GleanerGroup extends User{
 
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
-    }
-
-    public long getLongitude() {
-        return longitude;
-    }
-
-    public void setLongitude(long longitude) {
-        this.longitude = longitude;
-    }
-
-    public long getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(long latitude) {
-        this.latitude = latitude;
     }
 
     public String getRegion() {
