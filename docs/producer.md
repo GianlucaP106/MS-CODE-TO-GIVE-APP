@@ -129,6 +129,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "farmId": "farmId",
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
+    "maxGleaners": "maxGleaners",
     "description": "description",
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
