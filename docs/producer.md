@@ -122,11 +122,10 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /producer/create-event
+### path name: /event/create-event
 ### request BODY:
 ```JSON
 {
-    "id" : "id",
     "farmId": "farmId",
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
