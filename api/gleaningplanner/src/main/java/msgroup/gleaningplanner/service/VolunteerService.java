@@ -2,7 +2,9 @@ package msgroup.gleaningplanner.service;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
@@ -50,7 +52,7 @@ public class VolunteerService {
             
     }
 
-    public List<Volunteer> filterVolunteers(
+    public Set<Volunteer> filterVolunteers(
     int ID ,
     String username,
     String firstName,
@@ -62,7 +64,7 @@ public class VolunteerService {
     String city,
     String password) {
 
-        List<Volunteer> filtered = new ArrayList<Volunteer>();
+        Set<Volunteer> filtered = new HashSet<Volunteer>();
 
         if (ID != -1) {
             filtered.add(volunteerRepository.findVolunteerByID(ID));

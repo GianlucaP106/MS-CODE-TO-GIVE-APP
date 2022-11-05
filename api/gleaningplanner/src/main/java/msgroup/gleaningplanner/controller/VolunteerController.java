@@ -2,6 +2,7 @@ package msgroup.gleaningplanner.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +48,7 @@ public class VolunteerController {
 
     @GetMapping("/volunteer/get-by-filter")
     public ResponseEntity<VolunteerFilterTO> getVolunteerByFilter(@RequestBody VolunteerTO incoming) {
-        List<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
+        Set<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
             incoming.ID,
             incoming.username,
             incoming.firstName,
