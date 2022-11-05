@@ -122,21 +122,22 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 
 ### method: POST
-### path name: /producer/create-event
+### path name: /event/create-event
 ### request BODY:
 ```JSON
 {
-    "id" : "id",
     "farmId": "farmId",
     "eventName": "eventName",
     "neededGleaners": "neededGleaners",
+    "maxGleaners": "maxGleaners",
     "description": "description",
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
     "address": "address",
     "postalCode": "postalCode",
     "city": "city",
-    "isUrgent": "isUrgent"
+    "isUrgent": "isUrgent",
+    "date": "date",
 }
 ```
 #### response: successful ? status(201) : status(406)
