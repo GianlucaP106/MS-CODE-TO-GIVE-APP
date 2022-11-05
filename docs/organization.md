@@ -12,7 +12,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "orgName": "orgName",
     "description": "description",
     "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
     "address": "address",
     "city": "city",
     "postalCode": "postalCode",
@@ -25,7 +24,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 
 ### method : GET 
 ### path name : /organization/get-with-filters
-### request body
+### request body (attribute)
 ```JSON
 {
     "id": "id",

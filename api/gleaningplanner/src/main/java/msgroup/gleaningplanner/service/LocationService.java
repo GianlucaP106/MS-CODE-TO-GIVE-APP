@@ -54,16 +54,11 @@ public class LocationService {
         ResponseEntity<LocationAPITO> response = restTemplate.getForEntity(queryURL, LocationAPITO.class);
         LocationAPITO body = response.getBody();
 
-        System.out.println(queryURL);
-
         if (response.getStatusCode() == HttpStatus.OK && body != null) {
             List<LocationData> data = new ArrayList<>();
 
             // filtering to only have locations from canada.
             body.data.forEach(element -> {
-
-                System.out.println(element);
-                
                 if (element.country != null && element.country.toLowerCase().equals("canada")){
                     data.add(element);
                 }
@@ -88,7 +83,7 @@ public class LocationService {
         }
     }
 
-    public static double distanceBetweenTwoPoints(double lat1, double lat2, double lon1, double lon2) {
+    public double distanceBetweenTwoPoints(double lat1, double lat2, double lon1, double lon2) {
         // The math module contains a function
         // named toRadians which converts from
         // degrees to radians.

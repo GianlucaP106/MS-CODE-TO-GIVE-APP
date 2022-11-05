@@ -15,7 +15,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "postalCode": "postalCode",
     "description": "description",
     "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -26,7 +25,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request BODY:
 ```JSON
 {
-    "gleanerId": "gleanerId",
+    "gleanerGroupID": "gleanerGroupID",
     "producerId": "producerId",
     "comment": "comment",
 }

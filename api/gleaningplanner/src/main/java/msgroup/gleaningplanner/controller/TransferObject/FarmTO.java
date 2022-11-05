@@ -6,18 +6,19 @@ public class FarmTO {
     public FarmObjectDTO farm;
 
     public static class FarmObjectDTO{
-        public int id;
+        public int ID;
         public String farmName;
         public String address;
         public String postalCode;
         public String city;
-        public double longitude;
-        public double latitude;
-        public double surfaceArea;
+        public Double radius;
+        public Double longitude;
+        public Double latitude;
+        public Double surfaceArea;
 
         public FarmObjectDTO(int id, String farmName, String address, String postalCode, String city, double longitude,
                 double latitude, double surfaceArea) {
-            this.id = id;
+            this.ID = id;
             this.farmName = farmName;
             this.address = address;
             this.postalCode = postalCode;
