@@ -16,6 +16,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "city": "city",
     "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -26,17 +28,17 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request body
 ```JSON
 {
-    "id" : "id",
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
+    "id": "id",
+    "username": "username",
+    "orgName": "orgName",
     "description": "description",
     "missionStatement": "missionStatement",
     "imageURL": "imageURL",
     "address": "address",
-    "postalCode": "postalCode",
     "city": "city",
-    "isUrgent": "isUrgent",
-    "radius" : "radius"
+    "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
 }
 ```
 ### return 
@@ -46,7 +48,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
         {
             "id": "id",
             "username": "username",
-            "password": "password",
             "orgName": "orgName",
             "description": "description",
             "missionStatement": "missionStatement",
@@ -54,6 +55,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "address": "address",
             "city": "city",
             "postalCode": "postalCode",
+            "maxDistance": "maxDistance",
+            "websiteLink": "websiteLink",
         }
     ]
 }
@@ -127,6 +130,8 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "address": "address",
     "city": "city",
     "postalCode": "postalCode",
+    "maxDistance": "maxDistance",
+    "websiteLink": "websiteLink",
 }
 ```
 #### successful ? status(404) : status(404) // not found

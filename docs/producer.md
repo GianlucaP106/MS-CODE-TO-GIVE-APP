@@ -27,7 +27,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password",
     "phoneNumber": "phoneNumber"
 }
 ```
@@ -41,7 +40,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "lastName": "lastname",
             "email": "email",
             "username": "username",
-            "password": "password",
             "phoneNumber": "phoneNumber"
         }
     ]
