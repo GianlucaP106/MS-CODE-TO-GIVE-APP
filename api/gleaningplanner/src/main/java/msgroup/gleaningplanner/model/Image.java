@@ -28,9 +28,12 @@ public class Image {
     @ManyToOne
     private Farm farm;
 
-    private String imageURL;
+    @ManyToOne
+    private Event event;
 
-    private String iamgeType; 
+    private ImageType iamgeType; 
+
+    private String imageURL;
 
     public Farm getFarm() {
         return farm;
@@ -52,10 +55,10 @@ public class Image {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-    public String getIamgeType() {
+    public ImageType getIamgeType() {
         return iamgeType;
     }
-    public void setIamgeType(String iamgeType) {
+    public void setIamgeType(ImageType iamgeType) {
         this.iamgeType = iamgeType;
     }
     public Volunteer getGleaner() {
@@ -82,8 +85,14 @@ public class Image {
     public void setProducer(Producer producer) {
         this.producer = producer;
     }
+    public Volunteer getVolunteer() {
+        return volunteer;
+    }
+    public Event getEvent() {
+        return event;
+    }
+    public void setEvent(Event event) {
+        this.event = event;
+    }
 
-    
-
-    
 }
