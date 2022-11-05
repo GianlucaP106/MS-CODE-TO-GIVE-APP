@@ -33,9 +33,6 @@ public class Comment {
     private Producer producer;
 
     @ManyToOne
-    private Farm farm;
-
-    @ManyToOne
     private Event event;
 
     public int getID() {
@@ -84,14 +81,6 @@ public class Comment {
 
     public void setProducer(Producer producer) {
         this.producer = producer;
-    }
-
-    public Farm getFarm() {
-        return farm;
-    }
-
-    public void setFarm(Farm farm) {
-        this.farm = farm;
     }
 
     public String getComment() {
