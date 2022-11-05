@@ -19,8 +19,9 @@
     }
 }
 ```
-#### response: successful ? status(201) : status(406)
 
+
+#### response: successful ? status(201) : status(406)
 
 ### method: GET
 ### path name: /farm/get-by-filter
