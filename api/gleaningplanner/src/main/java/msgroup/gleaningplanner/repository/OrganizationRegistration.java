@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface OrganizationRegistration extends CrudRepository<OrganizationRegistration, Integer>{
     
-    OrganizationRegistration findOrganizationRegistrationByID(int ID);
+    public OrganizationRegistration findOrganizationRegistrationByID(int ID);
 }

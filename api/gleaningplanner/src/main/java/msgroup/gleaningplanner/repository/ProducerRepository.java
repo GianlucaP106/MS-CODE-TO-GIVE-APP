@@ -8,5 +8,5 @@ import msgroup.gleaningplanner.model.Producer;
 @Repository
 public interface ProducerRepository extends CrudRepository<Producer, Integer>{
     
-    Producer findProducerByID(int ID);
+    public Producer findProducerByID(int ID);
 }

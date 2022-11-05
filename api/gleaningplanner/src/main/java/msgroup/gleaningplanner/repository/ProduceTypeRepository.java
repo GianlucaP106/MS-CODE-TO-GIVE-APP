@@ -8,5 +8,5 @@ import msgroup.gleaningplanner.model.ProduceType;
 @Repository
 public interface ProduceTypeRepository extends CrudRepository<ProduceType, Integer> {
     
-    ProduceType findProduceTypeByID(int ID);
+    public ProduceType findProduceTypeByID(int ID);
 }

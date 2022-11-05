@@ -8,5 +8,5 @@ import msgroup.gleaningplanner.model.Organization;
 @Repository
 public interface OrganizationRepository extends CrudRepository<Organization, Integer>{
     
-    Organization findOrganizationByID(int ID);
+    public Organization findOrganizationByID(int ID);
 }

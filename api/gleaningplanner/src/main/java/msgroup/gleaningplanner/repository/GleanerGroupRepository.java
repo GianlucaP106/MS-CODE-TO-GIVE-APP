@@ -8,5 +8,5 @@ import msgroup.gleaningplanner.model.GleanerGroup;
 @Repository
 public interface GleanerGroupRepository extends CrudRepository<GleanerGroup, Integer>{
     
-    GleanerGroup findGleanerGroupByID(int ID);
+    public GleanerGroup findGleanerGroupByID(int ID);
 }

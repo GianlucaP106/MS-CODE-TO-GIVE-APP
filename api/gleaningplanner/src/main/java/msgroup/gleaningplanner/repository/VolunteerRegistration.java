@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VolunteerRegistration extends CrudRepository<VolunteerRegistration, Integer>{
     
-    VolunteerRegistration findVolunteerRegistrationByID(int ID);
+    public VolunteerRegistration findVolunteerRegistrationByID(int ID);
 }
