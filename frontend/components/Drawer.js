@@ -152,7 +152,13 @@ const getAllEventsByCropResponse = await axios.get(
 const listOfEvents = getAllEventsResponse.data.events;
 
 export default function PermanentDrawerLeft() {
-  const [searchParameter, setSearchParameter] = useState(false);
+  const [searchParameter, setSearchParameter] = useState(0);
+
+  React.useEffect(()=>{
+    
+  }, [searchParameter])
+
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -193,6 +199,18 @@ export default function PermanentDrawerLeft() {
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
+          >
+            <FormControlLabel value="2" control={<Radio />} label="2 km" />
+            <FormControlLabel value="5" control={<Radio />} label="5 km" />
+            <FormControlLabel value="10" control={<Radio />} label="10 km" />
+          </RadioGroup>
+        </FormControl>
+        <FormControl className={styles.formControl}>
+          <FormLabel id="demo-radio-buttons-group-label">Distance</FormLabel>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            name="radio-buttons-group"
+            row 
           >
             <FormControlLabel value="2" control={<Radio />} label="2 km" />
             <FormControlLabel value="5" control={<Radio />} label="5 km" />

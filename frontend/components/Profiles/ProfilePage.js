@@ -5,7 +5,7 @@ import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
 
-export default function ProfilePage() {
+export default function ProfilePage(props) {
     const pageVisits = [
       { id: 1, date: "Nov 2022", comment: "Very good" },
       { id: 1, date: "Nov 2022", comment: "Not bad" },
