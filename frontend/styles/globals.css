@@ -8,6 +8,11 @@
   --xxl: 3.2rem;
 }
 
+.profile_icon{
+  max-width: 50%;
+  height: auto;
+}
+
 html,
 body {
   padding: 0;
