@@ -8,6 +8,17 @@
   --xxl: 3.2rem;
 }
 
+#intro-example {
+  height: 400px;
+}
+
+/* Height for devices larger than 992px */
+@media (min-width: 992px) {
+  #intro-example {
+    height: 600px;
+  }
+}
+
 .profile_icon{
   max-width: 50%;
   height: auto;

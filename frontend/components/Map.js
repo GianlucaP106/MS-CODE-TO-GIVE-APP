@@ -40,7 +40,10 @@ class Map extends Component {
 
   render() {
     return (
-      <LoadScript googleMapsApiKey="AIzaSyD-jTdLruRG2JoSKpGVfqGjAVuanNmnh4Y">
+
+      <LoadScript
+        googleMapsApiKey= ""
+      >
         <GoogleMap
           mapContainerStyle={this.props.size}
           center={this.state.location}
