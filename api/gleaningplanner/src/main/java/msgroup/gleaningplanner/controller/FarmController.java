@@ -33,7 +33,7 @@ public class FarmController {
     public ResponseEntity<FarmTO> createFarm(@RequestBody FarmTO incoming){
         Farm newFarm = farmService.createFarm(
             incoming.producerID,
-            incoming.farm.farmName,
+            incoming.farm.name,
             incoming.farm.surfaceArea,
             incoming.farm.city,
             incoming.farm.address,
@@ -50,7 +50,7 @@ public class FarmController {
     public ResponseEntity<FarmFIlters> getFarmByFilter(@RequestBody FarmObjectDTO incoming){
         Set<Farm> filteredFarms = farmService.filterFarm(
             incoming.ID,
-            incoming.farmName,
+            incoming.name,
             incoming.address,
             incoming.postalCode,
             incoming.city,
@@ -81,7 +81,7 @@ public class FarmController {
         }
 
         FarmFIlters out = new FarmFIlters();
-        out.farms = farmTO_list;
+        out.farm = farmTO_list;
 
         return new ResponseEntity<FarmFIlters>(out , HttpStatus.OK);
     }

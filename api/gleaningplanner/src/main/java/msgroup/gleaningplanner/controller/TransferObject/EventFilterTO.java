@@ -4,9 +4,9 @@ import java.util.List;
 
 public class EventFilterTO {
     
-    public List<EventTO> events;
+    public List<EventTO> event;
 
     public EventFilterTO(List<EventTO> events) {
-        this.events = events;
+        this.event = events;
     }
 }

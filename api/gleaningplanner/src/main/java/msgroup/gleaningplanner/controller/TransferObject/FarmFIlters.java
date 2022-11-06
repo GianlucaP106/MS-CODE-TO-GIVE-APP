@@ -6,5 +6,5 @@ import msgroup.gleaningplanner.controller.TransferObject.FarmTO.FarmObjectDTO;
 
 public class FarmFIlters {
     
-    public List<FarmObjectDTO> farms;
+    public List<FarmObjectDTO> farm;
 }

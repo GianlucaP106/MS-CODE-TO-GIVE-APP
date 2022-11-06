@@ -1,11 +1,9 @@
 package msgroup.gleaningplanner.controller;
 
-import msgroup.gleaningplanner.model.Produce;
+
 import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.service.ProduceService;
-import msgroup.gleaningplanner.service.ProducerService;
 
-import java.util.List;
 import java.util.Set;
 
 import org.springframework.http.HttpStatus;
