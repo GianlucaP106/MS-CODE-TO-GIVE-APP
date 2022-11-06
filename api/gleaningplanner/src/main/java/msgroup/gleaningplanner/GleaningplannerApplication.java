@@ -40,6 +40,8 @@ public class GleaningplannerApplication {
 		};
 	}
 
+
+
 	public void makeOrganization(){
 		organizationService.createOrganization(
 			"org1", 
@@ -318,5 +320,4 @@ public class GleaningplannerApplication {
 		);		
 	}
 
-	
 }
