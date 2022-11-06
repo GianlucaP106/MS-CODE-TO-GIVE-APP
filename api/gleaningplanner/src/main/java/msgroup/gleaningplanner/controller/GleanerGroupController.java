@@ -152,4 +152,5 @@ public class GleanerGroupController {
 
         return new ResponseEntity<GleanerGroupRegistrationTO>(out, HttpStatus.OK);
     }
+
 }

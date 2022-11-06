@@ -4,7 +4,7 @@ public class VolunteerRegistrationTO{
 
     public Integer ID;
     public Integer volunteerID;
-    public Integer evemtID;
+    public Integer eventID;
     public Integer volunteerGroupNumber;
     public Boolean volunteerGroupAccepted;
     public Boolean isOwner;
@@ -14,7 +14,7 @@ public class VolunteerRegistrationTO{
             Boolean volunteerGroupAccepted, Boolean isOwner, Boolean eventAccepted) {
         ID = iD;
         this.volunteerID = volunteerID;
-        this.evemtID = evemtID;
+        this.eventID = evemtID;
         this.volunteerGroupNumber = volunteerGroupNumber;
         this.volunteerGroupAccepted = volunteerGroupAccepted;
         this.isOwner = isOwner;
@@ -23,6 +23,12 @@ public class VolunteerRegistrationTO{
     
     public static class RegistrationRequest{
         public Integer volunteerID;
+        public Integer eventID;
+    }
+
+    public static class RequestVolunteerJoinVolunteerGroup{
+        public Integer volunteerID;
+        public Integer volunteerGroupNumber;
         public Integer eventID;
     }
 }

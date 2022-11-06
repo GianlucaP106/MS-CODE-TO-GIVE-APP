@@ -20,9 +20,12 @@ public interface VolunteerRegistrationRepository extends CrudRepository<Voluntee
 
     public List<VolunteerRegistration> findAllVolunteerRegistrationByVolunteerGroupAcceptedTrue();
 
-    public List<VolunteerRegistration> findAllVolunteerRegistrationByIsOwnerTrue();
+    public List<VolunteerRegistration> findAllVolunteerRegistrationByIsOwner(boolean value);
 
-    public List<VolunteerRegistration> findAllVolunteerRegistrationByEventAcceptedTrue();
+    public List<VolunteerRegistration> findAllVolunteerRegistrationByEventAccepted(boolean value);
 
     public List<VolunteerRegistration> findAllVolunteerRegistrationByEvent(Event event);
+
+    public VolunteerRegistration findAllVolunteerRegistrationByEventAndVolunteer(Event event, Volunteer volunteer);
+
 }

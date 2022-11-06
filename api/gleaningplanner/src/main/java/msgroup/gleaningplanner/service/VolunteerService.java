@@ -115,9 +115,12 @@ public class VolunteerService {
 
     }
 
-    public VolunteerRegistration registerToEvent(RegistrationRequest incoming){
-        Volunteer volunteer = volunteerRepository.findVolunteerByID(incoming.volunteerID);
-        Event event = eventRepository.findEventByID(incoming.eventID);
+    public VolunteerRegistration registerToEvent(
+        Integer eventID,
+        Integer volunteerID
+    ){
+        Volunteer volunteer = volunteerRepository.findVolunteerByID(volunteerID);
+        Event event = eventRepository.findEventByID(eventID);
 
         VolunteerRegistration newRegistration = new VolunteerRegistration();
         newRegistration.setVolunteer(volunteer);
@@ -130,4 +133,20 @@ public class VolunteerService {
         volunteerRegistrationRepository.save(newRegistration);
         return newRegistration;
     }
+
+    public VolunteerRegistration requestJoinGroup(
+        Integer eventID,
+        Integer volunteerID,
+        Integer groupNumber
+    ){
+        Volunteer volunteer = volunteerRepository.findVolunteerByID(volunteerID);
+        Event event = eventRepository.findEventByID(eventID);
+
+        VolunteerRegistration registration = volunteerRegistrationRepository.findAllVolunteerRegistrationByEventAndVolunteer(event, volunteer);
+        registration.setVolunteerGroupNumber(groupNumber);
+
+        return volunteerRegistrationRepository.save(registration);
+    }
+
+
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +15,7 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RequestVolunteerJoinVolunteerGroup;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.service.VolunteerService;
@@ -98,12 +100,29 @@ public class VolunteerController {
 
     @PostMapping("/volunteer/event-register")
     public ResponseEntity<VolunteerRegistrationTO> registerToEvent(@RequestBody RegistrationRequest incoming){
-        VolunteerRegistration volunteerRegistration = volunteerService.registerToEvent(incoming);
+        VolunteerRegistration volunteerRegistration = volunteerService.registerToEvent(
+            incoming.eventID,
+            incoming.volunteerID
+        );
 
         VolunteerRegistrationTO out = new VolunteerRegistrationTO(volunteerRegistration.getID(), volunteerRegistration.getVolunteer().getID(), volunteerRegistration.getEvent().getID(), 
         volunteerRegistration.getVolunteerGroupNumber(), volunteerRegistration.isVolunteerGroupAccepted(), volunteerRegistration.isOwner(), volunteerRegistration.isEventAccepted());
 
         return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
 
+    }
+
+    @PostMapping("/volunteer/event-request-group")
+    public ResponseEntity<VolunteerRegistrationTO> requestGroupJoin(@RequestBody RequestVolunteerJoinVolunteerGroup incoming){
+         VolunteerRegistration volunteerRegistration = volunteerService.requestJoinGroup(
+            incoming.eventID,
+            incoming.volunteerID,
+            incoming.volunteerGroupNumber
+        );
+
+        VolunteerRegistrationTO out = new VolunteerRegistrationTO(volunteerRegistration.getID(), volunteerRegistration.getVolunteer().getID(), volunteerRegistration.getEvent().getID(), 
+        volunteerRegistration.getVolunteerGroupNumber(), volunteerRegistration.isVolunteerGroupAccepted(), volunteerRegistration.isOwner(), volunteerRegistration.isEventAccepted());
+
+        return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
     }
 }
