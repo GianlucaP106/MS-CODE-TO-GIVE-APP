@@ -65,7 +65,6 @@ public class GleaningplannerApplication {
 				"635 rue du souchet",
 				"H7A 4G5"
 			);
-
 		};
 	}
 

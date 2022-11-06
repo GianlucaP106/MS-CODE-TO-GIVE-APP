@@ -189,6 +189,7 @@ public class GleanerGroupService {
 
         registration.setEvent(event);
         registration.setGleanerGroup(group);
+        registration.setEventApproved(false);
            
         return gleanerGroupRegistrationRepository.save(registration);
     }
