@@ -8,6 +8,8 @@ import Search from '../components/Search'
 import Drawer from '../components/Drawer'
 import FarmerLeaderboard from '../components/Leaderboards/FarmerLeaderboard'
 import ProfilePage from '../components/Profiles/ProfilePage'
+import PrimarySearchAppBar from '../components/Layout/PrimarySearchAppBar'
+import PageVisitsTable from '../components/Tables/PageVisitsTable'
 
 
 export default function Home() {
@@ -21,7 +23,7 @@ export default function Home() {
       </Head>
 
       <main>
-        <h1>name</h1>
+        <PrimarySearchAppBar/>
         <ProfilePage />
       </main>
     </div>
