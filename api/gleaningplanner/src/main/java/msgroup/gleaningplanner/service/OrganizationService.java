@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Organization;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.repository.OrganizationRepository;
 
 @Service
@@ -171,5 +172,9 @@ public class OrganizationService {
         }
 
         return organizationRepository.save(newOrganization);
+    }
+
+    public OrganizationRegistration registerEvent() {
+        return new OrganizationRegistration();
     }
 }

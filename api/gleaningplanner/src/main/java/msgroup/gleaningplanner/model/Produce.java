@@ -25,7 +25,7 @@ public class Produce {
     private Event event;  // event and organization cannot both be not null
 
     @ManyToOne 
-    private Organization organization;
+    private OrganizationRegistration organizationRegistration;
     
     public Produce() {}
 

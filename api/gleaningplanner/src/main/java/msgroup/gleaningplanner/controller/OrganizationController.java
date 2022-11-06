@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationFilterTO;
+import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
 import msgroup.gleaningplanner.model.Organization;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.service.LocationService;
 import msgroup.gleaningplanner.service.OrganizationService;
 
@@ -143,6 +145,16 @@ public class OrganizationController {
         }
 
         return new ResponseEntity<OrganizationFilterTO>(new OrganizationFilterTO(organizationTOs), HttpStatus.OK);
+
+    }
+
+    @PostMapping("/organization/event-register")
+    public ResponseEntity<OrganizationRegistrationTO> registerToEvent(@RequestBody OrganizationRegistrationTO incoming){
+        OrganizationRegistration organizationRegistration = organizationService.registerToEvent(incoming);
+
+        OrganizationRegistrationTO out = new OrganizationRegistrationTO(organizationRegistration.getID(), organizationRegistration.getOrganization(), organizationRegistration.getEvent());
+
+        return new ResponseEntity<OrganizationRegistrationTO>(out, HttpStatus.OK);
 
     }
 }

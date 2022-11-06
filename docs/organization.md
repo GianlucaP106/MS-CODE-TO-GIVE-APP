@@ -120,6 +120,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
+    "id": "id",
     "username": "username",
     "password": "password",
     "orgName": "orgName",
@@ -134,3 +135,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 }
 ```
 #### successful ? status(404) : status(404) // not found
+
+
+### method : POST
+### path name: /organization/event-register
+### request PARAMETERS:
+```JSON
+{
+    "organizationId" : "organizationId",
+    "eventID" : "eventID",
+}
+```
+#### successful ? status(201) : status(406)
