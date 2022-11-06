@@ -1,9 +1,9 @@
 import Head from "next/head";
-// import Image from "next/image";
-// import styles from "../styles/Home.module.css";
-// import Map from "../components/Map";
-// import Footer from "../components/Layout/Footer";
-// import ReactDOM from "react-dom/client";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Map from "../components/Map";
+import Footer from "../components/Layout/Footer";
+import ReactDOM from "react-dom/client";
 import Search from "../components/Search";
 import Drawer from "../components/Drawer";
 import FarmerLeaderboard from "../components/Leaderboards/FarmerLeaderboard";
