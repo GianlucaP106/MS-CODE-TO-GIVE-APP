@@ -39,7 +39,7 @@ public class ProduceController {
         return new ResponseEntity<Set<Integer>> (eventList, HttpStatus.OK);
     }
 
-    @PostMapping("/produce/get-organizationRegistration")
+    @PostMapping("/produce/get-organization-registration")
     public ResponseEntity<Set<Integer>> getOrganizationRegistrationByCropType(@RequestBody String cropType){
 
         CropType type = CropType.Apples;
