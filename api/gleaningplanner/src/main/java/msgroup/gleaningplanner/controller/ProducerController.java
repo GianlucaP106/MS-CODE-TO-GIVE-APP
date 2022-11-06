@@ -17,6 +17,7 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.service.ProduceService;
 import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
@@ -25,7 +26,9 @@ import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 public class ProducerController {
     private ProducerService producerService;
 
-    public ProducerController(ProducerService producerService){
+    public ProducerController(
+        ProducerService producerService
+    ){
         this.producerService = producerService;
     }
 
@@ -146,13 +149,21 @@ public class ProducerController {
         );
     }
 
-    // @PostMapping("/producer/add-produce-to-event")
-    // public ResponseEntity<Produce> addProduceToEvent(
-    //     int eventID, 
-    //     String produceType, 
-    //     double amount
-    // ) {
-        
-    // }
+    @PostMapping("/producer/add-produce-to-event")
+    public ResponseEntity<Produce> addProduceToEvent(
+        int eventID, 
+        String produceType, 
+        double amount
+    ) {
+        Produce newProduce = producerService.addProduceToEvent(
+            eventID, 
+            produceType, 
+            amount
+        );
+        return new ResponseEntity<Produce>(
+            newProduce, 
+            HttpStatus.OK
+        );
+    }
 
 }
