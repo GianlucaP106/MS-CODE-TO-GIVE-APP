@@ -9,9 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
@@ -21,6 +23,8 @@ import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 import msgroup.gleaningplanner.service.VolunteerService;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.service.LocationService;
 
 @RestController
 public class VolunteerController {
@@ -152,4 +156,23 @@ public class VolunteerController {
 
         return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
     }
+
+    @PostMapping("/volunteer/comment-event/")
+    public  ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = volunteerService.postCommentEvent(
+            incoming.volunteerID,
+            incoming.eventID,
+            incoming.comment,
+            incoming.authorType
+        );
+
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getVolunteer().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+    }
 }
+
