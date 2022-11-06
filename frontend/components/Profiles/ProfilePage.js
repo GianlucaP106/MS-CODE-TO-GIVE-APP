@@ -32,7 +32,7 @@ export default function ProfilePage(props) {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">
-              <ProfileCard name={"Parsa Langari"} role={"Volunteer"} region={"Montreal"} 
+              <ProfileCard name={props.info.username} role={"Volunteer"} region={"Montreal"} 
                 imgSrc={"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"}/>
               <ProfileComment comments={pageVisits}/>
             </div>
