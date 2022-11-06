@@ -56,12 +56,39 @@ export default function Profile(props) {
       incomingComments = comments["comments"]; // this is a list of comment objects
     }else return;
 
-    console.log(incomingComments);
+
+
+    let events = null;
+    let eventSearch = {
+      "ID": out["ID"],
+      "userType": data.type 
+    }
+    try {
+      events = await fetch("http://localhost:8080/event/get-event-by-user", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(eventSearch)
+      });
+      events = await events.json();
+    }catch(e) {
+      console.log(e);
+    }
+
+    let outEvents = [];
+
+    if (events) {
+      outEvents = events["event"];
+    } 
+    console.log(outEvents);
 
     let outComments = []
 
     for (let comment of incomingComments) {
-      if (comment[data.type]) {
+      console.log(comment[data.type]);
+      console.log(out["ID"]);
+      if (comment[data.type] && comment[data.type].id == out["ID"]) {
         outComments.push(comment);
       }
     }
