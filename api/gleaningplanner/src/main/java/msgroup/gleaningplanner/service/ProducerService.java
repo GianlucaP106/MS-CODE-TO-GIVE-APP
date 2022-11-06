@@ -12,10 +12,13 @@ import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Event;
+import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.ProduceRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 
@@ -25,26 +28,34 @@ public class ProducerService {
     private ProducerRepository producerRepository;    
     private LocationService locationService;
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
+    private EventRepository eventRepository;
+    private ProduceRepository produceRepository;
 
     public ProducerService(
         ProducerRepository producerRepository, 
         LocationService locationService,
-        VolunteerRegistrationRepository volunteerRegistrationRepository
+        VolunteerRegistrationRepository volunteerRegistrationRepository,
+        EventRepository eventRepository,
+        ProduceRepository produceRepository
     ) {
         this.locationService = locationService;
         this.producerRepository = producerRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
+        this.eventRepository = eventRepository;
+        this.produceRepository = produceRepository;
     }
 
-    public Producer createProducer(String firstName,
-    String lastName,
-    String email,
-    String username,
-    String password,
-    String phoneNumber,
-    String address,
-    String postalCode,
-    String city){
+    public Producer createProducer(
+        String firstName,
+        String lastName,
+        String email,
+        String username,
+        String password,
+        String phoneNumber,
+        String address,
+        String postalCode,
+        String city
+    ){
 
         Producer newProducer = new Producer();
         newProducer.setEmail(email);
@@ -175,5 +186,25 @@ public class ProducerService {
             }
         }
         return accepted;
+    }
+
+    public Produce addProduceToEvent(
+        int eventID, 
+        String produceType, 
+        double amount
+    ) {
+        Produce produce = new Produce();
+        produce.setEvent(eventRepository.findEventByID(eventID));
+
+        CropType type = CropType.Apples;
+        for (CropType crop : CropType.values()) {
+            if (crop.toString().equals(produceType)) {
+                type = crop;
+                break;
+            }
+        }
+        produce.setCropType(type);
+        produce.setAmount(amount);
+        return produceRepository.save(produce);
     }
 }
