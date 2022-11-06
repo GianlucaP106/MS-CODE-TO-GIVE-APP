@@ -12,14 +12,13 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupFilterTO;
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.service.GleanerGroupService;
-
 import msgroup.gleaningplanner.service.LocationService;
 
 @RestController
@@ -63,14 +62,6 @@ public class GleanerGroupController {
             newGleanerGroup.getLongitude());
         return new ResponseEntity<GleanerGroupTO>(out, HttpStatus.OK);
     }
-
-
-    // @PostMapping("/gleaner-group/eventRegister")
-    // public ResponseEntity<GleanerGroupRegistrationTO> eventRegister(@RequestBody GleanerGroupRegistrationRequest incoming){
-    //     GleanerGroupRegistration registration =  gleanergroupService.registerToEvent(incoming);
-
-    // }
-
 
     @PutMapping("/gleaner-group/update")
     public ResponseEntity<GleanerGroupTO> updateGleanerGroup(@RequestBody GleanerGroupTO incoming){
@@ -143,5 +134,21 @@ public class GleanerGroupController {
         }
 
         return new ResponseEntity<GleanerGroupFilterTO>(new GleanerGroupFilterTO(gleanergroupsTOs), HttpStatus.OK);
+    }
+
+    @PostMapping("/gleaner-group/eventRegister")
+    public ResponseEntity<GleanerGroupRegistrationTO> eventRegister(@RequestBody GleanerGroupRegistrationRequest incoming){
+        GleanerGroupRegistration registration =  gleanergroupService.registerToEvent(
+            incoming.eventID,
+            incoming.gleanerGroupID
+        );
+
+        GleanerGroupRegistrationTO out = new GleanerGroupRegistrationTO(
+            registration.getID(),
+            registration.getGleanerGroup().getID(),
+            registration.getEvent().getID()
+        );
+
+        return new ResponseEntity<GleanerGroupRegistrationTO>(out, HttpStatus.OK);
     }
 }

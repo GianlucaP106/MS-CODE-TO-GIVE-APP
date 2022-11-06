@@ -7,24 +7,31 @@ import java.util.Set;
 
 import org.springframework.stereotype.Service;
 
+import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.GleanerGroup;
+import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
 
 @Service
 public class GleanerGroupService {
     
     private GleanerGroupRepository gleanerGroupRepository;
+    private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
     private EventRepository eventRepository;
 
     private LocationService locationService;
 
-    public GleanerGroupService(GleanerGroupRepository gleanerGroupRepository, LocationService locationService) {
+    public GleanerGroupService(GleanerGroupRepository gleanerGroupRepository, LocationService locationService,
+                GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository) {
         this.gleanerGroupRepository = gleanerGroupRepository;
         this.locationService = locationService;
+        this.gleanerGroupRegistrationRepository = gleanerGroupRegistrationRepository;
     }
 
     public GleanerGroup createGleanerGroup(
@@ -169,5 +176,20 @@ public class GleanerGroupService {
         }
 
         return gleanerGroupRepository.save(newGleanerGroup);
+    }
+
+    public GleanerGroupRegistration registerToEvent(
+        Integer eventID,
+        Integer gleanerGroupID
+    ) {
+        GleanerGroup group = gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID);
+        Event event = eventRepository.findEventByID(eventID);
+
+        GleanerGroupRegistration registration = new GleanerGroupRegistration();
+
+        registration.setEvent(event);
+        registration.setGleanerGroup(group);
+           
+        return gleanerGroupRegistrationRepository.save(registration);
     }
 }
