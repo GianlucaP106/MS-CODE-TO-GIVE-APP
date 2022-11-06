@@ -20,8 +20,9 @@ export default function Profile(props) {
 
   async function getDataFromServer(data) {
     const out = {
-      "ID": data.pid,
+      "ID": data.profile,
     }
+    console.log(out);
 
     let response = null;
     try {
@@ -42,6 +43,29 @@ export default function Profile(props) {
       incoming = response[data.type][0];
     }else return;
 
+    let comments = null;
+    try { 
+      comments = await fetch(`http://localhost:8080/comment/getall`);
+      comments = await comments.json();
+    }catch(e) {
+      console.log(e);
+    }
+
+    let incomingComments = null;
+    if (comments) {
+      incomingComments = comments["comments"]; // this is a list of comment objects
+    }else return;
+
+    console.log(incomingComments);
+
+    let outComments = []
+
+    for (let comment of incomingComments) {
+      if (comment[data.type]) {
+        outComments.push(comment);
+      }
+    }
+
     setPassedData({
       ID: incoming.ID,
       username: incoming.username,
@@ -52,8 +76,11 @@ export default function Profile(props) {
       lastName: incoming.lastName,
       email: incoming.email,
       personType: data.type,
-      name: data.name
+      name: data.name,
+      comments: outComments
     });
+    
+
   }
 
 

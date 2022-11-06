@@ -1,5 +1,8 @@
 package msgroup.gleaningplanner.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,21 +30,26 @@ public class RootController {
         this.commentRepository = commentRepository;
     }
 
-    @GetMapping("/")
-    public String greeting() {
-        return "how are u";
-    }
-
-    @GetMapping("/testloc")
-    public ResponseEntity<LocationAPITO> getLoc(){
-        return locationService.transformToLatitudeLongitude(null, "H8P 1C6", "Montreal"); 
-    }
-
-
     @GetMapping("/comment/getall")
     public ResponseEntity<CommentListTO> getAllComments() {
         Iterable<Comment> comments = commentRepository.findAll();
-        CommentListTO out = new CommentListTO(comments);
+        List<Comment> commentList = new ArrayList<Comment>();
+        for (Comment comment : comments) {
+            commentList.add(comment);
+        }
+        CommentListTO out = new CommentListTO(commentList);
         return new ResponseEntity<CommentListTO>(out, HttpStatus.OK);
     }
+
+    // @GetMapping("/")
+    // public String greeting() {
+    //     return "how are u";
+    // }
+
+    // @GetMapping("/testloc")
+    // public ResponseEntity<LocationAPITO> getLoc(){
+    //     return locationService.transformToLatitudeLongitude(null, "H8P 1C6", "Montreal"); 
+    // }
+
+
 }

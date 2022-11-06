@@ -1,11 +1,15 @@
 package msgroup.gleaningplanner;
 
+import java.time.Instant;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import msgroup.gleaningplanner.service.EventService;
 import msgroup.gleaningplanner.service.FarmService;
 import msgroup.gleaningplanner.service.OrganizationService;
 import msgroup.gleaningplanner.service.ProducerService;
@@ -26,6 +30,9 @@ public class GleaningplannerApplication {
 	@Autowired
 	private FarmService farmService;
 
+	@Autowired
+	private EventService eventService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GleaningplannerApplication.class, args);
 	}
@@ -37,8 +44,11 @@ public class GleaningplannerApplication {
 			makeProducers();
 			makeFarms();
 			makeOrganization();
+			makeEvents();
+			makeComments();
 		};
 	}
+
 
 	public void makeOrganization(){
 		organizationService.createOrganization(
@@ -58,16 +68,72 @@ public class GleaningplannerApplication {
 		organizationService.createOrganization(
 			"org2", 
 			"org2",
-			"Environment Matanie",
-			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
-			"dédiée à l'environnement",
+			"Les Fruits Partagés",
+			"Les Fruits Partagés ont pour but d'approvisionner Moisson Rimouski-Neigette en fruits et légumes tout en réduisant le gaspillage alimentaire sur le territoire de la MRC.",
+			"",
 			null,
-			"99-A ",
-			"Rimouski-Neigette", 
+			"99-A rue de l'eveche",
+			"Rimouski", 
 			"G5L1X7", 
 			150.0, 
 			"http://moissonrimouski.org/les-fruits-partages", 
 			"4183186013"	
+		);
+		organizationService.createOrganization(
+			"org3", 
+			"org3",
+			"Artha-Recolte",
+			"",
+			"",
+			null,
+			"747 Pierre-Roux Blv",
+			"Victoriaville", 
+			"G6T1S7", 
+			200.0, 
+			"https://www.artharecolte.com/", 
+			"8193525001"	
+		);
+		organizationService.createOrganization(
+			"org4", 
+			"org4",
+			"Meilleur Apres",
+			"Entreprise d'économie sociale en sécurité alimentaire pour un système alimentaire viable et durable.",
+			"",
+			null,
+			"350 Rie Notre Dame",
+			"Notre-Dame-du-bon-conseil", 
+			"J0C1A0", 
+			200.0, 
+			"https://meilleurapres.ca/", 
+			"8194611303"	
+		);
+		organizationService.createOrganization(
+			"org5", 
+			"org5",
+			"Les Butineurs",
+			"La mission des Butineurs est de récolter et de partager les surplus de fruits et de légumes.",
+			"",
+			null,
+			"255 Rue Collard",
+			"Alma", 
+			"G8B 1M8", 
+			200.0, 
+			"https://lesbutineurs.ca/",
+			"4183196087"	
+		);
+		organizationService.createOrganization(
+			"org6", 
+			"org6",
+			"Champ D'Action - Project collectif en securite alimentaire",
+			"",
+			"",
+			null,
+			"79, Rue Wellington Nord",
+			"Sherbrooke", 
+			"J1H589", 
+			200.0, 
+			"https://www.entreprendresherbrooke.com/",
+			"8195631144"	
 		);
 	}
 
@@ -123,7 +189,7 @@ public class GleaningplannerApplication {
 			"Mohammed",
 			"Amimer", 
 			"5141597534",
-			"3532 Bd de la Concorde E",
+			"3532 Concorde E",
 			"H7E2C4",
 			"Laval"
 		);
@@ -262,5 +328,315 @@ public class GleaningplannerApplication {
 		);		
 	}
 
+	public void makeEvents() {
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			true, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			true, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			6, 
+			Date.from(Instant.now())
+		);
+	}
+
+	public void makeComments() {
+		producerService.postCommentEvent(
+			1, 
+			1, 
+			"first comment",
+			"PRODUCER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			1, 
+			"second comment",
+			"PRODUCER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			2, 
+			"third comment",
+			"VOLUNTEER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			1, 
+			"fourth comment",
+			"VOLUNTEER"
+		);
+	}
 	
+	public void registerOrganizations(){
+		organizationService.registerToEvent(
+			1, 
+			1
+		);
+		organizationService.registerToEvent(
+			2, 
+			2
+		);
+		organizationService.registerToEvent(
+			3, 
+			2
+		);
+		organizationService.registerToEvent(
+			3, 
+			3
+		);
+		organizationService.registerToEvent(
+			4, 
+			4
+		);
+		organizationService.registerToEvent(
+			5,
+			6
+		);
+		organizationService.registerToEvent(
+			6,
+			6
+		);
+		organizationService.registerToEvent(
+			5,
+			7
+		);
+		organizationService.registerToEvent(
+			4,
+			12
+		);
+		organizationService.registerToEvent(
+			3,
+			9
+		);
+	}
 }
