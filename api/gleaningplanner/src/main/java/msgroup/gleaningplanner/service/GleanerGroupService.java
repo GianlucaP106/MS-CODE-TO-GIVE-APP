@@ -18,9 +18,7 @@ import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
-import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
-import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.AuthorType;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.repository.CommentRepository;
@@ -97,7 +95,7 @@ public class GleanerGroupService {
         }
 
         if (username != null) {
-            filtered.add(gleanerGroupRepository.findAllGleanerGroupByUsername(username));
+            filtered.add(gleanerGroupRepository.findGleanerGroupByUsername(username));
             return filtered;
         }
         
@@ -242,5 +240,15 @@ public class GleanerGroupService {
         newComment.setGleanerGroup(gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID));
 
         return commentRepository.save(newComment);
+    }
+
+
+    public GleanerGroup verifySignUp(String username, String password){
+        GleanerGroup group = gleanerGroupRepository.findGleanerGroupByUsername(username);
+
+        if(group == null) return null;
+        if(!group.getPassword().equals(password)) return null;
+
+        return group;
     }
 }

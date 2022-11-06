@@ -29,5 +29,12 @@ public class ProducerTO {
         this.longitude = longitude;
     }
 
+    public ProducerTO() {
+    }
+
+    public static class signInRequestProducer{
+        public String username;
+        public String password;
+    }
     
 }

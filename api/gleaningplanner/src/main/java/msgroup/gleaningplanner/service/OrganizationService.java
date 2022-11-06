@@ -290,4 +290,13 @@ public class OrganizationService {
         produce.setAmount(amount);
         return produceRepository.save(produce);
     }
+
+    public Organization verifySignIn(String username, String password){
+
+        Organization org = organizationRepository.findOrganizationByUsername(username);
+        if(org == null) return null;
+        if(!org.getPassword().equals(password)) return null;
+
+        return org;
+    }
 }

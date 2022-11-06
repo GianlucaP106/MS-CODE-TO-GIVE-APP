@@ -5,7 +5,10 @@ import '../styles/globals.css'
 // import '../assets/mdb.rtl.min.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+
+  const [credentials, setCredentials] = useState({});
+
+  return <Component cred={credentials} setCred={setCredentials} {...pageProps} />
 }
 
 export default MyApp
