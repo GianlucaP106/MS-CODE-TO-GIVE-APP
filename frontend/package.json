@@ -13,6 +13,7 @@
     "@emotion/styled": "^11.10.5",
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@material/card": "^14.0.0",
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
     "@mui/x-data-grid": "^5.17.10",

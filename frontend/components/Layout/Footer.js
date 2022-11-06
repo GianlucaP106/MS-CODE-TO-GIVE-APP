@@ -20,13 +20,7 @@ function Copyright() {
 
 export default function StickyFooter() {
   return (
-    <Box
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        minHeight: '100vh'
-      }}
-    >
+    
       <Box
         component="footer"
         sx={{
@@ -46,6 +40,5 @@ export default function StickyFooter() {
           <Copyright />
         </Container>
       </Box>
-    </Box>
   );
 }
