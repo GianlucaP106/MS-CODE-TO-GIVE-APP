@@ -12,78 +12,78 @@ const pageVisits = [
     { value: "Ta Face", name: "dans" }
 ];
 
-export default function ProfileInfo (props) {
-    const { icon, dictionary } = props;
-    const TableRow = (props) => {
-        const { pageName, views, returnValue, bounceRate } = props;
-        const bounceIcon = bounceRate < 0 ? faArrowDown : faArrowUp;
-        const bounceTxtColor = bounceRate < 0 ? "text-danger" : "text-success";
-    
-        return (
-          <tr>
-            <th scope="row">{pageName}</th>
-            <td>{views}</td>
-            <td>${returnValue}</td>
-            <td>
-              <FontAwesomeIcon icon={bounceIcon} className={`${bounceTxtColor} me-3`} />
-              {Math.abs(bounceRate)}%
-            </td>
-          </tr>
-        );
-      };
+export default function ProfileInfoTable (props) {
+    const { firstSpot, secondSpot, thirdSpot, fourthSpot, profileType } = props;
 
-    // return (
-    //     <Table responsive className="align-items-center table-flush">
-    //       <tbody>
-    //         {pageVisits.map(pv => <TableRow key={`page-visit-${pv.id}`} {...pv} />)}
-    //       </tbody>
-    //     </Table>
-    // );
+    let firstKey, firstVal, secondKey, secondVal, thirdKey, thirdVal, fourthKey, fourthVal;
+    
+    firstVal = firstSpot;
+    secondVal = secondSpot;
+    thirdVal = thirdSpot;
+    fourthVal = fourthSpot;
+
+    if (profileType === "Volunteer"){
+        firstKey = "First Name";
+        secondKey = "Last Name";
+        thirdKey = "Username";
+        fourthKey = "Email";
+    } else if (profileType === "FoodBank"){
+        firstKey = "Name";
+        secondKey = "Description";
+        thirdKey = "Mission Statement";
+        fourthKey = "Region(s)";
+    } else if (profileType === "Group") {
+        firstKey = "Name";
+        secondKey = "Region";
+        thirdKey = "Mission Statement";
+        fourthKey = "Description";
+    } else if (profileType === "Producer") {
+        firstKey = "Name";
+        secondKey = "Address";
+        thirdKey = "Mission Statement";
+        fourthKey = "Description";
+    } else if (profileType === "Event") {
+        firstKey = "Name";
+        secondKey = "Address";
+        thirdKey = "Mission Statement";
+        fourthKey = "Description";
+    }
 
     return (<div className="card mb-4">
     <div className="card-body">
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">Full Name</p>
+          <p className="mb-0">{firstKey}</p>
         </div>
         <div className="col-sm-9">
-          <p className="text-muted mb-0">Johnatan Smith</p>
+          <p className="text-muted mb-0">{firstVal}</p>
         </div>
       </div>
       <hr/>
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">Email</p>
+          <p className="mb-0">{secondKey}</p>
         </div>
         <div className="col-sm-9">
-          <p className="text-muted mb-0">example@example.com</p>
+          <p className="text-muted mb-0">{secondVal}</p>
         </div>
       </div>
       <hr/>
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">Phone</p>
+          <p className="mb-0">{thirdKey}</p>
         </div>
         <div className="col-sm-9">
-          <p className="text-muted mb-0">(097) 234-5678</p>
+          <p className="text-muted mb-0">{thirdVal}</p>
         </div>
       </div>
       <hr/>
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">Mobile</p>
+          <p className="mb-0">{fourthKey}</p>
         </div>
         <div className="col-sm-9">
-          <p className="text-muted mb-0">(098) 765-4321</p>
-        </div>
-      </div>
-      <hr/>
-      <div className="row">
-        <div className="col-sm-3">
-          <p className="mb-0">Address</p>
-        </div>
-        <div className="col-sm-9">
-          <p className="text-muted mb-0">Bay Area, San Francisco, CA</p>
+          <p className="text-muted mb-0">{fourthVal}</p>
         </div>
       </div>
     </div>

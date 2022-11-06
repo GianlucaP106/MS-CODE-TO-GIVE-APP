@@ -158,6 +158,23 @@ public class VolunteerService {
         return volunteerRegistrationRepository.save(registration);
     }
 
+    public VolunteerRegistration acceptVolunteer(int volunteerID, int eventID) {
+
+
+        List<VolunteerRegistration> registrations = volunteerRegistrationRepository.findAllVolunteerRegistrationByVolunteer(
+            volunteerRepository.findVolunteerByID(volunteerID)
+        );
+        if (registrations.size() > 0) {
+            registrations.get(0).setVolunteerGroupAccepted(true);
+            volunteerRegistrationRepository.save(registrations.get(0));
+        }
+
+        return registrations.get(0);
+
+
+    }
+
+
     public Comment postCommentEvent(int volunteerID, int eventID, String comment, String authorType){
         
         AuthorType type;
