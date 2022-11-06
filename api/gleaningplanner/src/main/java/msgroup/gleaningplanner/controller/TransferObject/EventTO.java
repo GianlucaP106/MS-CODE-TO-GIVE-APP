@@ -9,8 +9,6 @@ public class EventTO {
     public boolean isUrgent;
     public String date;
 
-
-
     public EventTO(int farmId, String eventName, int neededGleaners, int maxGleaners, String description,
              boolean isUrgent, String date) {
         this.farmId = farmId;

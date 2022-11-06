@@ -42,7 +42,7 @@ public class EventController {
         if (newEvent != null) {
             return new ResponseEntity<EventTO>(
                 new EventTO(
-                    newEvent.getID(),
+                    newEvent.getFarm().getID(),
                     newEvent.getEventName(),
                     newEvent.getRequiredGleaners(),
                     newEvent.getMaxGleaners(),
@@ -62,7 +62,7 @@ public class EventController {
 
         for(Event event : eventRepository.findAll()){
             events.add(new EventTO(
-                event.getID(),
+                event.getFarm().getID(),
                 event.getEventName(),
                 event.getRequiredGleaners(),
                 event.getMaxGleaners(),
