@@ -36,12 +36,14 @@ public class OrganizationService {
         OrganizationRepository organizationRepository, 
         LocationService locationService, 
         EventRepository eventRepository,
-        CommentRepository commentRepository
+        CommentRepository commentRepository,
+        OrganizationRegistrationRepository organizationRegistrationRepository
     ) {
         this.organizationRepository = organizationRepository;
         this.locationService = locationService;
         this.eventRepository = eventRepository;
         this.commentRepository = commentRepository;
+        this.organizationRegistrationRepository = organizationRegistrationRepository;
     }
 
     public Organization createOrganization(
@@ -195,6 +197,9 @@ public class OrganizationService {
         Integer eventId,
         Integer organizationId
     ) {
+        System.out.println(eventId);
+        System.out.println(organizationId);
+
         Organization organization = organizationRepository.findOrganizationByID(organizationId);
         Event event = eventRepository.findEventByID(eventId);
 
