@@ -2,7 +2,6 @@ package msgroup.gleaningplanner.service;
 
 import java.sql.Date;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -11,7 +10,6 @@ import java.util.Set;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
-import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
@@ -22,8 +20,7 @@ import msgroup.gleaningplanner.repository.VolunteerRepository;
 import msgroup.gleaningplanner.model.AuthorType;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.repository.CommentRepository;
-import msgroup.gleaningplanner.model.Volunteer;
-import msgroup.gleaningplanner.repository.VolunteerRepository;
+
 
 @Service
 public class VolunteerService {

@@ -49,6 +49,31 @@ public class GleaningplannerApplication {
 		};
 	}
 
+	public void registerVolunteers(){
+		//EVENT 1	
+		volunteerService.registerToEvent(
+			1,1
+		);
+
+		//EVENT 2
+		volunteerService.registerToEvent(
+			1,2
+		);
+		volunteerService.registerToEvent(
+			2,2
+		);
+		volunteerService.registerToEvent(
+			3,2
+		);
+		volunteerService.registerToEvent(
+			4,2
+		);
+		volunteerService.registerToEvent(
+			5,2
+		);
+
+		// EVENT 3
+	}
 
 	public void makeOrganization(){
 		organizationService.createOrganization(
@@ -193,6 +218,66 @@ public class GleaningplannerApplication {
 			"H7E2C4",
 			"Laval"
 		);
+
+		volunteerService.createVolunteer(
+			"Justin",
+			"Rigoli",
+			"Justin.Rigoli@mail.mcgill.ca",
+			"Justin",
+			"Rigoli", 
+			"4567891324",
+			"2595 Rue Fleury E",
+			"H2B1L7",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Amine",
+			"Achik",
+			"Amine.Achik@mail.mcgill.ca",
+			"Amine",
+			"Achik", 
+			"1973187394",
+			"1425 Boul Henri-Bourassa E",
+			"H2C1H1",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Andrea",
+			"Loza",
+			"Andrea.Loza@mail.mcgill.ca",
+			"Andrea",
+			"Loza", 
+			"4367958462",
+			"Boul des Prairies",
+			"H7N2T6",
+			"Laval"
+		);
+		volunteerService.createVolunteer(
+			"Lolita",
+			"comera",
+			"Lolita.camera@mail.mcgill.ca",
+			"Lolita",
+			"comera", 
+			"5461595378",
+			"7749 George st",
+			"H8P1C6",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Cameron",
+			"Diaz",
+			"Cameron.Diaz@mail.mcgill.ca",
+			"Mohammed",
+			"Amimer", 
+			"8671568947",
+			"3532 Concorde E",
+			"H7E2C4",
+			"Laval"
+		);
+
+
+
+		
 	}
 
 	public void makeProducers(){
