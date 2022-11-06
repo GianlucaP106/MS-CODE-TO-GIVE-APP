@@ -11,7 +11,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
-import axios from "axios";
 
 const drawerWidth = 300;
 
@@ -143,21 +142,68 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-const getAllEventsResponse = await axios.get("http://localhost:8080/event/all");
+// get all events by radius  ---->
+// {
+//        get all events by crop type
+//        get all events by farm name
+//        get all events by event name
+// }
 
-const getAllEventsByCropResponse = await axios.get(
-  "http://localhost:8080//produce/get-event"
-);
+// first get all farms within radius {farm get by filter}
+// get all events
+/*
+        filter through all the events
 
-const listOfEvents = getAllEventsResponse.data.events;
+            List : eventinradius
+        for event in evenets
+            if event.farmid is in farms 
+                eventinradius.add(event)
+
+            return event;
+    */
 
 export default function PermanentDrawerLeft() {
-  const [searchParameter, setSearchParameter] = useState(0);
+  async function getEventByCropTypeDataFromServer(data) {
+    let response = null;
+    try {
+      response = await fetch(`http://localhost:8080/produce/get-event`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+      response = await response.json();
+    } catch (e) {
+      console.log(e);
+    }
 
-  React.useEffect(()=>{
-    
-  }, [searchParameter])
+    let incoming = null;
+    if (response) {
+      incoming = response[`${data.type}s`][0];
+    } else return;
+  }
 
+  const [searchParameter, setSearchParameter] = React.useState("Event");
+  const [textFieldInput, setTextFieldInput] = React.useState("");
+
+  React.useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+
+        if (searchParameter == "Crop") {
+          getEventByCropTypeDataFromServer(textFieldInput);
+          console.log(textFieldInput);
+        }
+
+        // 👇️ call submit function here to display points on map
+        console.log("Events Displayed On Map");
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+  });
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -178,39 +224,47 @@ export default function PermanentDrawerLeft() {
           freeSolo
           id="free-solo-2-demo"
           disableClearable
-          options={listOfEvents.map((event) =>
-            event.eventName ? event.eventName : null
-          )}
+          options={top100Films.map((event) => event.title)}
           className={styles.searchField}
           renderInput={(params) => (
             <TextField
               {...params}
+              id="inputField"
               label="Search input"
               InputProps={{
                 ...params.InputProps,
                 type: "search",
               }}
+              onChange={(e) => setTextFieldInput(e.target.value)}
             />
           )}
         />
         <FormControl className={styles.formControl}>
-          <FormLabel id="demo-radio-buttons-group-label">Distance</FormLabel>
+          <FormLabel id="searchType-demo-radio-buttons-group-label">
+            Search By:
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="searchType-demo-radio-buttons-group-label"
+            name="searchType-radio-buttons-group"
+            row
+            onChange={(e) => setSearchParameter(e.target.value)}
+          >
+            <FormControlLabel
+              value="Event"
+              control={<Radio />}
+              label="Event"
+              //onClick={console.log("clicked")}
+            />
+            <FormControlLabel value="Farm" control={<Radio />} label="Farm" />
+            <FormControlLabel value="Crop" control={<Radio />} label="Crop" />
+          </RadioGroup>
+        </FormControl>
+        <FormControl className={styles.formControl}>
+          <FormLabel id="demo-radio-buttons-group-label">Distance:</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
-          >
-            <FormControlLabel value="2" control={<Radio />} label="2 km" />
-            <FormControlLabel value="5" control={<Radio />} label="5 km" />
-            <FormControlLabel value="10" control={<Radio />} label="10 km" />
-          </RadioGroup>
-        </FormControl>
-        <FormControl className={styles.formControl}>
-          <FormLabel id="demo-radio-buttons-group-label">Distance</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            name="radio-buttons-group"
-            row 
           >
             <FormControlLabel value="2" control={<Radio />} label="2 km" />
             <FormControlLabel value="5" control={<Radio />} label="5 km" />

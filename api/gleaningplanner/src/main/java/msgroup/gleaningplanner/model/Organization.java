@@ -17,6 +17,7 @@ public class Organization extends User {
     private String description;
     private String missionStatement;
     private String imageURL;
+    private String phoneNumber;
     private double maxDistance;
 
     private Integer participatedEvent;
@@ -89,5 +90,12 @@ public class Organization extends User {
         this.participatedEvent = participatedEvent;
     }
 
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
 
 }

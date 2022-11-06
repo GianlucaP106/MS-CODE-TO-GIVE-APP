@@ -43,13 +43,15 @@ public class ProducerService {
         LocationService locationService,
         VolunteerRegistrationRepository volunteerRegistrationRepository,
         EventRepository eventRepository,
-        ProduceRepository produceRepository
+        ProduceRepository produceRepository,
+        CommentRepository commentRepository
     ) {
         this.locationService = locationService;
         this.producerRepository = producerRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
         this.eventRepository = eventRepository;
         this.produceRepository = produceRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Producer createProducer(

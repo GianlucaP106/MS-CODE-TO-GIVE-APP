@@ -39,7 +39,7 @@ public class OrganizationController {
         Organization newOrganization = organizationService.createOrganization(
             incoming.username,
             incoming.password,
-            incoming.orgName,
+            incoming.name,
             incoming.description,
             incoming.missionStatement,
             incoming.imageURL,
@@ -47,7 +47,8 @@ public class OrganizationController {
             incoming.city,
             incoming.postalCode,
             incoming.maxDistance,
-            incoming.websiteLink
+            incoming.websiteLink,
+            incoming.phoneNumber
         );
 
         OrganizationTO out = new OrganizationTO(
@@ -65,7 +66,8 @@ public class OrganizationController {
             newOrganization.getWebsiteLink(),
             newOrganization.getLongitude(), 
             newOrganization.getLatitude(),
-            newOrganization.getParticipatedEvent()
+            newOrganization.getParticipatedEvent(),
+            newOrganization.getPhoneNumber()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -96,7 +98,8 @@ public class OrganizationController {
             org.getWebsiteLink(),
             org.getLongitude(), 
             org.getLatitude(),
-            org.getParticipatedEvent()
+            org.getParticipatedEvent(),
+            org.getPhoneNumber()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -109,7 +112,7 @@ public class OrganizationController {
             incoming.ID,
             incoming.username,
             incoming.password,
-            incoming.orgName,
+            incoming.name,
             incoming.description,
             incoming.missionStatement,
             incoming.imageURL,
@@ -135,7 +138,8 @@ public class OrganizationController {
             newOrganization.getWebsiteLink(),
             newOrganization.getLongitude(), 
             newOrganization.getLatitude(),
-            newOrganization.getParticipatedEvent()
+            newOrganization.getParticipatedEvent(),
+            newOrganization.getPhoneNumber()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -147,7 +151,7 @@ public class OrganizationController {
             incoming.ID,
             incoming.username, 
             incoming.password, 
-            incoming.orgName, 
+            incoming.name, 
             incoming.description, 
             incoming.missionStatement, 
             incoming.imageURL, 
@@ -175,7 +179,8 @@ public class OrganizationController {
                 organization.getWebsiteLink(),
                 organization.getLatitude(),
                 organization.getLongitude(),
-                organization.getParticipatedEvent()
+                organization.getParticipatedEvent(),
+                organization.getPhoneNumber()
             );
             organizationTOs.add(to);
         }

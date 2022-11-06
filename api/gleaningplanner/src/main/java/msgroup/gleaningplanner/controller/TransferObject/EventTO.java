@@ -1,20 +1,22 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
 public class EventTO {
-    public int farmId;
-    public String eventName;
-    public int neededGleaners;
-    public int maxGleaners;
+    public Integer ID;
+    public Integer farmId;
+    public String name;
+    public Integer neededGleaners;
+    public Integer maxGleaners;
     public String description;
-    public boolean isUrgent;
+    public Boolean isUrgent;
     public String date;
 
 
 
-    public EventTO(int farmId, String eventName, int neededGleaners, int maxGleaners, String description,
-             boolean isUrgent, String date) {
+    public EventTO(Integer ID, Integer farmId, String eventName, Integer neededGleaners, Integer maxGleaners, String description,
+        Boolean isUrgent, String date) {
+        this.ID = ID;
         this.farmId = farmId;
-        this.eventName = eventName;
+        this.name = eventName;
         this.neededGleaners = neededGleaners;
         this.description = description;
         this.isUrgent = isUrgent;

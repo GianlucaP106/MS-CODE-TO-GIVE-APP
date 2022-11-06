@@ -150,9 +150,9 @@ public class ProducerController {
                 producer.getUsername(),
                 producer.getPhoneNumber(),
                 null,
+                producer.getCity(),
                 producer.getAddress(),
                 producer.getPostalCode(),
-                producer.getCity(),
                 producer.getLatitude(),
                 producer.getLongitude()
             );
