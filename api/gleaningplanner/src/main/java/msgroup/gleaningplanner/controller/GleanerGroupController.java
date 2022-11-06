@@ -1,9 +1,6 @@
 package msgroup.gleaningplanner.controller;
 
-import java.sql.Date;
-import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -21,9 +18,7 @@ import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
-import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 import msgroup.gleaningplanner.service.GleanerGroupService;
-import msgroup.gleaningplanner.service.LocationService;
 
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
@@ -31,11 +26,9 @@ import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 @RestController
 public class GleanerGroupController {
     private GleanerGroupService gleanergroupService;
-    private LocationService locationService;
 
-    public GleanerGroupController(GleanerGroupService gleanergroupService, LocationService locationService){
+    public GleanerGroupController(GleanerGroupService gleanergroupService){
         this.gleanergroupService = gleanergroupService;
-        this.locationService = locationService;
     }
 
     @PostMapping("/gleaner-group/register")
@@ -74,7 +67,7 @@ public class GleanerGroupController {
     public ResponseEntity<GleanerGroupTO> updateGleanerGroup(@RequestBody GleanerGroupTO incoming){
        
         GleanerGroup newGleanerGroup = gleanergroupService.updateGleanerGroup(
-        incoming.id, 
+        incoming.ID, 
         incoming.username, 
         incoming.password,
         incoming.groupName,
@@ -107,7 +100,7 @@ public class GleanerGroupController {
     @GetMapping("/gleaner-group/get-with-filters")
     public ResponseEntity<GleanerGroupFilterTO> getGleanerGroupWithFilters(@RequestBody GleanerGroupTO incoming) {
         Set<GleanerGroup> filteredgleanerGroups = this.gleanergroupService.filtersGleanerGroups(
-            incoming.id, 
+            incoming.ID, 
             incoming.username, 
             incoming.password,
             incoming.groupName,

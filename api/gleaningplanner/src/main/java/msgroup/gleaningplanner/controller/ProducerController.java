@@ -17,6 +17,7 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
@@ -24,9 +25,14 @@ import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 @RestController
 public class ProducerController {
     private ProducerService producerService;
+    private ProducerRepository producerRepository;
 
-    public ProducerController(ProducerService producerService){
+    public ProducerController(
+        ProducerService producerService, 
+        ProducerRepository producerRepository
+    ) {
         this.producerService = producerService;
+        this.producerRepository = producerRepository;
     }
 
     @PostMapping("/producer/register")
@@ -44,30 +50,32 @@ public class ProducerController {
     @PutMapping("/producer/update")
     public ResponseEntity<ProducerTO> updateProducer(@RequestBody ProducerTO incoming) {
 
-        Producer newProducer = producerService.updateProducer(  incoming.id,
-                                                                incoming.firstName,
-                                                                incoming.lastName,
-                                                                incoming.email,
-                                                                incoming.username,
-                                                                incoming.password,
-                                                                incoming.phoneNumber,
-                                                                incoming.address,
-                                                                incoming.postalCode,
-                                                                incoming.city
-                                                            );
-        ProducerTO out = new ProducerTO(newProducer.getID(),
-                                        newProducer.getUsername(), 
-                                        newProducer.getFirstName(), 
-                                        newProducer.getLastName(), 
-                                        newProducer.getEmail(), 
-                                        newProducer.getPhoneNumber(), 
-                                        null, 
-                                        newProducer.getCity(),
-                                        newProducer.getAddress(), 
-                                        newProducer.getPostalCode(), 
-                                        newProducer.getLatitude(), 
-                                        newProducer.getLongitude()
-                                    );
+        Producer newProducer = producerService.updateProducer(  
+            incoming.ID,
+            incoming.firstName,
+            incoming.lastName,
+            incoming.email,
+            incoming.username,
+            incoming.password,
+            incoming.phoneNumber,
+            incoming.address,
+            incoming.postalCode,
+            incoming.city
+        );
+        ProducerTO out = new ProducerTO(
+            newProducer.getID(),
+            newProducer.getUsername(), 
+            newProducer.getFirstName(), 
+            newProducer.getLastName(), 
+            newProducer.getEmail(), 
+            newProducer.getPhoneNumber(), 
+            null, 
+            newProducer.getCity(),
+            newProducer.getAddress(), 
+            newProducer.getPostalCode(), 
+            newProducer.getLatitude(), 
+            newProducer.getLongitude()
+        );
         
         return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);                    
                                                     
@@ -76,7 +84,7 @@ public class ProducerController {
     @PostMapping("/producer/get-by-filter")
     public ResponseEntity<ProducerFilterTO> getProducerByFilter(@RequestBody ProducerTO incoming){
         Set<Producer> filteredProducers = this.producerService.filterProducers(
-            incoming.id,
+            incoming.ID,
             incoming.firstName,
             incoming.lastName,
             incoming.email,
@@ -96,8 +104,8 @@ public class ProducerController {
                 producer.getLastName(),
                 producer.getEmail(),
                 producer.getUsername(),
-                producer.getPassword(),
                 producer.getPhoneNumber(),
+                null,
                 producer.getAddress(),
                 producer.getPostalCode(),
                 producer.getCity(),
@@ -111,7 +119,7 @@ public class ProducerController {
     }
 
 
-    @PostMapping("/producer/accpet/volunteer-group")
+    @PostMapping("/producer/accept/volunteer-group")
     public ResponseEntity<AcceptenceTO> acceptVolunteerGroup(@RequestBody AcceptenceTO incoming) {
         List<Volunteer> accpetedVolunteers = producerService.acceptVolunteerGroup(
             incoming.getEventID(), 
@@ -146,13 +154,42 @@ public class ProducerController {
         );
     }
 
-    // @PostMapping("/producer/add-produce-to-event")
-    // public ResponseEntity<Produce> addProduceToEvent(
-    //     int eventID, 
-    //     String produceType, 
-    //     double amount
-    // ) {
-        
-    // }
+    @PostMapping("/producer/add-produce-to-event")
+    public ResponseEntity<Produce> addProduceToEvent(
+        int eventID, 
+        String produceType, 
+        double amount
+    ) {
+        Produce newProduce = producerService.addProduceToEvent(
+            eventID, 
+            produceType, 
+            amount
+        );
+        return new ResponseEntity<Produce>(
+            newProduce, 
+            HttpStatus.OK
+        );
+    }
+    @GetMapping("/producer/all")
+    public List<ProducerTO> getProducers(){
+        List<ProducerTO> producers = new ArrayList<ProducerTO>();
+        for(Producer producer : producerRepository.findAll()){
+            producers.add(new ProducerTO(
+                producer.getID(),
+                producer.getFirstName(),
+                producer.getLastName(),
+                producer.getEmail(),
+                producer.getUsername(),
+                producer.getPhoneNumber(),
+                null,
+                producer.getAddress(),
+                producer.getPostalCode(),
+                producer.getCity(),
+                producer.getLatitude(),
+                producer.getLongitude()
+            ));
+        }
+        return producers;
+    }
 
 }

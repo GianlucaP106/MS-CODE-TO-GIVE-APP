@@ -20,7 +20,6 @@ import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistratio
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
-import msgroup.gleaningplanner.service.LocationService;
 import msgroup.gleaningplanner.service.OrganizationService;
 
 @RestController
@@ -72,7 +71,7 @@ public class OrganizationController {
     public ResponseEntity<OrganizationTO> updateOrganization(@RequestBody OrganizationTO incoming) {
 
         Organization newOrganization = organizationService.updateOrganization(
-            incoming.id,
+            incoming.ID,
             incoming.username,
             incoming.password,
             incoming.orgName,
@@ -109,7 +108,7 @@ public class OrganizationController {
     @PostMapping("/organization/get-by-filter")
     public ResponseEntity<OrganizationFilterTO> getOrganizationByFilter(@RequestBody OrganizationTO incoming) {
         Set<Organization> filteredOrganizations = this.organizationService.filterOrganizations(
-            incoming.id,
+            incoming.ID,
             incoming.username, 
             incoming.password, 
             incoming.orgName, 

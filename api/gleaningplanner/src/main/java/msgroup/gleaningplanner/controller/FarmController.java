@@ -23,12 +23,10 @@ import msgroup.gleaningplanner.service.FarmService;
 public class FarmController {
     private FarmService farmService;
     private FarmRepository farmRepository; 
-    private ProducerRepository producerRepository;
     
     public FarmController(FarmService farmService, FarmRepository farmRepository, ProducerRepository producerRepository){
         this.farmService = farmService;
         this.farmRepository = farmRepository;
-        this.producerRepository = producerRepository;
     }
 
     @PostMapping("/farm/producer-create-farm")

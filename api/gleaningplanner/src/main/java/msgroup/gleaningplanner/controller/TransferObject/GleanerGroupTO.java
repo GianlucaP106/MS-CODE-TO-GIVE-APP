@@ -1,7 +1,7 @@
 package msgroup.gleaningplanner.controller.TransferObject;
 
 public class GleanerGroupTO {
-    public Integer id;
+    public Integer ID;
     public String username;
     public String password;
     public String groupName;
@@ -20,7 +20,7 @@ public class GleanerGroupTO {
         String postalCode, String description, String missionStatement, 
         String imageURL, Double latitude, Double longitude){
 
-        this.id = id;
+        this.ID = id;
         this.username = username;
         this.password = password;
         this.groupName = groupName;
