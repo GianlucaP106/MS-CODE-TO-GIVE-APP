@@ -360,8 +360,20 @@ public class GleaningplannerApplication {
 		producerService.postCommentEvent(
 			2, 
 			1, 
-			"first comment",
+			"second comment",
 			"PRODUCER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			2, 
+			"third comment",
+			"VOLUNTEER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			1, 
+			"fourth comment",
+			"VOLUNTEER"
 		);
 	}
 

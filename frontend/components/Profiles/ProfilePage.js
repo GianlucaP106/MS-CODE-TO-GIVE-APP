@@ -5,7 +5,8 @@ import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
 
-export default function ProfilePage({info}) {
+export default function ProfilePage({ info }) {
+
     const pageVisits = [
       { id: 1, date: "Nov 2022", comment: "Very good" },
       { id: 1, date: "Nov 2022", comment: "Not bad" },
@@ -34,7 +35,7 @@ export default function ProfilePage({info}) {
             <div className="col-lg-4">
               <ProfileCard name={info.username} role={info.personType} region={info.city} 
                 imgSrc={"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"}/>
-              <ProfileComment comments={pageVisits}/>
+              <ProfileComment comments={info.comments}/>
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={info.firstName} secondSpot={info.lastName} thirdSpot={info.username} fourthSpot={info.email} profileType={info.personType}/>
