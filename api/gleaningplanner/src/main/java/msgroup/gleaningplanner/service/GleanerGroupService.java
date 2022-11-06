@@ -190,6 +190,10 @@ public class GleanerGroupService {
         GleanerGroup group = gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID);
         Event event = eventRepository.findEventByID(eventID);
 
+        group.setParticipatedEvent(
+            group.getParticipatedEvent() + 1
+        );
+
         GleanerGroupRegistration registration = new GleanerGroupRegistration();
 
         registration.setEvent(event);

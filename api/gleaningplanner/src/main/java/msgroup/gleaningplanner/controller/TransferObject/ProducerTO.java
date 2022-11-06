@@ -13,8 +13,9 @@ public class ProducerTO {
     public String postalCode;
     public double latitude;
     public double longitude;
+
     public ProducerTO(Integer id, String username, String firstName, String lastName, String email, String phoneNumber,
-            String password, String city, String address, String postalCode, double latitude, double longitude) {
+            String password, String city, String address, String postalCode, double latitude, double longitude ) {
         this.ID = id;
         this.username = username;
         this.firstName = firstName;

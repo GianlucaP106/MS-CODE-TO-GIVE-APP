@@ -64,7 +64,8 @@ public class OrganizationController {
             newOrganization.getMaxDistance(), 
             newOrganization.getWebsiteLink(),
             newOrganization.getLongitude(), 
-            newOrganization.getLatitude()
+            newOrganization.getLatitude(),
+            newOrganization.getParticipatedEvent()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -94,7 +95,8 @@ public class OrganizationController {
             org.getMaxDistance(), 
             org.getWebsiteLink(),
             org.getLongitude(), 
-            org.getLatitude()
+            org.getLatitude(),
+            org.getParticipatedEvent()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -132,7 +134,8 @@ public class OrganizationController {
             newOrganization.getMaxDistance(), 
             newOrganization.getWebsiteLink(),
             newOrganization.getLongitude(), 
-            newOrganization.getLatitude()
+            newOrganization.getLatitude(),
+            newOrganization.getParticipatedEvent()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
@@ -171,7 +174,8 @@ public class OrganizationController {
                 organization.getMaxDistance(), 
                 organization.getWebsiteLink(),
                 organization.getLatitude(),
-                organization.getLongitude()
+                organization.getLongitude(),
+                organization.getParticipatedEvent()
             );
             organizationTOs.add(to);
         }

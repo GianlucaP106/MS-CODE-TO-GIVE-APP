@@ -44,9 +44,20 @@ public class ProducerController {
         Producer newProducer = producerService.createProducer(incoming.firstName, incoming.lastName, incoming.email, 
             incoming.username, incoming.password, incoming.phoneNumber, incoming.address, incoming.postalCode, incoming.city);
 
-        ProducerTO out = new ProducerTO(newProducer.getID(), newProducer.getUsername(), newProducer.getFirstName(), 
-        newProducer.getLastName(), newProducer.getEmail(), newProducer.getPhoneNumber(), null, newProducer.getCity(),
-        newProducer.getAddress(), newProducer.getPostalCode(), newProducer.getLatitude(), newProducer.getLongitude());
+        ProducerTO out = new ProducerTO(
+            newProducer.getID(),
+            newProducer.getUsername(), 
+            newProducer.getFirstName(), 
+            newProducer.getLastName(), 
+            newProducer.getEmail(), 
+            newProducer.getPhoneNumber(), 
+            null, 
+            newProducer.getCity(),
+            newProducer.getAddress(), 
+            newProducer.getPostalCode(), 
+            newProducer.getLatitude(), 
+            newProducer.getLongitude()
+        );
 
         return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);
     }
@@ -173,7 +184,8 @@ public class ProducerController {
                 volunteer.getCity(), 
                 volunteer.getLatitude(), 
                 volunteer.getLongitude(), 
-                null
+                null,
+                volunteer.getParticipatedEvent()
             ));
         }
 

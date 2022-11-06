@@ -19,6 +19,8 @@ public class Organization extends User {
     private String imageURL;
     private double maxDistance;
 
+    private Integer participatedEvent;
+
     public Organization() {
         super();
     }
@@ -78,4 +80,14 @@ public class Organization extends User {
     public void setMaxDistance(double maxDistance) {
         this.maxDistance = maxDistance;
     }
+
+    public Integer getParticipatedEvent() {
+        return participatedEvent;
+    }
+
+    public void setParticipatedEvent(Integer participatedEvent) {
+        this.participatedEvent = participatedEvent;
+    }
+
+
 }

@@ -15,12 +15,13 @@ public class OrganizationTO {
     public String websiteLink;
     public Double longitude;
     public Double latitude;
+    public Integer participatedEvent;
 
     public OrganizationTO() {}
 
     public OrganizationTO(Integer id, String username, String orgName, String description, String missionStatement,
             String imageURL, String address, String postalCode, String city, String password, Double maxDistance,
-            String websiteLink, Double latitude, Double longitude) {
+            String websiteLink, Double latitude, Double longitude, Integer participateEvent) {
         this.ID = id;
         this.username = username;
         this.orgName = orgName;
@@ -35,6 +36,7 @@ public class OrganizationTO {
         this.websiteLink = websiteLink;
         this.latitude = latitude;
         this.longitude = longitude;
+        this.participatedEvent = participateEvent;
     }
     
 
