@@ -41,6 +41,48 @@ public class GleaningplannerApplication {
 	}
 
 	public void makeOrganization(){
+		organizationService.createOrganization(
+			"org1", 
+			"org1",
+			"Environment Matanie",
+			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
+			"dédiée à l'environnement",
+			null,
+			"Bas-Saint-Laurent",
+			"La Matanie", 
+			null, 
+			150.0, 
+			"https://www.mrcdematane.qc.ca/accueil.html", 
+			"4185626734"	
+		);
+		organizationService.createOrganization(
+			"org2", 
+			"org2",
+			"Environment Matanie",
+			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
+			"dédiée à l'environnement",
+			null,
+			"99-A ",
+			"Rimouski-Neigette", 
+			"G5L1X7", 
+			150.0, 
+			"http://moissonrimouski.org/les-fruits-partages", 
+			"4183186013"	
+		);
+		organizationService.createOrganization(
+			"org1", 
+			"org1",
+			"Environment Matanie",
+			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
+			"dédiée à l'environnement",
+			null,
+			"Bas-Saint-Laurent",
+			"La Matanie", 
+			null, 
+			150.0, 
+			"https://www.mrcdematane.qc.ca/accueil.html", 
+			"4185626734"	
+		);
 	}
 
 	public void makeVolunteers(){
