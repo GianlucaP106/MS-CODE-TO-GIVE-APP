@@ -1,8 +1,11 @@
 package msgroup.gleaningplanner.controller;
 
-import java.sql.Date;
+import java.util.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.EventFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.EventTO;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.repository.EventRepository;
@@ -42,6 +46,7 @@ public class EventController {
         if (newEvent != null) {
             return new ResponseEntity<EventTO>(
                 new EventTO(
+                    newEvent.getID(),
                     newEvent.getFarm().getID(),
                     newEvent.getEventName(),
                     newEvent.getRequiredGleaners(),
@@ -60,6 +65,7 @@ public class EventController {
         List<EventTO> events = new ArrayList<EventTO>();
         for(Event event : eventRepository.findAll()){
             events.add(new EventTO(
+                event.getID(),
                 event.getFarm().getID(),
                 event.getEventName(),
                 event.getRequiredGleaners(),
@@ -70,6 +76,45 @@ public class EventController {
             ));
         }
         return events;
+    }
+
+    @PostMapping("/event/get-by-filter")
+    public ResponseEntity<EventFilterTO> getEventbyFilter(@RequestBody EventTO incoming) {
+                
+        Set<Event> filteredEvents = this.eventService.filterEvents(
+            incoming.ID,
+            incoming.farmId,
+            incoming.eventName,
+            incoming.neededGleaners,
+            incoming.description,
+            incoming.isUrgent,
+            incoming.date,
+            incoming.maxGleaners
+        );
+
+        List<EventTO> eventTOs = new ArrayList<EventTO>();
+
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+
+        for (Event event : filteredEvents) {
+            if (event != null) {
+                EventTO to = new EventTO(
+                    event.getID(),
+                    event.getFarm().getID(),
+                    event.getEventName(),
+                    event.getRequiredGleaners(),
+                    event.getMaxGleaners(),
+                    event.getDescription(),
+                    event.isUrgent(),
+                    dateFormat.format(event.getDate())
+                );
+                
+                eventTOs.add(to);
+            }
+
+        }
+        
+        return new ResponseEntity<EventFilterTO>(new EventFilterTO(eventTOs), HttpStatus.OK);
     }
 
 }

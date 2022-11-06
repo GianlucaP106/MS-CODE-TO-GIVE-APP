@@ -11,7 +11,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
-import axios from "axios";
+// import axios from "axios";
 
 const drawerWidth = 300;
 
@@ -143,21 +143,18 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-const getAllEventsResponse = await axios.get("http://localhost:8080/event/all");
+// const getAllEventsResponse = await axios.get("http://localhost:8080/event/all");
 
-const getAllEventsByCropResponse = await axios.get(
-  "http://localhost:8080//produce/get-event"
-);
+// const getAllEventsByCropResponse = await axios.get(
+//   "http://localhost:8080//produce/get-event"
+// );
 
-const listOfEvents = getAllEventsResponse.data.events;
+// const listOfEvents = getAllEventsResponse.data.events;
 
 export default function PermanentDrawerLeft() {
-  const [searchParameter, setSearchParameter] = useState(0);
+  const [searchParameter, setSearchParameter] = React.useState(0);
 
-  React.useEffect(()=>{
-    
-  }, [searchParameter])
-
+  React.useEffect(() => {}, [searchParameter]);
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -178,9 +175,7 @@ export default function PermanentDrawerLeft() {
           freeSolo
           id="free-solo-2-demo"
           disableClearable
-          options={listOfEvents.map((event) =>
-            event.eventName ? event.eventName : null
-          )}
+          options={top100Films.map((event) => event.title)}
           className={styles.searchField}
           renderInput={(params) => (
             <TextField
@@ -194,23 +189,25 @@ export default function PermanentDrawerLeft() {
           )}
         />
         <FormControl className={styles.formControl}>
-          <FormLabel id="demo-radio-buttons-group-label">Distance</FormLabel>
+          <FormLabel id="searchType-demo-radio-buttons-group-label">
+            Search By:
+          </FormLabel>
+          <RadioGroup
+            aria-labelledby="searchType-demo-radio-buttons-group-label"
+            name="searchType-radio-buttons-group"
+            row
+          >
+            <FormControlLabel value="Event" control={<Radio />} label="Event" />
+            <FormControlLabel value="Farm" control={<Radio />} label="Farm" />
+            <FormControlLabel value="Crop" control={<Radio />} label="Crop" />
+          </RadioGroup>
+        </FormControl>
+        <FormControl className={styles.formControl}>
+          <FormLabel id="demo-radio-buttons-group-label">Distance:</FormLabel>
           <RadioGroup
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
-          >
-            <FormControlLabel value="2" control={<Radio />} label="2 km" />
-            <FormControlLabel value="5" control={<Radio />} label="5 km" />
-            <FormControlLabel value="10" control={<Radio />} label="10 km" />
-          </RadioGroup>
-        </FormControl>
-        <FormControl className={styles.formControl}>
-          <FormLabel id="demo-radio-buttons-group-label">Distance</FormLabel>
-          <RadioGroup
-            aria-labelledby="demo-radio-buttons-group-label"
-            name="radio-buttons-group"
-            row 
           >
             <FormControlLabel value="2" control={<Radio />} label="2 km" />
             <FormControlLabel value="5" control={<Radio />} label="5 km" />
