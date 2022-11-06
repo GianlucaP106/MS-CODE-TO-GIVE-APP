@@ -95,7 +95,7 @@ public class GleanerGroupService {
         }
 
         if (username != null) {
-            filtered.add(gleanerGroupRepository.findAllGleanerGroupByUsername(username));
+            filtered.add(gleanerGroupRepository.findGleanerGroupByUsername(username));
             return filtered;
         }
         
@@ -240,5 +240,15 @@ public class GleanerGroupService {
         newComment.setGleanerGroup(gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID));
 
         return commentRepository.save(newComment);
+    }
+
+
+    public GleanerGroup verifySignUp(String username, String password){
+        GleanerGroup group = gleanerGroupRepository.findGleanerGroupByUsername(username);
+
+        if(group == null) return null;
+        if(!group.getPassword().equals(password)) return null;
+
+        return group;
     }
 }
