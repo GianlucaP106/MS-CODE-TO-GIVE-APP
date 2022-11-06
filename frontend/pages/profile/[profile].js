@@ -56,6 +56,8 @@ export default function Profile(props) {
       incomingComments = comments["comments"]; // this is a list of comment objects
     }else return;
 
+    console.log(incomingComments);
+
     let outComments = []
 
     for (let comment of incomingComments) {
