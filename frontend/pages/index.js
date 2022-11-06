@@ -5,13 +5,15 @@ import Head from "next/head";
 // import Footer from "../components/Layout/Footer";
 // import ReactDOM from "react-dom/client";
 import Search from "../components/Search";
-// import Drawer from "../components/Drawer";
-// import FarmerLeaderboard from "../components/Leaderboards/FarmerLeaderboard";
-// import ProfilePage from "../components/Profiles/ProfilePage";
-// import PrimarySearchAppBar from "../components/Layout/PrimarySearchAppBar";
-// import PageVisitsTable from "../components/Tables/PageVisitsTable";
-// import Hero from "../components/HomeSections/Hero";
-
+import Drawer from "../components/Drawer";
+import FarmerLeaderboard from "../components/Leaderboards/FarmerLeaderboard";
+import ProfilePage from "../components/Profiles/ProfilePage";
+import PrimarySearchAppBar from "../components/Layout/PrimarySearchAppBar";
+import PageVisitsTable from "../components/Tables/PageVisitsTable";
+import Hero from "../components/HomeSections/Hero";
+import WhyGlean from "../components/HomeSections/WhyGlean"
+import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
+import { Navbar } from "@themesberg/react-bootstrap";
 export default function Home() {
   return (
     <div>
@@ -23,10 +25,14 @@ export default function Home() {
       </Head>
 
       <main>
-        <Search />
-        {/* <Hero /> */}
+        <Navbar />
+        {/* <Search /> */}
+        <Hero />
+        <WhyGlean />
+        <MeetTopVolunteers />
         {/* <PrimarySearchAppBar/>
         <ProfilePage /> */}
+        <Footer />
       </main>
     </div>
   );
