@@ -17,7 +17,11 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
+<<<<<<< HEAD
 import msgroup.gleaningplanner.service.ProduceService;
+=======
+import msgroup.gleaningplanner.repository.ProducerRepository;
+>>>>>>> 61a4bab8848099e5e34622d5860a1900bc21e9f9
 import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
@@ -25,11 +29,17 @@ import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 @RestController
 public class ProducerController {
     private ProducerService producerService;
+    private ProducerRepository producerRepository;
 
+<<<<<<< HEAD
     public ProducerController(
         ProducerService producerService
     ){
+=======
+    public ProducerController(ProducerService producerService, ProducerRepository producerRepository){
+>>>>>>> 61a4bab8848099e5e34622d5860a1900bc21e9f9
         this.producerService = producerService;
+        this.producerRepository = producerRepository;
     }
 
     @PostMapping("/producer/register")
@@ -99,8 +109,8 @@ public class ProducerController {
                 producer.getLastName(),
                 producer.getEmail(),
                 producer.getUsername(),
-                producer.getPassword(),
                 producer.getPhoneNumber(),
+                null,
                 producer.getAddress(),
                 producer.getPostalCode(),
                 producer.getCity(),
@@ -164,6 +174,27 @@ public class ProducerController {
             newProduce, 
             HttpStatus.OK
         );
+
+    @GetMapping("/producer/all")
+    public List<ProducerTO> getProducers(){
+        List<ProducerTO> producers = new ArrayList<ProducerTO>();
+        for(Producer producer : producerRepository.findAll()){
+            producers.add(new ProducerTO(
+                producer.getID(),
+                producer.getFirstName(),
+                producer.getLastName(),
+                producer.getEmail(),
+                producer.getUsername(),
+                producer.getPhoneNumber(),
+                null,
+                producer.getAddress(),
+                producer.getPostalCode(),
+                producer.getCity(),
+                producer.getLatitude(),
+                producer.getLongitude()
+            ));
+        }
+        return producers;
     }
 
 }
