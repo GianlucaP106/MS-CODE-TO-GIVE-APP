@@ -11,7 +11,6 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
-// import axios from "axios";
 
 const drawerWidth = 300;
 
@@ -143,16 +142,49 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-// const getAllEventsResponse = await axios.get("http://localhost:8080/event/all");
+// get all events by radius  ---->
+// {
+//        get all events by crop type
+//        get all events by farm name
+//        get all events by event name
+// }
 
-// const getAllEventsByCropResponse = await axios.get(
-//   "http://localhost:8080//produce/get-event"
-// );
+// first get all farms within radius {farm get by filter}
+// get all events
+/*
+        filter through all the events
 
-// const listOfEvents = getAllEventsResponse.data.events;
+            List : eventinradius
+        for event in evenets
+            if event.farmid is in farms 
+                eventinradius.add(event)
+
+            return event;
+    */
 
 export default function PermanentDrawerLeft() {
-  const [searchParameter, setSearchParameter] = React.useState(0);
+  async function getEventByCropTypeDataFromServer(data) {
+    let response = null;
+    try {
+      response = await fetch(`http://localhost:8080/produce/get-event`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+      response = await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+
+    let incoming = null;
+    if (response) {
+      incoming = response[`${data.type}s`][0];
+    } else return;
+  }
+
+  const [searchParameter, setSearchParameter] = React.useState("Event");
 
   React.useEffect(() => {}, [searchParameter]);
 
