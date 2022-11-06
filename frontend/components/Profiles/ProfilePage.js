@@ -3,6 +3,7 @@ import PageVisitsTable from '../Tables/PageVisitsTable'
 import ProfileInfoTable from '../Tables/ProfileInfoTable'
 import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
+import Leaderboard from "../Leaderboards/Leaderboard"
 
 export default function ProfilePage() {
     const pageVisits = [
@@ -12,6 +13,18 @@ export default function ProfilePage() {
       { id: 1, date: "Nov 1231", comment: "Very okay" },
       { id: 1, date: "Nov 2022", comment: "Very good" },
       { id: 1, date: "Nov 2022", comment: "Very good" }
+    ];
+
+    const rows = [
+      { id: 1, col1: 'Ste-Eustache', col2: '4', col3: '134', col4: 'Hover' },
+      { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
+    ];
+
+    const columns = [
+      { field: 'col1', headerName: 'Farmer Name', width: 150 },
+      { field: 'col2', headerName: 'Gleaning Opportunities To Date', width: 150 },
+      { field: 'col3', headerName: 'Harvests Gleaned', width: 150 },
+      { field: 'col4', headerName: 'Harvest Breakdown', width: 150 }
     ];
 
     return (<>
@@ -25,74 +38,7 @@ export default function ProfilePage() {
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={"Parsa"} secondSpot={"Langari"} thirdSpot={"PLangari"} fourthSpot={"parsa.langari@mail.mcgill.ca"} profileType={"Volunteer"}/>
-              <div className="row">
-                <div className="col-md-6">
-                  <div className="card mb-4 mb-md-0">
-                    <div className="card-body">
-                      <p className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status
-                      </p>
-                      <p className="mb-1" styles="font-size: .77rem;">Web Design</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 80%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Website Markup</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 72%" aria-valuenow="72"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">One Page</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 89%" aria-valuenow="89"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Mobile Template</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 55%" aria-valuenow="55"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Backend API</p>
-                      <div className="progress rounded mb-2" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 66%" aria-valuenow="66"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6">
-                  <div className="card mb-4 mb-md-0">
-                    <div className="card-body">
-                      <p className="mb-4"><span className="text-primary font-italic me-1">assigment</span> Project Status
-                      </p>
-                      <p className="mb-1" styles="font-size: .77rem;">Web Design</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 80%" aria-valuenow="80"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Website Markup</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 72%" aria-valuenow="72"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">One Page</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 89%" aria-valuenow="89"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Mobile Template</p>
-                      <div className="progress rounded" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 55%" aria-valuenow="55"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                      <p className="mt-4 mb-1" styles="font-size: .77rem;">Backend API</p>
-                      <div className="progress rounded mb-2" styles="height: 5px;">
-                        <div className="progress-bar" role="progressbar" styles="width: 66%" aria-valuenow="66"
-                          aria-valuemin="0" aria-valuemax="100"></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <Leaderboard rows={rows} columns={columns} />
             </div>
           </div>
         </div>
