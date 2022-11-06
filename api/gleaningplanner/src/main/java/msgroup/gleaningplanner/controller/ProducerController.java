@@ -12,20 +12,19 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
+import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
+import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
+import msgroup.gleaningplanner.controller.TransferObject.ProducerTO.signInRequestProducer;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.service.ProducerService;
-import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
-import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
-import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
-
-import msgroup.gleaningplanner.model.Comment;
-import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 
 @RestController
 public class ProducerController {
@@ -51,6 +50,35 @@ public class ProducerController {
 
         return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);
     }
+
+    @PostMapping("producer/sign-in")
+    public ResponseEntity<ProducerTO> signIn(@RequestBody signInRequestProducer incoming) {
+        Producer prod = producerService.verifySignIn(
+            incoming.username,
+            incoming.password
+        );
+
+        if(prod == null) return new ResponseEntity<ProducerTO>(new ProducerTO(), HttpStatus.BAD_REQUEST);
+
+        ProducerTO out = new ProducerTO(
+            prod.getID(),
+            prod.getUsername(), 
+            prod.getFirstName(), 
+            prod.getLastName(), 
+            prod.getEmail(), 
+            prod.getPhoneNumber(), 
+            null, 
+            prod.getCity(),
+            prod.getAddress(), 
+            prod.getPostalCode(), 
+            prod.getLatitude(), 
+            prod.getLongitude()
+        );
+        
+        return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);                    
+                                                    
+    }
+    
 
     @PutMapping("/producer/update")
     public ResponseEntity<ProducerTO> updateProducer(@RequestBody ProducerTO incoming) {

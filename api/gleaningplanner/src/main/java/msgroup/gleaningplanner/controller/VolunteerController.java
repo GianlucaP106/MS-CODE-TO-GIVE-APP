@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,6 +20,7 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RegistrationRequest;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RequestVolunteerJoinVolunteerGroup;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO.signInRequestVolunteer;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
@@ -36,6 +38,33 @@ public class VolunteerController {
         this.volunteerRepository = volunteerRepository;
     }
 
+    @PostMapping("volunteer/sign-in")
+    public ResponseEntity<VolunteerTO> signIn(@RequestBody signInRequestVolunteer incoming){
+
+        Volunteer vol = volunteerService.verifySignUp(
+            incoming.username, 
+            incoming.password
+        );
+
+        if(vol == null) return new ResponseEntity<VolunteerTO>(new VolunteerTO(), HttpStatus.BAD_REQUEST);
+
+        VolunteerTO out = new VolunteerTO(
+            vol.getID(), 
+            vol.getUsername(), 
+            vol.getFirstName(), 
+            vol.getLastName(), 
+            vol.getEmail(), 
+            vol.getPhoneNumber(),
+            vol.getPostalCode(), 
+            vol.getAddress(), 
+            vol.getCity(), 
+            vol.getLatitude(), 
+            vol.getLongitude(), 
+            null
+        );
+        return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
+
+    }
 
     @GetMapping("/volunteer/all")
     public List<VolunteerTO> getAllVolunteers(){

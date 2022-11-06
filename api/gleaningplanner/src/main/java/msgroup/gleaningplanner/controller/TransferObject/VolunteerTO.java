@@ -14,6 +14,7 @@ public class VolunteerTO {
     public Double longitude;
     public String password;
 
+    public VolunteerTO() {}
     
     public VolunteerTO(int iD, String username, String firstName, String lastName, String email, String phoneNumber,
             String postalCode, String address, String city, double latitude, double longitude, String password) {
@@ -29,6 +30,11 @@ public class VolunteerTO {
         this.password = password;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public static class signInRequestVolunteer{
+        public String username;
+        public String password;
     }
     
 }

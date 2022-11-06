@@ -195,4 +195,14 @@ public class VolunteerService {
         return commentRepository.save(newComment);
     }
 
+
+    public Volunteer verifySignUp(String username, String password){
+        Volunteer volunteer = volunteerRepository.findVolunteerByUsername(username);
+
+        if(volunteer == null) return null;
+        if(!volunteer.getPassword().equals(password)) return null;
+
+        return volunteer;
+    }
+
 }

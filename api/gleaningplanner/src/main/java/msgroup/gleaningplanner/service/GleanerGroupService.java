@@ -18,9 +18,7 @@ import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
-import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
-import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.AuthorType;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.repository.CommentRepository;

@@ -16,6 +16,8 @@ public class OrganizationTO {
     public Double longitude;
     public Double latitude;
 
+    public OrganizationTO() {}
+
     public OrganizationTO(Integer id, String username, String orgName, String description, String missionStatement,
             String imageURL, String address, String postalCode, String city, String password, Double maxDistance,
             String websiteLink, Double latitude, Double longitude) {
@@ -34,7 +36,10 @@ public class OrganizationTO {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+    
 
-    
-    
+    public static class signInRequestOrg{
+        public String username;
+        public String password;
+    }
 }

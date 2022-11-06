@@ -234,4 +234,16 @@ public class ProducerService {
         
         return commentRepository.save(newComment);
     }
+
+
+    public Producer verifySignIn(String userName, String password){
+        Producer producer = producerRepository.findProducerByUsername(userName);
+
+        if(producer == null) return null;
+        if(!producer.getPassword().equals(password)) return null;
+
+        return producer;
+
+    }
+
 }

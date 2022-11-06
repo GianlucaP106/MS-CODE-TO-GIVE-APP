@@ -18,6 +18,7 @@ import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistratio
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO.OrganizationRegistrationRequest;
+import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO.signInRequestOrg;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
@@ -64,6 +65,36 @@ public class OrganizationController {
             newOrganization.getWebsiteLink(),
             newOrganization.getLongitude(), 
             newOrganization.getLatitude()
+        );
+
+        return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
+    }
+
+
+    @PostMapping("organization/sign-in")
+    public ResponseEntity<OrganizationTO> signIn(@RequestBody signInRequestOrg incoming) {
+        Organization org = organizationService.verifySignIn(
+            incoming.username, 
+            incoming.password
+        );
+
+        if(org == null) return new ResponseEntity<OrganizationTO>(new OrganizationTO(), HttpStatus.BAD_REQUEST);
+
+        OrganizationTO out = new OrganizationTO(
+            org.getID(), 
+            org.getUsername(), 
+            org.getOrganizationName(), 
+            org.getDescription(), 
+            org.getMissionStatement(), 
+            org.getImageURL(), 
+            org.getAddress(), 
+            org.getPostalCode(),
+            org.getCity(), 
+            null, 
+            org.getMaxDistance(), 
+            org.getWebsiteLink(),
+            org.getLongitude(), 
+            org.getLatitude()
         );
 
         return new ResponseEntity<OrganizationTO>(out, HttpStatus.OK);
