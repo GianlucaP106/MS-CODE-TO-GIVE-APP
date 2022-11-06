@@ -54,6 +54,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "gleanerId": "gleanerId",
     "eventId": "eventId",
     "comment": "comment",
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)
