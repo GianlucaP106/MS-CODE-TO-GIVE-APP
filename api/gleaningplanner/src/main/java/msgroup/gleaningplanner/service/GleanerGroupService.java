@@ -1,5 +1,7 @@
 package msgroup.gleaningplanner.service;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -18,6 +20,10 @@ import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
+import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.model.AuthorType;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.repository.CommentRepository;
 
 @Service
 public class GleanerGroupService {
@@ -25,7 +31,7 @@ public class GleanerGroupService {
     private GleanerGroupRepository gleanerGroupRepository;
     private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
     private EventRepository eventRepository;
-
+    private CommentRepository commentRepository;
     private LocationService locationService;
 
     public GleanerGroupService(GleanerGroupRepository gleanerGroupRepository, LocationService locationService,
@@ -216,5 +222,25 @@ public class GleanerGroupService {
             ));
         }
         return groups;
+    }
+    
+    public Comment postCommentEvent(int gleanerGroupID, int eventID, String comment, String authorType){
+        
+        AuthorType type;
+        if (authorType.equals("PRODUCER")) type = AuthorType.PRODUCER;
+        else if (authorType.equals("VOLUNTEER")) type = AuthorType.VOLUNTEER;
+        else if (authorType.equals("GLEANERGROUP")) type = AuthorType.GLEANERGROUP;
+        else type = AuthorType.ORGANIZATION;
+
+        Comment newComment = new Comment();
+        newComment.setAuthorType(type);
+        newComment.setComment(comment);
+
+        newComment.setDate(Date.from(Instant.now()));
+        
+        newComment.setEvent(eventRepository.findEventByID(eventID));
+        newComment.setGleanerGroup(gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID));
+
+        return commentRepository.save(newComment);
     }
 }
