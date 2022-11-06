@@ -170,6 +170,7 @@ public class ProducerService {
         for (VolunteerRegistration reg : registrations) {
             if (reg.getEvent().getID() == eventID && reg.isVolunteerGroupAccepted()) {
                 reg.setEventAccepted(true);
+                volunteerRegistrationRepository.save(reg);
                 accepted.add(reg.getVolunteer());
             }
         }
