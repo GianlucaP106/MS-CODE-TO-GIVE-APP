@@ -185,8 +185,25 @@ export default function PermanentDrawerLeft() {
   }
 
   const [searchParameter, setSearchParameter] = React.useState("Event");
+  const [textFieldInput, setTextFieldInput] = React.useState("");
 
-  React.useEffect(() => {}, [searchParameter]);
+  React.useEffect(() => {
+    const keyDownHandler = (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+
+        if (searchParameter == "Crop") {
+          getEventByCropTypeDataFromServer(textFieldInput);
+          console.log(textFieldInput);
+        }
+
+        // 👇️ call submit function here to display points on map
+        console.log("Events Displayed On Map");
+      }
+    };
+
+    document.addEventListener("keydown", keyDownHandler);
+  });
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -212,11 +229,13 @@ export default function PermanentDrawerLeft() {
           renderInput={(params) => (
             <TextField
               {...params}
+              id="inputField"
               label="Search input"
               InputProps={{
                 ...params.InputProps,
                 type: "search",
               }}
+              onChange={(e) => setTextFieldInput(e.target.value)}
             />
           )}
         />
@@ -228,8 +247,14 @@ export default function PermanentDrawerLeft() {
             aria-labelledby="searchType-demo-radio-buttons-group-label"
             name="searchType-radio-buttons-group"
             row
+            onChange={(e) => setSearchParameter(e.target.value)}
           >
-            <FormControlLabel value="Event" control={<Radio />} label="Event" />
+            <FormControlLabel
+              value="Event"
+              control={<Radio />}
+              label="Event"
+              //onClick={console.log("clicked")}
+            />
             <FormControlLabel value="Farm" control={<Radio />} label="Farm" />
             <FormControlLabel value="Crop" control={<Radio />} label="Crop" />
           </RadioGroup>
