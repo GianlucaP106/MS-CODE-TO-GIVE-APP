@@ -1,5 +1,6 @@
 package msgroup.gleaningplanner.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -10,19 +11,29 @@ import javax.tools.DocumentationTool.Location;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Producer;
+import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
+import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 
 @Service
 public class ProducerService {
     
-    private ProducerRepository producerRepository;
-    
+    private ProducerRepository producerRepository;    
     private LocationService locationService;
+    private VolunteerRegistrationRepository volunteerRegistrationRepository;
 
-    public ProducerService(ProducerRepository producerRepository, LocationService locationService) {
+    public ProducerService(
+        ProducerRepository producerRepository, 
+        LocationService locationService,
+        VolunteerRegistrationRepository volunteerRegistrationRepository
+    ) {
         this.locationService = locationService;
         this.producerRepository = producerRepository;
+        this.volunteerRegistrationRepository = volunteerRegistrationRepository;
     }
 
     public Producer createProducer(String firstName,
@@ -147,8 +158,21 @@ public class ProducerService {
 
             if (valid) filtered.add(producer);
         }
-
-        
+   
         return filtered;
+    }
+
+    public List<Volunteer> acceptVolunteerGroup(int eventID, int volunteerGroup) {
+
+        List<VolunteerRegistration> registrations = volunteerRegistrationRepository.findAllVolunteerRegistrationByVolunteerGroupNumber(volunteerGroup);
+
+        List<Volunteer> accepted = new ArrayList<Volunteer>();
+        for (VolunteerRegistration reg : registrations) {
+            if (reg.getEvent().getID() == eventID && reg.isVolunteerGroupAccepted()) {
+                reg.setEventAccepted(true);
+                accepted.add(reg.getVolunteer());
+            }
+        }
+        return accepted;
     }
 }

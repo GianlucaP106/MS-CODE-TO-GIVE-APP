@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
+import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.model.Producer;
+import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.service.ProducerService;
+import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 
 @RestController
@@ -105,8 +108,41 @@ public class ProducerController {
 
         return new ResponseEntity<ProducerFilterTO>(new ProducerFilterTO(producerTOs), HttpStatus.OK);
     }
-}
 
-/*String username, String firstName,
-String lastName, String email, String phoneNumber, 
-String password*/
+
+    @PostMapping("/producer/accpet/volunteer-group")
+    public ResponseEntity<AcceptenceTO> acceptVolunteerGroup(@RequestBody AcceptenceTO incoming) {
+        List<Volunteer> accpetedVolunteers = producerService.acceptVolunteerGroup(
+            incoming.getEventID(), 
+            incoming.getGroupNumber()
+        );
+
+        List<VolunteerTO> out = new ArrayList<VolunteerTO>();
+        for (Volunteer volunteer : accpetedVolunteers) {
+            out.add(new VolunteerTO(
+                volunteer.getID(), 
+                volunteer.getUsername(), 
+                volunteer.getFirstName(), 
+                volunteer.getLastName(), 
+                volunteer.getEmail(), 
+                volunteer.getPhoneNumber(), 
+                volunteer.getPostalCode(), 
+                volunteer.getAddress(), 
+                volunteer.getCity(), 
+                volunteer.getLatitude(), 
+                volunteer.getLongitude(), 
+                null
+            ));
+        }
+
+        return new ResponseEntity<AcceptenceTO>(
+            new AcceptenceTO(
+                incoming.getEventID(), 
+                incoming.getGroupNumber(), 
+                out
+            ), 
+            HttpStatus.OK
+        );
+    }
+
+}

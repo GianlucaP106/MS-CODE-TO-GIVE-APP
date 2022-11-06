@@ -165,7 +165,7 @@
 
 
 ### method: POST
-### path name: /volunteer/comment-event/?username=username
+### path name: /volunteer/comment-event/
 ### request BODY:
 ```JSON
 {
