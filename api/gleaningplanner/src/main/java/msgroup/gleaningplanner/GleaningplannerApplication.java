@@ -47,6 +47,7 @@ public class GleaningplannerApplication {
 			makeOrganization();
 			makeEvents();
 			makeComments();
+
 			registerOrganizations();
 			registerVolunteersToEvents();
 			OrgAddProduceToEventReg();
@@ -144,8 +145,6 @@ public class GleaningplannerApplication {
 		volunteerService.registerToEvent(
 			1,5
 		);
-
-		//EVENT 2
 		volunteerService.registerToEvent(
 			2,2
 		);
@@ -161,7 +160,7 @@ public class GleaningplannerApplication {
 		volunteerService.registerToEvent(
 			2,4
 		);
-
+	
 		// EVENT 3
 		volunteerService.registerToEvent(
 			3,2
@@ -493,242 +492,22 @@ public class GleaningplannerApplication {
 	public void makeEvents() throws Exception{
 		Thread.sleep(1000);
 		eventService.createEvent(
-			"national Gleaning Event day ", 
+			"first event", 
 			10, 
 			15, 
-			"Gleaning is everyone's passion in these dire times", 
+			"description", 
 			false, 
 			1, 
 			Date.from(Instant.now())
 		);
 
 		eventService.createEvent(
-			"Gleaning for all", 
+			"second event", 
 			11, 
 			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			1, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			false, 
-			1, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			1, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"national Gleaning Event day ", 
-			10, 
-			15, 
-			"Gleaning is everyone's passion in these dire times", 
+			"description for event 2", 
 			false, 
 			2, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			2, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			false, 
-			2, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			2, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"national Gleaning Event day ", 
-			10, 
-			15, 
-			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			3, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			3, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			false, 
-			3, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			3, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"national Gleaning Event day ", 
-			10, 
-			15, 
-			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			4, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			4, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			false, 
-			4, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			4, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"national Gleaning Event day ", 
-			10, 
-			15, 
-			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			5, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			5, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			true, 
-			5, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			5, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"national Gleaning Event day ", 
-			10, 
-			15, 
-			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			6, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			true, 
-			6, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning today.", 
-			11, 
-			12, 
-			"COme help us fetch food for the people who need it the most!! ", 
-			false, 
-			6, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Regional Gleaning Event", 
-			11, 
-			12, 
-			"A regional gleaning event for all", 
-			false, 
-			6, 
 			Date.from(Instant.now())
 		);
 	}
@@ -765,6 +544,7 @@ public class GleaningplannerApplication {
 			"VOLUNTEER"
 		);
 	}
+
 	
 	public void registerOrganizations() throws InterruptedException{
 		Thread.sleep(1000);

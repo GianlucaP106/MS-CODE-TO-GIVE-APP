@@ -124,6 +124,8 @@ public class EventController {
 
     @PostMapping("/event/get-event-by-user")
     public ResponseEntity<EventFilterTO> getEventByUser(@RequestBody UserTypeTO userType) {
+        System.out.println(userType.getID());
+        System.out.println(userType.getUserType());
         List<Event> events = eventService.getEventByUser(userType.getID(), userType.getUserType());
         List<EventTO> eventTOs = new ArrayList<>();
         for (Event event : events) {

@@ -5,7 +5,6 @@ import TableRow from "./TableRow";
 export default function ProfileComment(props) {
 
     const [ comments, setComments ] = useState(props.comments);
-    console.log(props.comments);
 
     useEffect(() => {
       setComments(props.comments)
