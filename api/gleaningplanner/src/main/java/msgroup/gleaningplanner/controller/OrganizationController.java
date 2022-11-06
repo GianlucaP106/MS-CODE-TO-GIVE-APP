@@ -177,4 +177,9 @@ public class OrganizationController {
         return new ResponseEntity<OrganizationRegistrationTO>(out, HttpStatus.OK);
 
     }
+
+    @GetMapping("/organization/all")
+    public List<OrganizationTO> getAllOrganization() {
+        return organizationService.getAll();
+    }
 }
