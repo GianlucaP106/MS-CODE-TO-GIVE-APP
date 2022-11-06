@@ -96,7 +96,7 @@ public class VolunteerController {
     }
 
 
-    @PostMapping("/volunteer/eventRegister")
+    @PostMapping("/volunteer/event-register")
     public ResponseEntity<VolunteerRegistrationTO> registerToEvent(@RequestBody RegistrationRequest incoming){
         VolunteerRegistration volunteerRegistration = volunteerService.registerToEvent(incoming);
 

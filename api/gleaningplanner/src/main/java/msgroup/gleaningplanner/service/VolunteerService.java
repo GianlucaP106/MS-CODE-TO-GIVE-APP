@@ -22,14 +22,14 @@ public class VolunteerService {
     private VolunteerRepository volunteerRepository;
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private LocationService locationService;
-    private EventRepository eventrRepository;
+    private EventRepository eventRepository;
 
     public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
-                            EventRepository eventrRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
+                            EventRepository eventRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
 
         this.volunteerRepository = volunteerRepository;
         this.locationService = locationService;
-        this.eventrRepository = eventrRepository;
+        this.eventRepository = eventRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
     }
 
@@ -117,7 +117,7 @@ public class VolunteerService {
 
     public VolunteerRegistration registerToEvent(RegistrationRequest incoming){
         Volunteer volunteer = volunteerRepository.findVolunteerByID(incoming.volunteerID);
-        Event event = eventrRepository.findEventByID(incoming.evemtID);
+        Event event = eventRepository.findEventByID(incoming.eventID);
 
         VolunteerRegistration newRegistration = new VolunteerRegistration();
         newRegistration.setVolunteer(volunteer);

@@ -23,6 +23,6 @@ public class VolunteerRegistrationTO{
     
     public static class RegistrationRequest{
         public Integer volunteerID;
-        public Integer evemtID;
+        public Integer eventID;
     }
 }

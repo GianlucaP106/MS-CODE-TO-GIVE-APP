@@ -14,9 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationFilterTO;
+import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
+import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO.OrganizationRegistrationRequest;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Organization;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.service.LocationService;
 import msgroup.gleaningplanner.service.OrganizationService;
 
@@ -145,8 +148,33 @@ public class OrganizationController {
     }
 
 
-//     @PostMapping("/organization/comment-event/")
-//     public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO comment) {
+    @PostMapping("/organization/comment-event/")
+    public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = organizationService.postCommentEvent(
+            incoming.comment,
+            incoming.authorType,
+            incoming.organizationID, 
+            incoming.eventID
+        );
 
-//     }
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getOrganization().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+
+
+    }
+
+    @PostMapping("/organization/event-register")
+    public ResponseEntity<OrganizationRegistrationTO> registerToEvent(@RequestBody OrganizationRegistrationRequest incoming){
+        OrganizationRegistration organizationRegistration = organizationService.registerToEvent(incoming.eventID, incoming.organizationID);
+
+        OrganizationRegistrationTO out = new OrganizationRegistrationTO(organizationRegistration.getID(), organizationRegistration.getOrganization(), organizationRegistration.getEvent());
+
+        return new ResponseEntity<OrganizationRegistrationTO>(out, HttpStatus.OK);
+
+    }
 }
