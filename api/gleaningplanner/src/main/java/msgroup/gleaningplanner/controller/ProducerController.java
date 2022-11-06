@@ -43,30 +43,32 @@ public class ProducerController {
     @PutMapping("/producer/update")
     public ResponseEntity<ProducerTO> updateProducer(@RequestBody ProducerTO incoming) {
 
-        Producer newProducer = producerService.updateProducer(  incoming.id,
-                                                                incoming.firstName,
-                                                                incoming.lastName,
-                                                                incoming.email,
-                                                                incoming.username,
-                                                                incoming.password,
-                                                                incoming.phoneNumber,
-                                                                incoming.address,
-                                                                incoming.postalCode,
-                                                                incoming.city
-                                                            );
-        ProducerTO out = new ProducerTO(newProducer.getID(),
-                                        newProducer.getUsername(), 
-                                        newProducer.getFirstName(), 
-                                        newProducer.getLastName(), 
-                                        newProducer.getEmail(), 
-                                        newProducer.getPhoneNumber(), 
-                                        null, 
-                                        newProducer.getCity(),
-                                        newProducer.getAddress(), 
-                                        newProducer.getPostalCode(), 
-                                        newProducer.getLatitude(), 
-                                        newProducer.getLongitude()
-                                    );
+        Producer newProducer = producerService.updateProducer(  
+            incoming.id,
+            incoming.firstName,
+            incoming.lastName,
+            incoming.email,
+            incoming.username,
+            incoming.password,
+            incoming.phoneNumber,
+            incoming.address,
+            incoming.postalCode,
+            incoming.city
+        );
+        ProducerTO out = new ProducerTO(
+            newProducer.getID(),
+            newProducer.getUsername(), 
+            newProducer.getFirstName(), 
+            newProducer.getLastName(), 
+            newProducer.getEmail(), 
+            newProducer.getPhoneNumber(), 
+            null, 
+            newProducer.getCity(),
+            newProducer.getAddress(), 
+            newProducer.getPostalCode(), 
+            newProducer.getLatitude(), 
+            newProducer.getLongitude()
+        );
         
         return new ResponseEntity<ProducerTO>(out, HttpStatus.OK);                    
                                                     
@@ -110,7 +112,7 @@ public class ProducerController {
     }
 
 
-    @PostMapping("/producer/accpet/volunteer-group")
+    @PostMapping("/producer/accept/volunteer-group")
     public ResponseEntity<AcceptenceTO> acceptVolunteerGroup(@RequestBody AcceptenceTO incoming) {
         List<Volunteer> accpetedVolunteers = producerService.acceptVolunteerGroup(
             incoming.getEventID(), 
