@@ -55,11 +55,9 @@ public class EventController {
         return new ResponseEntity<EventTO>(new EventTO(), HttpStatus.BAD_REQUEST);
     }
 
-
     @GetMapping("event/all")
     public List<EventTO> getAllEvents() {
         List<EventTO> events = new ArrayList<EventTO>();
-
         for(Event event : eventRepository.findAll()){
             events.add(new EventTO(
                 event.getFarm().getID(),
@@ -71,7 +69,6 @@ public class EventController {
                 event.getDate().toString()
             ));
         }
-
         return events;
     }
 
