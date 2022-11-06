@@ -7,6 +7,7 @@ import java.util.Set;
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,15 +19,41 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RequestVolunteerJoinVolunteerGroup;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.VolunteerRepository;
 import msgroup.gleaningplanner.service.VolunteerService;
 
 @RestController
 public class VolunteerController {
 
     private VolunteerService volunteerService;
+    private VolunteerRepository volunteerRepository;
 
-    public VolunteerController(VolunteerService volunteerService) {
+    public VolunteerController(VolunteerService volunteerService, VolunteerRepository volunteerRepository) {
         this.volunteerService = volunteerService;
+        this.volunteerRepository = volunteerRepository;
+    }
+
+
+    @GetMapping("/volunteer/all")
+    public List<VolunteerTO> getAllVolunteers(){
+        List<VolunteerTO> volunteers = new ArrayList<VolunteerTO>();
+        for(Volunteer volunteer: volunteerRepository.findAll()){
+            volunteers.add(new VolunteerTO(
+                volunteer.getID(), 
+                volunteer.getUsername(), 
+                volunteer.getFirstName(), 
+                volunteer.getLastName(), 
+                volunteer.getEmail(), 
+                volunteer.getPhoneNumber(),
+                volunteer.getPostalCode(), 
+                volunteer.getAddress(), 
+                volunteer.getCity(), 
+                volunteer.getLatitude(), 
+                volunteer.getLongitude(), 
+                null
+            ));
+        }
+        return volunteers;
     }
  
     @PostMapping("/volunteer/register")
