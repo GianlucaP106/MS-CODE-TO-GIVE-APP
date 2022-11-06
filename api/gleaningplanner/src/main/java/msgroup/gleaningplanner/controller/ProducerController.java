@@ -20,6 +20,7 @@ import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
+import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 
 @RestController
@@ -156,20 +157,19 @@ public class ProducerController {
 
     @PostMapping("/producer/add-produce-to-event")
     public ResponseEntity<Produce> addProduceToEvent(
-        int eventID, 
-        String produceType, 
-        double amount
+        @RequestBody ProduceTO incoming 
     ) {
         Produce newProduce = producerService.addProduceToEvent(
-            eventID, 
-            produceType, 
-            amount
+            incoming.eventID, 
+            incoming.produceType, 
+            incoming.amount
         );
         return new ResponseEntity<Produce>(
             newProduce, 
             HttpStatus.OK
         );
     }
+
     @GetMapping("/producer/all")
     public List<ProducerTO> getProducers(){
         List<ProducerTO> producers = new ArrayList<ProducerTO>();

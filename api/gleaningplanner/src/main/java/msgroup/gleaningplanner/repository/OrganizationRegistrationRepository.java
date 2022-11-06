@@ -18,4 +18,6 @@ public interface OrganizationRegistrationRepository extends CrudRepository<Organ
 
     public List<OrganizationRegistration> findAllOrganizationRegistrationByEvent(Event event);
 
+    public OrganizationRegistration findOrganizationRegistrationByEventAndOrganization(Event event, Organization organization);
+
 }

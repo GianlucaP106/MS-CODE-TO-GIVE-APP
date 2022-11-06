@@ -16,10 +16,12 @@ import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
+import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.OrganizationRegistrationTO.OrganizationRegistrationRequest;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
+import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.service.OrganizationService;
 
 @RestController
@@ -180,5 +182,17 @@ public class OrganizationController {
     @GetMapping("/organization/all")
     public List<OrganizationTO> getAllOrganization() {
         return organizationService.getAll();
+    }
+
+    @PostMapping("/organization/registration-add-produce")
+    public ResponseEntity<Produce> addProduceToReg(@RequestBody ProduceTO incoming){
+        Produce produce = organizationService.addProduceToRegistration(
+            incoming.eventID, 
+            incoming.organizationID, 
+            incoming.produceType, 
+            incoming.amount
+        );
+
+        return new ResponseEntity<Produce>(produce, HttpStatus.OK);
     }
 }

@@ -19,10 +19,13 @@ import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
+import msgroup.gleaningplanner.model.Produce;
+import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.repository.CommentRepository;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.OrganizationRegistrationRepository;
 import msgroup.gleaningplanner.repository.OrganizationRepository;
+import msgroup.gleaningplanner.repository.ProduceRepository;
 
 @Service
 public class OrganizationService {
@@ -32,19 +35,22 @@ public class OrganizationService {
     private EventRepository eventRepository;
     private CommentRepository commentRepository;
     private OrganizationRegistrationRepository organizationRegistrationRepository;
+    private ProduceRepository produceRepository;
 
     public OrganizationService(
         OrganizationRepository organizationRepository, 
         LocationService locationService, 
         EventRepository eventRepository,
         CommentRepository commentRepository,
-        OrganizationRegistrationRepository organizationRegistrationRepository
+        OrganizationRegistrationRepository organizationRegistrationRepository,
+        ProduceRepository produceRepository
     ) {
         this.organizationRepository = organizationRepository;
         this.locationService = locationService;
         this.eventRepository = eventRepository;
         this.commentRepository = commentRepository;
         this.organizationRegistrationRepository = organizationRegistrationRepository;
+        this.produceRepository = produceRepository;
     }
 
     public Organization createOrganization(
@@ -254,5 +260,34 @@ public class OrganizationService {
             ));
         }
         return organizations;
+    }
+
+    public Produce addProduceToRegistration(
+        int eventID, 
+        int organizationID,
+        String produceType, 
+        double amount
+    ) {
+        Produce produce = new Produce();
+        Event event = eventRepository.findEventByID(eventID);
+        Organization org = organizationRepository.findOrganizationByID(organizationID);
+
+
+        OrganizationRegistration registration = 
+            organizationRegistrationRepository.findOrganizationRegistrationByEventAndOrganization(event, org);
+
+        produce.setOrganizationRegistration(registration);
+
+        CropType type = CropType.Apples;
+        for (CropType crop : CropType.values()) {
+            if (crop.toString().equals(produceType)) {
+                type = crop;
+                break;
+            }
+        }
+
+        produce.setCropType(type);
+        produce.setAmount(amount);
+        return produceRepository.save(produce);
     }
 }
