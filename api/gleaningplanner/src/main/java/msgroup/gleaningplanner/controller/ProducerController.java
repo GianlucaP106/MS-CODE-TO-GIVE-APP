@@ -17,7 +17,6 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
-import msgroup.gleaningplanner.service.ProduceService;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
@@ -52,7 +51,7 @@ public class ProducerController {
     public ResponseEntity<ProducerTO> updateProducer(@RequestBody ProducerTO incoming) {
 
         Producer newProducer = producerService.updateProducer(  
-            incoming.id,
+            incoming.ID,
             incoming.firstName,
             incoming.lastName,
             incoming.email,
@@ -85,7 +84,7 @@ public class ProducerController {
     @PostMapping("/producer/get-by-filter")
     public ResponseEntity<ProducerFilterTO> getProducerByFilter(@RequestBody ProducerTO incoming){
         Set<Producer> filteredProducers = this.producerService.filterProducers(
-            incoming.id,
+            incoming.ID,
             incoming.firstName,
             incoming.lastName,
             incoming.email,
