@@ -22,14 +22,14 @@ public class VolunteerService {
     private VolunteerRepository volunteerRepository;
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private LocationService locationService;
-    private EventRepository eventrRepository;
+    private EventRepository eventRepository;
 
     public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
-                            EventRepository eventrRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
+                            EventRepository eventRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
 
         this.volunteerRepository = volunteerRepository;
         this.locationService = locationService;
-        this.eventrRepository = eventrRepository;
+        this.eventRepository = eventRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
     }
 
@@ -120,7 +120,7 @@ public class VolunteerService {
         Integer volunteerID
     ){
         Volunteer volunteer = volunteerRepository.findVolunteerByID(volunteerID);
-        Event event = eventrRepository.findEventByID(eventID);
+        Event event = eventRepository.findEventByID(eventID);
 
         VolunteerRegistration newRegistration = new VolunteerRegistration();
         newRegistration.setVolunteer(volunteer);
@@ -140,7 +140,7 @@ public class VolunteerService {
         Integer groupNumber
     ){
         Volunteer volunteer = volunteerRepository.findVolunteerByID(volunteerID);
-        Event event = eventrRepository.findEventByID(eventID);
+        Event event = eventRepository.findEventByID(eventID);
 
         VolunteerRegistration registration = volunteerRegistrationRepository.findAllVolunteerRegistrationByEventAndVolunteer(event, volunteer);
         registration.setVolunteerGroupNumber(groupNumber);

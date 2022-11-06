@@ -26,7 +26,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "id": "id",
+    "ID": "id",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
@@ -102,7 +102,7 @@
 {
     "events": [
         {
-            "id" : "id",
+            "ID" : "id",
             "eventName": "eventName",
             "description": "description",
             "missionStatement": "missionStatement",
@@ -165,7 +165,7 @@
 
 
 ### method: POST
-### path name: /volunteer/comment-event/?username=username
+### path name: /volunteer/comment-event/
 ### request BODY:
 ```JSON
 {

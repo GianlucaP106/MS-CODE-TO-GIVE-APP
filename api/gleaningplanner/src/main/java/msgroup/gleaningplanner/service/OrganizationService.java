@@ -17,8 +17,10 @@ import msgroup.gleaningplanner.model.AuthorType;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Organization;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.repository.CommentRepository;
 import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.OrganizationRegistrationRepository;
 import msgroup.gleaningplanner.repository.OrganizationRepository;
 
 @Service
@@ -28,17 +30,20 @@ public class OrganizationService {
     private LocationService locationService;
     private EventRepository eventRepository;
     private CommentRepository commentRepository;
+    private OrganizationRegistrationRepository organizationRegistrationRepository;
 
     public OrganizationService(
         OrganizationRepository organizationRepository, 
         LocationService locationService, 
         EventRepository eventRepository,
-        CommentRepository commentRepository
+        CommentRepository commentRepository,
+        OrganizationRegistrationRepository organizationRegistrationRepository
     ) {
         this.organizationRepository = organizationRepository;
         this.locationService = locationService;
         this.eventRepository = eventRepository;
         this.commentRepository = commentRepository;
+        this.organizationRegistrationRepository = organizationRegistrationRepository;
     }
 
     public Organization createOrganization(
@@ -186,6 +191,23 @@ public class OrganizationService {
         }
 
         return organizationRepository.save(newOrganization);
+    }
+
+    public OrganizationRegistration registerToEvent(
+        Integer eventId,
+        Integer organizationId
+    ) {
+        System.out.println(eventId);
+        System.out.println(organizationId);
+
+        Organization organization = organizationRepository.findOrganizationByID(organizationId);
+        Event event = eventRepository.findEventByID(eventId);
+
+        OrganizationRegistration registration = new OrganizationRegistration();
+        registration.setEvent(event);
+        registration.setOrganization(organization);
+
+        return organizationRegistrationRepository.save(registration);
     }
 
     public Comment postCommentEvent(String comment, String authorType, int organizationID, int eventID) {

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Organization;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.ProduceType;
 
@@ -21,5 +22,5 @@ public interface ProduceRepository extends CrudRepository<Produce, Integer> {
 
     public List<Produce> findAllProduceByEvent(Event event);
 
-    public List<Produce> findAllProduceByOrganization(Organization organization);
+    public List<Produce> findAllProduceByOrganizationRegistration(OrganizationRegistration organizationRegistration);
 }
