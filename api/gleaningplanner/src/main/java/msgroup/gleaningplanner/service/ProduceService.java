@@ -27,7 +27,7 @@ public class ProduceService {
         this.organizationRegistrationRepository = organizationRegistrationRepository;
     }
 
-    public Set<Integer> getOrganizationByProduce(Produce.CropType cropType){
+    public Set<Integer> getOrganizationRegistrationByCrop(Produce.CropType cropType){
         Set<Integer> orgIDs = new HashSet<Integer>();
         var list_Produce = produceRepository.findAllProduceByCropType(cropType);
         for (var produceInList : list_Produce){
@@ -39,7 +39,7 @@ public class ProduceService {
         return orgIDs;
     }
 
-    public Set<Integer> getEventByProduce(Produce.CropType cropType){
+    public Set<Integer> getEventByCrop(Produce.CropType cropType){
         Set<Integer> eventIDs = new HashSet<Integer>();
         var list_Produce = produceRepository.findAllProduceByCropType(cropType);
         for (var produceInList : list_Produce){
