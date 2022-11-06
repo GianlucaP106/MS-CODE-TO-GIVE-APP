@@ -2,8 +2,18 @@ import React from 'react'
 import PageVisitsTable from '../Tables/PageVisitsTable'
 import ProfileInfoTable from '../Tables/ProfileInfoTable'
 import ProfileCard from "./ProfileCard"
+import ProfileComment from "../Profiles/ProfileComment"
 
 export default function ProfilePage() {
+    const pageVisits = [
+      { id: 1, date: "Nov 2022", comment: "Very good" },
+      { id: 1, date: "Nov 2022", comment: "Not bad" },
+      { id: 1, date: "Dec 2022", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et ut" },
+      { id: 1, date: "Nov 1231", comment: "Very okay" },
+      { id: 1, date: "Nov 2022", comment: "Very good" },
+      { id: 1, date: "Nov 2022", comment: "Very good" }
+    ];
+
     return (<>
       <section styles="background-color: #eee;">
         <div className="container py-5">
@@ -11,32 +21,7 @@ export default function ProfilePage() {
             <div className="col-lg-4">
               <ProfileCard name={"Parsa Langari"} role={"Volunteer"} region={"Montreal"} 
                 imgSrc={"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"}/>
-              <div className="card mb-4 mb-lg-0">
-                <div className="card-body p-0">
-                  <ul className="list-group list-group-flush rounded-3">
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fas fa-globe fa-lg text-warning"></i>
-                      <p className="mb-0">https://mdbootstrap.com</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-github fa-lg" styles="color: #333333;"></i>
-                      <p className="mb-0">mdbootstrap</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-twitter fa-lg" styles="color: #55acee;"></i>
-                      <p className="mb-0">@mdbootstrap</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-instagram fa-lg" styles="color: #ac2bac;"></i>
-                      <p className="mb-0">mdbootstrap</p>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center p-3">
-                      <i className="fab fa-facebook-f fa-lg" styles="color: #3b5998;"></i>
-                      <p className="mb-0">mdbootstrap</p>
-                    </li>
-                  </ul>
-                </div>
-              </div>
+              <ProfileComment comments={pageVisits}/>
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={"Parsa"} secondSpot={"Langari"} thirdSpot={"PLangari"} fourthSpot={"parsa.langari@mail.mcgill.ca"} profileType={"Volunteer"}/>
