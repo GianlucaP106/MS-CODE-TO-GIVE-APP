@@ -18,6 +18,7 @@ import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
+import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 import msgroup.gleaningplanner.service.GleanerGroupService;
 import msgroup.gleaningplanner.service.LocationService;
 
@@ -151,6 +152,11 @@ public class GleanerGroupController {
         );
 
         return new ResponseEntity<GleanerGroupRegistrationTO>(out, HttpStatus.OK);
+    }
+
+    @GetMapping("/gleaner-group/all")
+    public List<GleanerGroupTO> getAllGleanerGroups() {
+        return gleanergroupService.getAll();
     }
 
 }
