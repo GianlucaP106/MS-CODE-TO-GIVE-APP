@@ -213,7 +213,9 @@ public class GleanerGroupService {
                 group.getImageURL(),
                 group.getLatitude(),
                 group.getLongitude()
-            ))
+            ));
         }
+
+        return groups;
     }
 }

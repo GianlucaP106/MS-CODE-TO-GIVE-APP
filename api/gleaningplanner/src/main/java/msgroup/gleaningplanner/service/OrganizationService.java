@@ -13,6 +13,7 @@ import javax.tools.DocumentationTool.Location;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.controller.TransferObject.OrganizationTO;
 import msgroup.gleaningplanner.model.AuthorType;
 import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Event;
@@ -229,5 +230,29 @@ public class OrganizationService {
 
         return commentRepository.save(newComment);
         
+    }
+
+    public List<OrganizationTO> getAll() {
+        List<OrganizationTO> organizations = new ArrayList<OrganizationTO>();
+
+        for(Organization organization : organizationRepository.findAll()) {
+            organizations.add(new OrganizationTO(
+                organization.getID(),
+                organization.getOrganizationName(),
+                organization.getDescription(),
+                organization.getMissionStatement(),
+                organization.getImageURL(),
+                organization.getAddress(),
+                organization.getPostalCode(),
+                organization.getAddress(),
+                organization.getCity(),
+                null,
+                organization.getMaxDistance(),
+                organization.getWebsiteLink(),
+                organization.getLatitude(),
+                organization.getLatitude()
+            ));
+        }
+        return organizations;
     }
 }
