@@ -22,7 +22,6 @@ export default function Profile(props) {
     const out = {
       "ID": data.profile,
     }
-    console.log(out);
 
     let response = null;
     try {
@@ -60,7 +59,7 @@ export default function Profile(props) {
 
     let events = null;
     let eventSearch = {
-      "ID": out["ID"],
+      "ID": data.profile,
       "userType": data.type 
     }
     try {
@@ -80,19 +79,26 @@ export default function Profile(props) {
 
     if (events) {
       outEvents = events["event"];
-    } 
-    console.log(outEvents);
-
+    }
+    let rows = [];
+    for (let event of outEvents) {
+      rows.push({
+        id: event["ID"],
+        col1: event["name"],
+        col2: event["description"],
+        col3: event["date"],
+        col4: event["neededGleaners"]
+      })
+    }
+    
     let outComments = []
-
+    
     for (let comment of incomingComments) {
-      console.log(comment[data.type]);
-      console.log(out["ID"]);
       if (comment[data.type] && comment[data.type].id == out["ID"]) {
         outComments.push(comment);
       }
     }
-
+  
     setPassedData({
       ID: incoming.ID,
       username: incoming.username,
@@ -104,7 +110,8 @@ export default function Profile(props) {
       email: incoming.email,
       personType: data.type,
       name: data.name,
-      comments: outComments
+      comments: outComments,
+      rows: outEvents
     });
     
 

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import PageVisitsTable from '../Tables/PageVisitsTable'
 import ProfileInfoTable from '../Tables/ProfileInfoTable'
 import ProfileCard from "./ProfileCard"
@@ -16,16 +16,24 @@ export default function ProfilePage({ info }) {
       { id: 1, date: "Nov 2022", comment: "Very good" }
     ];
 
-    const rows = [
-      { id: 1, col1: 'Ste-Eustache', col2: '4', col3: '134', col4: 'Hover' },
-      { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
-    ];
+
+    console.log(info.rows);
+    // console.log(info.rows.length);
+    // const rows = [
+    //   { id: 1, col1: 'Ste-Eustache', col2: '4', col3: '134', col4: 'Hover' },
+    //   { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
+    // ];
+   
+  
+
+    // useEffect(() => {
+    // }, []);
 
     const columns = [
-      { field: 'col1', headerName: 'Farmer Name', width: 150 },
-      { field: 'col2', headerName: 'Gleaning Opportunities To Date', width: 150 },
-      { field: 'col3', headerName: 'Harvests Gleaned', width: 150 },
-      { field: 'col4', headerName: 'Harvest Breakdown', width: 150 }
+      { field: 'col1', headerName: 'Event Name', width: 150 },
+      { field: 'col2', headerName: 'Description', width: 150 },
+      { field: 'col3', headerName: 'Date', width: 150 },
+      { field: 'col4', headerName: 'Gleaners required', width: 150 }
     ];
 
     return (<>
@@ -39,7 +47,7 @@ export default function ProfilePage({ info }) {
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={info.firstName} secondSpot={info.lastName} thirdSpot={info.username} fourthSpot={info.email} profileType={info.personType}/>
-              <Leaderboard rows={rows} columns={columns} />
+              {/* <Leaderboard rows={info.rows} columns={columns} /> */}
             </div>
           </div>
         </div>
