@@ -1,5 +1,8 @@
 package msgroup.gleaningplanner.service;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -16,6 +19,12 @@ import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 import msgroup.gleaningplanner.repository.VolunteerRepository;
 
+import msgroup.gleaningplanner.model.AuthorType;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.repository.CommentRepository;
+import msgroup.gleaningplanner.model.Volunteer;
+import msgroup.gleaningplanner.repository.VolunteerRepository;
+
 @Service
 public class VolunteerService {
 
@@ -23,6 +32,7 @@ public class VolunteerService {
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private LocationService locationService;
     private EventRepository eventRepository;
+    private CommentRepository commentRepository;
 
     public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
                             EventRepository eventRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
@@ -165,5 +175,24 @@ public class VolunteerService {
     }
 
 
+    public Comment postCommentEvent(int volunteerID, int eventID, String comment, String authorType){
+        
+        AuthorType type;
+        if (authorType.equals("PRODUCER")) type = AuthorType.PRODUCER;
+        else if (authorType.equals("VOLUNTEER")) type = AuthorType.VOLUNTEER;
+        else if (authorType.equals("GLEANERGROUP")) type = AuthorType.GLEANERGROUP;
+        else type = AuthorType.ORGANIZATION;
+
+        Comment newComment = new Comment();
+        newComment.setAuthorType(type);
+        newComment.setComment(comment);
+
+        newComment.setDate(Date.from(Instant.now()));
+        
+        newComment.setEvent(eventRepository.findEventByID(eventID));
+        newComment.setVolunteer(volunteerRepository.findVolunteerByID(volunteerID));
+
+        return commentRepository.save(newComment);
+    }
 
 }

@@ -88,4 +88,26 @@ public class FarmController {
         return new ResponseEntity<FarmFIlters>(out , HttpStatus.OK);
     }
 
+    @GetMapping("/farm/all")
+    public List<FarmTO> getAllEvents() {
+        List<FarmTO> farms = new ArrayList<FarmTO>();
+
+        for(Farm farm : farmRepository.findAll()){
+            farms.add(new FarmTO(
+            farm.getProducer().getID(),
+            new FarmObjectDTO(
+                farm.getID(),
+                farm.getFarmName(), 
+                farm.getAddress(), 
+                farm.getPostalCode(), 
+                farm.getCity(), 
+                farm.getLongitude(), 
+                farm.getLatitude(), 
+                farm.getSurfaceArea()
+            )));
+        }
+
+        return farms;
+    }
+
 }
