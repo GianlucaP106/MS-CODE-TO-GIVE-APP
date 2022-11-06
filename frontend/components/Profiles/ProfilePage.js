@@ -5,7 +5,7 @@ import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
 
-export default function ProfilePage(props) {
+export default function ProfilePage({info}) {
     const pageVisits = [
       { id: 1, date: "Nov 2022", comment: "Very good" },
       { id: 1, date: "Nov 2022", comment: "Not bad" },
@@ -32,12 +32,12 @@ export default function ProfilePage(props) {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">
-              <ProfileCard name={props.info.username} role={"Volunteer"} region={"Montreal"} 
+              <ProfileCard name={info.username} role={info.personType} region={info.city} 
                 imgSrc={"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"}/>
               <ProfileComment comments={pageVisits}/>
             </div>
             <div className="col-lg-8">
-              <ProfileInfoTable firstSpot={"Parsa"} secondSpot={"Langari"} thirdSpot={"PLangari"} fourthSpot={"parsa.langari@mail.mcgill.ca"} profileType={"Volunteer"}/>
+              <ProfileInfoTable firstSpot={info.firstName} secondSpot={info.lastName} thirdSpot={info.username} fourthSpot={info.email} profileType={info.personType}/>
               <Leaderboard rows={rows} columns={columns} />
             </div>
           </div>
