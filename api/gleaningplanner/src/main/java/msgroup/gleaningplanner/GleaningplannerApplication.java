@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.service.EventService;
 import msgroup.gleaningplanner.service.FarmService;
 import msgroup.gleaningplanner.service.OrganizationService;
@@ -38,7 +39,7 @@ public class GleaningplannerApplication {
 	}
 
 	@Bean
-	CommandLineRunner commandLineRunner() {
+	CommandLineRunner commandLineRunner() throws InterruptedException {
 		return args -> {
 			makeVolunteers();
 			makeProducers();
@@ -46,36 +47,131 @@ public class GleaningplannerApplication {
 			makeOrganization();
 			makeEvents();
 			makeComments();
+			registerOrganizations();
+			registerVolunteersToEvents();
+			OrgAddProduceToEventReg();
 		};
 	}
 
-	public void registerVolunteers(){
+	public void OrgAddProduceToEventReg() throws InterruptedException{
+		Thread.sleep(1000);
+		organizationService.addProduceToRegistration(
+			1,
+			1,
+			CropType.Apples.toString(),
+			200.0
+		);
+		organizationService.addProduceToRegistration(
+			2,
+			2,
+			CropType.Beets.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			3,
+			2,
+			CropType.Carrots.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			3,
+			3,
+			CropType.Pears.toString(),
+			100.0
+		);	
+		organizationService.addProduceToRegistration(
+			4, 
+			4,
+			CropType.Pears.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			5,
+			6,
+			CropType.Pears.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			5,
+			7,
+			CropType.Pears.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			4,
+			12,
+			CropType.Pears.toString(),
+			100.0
+		);
+		organizationService.addProduceToRegistration(
+			3,
+			9,
+			CropType.Pears.toString(),
+			100.0
+		);
+	} 
+	
+	public void registerVolunteersToEvents() throws InterruptedException{
+		Thread.sleep(1000);
 		//EVENT 1	
 		volunteerService.registerToEvent(
-			1,1
+			1, 3
+		);
+		volunteerService.registerToEvent(
+			1, 4
+		);
+		volunteerService.registerToEvent(
+			1,5
 		);
 
 		//EVENT 2
 		volunteerService.registerToEvent(
-			1,2
-		);
-		volunteerService.registerToEvent(
 			2,2
 		);
+		volunteerService.registerToEvent(
+			2,1
+		);
+		volunteerService.registerToEvent(
+			2,3
+		);
+		volunteerService.registerToEvent(
+			2,5
+		);
+		volunteerService.registerToEvent(
+			2,4
+		);
+
+		// EVENT 3
 		volunteerService.registerToEvent(
 			3,2
 		);
 		volunteerService.registerToEvent(
+			3,1
+		);
+		volunteerService.registerToEvent(
+			3,3
+		);
+		volunteerService.registerToEvent(
+			3,5
+		);
+		volunteerService.registerToEvent(
+			3,1
+		);
+
+		//EVENT 4
+		volunteerService.registerToEvent(
 			4,2
 		);
 		volunteerService.registerToEvent(
-			5,2
+			4,3
 		);
-
-		// EVENT 3
+		volunteerService.registerToEvent(
+			4,5
+		);
 	}
 
-	public void makeOrganization(){
+	public void makeOrganization() throws InterruptedException{
+		Thread.sleep(1000);
 		organizationService.createOrganization(
 			"org1", 
 			"org1",
@@ -162,7 +258,8 @@ public class GleaningplannerApplication {
 		);
 	}
 
-	public void makeVolunteers(){
+	public void makeVolunteers() throws InterruptedException{
+		Thread.sleep(1000);
 		volunteerService.createVolunteer(
 			"Matthew",
 			"Carbal",
@@ -214,73 +311,14 @@ public class GleaningplannerApplication {
 			"Mohammed",
 			"Amimer", 
 			"5141597534",
-			"3532 Concorde E",
+			"3532 Concorde",
 			"H7E2C4",
 			"Laval"
 		);
-
-		volunteerService.createVolunteer(
-			"Justin",
-			"Rigoli",
-			"Justin.Rigoli@mail.mcgill.ca",
-			"Justin",
-			"Rigoli", 
-			"4567891324",
-			"2595 Rue Fleury E",
-			"H2B1L7",
-			"Montreal"
-		);
-		volunteerService.createVolunteer(
-			"Amine",
-			"Achik",
-			"Amine.Achik@mail.mcgill.ca",
-			"Amine",
-			"Achik", 
-			"1973187394",
-			"1425 Boul Henri-Bourassa E",
-			"H2C1H1",
-			"Montreal"
-		);
-		volunteerService.createVolunteer(
-			"Andrea",
-			"Loza",
-			"Andrea.Loza@mail.mcgill.ca",
-			"Andrea",
-			"Loza", 
-			"4367958462",
-			"Boul des Prairies",
-			"H7N2T6",
-			"Laval"
-		);
-		volunteerService.createVolunteer(
-			"Lolita",
-			"comera",
-			"Lolita.camera@mail.mcgill.ca",
-			"Lolita",
-			"comera", 
-			"5461595378",
-			"7749 George st",
-			"H8P1C6",
-			"Montreal"
-		);
-		volunteerService.createVolunteer(
-			"Cameron",
-			"Diaz",
-			"Cameron.Diaz@mail.mcgill.ca",
-			"Mohammed",
-			"Amimer", 
-			"8671568947",
-			"3532 Concorde E",
-			"H7E2C4",
-			"Laval"
-		);
-
-
-
-		
 	}
 
-	public void makeProducers(){
+	public void makeProducers() throws InterruptedException{
+		Thread.sleep(10000);
 		producerService.createProducer(
 			"nabil",
 			"amimer",
@@ -292,6 +330,8 @@ public class GleaningplannerApplication {
 			"H8P1C6",
 			"Montreal"
 		);
+
+
 
 		producerService.createProducer(
 			"Parsa",
@@ -362,7 +402,8 @@ public class GleaningplannerApplication {
 		);
 	}
 
-	public void makeFarms(){
+	public void makeFarms() throws InterruptedException{
+		Thread.sleep(1000);
 		farmService.createFarm(
 			1,
 			"Quinn Farm",
@@ -413,7 +454,8 @@ public class GleaningplannerApplication {
 		);		
 	}
 
-	public void makeEvents() {
+	public void makeEvents() throws Exception{
+		Thread.sleep(1000);
 		eventService.createEvent(
 			"national Gleaning Event day ", 
 			10, 
@@ -655,7 +697,8 @@ public class GleaningplannerApplication {
 		);
 	}
 
-	public void makeComments() {
+	public void makeComments() throws Exception{
+		Thread.sleep(1000);
 		producerService.postCommentEvent(
 			1, 
 			1, 
@@ -682,7 +725,8 @@ public class GleaningplannerApplication {
 		);
 	}
 	
-	public void registerOrganizations(){
+	public void registerOrganizations() throws InterruptedException{
+		Thread.sleep(1000);
 		organizationService.registerToEvent(
 			1, 
 			1
@@ -707,21 +751,6 @@ public class GleaningplannerApplication {
 			5,
 			6
 		);
-		organizationService.registerToEvent(
-			6,
-			6
-		);
-		organizationService.registerToEvent(
-			5,
-			7
-		);
-		organizationService.registerToEvent(
-			4,
-			12
-		);
-		organizationService.registerToEvent(
-			3,
-			9
-		);
+
 	}
 }

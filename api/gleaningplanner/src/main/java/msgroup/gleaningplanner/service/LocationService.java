@@ -52,9 +52,9 @@ public class LocationService {
         String queryURL = API_url + API_url_params;
 
         ResponseEntity<LocationAPITO> response = restTemplate.getForEntity(queryURL, LocationAPITO.class);
-        LocationAPITO body = response.getBody();
 
-        if (response.getStatusCode() == HttpStatus.OK && body != null) {
+        if (response.getStatusCode() == HttpStatus.OK) {
+            LocationAPITO body = response.getBody();
             List<LocationData> data = new ArrayList<>();
 
             // filtering to only have locations from canada.
