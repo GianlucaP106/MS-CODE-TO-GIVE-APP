@@ -144,9 +144,10 @@ const top100Films = [
 
 // get all events by radius  ---->
 // {
-//        get all events by crop type
-//        get all events by farm name
-//        get all events by event name
+//        get all events by crop type --- DONE
+//        pair crop type search with radius -- TO BE COMPLETED
+//        get all events by farm name --- TO BE COMPLETED
+//        get all events by event name -- TO BE COMPLETED
 // }
 
 // first get all farms within radius {farm get by filter}
@@ -266,9 +267,13 @@ export default function PermanentDrawerLeft() {
             name="radio-buttons-group"
             row
           >
-            <FormControlLabel value="2" control={<Radio />} label="2 km" />
-            <FormControlLabel value="5" control={<Radio />} label="5 km" />
-            <FormControlLabel value="10" control={<Radio />} label="10 km" />
+            <FormControlLabel value="50" control={<Radio />} label="50 km" />
+            <FormControlLabel value="100" control={<Radio />} label="100 km" />
+            <FormControlLabel
+              value="100+"
+              control={<Radio />}
+              label="100+ km"
+            />
           </RadioGroup>
         </FormControl>
         <Divider />
