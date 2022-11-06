@@ -1,6 +1,7 @@
 import React from 'react'
 import PageVisitsTable from '../Tables/PageVisitsTable'
 import ProfileInfoTable from '../Tables/ProfileInfoTable'
+import ProfileCard from "./ProfileCard"
 
 export default function ProfilePage() {
     return (<>
@@ -8,15 +9,8 @@ export default function ProfilePage() {
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">
-              <div className="card mb-4">
-                <div className="card-body text-center">
-                  <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp" alt="avatar"
-                    className="rounded-circle profile_icon" styles={{height: 20}} />
-                  <h5 className="my-3">John Smith</h5>
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                </div>
-              </div>
+              <ProfileCard name={"Parsa Langari"} role={"Volunteer"} region={"Montreal"} 
+                imgSrc={"https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"}/>
               <div className="card mb-4 mb-lg-0">
                 <div className="card-body p-0">
                   <ul className="list-group list-group-flush rounded-3">
