@@ -1,11 +1,15 @@
 package msgroup.gleaningplanner;
 
+import java.time.Instant;
+import java.util.Date;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import msgroup.gleaningplanner.service.EventService;
 import msgroup.gleaningplanner.service.FarmService;
 import msgroup.gleaningplanner.service.OrganizationService;
 import msgroup.gleaningplanner.service.ProducerService;
@@ -26,6 +30,9 @@ public class GleaningplannerApplication {
 	@Autowired
 	private FarmService farmService;
 
+	@Autowired
+	private EventService eventService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GleaningplannerApplication.class, args);
 	}
@@ -37,10 +44,14 @@ public class GleaningplannerApplication {
 			makeProducers();
 			makeFarms();
 			makeOrganization();
+			makeEvents();
+			makeComments();
+
 		};
 	}
 
 
+	
 
 	public void makeOrganization(){
 		organizationService.createOrganization(
@@ -320,4 +331,42 @@ public class GleaningplannerApplication {
 		);		
 	}
 
+	public void makeEvents() {
+		eventService.createEvent(
+			"first event", 
+			10, 
+			15, 
+			"description", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"second event", 
+			11, 
+			12, 
+			"description for event 2", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+	}
+
+	public void makeComments() {
+		producerService.postCommentEvent(
+			1, 
+			1, 
+			"first comment",
+			"PRODUCER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			1, 
+			"first comment",
+			"PRODUCER"
+		);
+	}
+
+	
 }

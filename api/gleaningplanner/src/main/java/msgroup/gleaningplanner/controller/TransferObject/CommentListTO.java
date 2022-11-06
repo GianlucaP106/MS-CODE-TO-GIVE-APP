@@ -6,9 +6,9 @@ import msgroup.gleaningplanner.model.Comment;
 
 public class CommentListTO {
     
-    private Iterable<Comment> comments;
+    public List<Comment> comments;
 
-    public CommentListTO(Iterable<Comment> comments) {
+    public CommentListTO(List<Comment> comments) {
         this.comments = comments;
     }
 }
