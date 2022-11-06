@@ -1,5 +1,6 @@
 package msgroup.gleaningplanner.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -13,7 +14,7 @@ import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRepository;
-
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
@@ -192,5 +193,27 @@ public class GleanerGroupService {
         registration.setEventApproved(false);
            
         return gleanerGroupRegistrationRepository.save(registration);
+    }
+
+    public List<GleanerGroupTO> getAll() {
+        List <GleanerGroupTO> groups = new ArrayList<GleanerGroupTO>();
+
+        for(GleanerGroup group : gleanerGroupRepository.findAll()){
+            groups.add(new GleanerGroupTO(
+                group.getID(),
+                group.getUsername(),
+                null,
+                group.getGroupName(),
+                group.getRegion(),
+                group.getAddress(),
+                group.getCity(),
+                group.getPostalCode(),
+                group.getDescription(),
+                group.getMissionStatement(),
+                group.getImageURL(),
+                group.getLatitude(),
+                group.getLongitude()
+            ))
+        }
     }
 }
