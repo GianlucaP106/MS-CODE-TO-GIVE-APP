@@ -14,11 +14,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-<<<<<<< HEAD
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
-=======
 import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
->>>>>>> b7abdecffdb84a4b7a8693c57ddf2a6959b2518e
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
@@ -192,6 +189,8 @@ public class VolunteerController {
             ), 
             HttpStatus.OK
         );
+    }
+    
     @PostMapping("/volunteer/comment-event/")
     public  ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
         Comment comment = volunteerService.postCommentEvent(
