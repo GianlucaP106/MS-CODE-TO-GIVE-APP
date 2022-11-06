@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
-import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

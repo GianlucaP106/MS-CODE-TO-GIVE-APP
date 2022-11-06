@@ -81,7 +81,7 @@ public class FarmController {
         }
 
         FarmFIlters out = new FarmFIlters();
-        out.farms = farmTO_list;
+        out.farm = farmTO_list;
 
         return new ResponseEntity<FarmFIlters>(out , HttpStatus.OK);
     }

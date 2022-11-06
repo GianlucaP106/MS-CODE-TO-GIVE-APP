@@ -4,9 +4,9 @@ import java.util.List;
 
 public class OrganizationFilterTO {
     
-    public List<OrganizationTO> organizations;
+    public List<OrganizationTO> organization;
 
     public OrganizationFilterTO(List<OrganizationTO> organizations) {
-        this.organizations = organizations;
+        this.organization = organizations;
     }
 }
