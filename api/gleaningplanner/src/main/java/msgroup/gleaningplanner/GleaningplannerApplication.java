@@ -41,20 +41,6 @@ public class GleaningplannerApplication {
 	}
 
 	public void makeOrganization(){
-		organizationService.createOrganization(
-			"org1",
-			"org1", 
-			"Fruit et Rangs a partager", 
-			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement", 
-			"dédiée à l'environnement", 
-			"image", 
-			"", 
-			"Sherbrooke", 
-			"", 
-			100,
-			"", 
-			"4185626734"
-		);
 	}
 
 	public void makeVolunteers(){

@@ -263,7 +263,8 @@ public class OrganizationService {
                 organization.getWebsiteLink(),
                 organization.getLatitude(),
                 organization.getLatitude(),
-                organization.getParticipatedEvent()
+                organization.getParticipatedEvent(),
+                organization.getPhoneNumber()
             ));
         }
         return organizations;
