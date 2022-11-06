@@ -3,7 +3,7 @@ package msgroup.gleaningplanner.controller.TransferObject;
 public class OrganizationTO {
     public Integer ID;
     public String username;
-    public String orgName;
+    public String name;
     public String description;
     public String missionStatement;
     public String imageURL;
@@ -25,7 +25,7 @@ public class OrganizationTO {
             String websiteLink, Double latitude, Double longitude, Integer participateEvent, String phoneNumber) {
         this.ID = id;
         this.username = username;
-        this.orgName = orgName;
+        this.name = orgName;
         this.description = description;
         this.missionStatement = missionStatement;
         this.imageURL = imageURL;

@@ -38,7 +38,7 @@ public class EventController {
         Date date = formatter1.parse(incoming.date);
 
         Event newEvent = eventService.createEvent(
-            incoming.eventName,
+            incoming.name,
             incoming.neededGleaners,
             incoming.maxGleaners,
             incoming.description, 
@@ -88,7 +88,7 @@ public class EventController {
         Set<Event> filteredEvents = this.eventService.filterEvents(
             incoming.ID,
             incoming.farmId,
-            incoming.eventName,
+            incoming.name,
             incoming.neededGleaners,
             incoming.description,
             incoming.isUrgent,
