@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.model.Event;
+import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
@@ -25,15 +27,18 @@ public class ProducerService {
     private ProducerRepository producerRepository;    
     private LocationService locationService;
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
+    private EventRepository eventRepository;
 
     public ProducerService(
         ProducerRepository producerRepository, 
         LocationService locationService,
-        VolunteerRegistrationRepository volunteerRegistrationRepository
+        VolunteerRegistrationRepository volunteerRegistrationRepository,
+        EventRepository eventRepository
     ) {
         this.locationService = locationService;
         this.producerRepository = producerRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
+        this.eventRepository = eventRepository;
     }
 
     public Producer createProducer(String firstName,
@@ -176,4 +181,22 @@ public class ProducerService {
         }
         return accepted;
     }
+
+    // public Produce addProduceToEvent(
+    //     int eventID, 
+    //     String produceType, 
+    //     double amount
+    // ) {
+    //     Produce produce = new Produce();
+    //     produce.setEvent(eventRepository.findEventByID(eventID));
+
+    //     CropType type;
+    //     for (CropType crop : CropType.values()) {
+    //         if (crop.toString().equals(produceType)) {
+    //             type = crop;
+    //             break;
+    //         }
+    //     }
+    //     // produce.setProduceType(type);
+    // }
 }

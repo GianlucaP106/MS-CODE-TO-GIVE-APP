@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
+import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.repository.ProducerRepository;
