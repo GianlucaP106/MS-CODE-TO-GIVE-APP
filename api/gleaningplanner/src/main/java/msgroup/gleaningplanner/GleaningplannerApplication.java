@@ -597,4 +597,46 @@ public class GleaningplannerApplication {
 		);
 	}
 	
+	public void registerOrganizations(){
+		organizationService.registerToEvent(
+			1, 
+			1
+		);
+		organizationService.registerToEvent(
+			2, 
+			2
+		);
+		organizationService.registerToEvent(
+			3, 
+			2
+		);
+		organizationService.registerToEvent(
+			3, 
+			3
+		);
+		organizationService.registerToEvent(
+			4, 
+			4
+		);
+		organizationService.registerToEvent(
+			5,
+			6
+		);
+		organizationService.registerToEvent(
+			6,
+			6
+		);
+		organizationService.registerToEvent(
+			5,
+			7
+		);
+		organizationService.registerToEvent(
+			4,
+			12
+		);
+		organizationService.registerToEvent(
+			3,
+			9
+		);
+	}
 }
