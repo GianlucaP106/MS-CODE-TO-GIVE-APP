@@ -136,7 +136,7 @@ public class GleanerGroupController {
         return new ResponseEntity<GleanerGroupFilterTO>(new GleanerGroupFilterTO(gleanergroupsTOs), HttpStatus.OK);
     }
 
-    @PostMapping("/gleaner-group/eventRegister")
+    @PostMapping("/gleaner-group/event-register")
     public ResponseEntity<GleanerGroupRegistrationTO> eventRegister(@RequestBody GleanerGroupRegistrationRequest incoming){
         GleanerGroupRegistration registration =  gleanergroupService.registerToEvent(
             incoming.eventID,

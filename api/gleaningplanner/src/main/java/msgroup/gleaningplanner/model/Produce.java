@@ -59,6 +59,7 @@ public class Produce {
     public void setOrganizationRegistration(OrganizationRegistration organizationRegistration) {
         this.organizationRegistration = organizationRegistration;
     }
+
     public enum CropType {
         Alfalfa,
         Lentils,
