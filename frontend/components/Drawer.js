@@ -12,7 +12,6 @@ import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
 import axios from "axios";
-import { EventManager } from "@mui/x-data-grid/utils/EventManager";
 
 const drawerWidth = 300;
 
@@ -146,9 +145,14 @@ const top100Films = [
 
 const getAllEventsResponse = await axios.get("http://localhost:8080/event/all");
 
+const getAllEventsByCropResponse = await axios.get(
+  "http://localhost:8080//produce/get-event"
+);
+
 const listOfEvents = getAllEventsResponse.data.events;
 
 export default function PermanentDrawerLeft() {
+  const [searchParameter, setSearchParameter] = useState(false);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
