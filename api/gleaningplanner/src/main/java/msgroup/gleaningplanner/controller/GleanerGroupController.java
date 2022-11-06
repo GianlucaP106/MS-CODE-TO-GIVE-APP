@@ -1,6 +1,9 @@
 package msgroup.gleaningplanner.controller;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -18,8 +21,12 @@ import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
+import msgroup.gleaningplanner.repository.GleanerGroupRepository;
 import msgroup.gleaningplanner.service.GleanerGroupService;
 import msgroup.gleaningplanner.service.LocationService;
+
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 
 @RestController
 public class GleanerGroupController {
@@ -153,4 +160,26 @@ public class GleanerGroupController {
         return new ResponseEntity<GleanerGroupRegistrationTO>(out, HttpStatus.OK);
     }
 
+    @GetMapping("/gleaner-group/all")
+    public List<GleanerGroupTO> getAllGleanerGroups() {
+        return gleanergroupService.getAll();
+    }
+
+    @PostMapping("/gleaner-group/comment-event/")
+    public  ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = gleanergroupService.postCommentEvent(
+            incoming.gleanerGroupID,
+            incoming.eventID,
+            incoming.comment,
+            incoming.authorType
+        );
+
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getGleanerGroup().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+    }
 }

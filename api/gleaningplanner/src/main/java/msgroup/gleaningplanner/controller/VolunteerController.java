@@ -1,16 +1,21 @@
 package msgroup.gleaningplanner.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
 import org.apache.catalina.connector.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
@@ -18,15 +23,43 @@ import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO.RequestVolunteerJoinVolunteerGroup;
 import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.VolunteerRepository;
 import msgroup.gleaningplanner.service.VolunteerService;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.service.LocationService;
 
 @RestController
 public class VolunteerController {
 
     private VolunteerService volunteerService;
+    private VolunteerRepository volunteerRepository;
 
-    public VolunteerController(VolunteerService volunteerService) {
+    public VolunteerController(VolunteerService volunteerService, VolunteerRepository volunteerRepository) {
         this.volunteerService = volunteerService;
+        this.volunteerRepository = volunteerRepository;
+    }
+
+
+    @GetMapping("/volunteer/all")
+    public List<VolunteerTO> getAllVolunteers(){
+        List<VolunteerTO> volunteers = new ArrayList<VolunteerTO>();
+        for(Volunteer volunteer: volunteerRepository.findAll()){
+            volunteers.add(new VolunteerTO(
+                volunteer.getID(), 
+                volunteer.getUsername(), 
+                volunteer.getFirstName(), 
+                volunteer.getLastName(), 
+                volunteer.getEmail(), 
+                volunteer.getPhoneNumber(),
+                volunteer.getPostalCode(), 
+                volunteer.getAddress(), 
+                volunteer.getCity(), 
+                volunteer.getLatitude(), 
+                volunteer.getLongitude(), 
+                null
+            ));
+        }
+        return volunteers;
     }
  
     @PostMapping("/volunteer/register")
@@ -125,4 +158,55 @@ public class VolunteerController {
 
         return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
     }
+
+    @PostMapping("/volunteer/accept/volunteer")
+    public ResponseEntity<AcceptenceTO> acceptVolunteer(@RequestBody AcceptenceTO incoming) {
+        VolunteerRegistration volunteerRegistration = volunteerService.acceptVolunteer(incoming.getVolunteerID(),incoming.getEventID());
+
+        Volunteer volunteer = volunteerRegistration.getVolunteer();
+
+        List<VolunteerTO> out = Arrays.asList(
+            new VolunteerTO(
+                volunteer.getID(), 
+                volunteer.getUsername(), 
+                volunteer.getFirstName(), 
+                volunteer.getLastName(), 
+                volunteer.getEmail(), 
+                volunteer.getPhoneNumber(), 
+                volunteer.getPostalCode(), 
+                volunteer.getAddress(), 
+                volunteer.getCity(), 
+                volunteer.getLatitude(), 
+                volunteer.getLongitude(), 
+                null
+            ));
+
+        return new ResponseEntity<AcceptenceTO>(
+            new AcceptenceTO(
+                volunteerRegistration.getEvent().getID(),
+                volunteerRegistration.getVolunteerGroupNumber(),
+                out
+            ), 
+            HttpStatus.OK
+        );
+    }
+    
+    @PostMapping("/volunteer/comment-event/")
+    public  ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = volunteerService.postCommentEvent(
+            incoming.volunteerID,
+            incoming.eventID,
+            incoming.comment,
+            incoming.authorType
+        );
+
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getVolunteer().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+    }
 }
+

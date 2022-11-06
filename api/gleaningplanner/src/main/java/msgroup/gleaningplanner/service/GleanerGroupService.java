@@ -1,5 +1,8 @@
 package msgroup.gleaningplanner.service;
 
+import java.sql.Date;
+import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -13,10 +16,14 @@ import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRepository;
-
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 
+import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.model.AuthorType;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.repository.CommentRepository;
 
 @Service
 public class GleanerGroupService {
@@ -24,7 +31,7 @@ public class GleanerGroupService {
     private GleanerGroupRepository gleanerGroupRepository;
     private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
     private EventRepository eventRepository;
-
+    private CommentRepository commentRepository;
     private LocationService locationService;
 
     public GleanerGroupService(GleanerGroupRepository gleanerGroupRepository, LocationService locationService,
@@ -192,5 +199,48 @@ public class GleanerGroupService {
         registration.setEventApproved(false);
            
         return gleanerGroupRegistrationRepository.save(registration);
+    }
+
+    public List<GleanerGroupTO> getAll() {
+        List <GleanerGroupTO> groups = new ArrayList<GleanerGroupTO>();
+
+        for(GleanerGroup group : gleanerGroupRepository.findAll()){
+            groups.add(new GleanerGroupTO(
+                group.getID(),
+                group.getUsername(),
+                null,
+                group.getGroupName(),
+                group.getRegion(),
+                group.getAddress(),
+                group.getCity(),
+                group.getPostalCode(),
+                group.getDescription(),
+                group.getMissionStatement(),
+                group.getImageURL(),
+                group.getLatitude(),
+                group.getLongitude()
+            ));
+        }
+        return groups;
+    }
+    
+    public Comment postCommentEvent(int gleanerGroupID, int eventID, String comment, String authorType){
+        
+        AuthorType type;
+        if (authorType.equals("PRODUCER")) type = AuthorType.PRODUCER;
+        else if (authorType.equals("VOLUNTEER")) type = AuthorType.VOLUNTEER;
+        else if (authorType.equals("GLEANERGROUP")) type = AuthorType.GLEANERGROUP;
+        else type = AuthorType.ORGANIZATION;
+
+        Comment newComment = new Comment();
+        newComment.setAuthorType(type);
+        newComment.setComment(comment);
+
+        newComment.setDate(Date.from(Instant.now()));
+        
+        newComment.setEvent(eventRepository.findEventByID(eventID));
+        newComment.setGleanerGroup(gleanerGroupRepository.findGleanerGroupByID(gleanerGroupID));
+
+        return commentRepository.save(newComment);
     }
 }
