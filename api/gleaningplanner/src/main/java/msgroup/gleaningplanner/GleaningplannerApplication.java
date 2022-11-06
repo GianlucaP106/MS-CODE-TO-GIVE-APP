@@ -46,12 +46,9 @@ public class GleaningplannerApplication {
 			makeOrganization();
 			makeEvents();
 			makeComments();
-
 		};
 	}
 
-
-	
 
 	public void makeOrganization(){
 		organizationService.createOrganization(
@@ -192,7 +189,7 @@ public class GleaningplannerApplication {
 			"Mohammed",
 			"Amimer", 
 			"5141597534",
-			"3532 Bd de la Concorde E",
+			"3532 Concorde E",
 			"H7E2C4",
 			"Laval"
 		);
@@ -333,22 +330,242 @@ public class GleaningplannerApplication {
 
 	public void makeEvents() {
 		eventService.createEvent(
-			"first event", 
+			"national Gleaning Event day ", 
 			10, 
 			15, 
-			"description", 
+			"Gleaning is everyone's passion in these dire times", 
 			false, 
 			1, 
 			Date.from(Instant.now())
 		);
 
 		eventService.createEvent(
-			"second event", 
+			"Gleaning for all", 
 			11, 
 			12, 
-			"description for event 2", 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			1, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
 			false, 
 			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			2, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			3, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			4, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			true, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			5, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"national Gleaning Event day ", 
+			10, 
+			15, 
+			"Gleaning is everyone's passion in these dire times", 
+			false, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning for all", 
+			11, 
+			12, 
+			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
+			true, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Gleaning today.", 
+			11, 
+			12, 
+			"COme help us fetch food for the people who need it the most!! ", 
+			false, 
+			6, 
+			Date.from(Instant.now())
+		);
+
+		eventService.createEvent(
+			"Regional Gleaning Event", 
+			11, 
+			12, 
+			"A regional gleaning event for all", 
+			false, 
+			6, 
 			Date.from(Instant.now())
 		);
 	}
@@ -367,6 +584,5 @@ public class GleaningplannerApplication {
 			"PRODUCER"
 		);
 	}
-
 	
 }
