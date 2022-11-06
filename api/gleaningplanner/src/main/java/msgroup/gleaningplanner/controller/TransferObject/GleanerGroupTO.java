@@ -15,6 +15,8 @@ public class GleanerGroupTO {
     public Double longitude;
     public Double latitude;
 
+    public GleanerGroupTO() {}
+
     public GleanerGroupTO(Integer id, String username, String password, 
         String groupName, String region, String address, String city, 
         String postalCode, String description, String missionStatement, 
@@ -33,5 +35,10 @@ public class GleanerGroupTO {
         this.imageURL = imageURL;
         this.latitude = latitude;
         this.longitude = longitude;
+    }
+
+    public static class signInRequestGleanerGroup{
+        public String username;
+        public String password;
     }
 }

@@ -16,6 +16,7 @@ import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO.signInRequestGleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.service.GleanerGroupService;
@@ -29,6 +30,33 @@ public class GleanerGroupController {
 
     public GleanerGroupController(GleanerGroupService gleanergroupService){
         this.gleanergroupService = gleanergroupService;
+    }
+
+    @PostMapping("/gleaner-group/sign-in")
+    public ResponseEntity<GleanerGroupTO> signIn(@RequestBody signInRequestGleanerGroup incoming){
+        GleanerGroup group = gleanergroupService.verifySignUp(
+            incoming.username, 
+            incoming.password
+        );
+
+        if(group == null) return new ResponseEntity<GleanerGroupTO>(new GleanerGroupTO(), HttpStatus.BAD_REQUEST);
+
+        GleanerGroupTO out = new GleanerGroupTO(
+            group.getID(),
+            group.getUsername(),
+            group.getPassword(), 
+            group.getGroupName(), 
+            group.getRegion(),
+            group.getAddress(),
+            group.getCity(),
+            group.getPostalCode(),
+            group.getDescription(), 
+            group.getMissionStatement(), 
+            group.getImageURL(),
+            group.getLatitude(),
+            group.getLongitude());
+        return new ResponseEntity<GleanerGroupTO>(out, HttpStatus.OK);
+
     }
 
     @PostMapping("/gleaner-group/register")

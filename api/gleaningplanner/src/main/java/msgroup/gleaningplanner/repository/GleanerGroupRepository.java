@@ -22,5 +22,5 @@ public interface GleanerGroupRepository extends CrudRepository<GleanerGroup, Int
 
     public List<GleanerGroup> findAllGleanerGroupByRegion(String region);
 
-    public GleanerGroup findAllGleanerGroupByUsername(String username);
+    public GleanerGroup findGleanerGroupByUsername(String username);
 }
