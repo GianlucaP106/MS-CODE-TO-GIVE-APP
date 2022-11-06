@@ -6,8 +6,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupTO;
+import msgroup.gleaningplanner.controller.TransferObject.GleanerGroupRegistrationTO.GleanerGroupRegistrationRequest;
 import msgroup.gleaningplanner.model.GleanerGroup;
+import msgroup.gleaningplanner.model.GleanerGroupRegistration;
 import msgroup.gleaningplanner.service.GleanerGroupService;
 
 @RestController
@@ -28,6 +31,14 @@ public class GleanerGroupController {
         GleanerGroupTO out = new GleanerGroupTO(newGleanerGroup.getUsername(), newGleanerGroup.getPassword(), newGleanerGroup.getGroupName(), newGleanerGroup.getRegion(), newGleanerGroup.getDescription(), newGleanerGroup.getMissionStatement(), newGleanerGroup.getImageURL());
         return new ResponseEntity<GleanerGroupTO>(out, HttpStatus.OK);
     }
+
+
+    // @PostMapping("/gleaner-group/eventRegister")
+    // public ResponseEntity<GleanerGroupRegistrationTO> eventRegister(@RequestBody GleanerGroupRegistrationRequest incoming){
+    //     GleanerGroupRegistration registration =  gleanergroupService.registerToEvent(incoming);
+
+    // }
+
 }
 
 /*
