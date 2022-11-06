@@ -36,24 +36,97 @@ public class GleaningplannerApplication {
 			makeVolunteers();
 			makeProducers();
 			makeFarms();
-			organizationService.createOrganization(
-				"org1",
-				"password", 
-				"orgname", 
-				"description", 
-				"mission", 
-				"image", 
-				"7749 George street", 
-				"Montreal", 
-				"H8P 1C6", 
-				10.0, 
-				"weblink"
-			);
+			makeOrganization();
 		};
 	}
 
-	public void makeVolunteers(){
+	public void makeOrganization(){
+		organizationService.createOrganization(
+			"org1", 
+			"org1",
+			"Environment Matanie",
+			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
+			"dédiée à l'environnement",
+			null,
+			"Bas-Saint-Laurent",
+			"La Matanie", 
+			null, 
+			150.0, 
+			"https://www.mrcdematane.qc.ca/accueil.html", 
+			"4185626734"	
+		);
+		organizationService.createOrganization(
+			"org2", 
+			"org2",
+			"Environment Matanie",
+			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
+			"dédiée à l'environnement",
+			null,
+			"99-A ",
+			"Rimouski-Neigette", 
+			"G5L1X7", 
+			150.0, 
+			"http://moissonrimouski.org/les-fruits-partages", 
+			"4183186013"	
+		);
+	}
 
+	public void makeVolunteers(){
+		volunteerService.createVolunteer(
+			"Matthew",
+			"Carbal",
+			"Matthew.Carbal@mail.mcgill.ca",
+			"Matt",
+			"Carbal", 
+			"5341654789",
+			"2595 Rue Fleury E",
+			"H2B1L7",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Sadek",
+			"Mahmood",
+			"Sadek.Mahmood@mail.mcgill.ca",
+			"Sadek",
+			"Mahmood", 
+			"7894561231",
+			"1425 Boul Henri-Bourassa E",
+			"H2C1H1",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Jasmine",
+			"Taggat",
+			"Jasmine.Taggat@mail.mcgill.ca",
+			"Jasmine",
+			"Taggat", 
+			"5147831456",
+			"123 Boul des Prairies",
+			"H7N2T6",
+			"Laval"
+		);
+		volunteerService.createVolunteer(
+			"Sadia",
+			"Boudjelal",
+			"Sadia.Boudjelal@mail.mcgill.ca",
+			"Sadia",
+			"Boudjelal", 
+			"5149363855",
+			"7749 George st",
+			"H8P1C6",
+			"Montreal"
+		);
+		volunteerService.createVolunteer(
+			"Mohammed",
+			"Amimer",
+			"Mohammed.Amimer@mail.mcgill.ca",
+			"Mohammed",
+			"Amimer", 
+			"5141597534",
+			"3532 Bd de la Concorde E",
+			"H7E2C4",
+			"Laval"
+		);
 	}
 
 	public void makeProducers(){

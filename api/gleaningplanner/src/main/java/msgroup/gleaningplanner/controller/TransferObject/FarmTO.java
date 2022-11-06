@@ -7,7 +7,7 @@ public class FarmTO {
 
     public static class FarmObjectDTO{
         public int ID;
-        public String farmName;
+        public String name;
         public String address;
         public String postalCode;
         public String city;
@@ -19,7 +19,7 @@ public class FarmTO {
         public FarmObjectDTO(int id, String farmName, String address, String postalCode, String city, double longitude,
                 double latitude, double surfaceArea) {
             this.ID = id;
-            this.farmName = farmName;
+            this.name = name;
             this.address = address;
             this.postalCode = postalCode;
             this.city = city;

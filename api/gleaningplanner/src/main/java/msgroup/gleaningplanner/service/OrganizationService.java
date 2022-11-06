@@ -64,11 +64,12 @@ public class OrganizationService {
         String city, 
         String postalCode,
         Double maxDistance, 
-        String websiteLink) {
+        String websiteLink,
+        String phoneNumber) {
 
             LocationAPITO location = locationService.transformToLatitudeLongitude(address, postalCode, city).getBody();
 
-            Organization newOrganization= new Organization();
+            Organization newOrganization = new Organization();
             newOrganization.setUsername(username);
             newOrganization.setPassword(password);
             newOrganization.setOrganizationName(orgName);
@@ -84,6 +85,7 @@ public class OrganizationService {
             newOrganization.setCity(city);
             newOrganization.setPostalCode(postalCode);
             newOrganization.setParticipatedEvent(0);
+            newOrganization.setPhoneNumber(phoneNumber);
             
             return organizationRepository.save(newOrganization);
             
@@ -261,7 +263,8 @@ public class OrganizationService {
                 organization.getWebsiteLink(),
                 organization.getLatitude(),
                 organization.getLatitude(),
-                organization.getParticipatedEvent()
+                organization.getParticipatedEvent(),
+                organization.getPhoneNumber()
             ));
         }
         return organizations;

@@ -22,7 +22,7 @@ export default function Profile(props) {
     const out = {
       "ID": data.pid,
     }
-    
+
     let response = null;
     try {
         response = await fetch(`http://localhost:8080/${data.type}/get-by-filter`, {
@@ -39,15 +39,21 @@ export default function Profile(props) {
 
     let incoming = null;
     if (response) {
-      incoming = response[`${data.type}s`][0];
+      incoming = response[data.type][0];
     }else return;
 
     setPassedData({
-      // ID: incoming.ID,
+      ID: incoming.ID,
       username: incoming.username,
-      // postalCode: incoming.postalCode,
-      // address: incoming.address
-    })
+      postalCode: incoming.postalCode,
+      address: incoming.address,
+      city: incoming.city,
+      firstName: incoming.firstName,
+      lastName: incoming.lastName,
+      email: incoming.email,
+      personType: data.type,
+      name: data.name
+    });
   }
 
 
