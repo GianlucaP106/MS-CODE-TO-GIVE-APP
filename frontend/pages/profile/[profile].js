@@ -8,6 +8,7 @@ export default function Profile(props) {
   
   const [ pageInfo, setPageInfo ] = useState({});
   const [ passedData, setPassedData ] = useState({});
+  const [ commentData, setCommentData ] = useState([]);
   const router = useRouter();
 
   useEffect(() => {
@@ -20,8 +21,9 @@ export default function Profile(props) {
 
   async function getDataFromServer(data) {
     const out = {
-      "ID": data.pid,
+      "ID": data.profile,
     }
+    console.log(out);
 
     let response = null;
     try {
@@ -42,6 +44,20 @@ export default function Profile(props) {
       incoming = response[data.type][0];
     }else return;
 
+    let comments = null;
+    try { 
+      comments = await fetch(`http://localhost:8080/comment/getall`, { 
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      comments = await comments.json();
+      console.log(comments);
+    }catch(e) {
+      console.log(e);
+    }
+    
     setPassedData({
       ID: incoming.ID,
       username: incoming.username,
@@ -54,6 +70,14 @@ export default function Profile(props) {
       personType: data.type,
       name: data.name
     });
+    
+    let incomingComments = null;
+    if (comments) {
+      incomingComments = comments["comments"]; // this is a list of comment objects
+    }else return;
+
+    setCommentData(incomingComments);
+
   }
 
 
@@ -69,7 +93,7 @@ export default function Profile(props) {
   
 
         <main>
-          <ProfilePage info={passedData} /> 
+          <ProfilePage comments={commentData} info={passedData} /> 
         </main>
       </div>
     );
