@@ -68,16 +68,72 @@ public class GleaningplannerApplication {
 		organizationService.createOrganization(
 			"org2", 
 			"org2",
-			"Environment Matanie",
-			"Page de la MRC de La Matanie dédiée à outiller sur la gestion des MR et l'environnement",
-			"dédiée à l'environnement",
+			"Les Fruits Partagés",
+			"Les Fruits Partagés ont pour but d'approvisionner Moisson Rimouski-Neigette en fruits et légumes tout en réduisant le gaspillage alimentaire sur le territoire de la MRC.",
+			"",
 			null,
-			"99-A ",
-			"Rimouski-Neigette", 
+			"99-A rue de l'eveche",
+			"Rimouski", 
 			"G5L1X7", 
 			150.0, 
 			"http://moissonrimouski.org/les-fruits-partages", 
 			"4183186013"	
+		);
+		organizationService.createOrganization(
+			"org3", 
+			"org3",
+			"Artha-Recolte",
+			"",
+			"",
+			null,
+			"747 Pierre-Roux Blv",
+			"Victoriaville", 
+			"G6T1S7", 
+			200.0, 
+			"https://www.artharecolte.com/", 
+			"8193525001"	
+		);
+		organizationService.createOrganization(
+			"org4", 
+			"org4",
+			"Meilleur Apres",
+			"Entreprise d'économie sociale en sécurité alimentaire pour un système alimentaire viable et durable.",
+			"",
+			null,
+			"350 Rie Notre Dame",
+			"Notre-Dame-du-bon-conseil", 
+			"J0C1A0", 
+			200.0, 
+			"https://meilleurapres.ca/", 
+			"8194611303"	
+		);
+		organizationService.createOrganization(
+			"org5", 
+			"org5",
+			"Les Butineurs",
+			"La mission des Butineurs est de récolter et de partager les surplus de fruits et de légumes.",
+			"",
+			null,
+			"255 Rue Collard",
+			"Alma", 
+			"G8B 1M8", 
+			200.0, 
+			"https://lesbutineurs.ca/",
+			"4183196087"	
+		);
+		organizationService.createOrganization(
+			"org6", 
+			"org6",
+			"Champ D'Action - Project collectif en securite alimentaire",
+			"",
+			"",
+			null,
+			"79, Rue Wellington Nord",
+			"Sherbrooke", 
+			"J1H589", 
+			200.0, 
+			"https://www.entreprendresherbrooke.com/",
+			"8195631144"	
 		);
 	}
 
