@@ -146,7 +146,8 @@ public class GleanerGroupController {
         GleanerGroupRegistrationTO out = new GleanerGroupRegistrationTO(
             registration.getID(),
             registration.getGleanerGroup().getID(),
-            registration.getEvent().getID()
+            registration.getEvent().getID(),
+            registration.isEventApproved()
         );
 
         return new ResponseEntity<GleanerGroupRegistrationTO>(out, HttpStatus.OK);

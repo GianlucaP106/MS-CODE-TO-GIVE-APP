@@ -19,6 +19,8 @@ public class GleanerGroupRegistration {
     @OneToOne
     private Event event;
 
+    private boolean eventApproved;
+
     public int getID() {
         return ID;
     }
@@ -41,6 +43,14 @@ public class GleanerGroupRegistration {
 
     public void setEvent(Event event) {
         this.event = event;
+    }
+
+    public boolean isEventApproved() {
+        return eventApproved;
+    }
+
+    public void setEventApproved(boolean eventApproved) {
+        this.eventApproved = eventApproved;
     }
 
     
