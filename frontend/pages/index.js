@@ -14,7 +14,7 @@ import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean"
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
 import { Navbar } from "@themesberg/react-bootstrap";
-export default function Home() {
+export default function Home(props) {
   return (
     <div>
       <Head>

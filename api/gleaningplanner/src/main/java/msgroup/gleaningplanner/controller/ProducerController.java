@@ -253,4 +253,26 @@ public class ProducerController {
 
         return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
     }
+
+    @PostMapping("/producer/get-by-farm")
+    public ResponseEntity<ProducerTO> getProducerByFarm(int id ) {
+        Producer producer = producerService.getProducerByFarm(id);
+        return new ResponseEntity<ProducerTO>(
+            new ProducerTO(
+                producer.getID(),
+                producer.getUsername(),
+                producer.getFirstName(),
+                producer.getLastName(),
+                producer.getEmail(),
+                producer.getPhoneNumber(),
+                null,
+                producer.getCity(),
+                producer.getAddress(),
+                producer.getPostalCode(),
+                producer.getLatitude(),
+                producer.getLongitude()
+            ),
+            HttpStatus.OK
+        );
+    }
 }

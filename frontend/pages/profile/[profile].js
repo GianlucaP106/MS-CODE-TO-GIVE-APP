@@ -109,9 +109,9 @@ export default function Profile(props) {
       lastName: incoming.lastName,
       email: incoming.email,
       personType: data.type,
-      name: data.name,
+      name: incoming.name,
       comments: outComments,
-      rows: outEvents
+      rows: rows
     });
     
 
