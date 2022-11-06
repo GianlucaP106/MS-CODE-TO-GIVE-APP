@@ -32,17 +32,8 @@ public class GleaningplannerApplication {
 	@Bean
 	CommandLineRunner commandLineRunner() {
 		return args -> {
-			Producer prod =	producerService.createProducer(
-				"name",
-				"lastName",
-				"email",
-				"producer",
-				"password", 
-				"123",
-				"635 rue du souchet",
-				"H7A 4G5",
-				"Laval"
-			);
+			makeProducers();
+			makeFarms();
 			Organization newOrganization = organizationService.createOrganization(
 				"org1",
 				"password", 
@@ -55,14 +46,6 @@ public class GleaningplannerApplication {
 				"H8P 1C6", 
 				10.0, 
 				"weblink"
-			);
-			Farm newFarm = farmService.createFarm(
-				prod.getID(),
-				"myfarm",
-				100.0,
-				"Laval",
-				"635 rue du souchet",
-				"H7A 4G5"
 			);
 		};
 	}
@@ -120,32 +103,83 @@ public class GleaningplannerApplication {
 				"Jared.Matthew@mail.mcgill.ca",
 				"Jared",
 				"Matthews", 
-				"",
-				"635 rue du souchet",
-				"H7A 4G5",
-				"Laval"
+				"5149456781",
+				"1400 Maisonneuve Blvd",
+				"H3G1M8",
+				"Montreal"
 			);
 			Producer prod6 =	producerService.createProducer(
-				"name",
-				"lastName",
-				"email",
-				"producer",
-				"password", 
-				"123",
-				"635 rue du souchet",
-				"H7A 4G5",
-				"Laval"
+				"Abderrezak",
+				"Amimer",
+				"Abderrezak.Amimer@HEC.ca",
+				"Abder",
+				"Amimer", 
+				"5144045350",
+				"1070 Shevchenko Blvd",
+				"H8N 1N6",
+				"Montreal"
 			);
 			Producer prod7 =	producerService.createProducer(
-				"name",
-				"lastName",
-				"email",
-				"producer",
-				"password", 
-				"123",
-				"635 rue du souchet",
-				"H7A 4G5",
-				"Laval"
+				"Mohammed",
+				"Achik",
+				"mohamed.achik@gmail.com",
+				"momo",
+				"achik", 
+				"5147891234",
+				"4425 Rue de Bellechasse",
+				"H1T3S1",
+				"Montreal"
 			);
+	}
+
+	public void makeFarms(){
+		Farm newFarm = farmService.createFarm(
+			1,
+			"Quinn Farm",
+			2500.0,
+			"ile-perrot",
+			"2495 Bd Perrot",
+			"J7V8P4"
+		);	
+		Farm newFarm1 = farmService.createFarm(
+			1,
+			"Dassonnion",
+			3780.0,
+			"Longueuil",
+			"555 Boulevard Roland-Therrien",
+			"J4H3V6"
+		);	
+		Farm newFarm2 = farmService.createFarm(
+			2,
+			"Ferme EcoLoko",
+			4591.0,
+			"Brebeuf",
+			"197 Rang des collines",
+			"J0T 1B0"
+		);	
+		Farm newFarm3 = farmService.createFarm(
+			2,
+			"Ferme des Arpents roses",
+			2571.0,
+			"Sainte-Melanie",
+			"1200 Rang St Albert",
+			"J0K3A0"
+		);	
+		Farm newFarm4 = farmService.createFarm(
+			3,
+			"Angelic Poultry farm",
+			2571.0,
+			"Sainte-Melanie",
+			"1200 Rang St Albert",
+			"J0K3A0"
+		);	
+		Farm newFarm5 = farmService.createFarm(
+			3,
+			"Ferme des Arpents roses",
+			2571.0,
+			"Sainte-Melanie",
+			"1200 Rang St Albert",
+			"J0K3A0"
+		);		
 	}
 }
