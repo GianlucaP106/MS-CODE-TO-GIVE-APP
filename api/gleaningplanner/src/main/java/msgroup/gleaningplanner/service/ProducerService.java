@@ -1,5 +1,7 @@
 package msgroup.gleaningplanner.service;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -22,6 +24,10 @@ import msgroup.gleaningplanner.repository.ProduceRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 
+import msgroup.gleaningplanner.model.AuthorType;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.repository.CommentRepository;
+
 @Service
 public class ProducerService {
     
@@ -30,6 +36,7 @@ public class ProducerService {
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private EventRepository eventRepository;
     private ProduceRepository produceRepository;
+    private CommentRepository commentRepository;
 
     public ProducerService(
         ProducerRepository producerRepository, 
@@ -206,5 +213,25 @@ public class ProducerService {
         produce.setCropType(type);
         produce.setAmount(amount);
         return produceRepository.save(produce);
+    }
+
+    public Comment postCommentEvent(int producerID, int eventID, String comment, String authorType){
+        
+        AuthorType type;
+        if (authorType.equals("PRODUCER")) type = AuthorType.PRODUCER;
+        else if (authorType.equals("VOLUNTEER")) type = AuthorType.VOLUNTEER;
+        else if (authorType.equals("GLEANERGROUP")) type = AuthorType.GLEANERGROUP;
+        else type = AuthorType.ORGANIZATION;
+
+        Comment newComment = new Comment();
+        newComment.setAuthorType(type);
+        newComment.setComment(comment);
+
+        newComment.setDate(Date.from(Instant.now()));
+        
+        newComment.setEvent(eventRepository.findEventByID(eventID));
+        newComment.setProducer(producerRepository.findProducerByID(producerID));
+        
+        return commentRepository.save(newComment);
     }
 }

@@ -4,6 +4,7 @@ package msgroup.gleaningplanner.controller.TransferObject;
 public class CommentTO {
     public String comment;
     public Integer organizationID;
+    public Integer producerID;
     public Integer volunteerID;
     public Integer eventID;
     public Integer gleanerGroupID;

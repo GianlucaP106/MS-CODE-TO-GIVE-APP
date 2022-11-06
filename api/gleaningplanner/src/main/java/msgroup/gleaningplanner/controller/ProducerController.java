@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
+import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Produce;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.Volunteer;
@@ -22,6 +23,9 @@ import msgroup.gleaningplanner.service.ProducerService;
 import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
+
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 
 @RestController
 public class ProducerController {
@@ -192,4 +196,21 @@ public class ProducerController {
         return producers;
     }
 
+    @PostMapping("/producer/comment-event/")
+    public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = producerService.postCommentEvent(
+            incoming.producerID,
+            incoming.eventID,
+            incoming.comment,
+            incoming.authorType
+        );
+
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getProducer().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+    }
 }

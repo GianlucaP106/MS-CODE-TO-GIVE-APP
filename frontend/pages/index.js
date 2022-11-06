@@ -10,7 +10,7 @@ import FarmerLeaderboard from '../components/Leaderboards/FarmerLeaderboard'
 import ProfilePage from '../components/Profiles/ProfilePage'
 import PrimarySearchAppBar from '../components/Layout/PrimarySearchAppBar'
 import PageVisitsTable from '../components/Tables/PageVisitsTable'
-
+import Hero from '../components/HomeSections/Hero'
 
 export default function Home() {
   return (
@@ -23,8 +23,9 @@ export default function Home() {
       </Head>
 
       <main>
-        <PrimarySearchAppBar/>
-        <ProfilePage />
+        <Hero />
+        {/* <PrimarySearchAppBar/>
+        <ProfilePage /> */}
       </main>
     </div>
   )
