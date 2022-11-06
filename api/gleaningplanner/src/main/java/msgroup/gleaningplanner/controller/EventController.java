@@ -2,6 +2,7 @@ package msgroup.gleaningplanner.controller;
 
 import java.util.Date;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +33,10 @@ public class EventController {
     }
 
     @PostMapping("/event/create")
-    public ResponseEntity<EventTO> createEvent(@RequestBody EventTO incoming) {
+    public ResponseEntity<EventTO> createEvent(@RequestBody EventTO incoming) throws ParseException {
+        SimpleDateFormat formatter1 = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = formatter1.parse(incoming.date);
+
         Event newEvent = eventService.createEvent(
             incoming.eventName,
             incoming.neededGleaners,
@@ -40,7 +44,7 @@ public class EventController {
             incoming.description, 
             incoming.isUrgent,
             incoming.farmId,
-            Date.valueOf(incoming.date)
+            date
         );
 
         if (newEvent != null) {
