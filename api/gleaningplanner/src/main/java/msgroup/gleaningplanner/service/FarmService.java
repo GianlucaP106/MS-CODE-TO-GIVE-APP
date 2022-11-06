@@ -28,20 +28,25 @@ public class FarmService {
         this.locationService = locationService;
     }
 
-    public Farm createFarm(FarmTO incoming) {
-        Producer producer = producerRepository.findProducerByID(incoming.producerID);
+    public Farm createFarm(
+    
+        Integer producerID,
+        String farmName,
+        Double surfaceArea,
+        String city,
+        String address,
+        String postalCode
+    ) {
+        Producer producer = producerRepository.findProducerByID(producerID);
         if(producer == null) return null;
-
-        FarmObjectDTO incomingFarm = incoming.farm;
-        if(incomingFarm == null) return null;
 
         Farm newFarm = new Farm();
         newFarm.setProducer(producer);
-        newFarm.setFarmName(incomingFarm.farmName);
-        newFarm.setSurfaceArea(incomingFarm.surfaceArea);
-        newFarm.setCity(incomingFarm.city);
-        newFarm.setAddress(incomingFarm.address);
-        newFarm.setPostalCode(incomingFarm.postalCode);
+        newFarm.setFarmName(farmName);
+        newFarm.setSurfaceArea(surfaceArea);
+        newFarm.setCity(city);
+        newFarm.setAddress(address);
+        newFarm.setPostalCode(postalCode);
 
         LocationAPITO location = locationService.transformToLatitudeLongitude(newFarm.getAddress(), newFarm.getPostalCode(), newFarm.getCity()).getBody();
     

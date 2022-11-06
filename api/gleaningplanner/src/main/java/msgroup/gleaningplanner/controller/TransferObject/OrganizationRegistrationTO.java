@@ -13,4 +13,9 @@ public class OrganizationRegistrationTO {
         this.organization = organization;
         this.event = event;
     }
+
+    public static class OrganizationRegistrationRequest{
+        public Integer organizationID;
+        public Integer eventID;
+   }
 }

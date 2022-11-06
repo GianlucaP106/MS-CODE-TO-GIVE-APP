@@ -33,7 +33,14 @@ public class FarmController {
 
     @PostMapping("/farm/producer-create-farm")
     public ResponseEntity<FarmTO> createFarm(@RequestBody FarmTO incoming){
-        Farm newFarm = farmService.createFarm(incoming);
+        Farm newFarm = farmService.createFarm(
+            incoming.producerID,
+            incoming.farm.farmName,
+            incoming.farm.surfaceArea,
+            incoming.farm.city,
+            incoming.farm.address,
+            incoming.farm.postalCode
+        );
         FarmTO out = new FarmTO(
             newFarm.getProducer().getID(),
             new FarmObjectDTO(newFarm.getID(), newFarm.getFarmName(), newFarm.getAddress(), newFarm.getPostalCode(), newFarm.getCity(), newFarm.getLongitude(), newFarm.getLatitude(), newFarm.getSurfaceArea())

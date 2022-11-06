@@ -1,5 +1,7 @@
 package msgroup.gleaningplanner.service;
 
+import java.sql.Date;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -11,20 +13,35 @@ import javax.tools.DocumentationTool.Location;
 import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.controller.TransferObject.LocationAPITO;
+import msgroup.gleaningplanner.model.AuthorType;
+import msgroup.gleaningplanner.model.Comment;
+import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
+import msgroup.gleaningplanner.repository.CommentRepository;
+import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.OrganizationRegistrationRepository;
 import msgroup.gleaningplanner.repository.OrganizationRepository;
 
 @Service
 public class OrganizationService {
 
     private OrganizationRepository organizationRepository;
-
     private LocationService locationService;
+    private EventRepository eventRepository;
+    private CommentRepository commentRepository;
+    private OrganizationRegistrationRepository organizationRegistrationRepository;
 
-    public OrganizationService(OrganizationRepository organizationRepository, LocationService locationService) {
+    public OrganizationService(
+        OrganizationRepository organizationRepository, 
+        LocationService locationService, 
+        EventRepository eventRepository,
+        CommentRepository commentRepository
+    ) {
         this.organizationRepository = organizationRepository;
         this.locationService = locationService;
+        this.eventRepository = eventRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Organization createOrganization(
@@ -174,7 +191,38 @@ public class OrganizationService {
         return organizationRepository.save(newOrganization);
     }
 
-    public OrganizationRegistration registerEvent() {
-        return new OrganizationRegistration();
+    public OrganizationRegistration registerToEvent(
+        Integer eventId,
+        Integer organizationId
+    ) {
+        Organization organization = organizationRepository.findOrganizationByID(organizationId);
+        Event event = eventRepository.findEventByID(eventId);
+
+        OrganizationRegistration registration = new OrganizationRegistration();
+        registration.setEvent(event);
+        registration.setOrganization(organization);
+
+        return organizationRegistrationRepository.save(registration);
+    }
+
+    public Comment postCommentEvent(String comment, String authorType, int organizationID, int eventID) {
+        
+        AuthorType type;
+        if (authorType.equals("PRODUCER")) type = AuthorType.PRODUCER;
+        else if (authorType.equals("VOLUNTEER")) type = AuthorType.VOLUNTEER;
+        else if (authorType.equals("GLEANERGROUP")) type = AuthorType.GLEANERGROUP;
+        else type = AuthorType.ORGANIZATION;
+    
+        Comment newComment = new Comment();
+        newComment.setAuthorType(type);
+        newComment.setComment(comment);
+        
+        newComment.setDate(Date.from(Instant.now()));
+        
+        newComment.setEvent(eventRepository.findEventByID(eventID));
+        newComment.setOrganization(organizationRepository.findOrganizationByID(organizationID));
+
+        return commentRepository.save(newComment);
+        
     }
 }

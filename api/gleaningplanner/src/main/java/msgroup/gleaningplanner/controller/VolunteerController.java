@@ -29,7 +29,17 @@ public class VolunteerController {
  
     @PostMapping("/volunteer/register")
     public ResponseEntity<VolunteerTO> createVolunteer(@RequestBody VolunteerTO incoming) {
-        Volunteer newVolunteer = volunteerService.createVolunteer(incoming.firstName, incoming.lastName, incoming.email,incoming.username,incoming.password,incoming.phoneNumber,incoming.address,incoming.postalCode, incoming.city);
+        Volunteer newVolunteer = volunteerService.createVolunteer(
+            incoming.firstName, 
+            incoming.lastName, 
+            incoming.email,
+            incoming.username,
+            incoming.password,
+            incoming.phoneNumber,
+            incoming.address,
+            incoming.postalCode, 
+            incoming.city
+        );
         VolunteerTO out = new VolunteerTO(
             newVolunteer.getID(), 
             newVolunteer.getUsername(), 
@@ -49,7 +59,6 @@ public class VolunteerController {
 
     @PostMapping("/volunteer/get-by-filter")
     public ResponseEntity<VolunteerFilterTO> getVolunteerByFilter(@RequestBody VolunteerTO incoming) {
-        
         Set<Volunteer> filteredVolunteers = this.volunteerService.filterVolunteers(
             incoming.ID,
             incoming.username,
@@ -61,8 +70,7 @@ public class VolunteerController {
             incoming.address,
             incoming.city,
             incoming.password
-            );
-
+        );
         List<VolunteerTO> volunteerTOs = new ArrayList<VolunteerTO>();
         for (Volunteer volunteer : filteredVolunteers) {
             if (volunteer != null) {
@@ -88,7 +96,7 @@ public class VolunteerController {
     }
 
 
-    @PostMapping("/volunteer/eventRegister")
+    @PostMapping("/volunteer/event-register")
     public ResponseEntity<VolunteerRegistrationTO> registerToEvent(@RequestBody RegistrationRequest incoming){
         VolunteerRegistration volunteerRegistration = volunteerService.registerToEvent(incoming);
 
