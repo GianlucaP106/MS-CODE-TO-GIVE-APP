@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.EventFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.EventTO;
+import msgroup.gleaningplanner.controller.TransferObject.UserTypeTO;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.service.EventService;
@@ -119,6 +120,29 @@ public class EventController {
         }
         
         return new ResponseEntity<EventFilterTO>(new EventFilterTO(eventTOs), HttpStatus.OK);
+    }
+
+    @PostMapping("/event/get-event-by-user")
+    public ResponseEntity<EventFilterTO> getEventByUser(@RequestBody UserTypeTO userType) {
+        List<Event> events = eventService.getEventByUser(userType.getID(), userType.getUserType());
+        List<EventTO> eventTOs = new ArrayList<>();
+        for (Event event : events) {
+            eventTOs.add(new EventTO(
+                event.getID(),
+                event.getFarm().getID(),
+                event.getEventName(),
+                event.getRequiredGleaners(),
+                event.getMaxGleaners(),
+                event.getDescription(),
+                event.isUrgent(),
+                event.getDate().toString()
+            ));
+        }
+        return new ResponseEntity<EventFilterTO>(
+            new EventFilterTO(eventTOs),
+            HttpStatus.OK
+        );
+
     }
 
 }

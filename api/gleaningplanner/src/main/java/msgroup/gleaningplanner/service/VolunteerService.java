@@ -31,13 +31,19 @@ public class VolunteerService {
     private EventRepository eventRepository;
     private CommentRepository commentRepository;
 
-    public VolunteerService(VolunteerRepository volunteerRepository, LocationService locationService, 
-                            EventRepository eventRepository, VolunteerRegistrationRepository volunteerRegistrationRepository) {
+    public VolunteerService(
+        VolunteerRepository volunteerRepository, 
+        LocationService locationService, 
+        EventRepository eventRepository, 
+        VolunteerRegistrationRepository volunteerRegistrationRepository,
+        CommentRepository commentRepository
+    ) {
 
         this.volunteerRepository = volunteerRepository;
         this.locationService = locationService;
         this.eventRepository = eventRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Volunteer createVolunteer(String firstName, 

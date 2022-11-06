@@ -3,6 +3,7 @@ package msgroup.gleaningplanner.service;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -13,18 +14,41 @@ import org.springframework.stereotype.Service;
 
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Farm;
+import msgroup.gleaningplanner.model.GleanerGroupRegistration;
+import msgroup.gleaningplanner.model.OrganizationRegistration;
+import msgroup.gleaningplanner.model.User;
+import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.FarmRepository;
+import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
+import msgroup.gleaningplanner.repository.OrganizationRegistrationRepository;
+import msgroup.gleaningplanner.repository.ProducerRepository;
+import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 
 @Service
 public class EventService {
     
     private EventRepository eventRepository;
     private FarmRepository farmRepository;
+    private ProducerRepository producerRepository;
+    private VolunteerRegistrationRepository volunteerRegistrationRepository;
+    private OrganizationRegistrationRepository organizationRegistrationRepository;
+    private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
 
-    public EventService(EventRepository eventRepository, FarmRepository farmRepository) {
+    public EventService(
+        EventRepository eventRepository, 
+        FarmRepository farmRepository,
+        ProducerRepository producerRepository,
+        VolunteerRegistrationRepository volunteerRegistrationRepository,
+        OrganizationRegistrationRepository organizationRegistrationRepository,
+        GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository
+    ) {
         this.eventRepository = eventRepository;
         this.farmRepository = farmRepository;
+        this.producerRepository = producerRepository;
+        this.volunteerRegistrationRepository = volunteerRegistrationRepository;
+        this.organizationRegistrationRepository = organizationRegistrationRepository;
+        this.gleanerGroupRegistrationRepository = gleanerGroupRegistrationRepository;
     }
 
     public Event createEvent(
@@ -93,5 +117,46 @@ public class EventService {
         }
 
         return filtered;
+    }
+
+    public List<Event> getEventByUser(int id, String userType) {
+        List<Event> events = new ArrayList<Event>();
+
+        for (Event event : eventRepository.findAll()) {
+
+            if (userType.equals("producer")) {
+
+                if (event.getFarm().getProducer().getID() == id) {
+                    events.add(event);
+                }
+
+            }else if (userType.equals("volunteer")) {
+
+                for (VolunteerRegistration reg : volunteerRegistrationRepository
+                    .findAllVolunteerRegistrationByEvent(event)) {
+                        if (reg.getVolunteer().getID() == id) {
+                            events.add(event);
+                        }
+                }
+
+            }else if (userType.equals("organization")) {
+
+                for (OrganizationRegistration reg : organizationRegistrationRepository
+                    .findAllOrganizationRegistrationByEvent(event)) {
+                        if (reg.getOrganization().getID() == id) {
+                            events.add(event);
+                        }
+                }
+            }else {
+
+                for (GleanerGroupRegistration reg : gleanerGroupRegistrationRepository.findAll()) {
+                    if (reg.getEvent().equals(event) && reg.getGleanerGroup().getID() == id) {
+                        events.add(event);
+                    }
+                }
+            }
+        }
+        return events;
+
     }
 }

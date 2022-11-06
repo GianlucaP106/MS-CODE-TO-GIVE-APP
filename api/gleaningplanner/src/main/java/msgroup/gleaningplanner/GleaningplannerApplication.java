@@ -723,6 +723,11 @@ public class GleaningplannerApplication {
 			"fourth comment",
 			"VOLUNTEER"
 		);
+		volunteerService.postCommentEvent(1, 
+			1, 
+			"volunteer comment", 
+			"VOLUNTEER"
+		);
 	}
 	
 	public void registerOrganizations() throws InterruptedException{
