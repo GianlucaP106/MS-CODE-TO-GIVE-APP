@@ -22,6 +22,7 @@ public class Volunteer extends User{
     private String phoneNumber;
 
     
+    private Integer participatedEvent;
 
     public Volunteer() {
         super();
@@ -63,5 +64,15 @@ public class Volunteer extends User{
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Integer getParticipatedEvent() {
+        return participatedEvent;
+    }
+
+    public void setParticipatedEvent(Integer participatedEvent) {
+        this.participatedEvent = participatedEvent;
     }    
+
+    
 }

@@ -60,7 +60,8 @@ public class VolunteerController {
             vol.getCity(), 
             vol.getLatitude(), 
             vol.getLongitude(), 
-            null
+            null,
+            vol.getParticipatedEvent()
         );
         return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
 
@@ -82,7 +83,8 @@ public class VolunteerController {
                 volunteer.getCity(), 
                 volunteer.getLatitude(), 
                 volunteer.getLongitude(), 
-                null
+                null,
+                volunteer.getParticipatedEvent()
             ));
         }
         return volunteers;
@@ -113,7 +115,8 @@ public class VolunteerController {
             newVolunteer.getCity(), 
             newVolunteer.getLatitude(), 
             newVolunteer.getLongitude(), 
-            null
+            null,
+            newVolunteer.getParticipatedEvent()
         );
         return new ResponseEntity<VolunteerTO>(out, HttpStatus.OK);
     }
@@ -147,7 +150,8 @@ public class VolunteerController {
                     volunteer.getCity(),
                     volunteer.getLatitude(),
                     volunteer.getLongitude(),
-                    null
+                    null,
+                    volunteer.getParticipatedEvent()
                 );
 
                 volunteerTOs.add(to);
@@ -204,7 +208,8 @@ public class VolunteerController {
                 volunteer.getCity(), 
                 volunteer.getLatitude(), 
                 volunteer.getLongitude(), 
-                null
+                null,
+                volunteer.getParticipatedEvent()
             ));
 
         return new ResponseEntity<AcceptenceTO>(

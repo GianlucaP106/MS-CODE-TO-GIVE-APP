@@ -17,6 +17,8 @@ public class GleanerGroup extends User{
     private String missionStatement;
     private String imageURL;
     private String region;
+    
+    private Integer participatedEvent;
 
     public GleanerGroup() {
         super();
@@ -76,6 +78,14 @@ public class GleanerGroup extends User{
 
     public void setRegion(String region) {
         this.region = region;
+    }
+
+    public Integer getParticipatedEvent() {
+        return participatedEvent;
+    }
+
+    public void setParticipatedEvent(Integer participatedEvent) {
+        this.participatedEvent = participatedEvent;
     }
 
     

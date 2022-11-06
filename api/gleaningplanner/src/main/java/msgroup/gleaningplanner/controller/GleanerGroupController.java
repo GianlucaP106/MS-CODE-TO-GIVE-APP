@@ -56,7 +56,6 @@ public class GleanerGroupController {
             group.getLatitude(),
             group.getLongitude());
         return new ResponseEntity<GleanerGroupTO>(out, HttpStatus.OK);
-
     }
 
     @PostMapping("/gleaner-group/register")

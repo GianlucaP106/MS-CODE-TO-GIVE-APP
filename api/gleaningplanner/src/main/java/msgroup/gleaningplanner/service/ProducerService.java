@@ -187,8 +187,12 @@ public class ProducerService {
         List<Volunteer> accepted = new ArrayList<Volunteer>();
         for (VolunteerRegistration reg : registrations) {
             if (reg.getEvent().getID() == eventID && reg.isVolunteerGroupAccepted()) {
+                Volunteer vol = reg.getVolunteer();
                 reg.setEventAccepted(true);
                 volunteerRegistrationRepository.save(reg);
+                vol.setParticipatedEvent(
+                    vol.getParticipatedEvent() + 1
+                );
                 accepted.add(reg.getVolunteer());
             }
         }

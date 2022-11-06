@@ -15,6 +15,7 @@ public abstract class User {
     private double latitude;
     private double longitude;
 
+
     public String getUsername() {
         return username;
     }

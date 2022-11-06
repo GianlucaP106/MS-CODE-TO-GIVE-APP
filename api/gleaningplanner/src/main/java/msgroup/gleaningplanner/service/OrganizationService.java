@@ -83,6 +83,7 @@ public class OrganizationService {
             newOrganization.setAddress(address);
             newOrganization.setCity(city);
             newOrganization.setPostalCode(postalCode);
+            newOrganization.setParticipatedEvent(0);
             
             return organizationRepository.save(newOrganization);
             
@@ -204,13 +205,16 @@ public class OrganizationService {
         Integer eventId,
         Integer organizationId
     ) {
-        System.out.println(eventId);
-        System.out.println(organizationId);
-
         Organization organization = organizationRepository.findOrganizationByID(organizationId);
         Event event = eventRepository.findEventByID(eventId);
 
+        // incrementing by 1
+        organization.setParticipatedEvent(
+            organization.getParticipatedEvent() + 1
+        );
+
         OrganizationRegistration registration = new OrganizationRegistration();
+        
         registration.setEvent(event);
         registration.setOrganization(organization);
 
@@ -256,7 +260,8 @@ public class OrganizationService {
                 organization.getMaxDistance(),
                 organization.getWebsiteLink(),
                 organization.getLatitude(),
-                organization.getLatitude()
+                organization.getLatitude(),
+                organization.getParticipatedEvent()
             ));
         }
         return organizations;
