@@ -1,6 +1,7 @@
 package msgroup.gleaningplanner.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import msgroup.gleaningplanner.controller.TransferObject.AcceptenceTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerRegistrationTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
@@ -151,5 +153,37 @@ public class VolunteerController {
         volunteerRegistration.getVolunteerGroupNumber(), volunteerRegistration.isVolunteerGroupAccepted(), volunteerRegistration.isOwner(), volunteerRegistration.isEventAccepted());
 
         return new ResponseEntity<VolunteerRegistrationTO>(out, HttpStatus.OK);
+    }
+
+    @PostMapping("/volunteer/accept/volunteer")
+    public ResponseEntity<AcceptenceTO> acceptVolunteer(@RequestBody AcceptenceTO incoming) {
+        VolunteerRegistration volunteerRegistration = volunteerService.acceptVolunteer(incoming.getVolunteerID(),incoming.getEventID());
+
+        Volunteer volunteer = volunteerRegistration.getVolunteer();
+
+        List<VolunteerTO> out = Arrays.asList(
+            new VolunteerTO(
+                volunteer.getID(), 
+                volunteer.getUsername(), 
+                volunteer.getFirstName(), 
+                volunteer.getLastName(), 
+                volunteer.getEmail(), 
+                volunteer.getPhoneNumber(), 
+                volunteer.getPostalCode(), 
+                volunteer.getAddress(), 
+                volunteer.getCity(), 
+                volunteer.getLatitude(), 
+                volunteer.getLongitude(), 
+                null
+            ));
+
+        return new ResponseEntity<AcceptenceTO>(
+            new AcceptenceTO(
+                volunteerRegistration.getEvent().getID(),
+                volunteerRegistration.getVolunteerGroupNumber(),
+                out
+            ), 
+            HttpStatus.OK
+        );
     }
 }

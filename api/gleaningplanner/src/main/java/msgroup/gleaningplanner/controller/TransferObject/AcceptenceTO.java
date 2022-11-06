@@ -3,35 +3,63 @@ package msgroup.gleaningplanner.controller.TransferObject;
 import java.util.List;
 
 public class AcceptenceTO {
-    public int eventID;
-    public int groupNumber;
+    public Integer eventID;
+    public Integer groupNumber;
+    public Integer volunteerID;
     List<VolunteerTO> volunteers;
 
 
-    public AcceptenceTO(int eventID, int groupNumber, List<VolunteerTO> volunteers) {
+    public AcceptenceTO(
+        int eventID, 
+        int groupNumber, 
+        int volunteerID, 
+        List<VolunteerTO> volunteers
+    ) {
         this.eventID = eventID;
         this.groupNumber = groupNumber;
         this.volunteers = volunteers;
+        this.volunteerID = volunteerID;
     }
 
 
-    public int getEventID() {
+    public AcceptenceTO(
+        Integer eventID, 
+        Integer groupNumber, 
+        List<VolunteerTO> out
+    ) {
+        this.eventID = eventID;
+        this.groupNumber = groupNumber;
+        this.volunteers = out;
+    }
+
+
+    public Integer getEventID() {
         return eventID;
     }
 
 
-    public void setEventID(int eventID) {
+    public void setEventID(Integer eventID) {
         this.eventID = eventID;
     }
 
 
-    public int getGroupNumber() {
+    public Integer getGroupNumber() {
         return groupNumber;
     }
 
 
-    public void setGroupNumber(int groupNumber) {
+    public void setGroupNumber(Integer groupNumber) {
         this.groupNumber = groupNumber;
+    }
+
+
+    public Integer getVolunteerID() {
+        return volunteerID;
+    }
+
+
+    public void setVolunteerID(Integer volunteerID) {
+        this.volunteerID = volunteerID;
     }
 
 
@@ -43,6 +71,7 @@ public class AcceptenceTO {
     public void setVolunteers(List<VolunteerTO> volunteers) {
         this.volunteers = volunteers;
     }
+
 
     
 
