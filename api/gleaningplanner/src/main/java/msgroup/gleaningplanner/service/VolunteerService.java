@@ -2,6 +2,7 @@ package msgroup.gleaningplanner.service;
 
 import java.sql.Date;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -156,8 +157,19 @@ public class VolunteerService {
         Event event = eventRepository.findEventByID(eventID);
 
         VolunteerRegistration registration = volunteerRegistrationRepository.findAllVolunteerRegistrationByEventAndVolunteer(event, volunteer);
-        registration.setVolunteerGroupNumber(groupNumber);
+        List<VolunteerRegistration> regs = volunteerRegistrationRepository.findAllVolunteerRegistrationByVolunteerGroupNumber(groupNumber);
 
+        if(regs != null) {
+            List<VolunteerRegistration> regsEvent = new ArrayList<VolunteerRegistration>();
+            for(VolunteerRegistration reg : regs){
+                if(reg.getEvent().getID() == eventID){
+                    regsEvent.add(reg);
+                }
+            }
+            if(regsEvent.size() == 0 ) registration.setOwner(true);
+        }
+
+        registration.setVolunteerGroupNumber(groupNumber);
         return volunteerRegistrationRepository.save(registration);
     }
 

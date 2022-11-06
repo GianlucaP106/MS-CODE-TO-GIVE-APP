@@ -50,7 +50,28 @@ public class GleaningplannerApplication {
 			registerOrganizations();
 			registerVolunteersToEvents();
 			OrgAddProduceToEventReg();
+			volunteerJoinAndCreateTeam();
 		};
+	}
+
+
+	public void volunteerJoinAndCreateTeam() throws InterruptedException {
+		Thread.sleep(1000);
+		volunteerService.requestJoinGroup(
+			1,
+			3,
+			1
+		);
+		volunteerService.requestJoinGroup(
+			1,
+			4,
+			1
+		);
+		volunteerService.requestJoinGroup(
+			1,
+			5,
+			2
+		);
 	}
 
 	public void OrgAddProduceToEventReg() throws InterruptedException{
@@ -156,6 +177,9 @@ public class GleaningplannerApplication {
 		);
 		volunteerService.registerToEvent(
 			3,1
+		);
+		volunteerService.registerToEvent(
+			3,6
 		);
 
 		//EVENT 4
@@ -311,6 +335,18 @@ public class GleaningplannerApplication {
 			"Mohammed",
 			"Amimer", 
 			"5141597534",
+			"3532 Concorde",
+			"H7E2C4",
+			"Laval"
+		);
+
+		volunteerService.createVolunteer(
+			"Lindsey",
+			"Dorson",
+			"Lindsey.Dorson@mail.mcgill.ca",
+			"Lindsey",
+			"Dorson", 
+			"1597567894",
 			"3532 Concorde",
 			"H7E2C4",
 			"Laval"
