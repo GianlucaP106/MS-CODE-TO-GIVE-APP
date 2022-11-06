@@ -26,7 +26,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "id": "id",
+    "ID": "id",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
@@ -102,7 +102,7 @@
 {
     "events": [
         {
-            "id" : "id",
+            "ID" : "id",
             "eventName": "eventName",
             "description": "description",
             "missionStatement": "missionStatement",
