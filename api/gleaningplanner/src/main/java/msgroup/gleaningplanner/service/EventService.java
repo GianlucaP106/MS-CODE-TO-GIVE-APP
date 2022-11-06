@@ -18,6 +18,7 @@ public class EventService {
 
     public EventService(EventRepository eventRepository, FarmRepository farmRepository) {
         this.eventRepository = eventRepository;
+        this.farmRepository = farmRepository;
     }
 
     public Event createEvent(

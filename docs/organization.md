@@ -71,6 +71,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "organizationID": "organizationID",
     "producerID": "producerID",
     "comment": "comment",
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -84,6 +85,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "organizationID": "organizationID",
     "gleanerID": "gleanerID",
     "comment": "comment",
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -97,6 +99,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "organizationID": "organizationID",
     "eventID": "eventID",
     "comment": "comment",
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -110,6 +113,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "organizationID": "organizationID",
     "gleanerGroupID": "gleanerGroupID",
     "comment": "comment",
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)

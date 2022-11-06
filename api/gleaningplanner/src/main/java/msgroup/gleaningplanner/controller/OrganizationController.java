@@ -145,8 +145,23 @@ public class OrganizationController {
     }
 
 
-//     @PostMapping("/organization/comment-event/")
-//     public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO comment) {
+    @PostMapping("/organization/comment-event/")
+    public ResponseEntity<CommentTO> postCommentEvent(@RequestBody CommentTO incoming) {
+        Comment comment = organizationService.postCommentEvent(
+            incoming.comment,
+            incoming.authorType,
+            incoming.organizationID, 
+            incoming.eventID
+        );
 
-//     }
+        CommentTO out = new CommentTO();
+        out.setAuthorType(comment.getAuthorType().toString());
+        out.setComment(comment.getComment());
+        out.setOrganizationID(comment.getOrganization().getID());
+        out.setEventID(comment.getEvent().getID());
+
+        return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+
+
+    }
 }
