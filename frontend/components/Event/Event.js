@@ -225,6 +225,45 @@ const Event = (props) => {
         )
     }
 
+    const produces = [
+        { id: 1, name: "Apples", amount: 100},
+        { id: 2, name: "Corn", amount: 130},
+        { id: 3, name: "Beats", amount: 155},
+        { id: 4, name: "Strawberries", amount: 25},
+        { id: 5, name: "Peaches", amount: 77},
+    ]
+
+    function CropTable(){
+        return(
+            <div className={`${styles.participants}`}>
+                <div className={`mt-5 ${styles.volWrapper}`}>
+                    <Table className={`table ${styles.table}`}>
+                            <thead className={`${styles.commentHead}`}>
+                                <tr>
+                                    <th scope="col">Produce ID</th>
+                                    <th scope="col">Produce Name</th>
+                                    <th scope="col">Expected Amount for harvest</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    produces.map(produce => {
+                                        return (
+                                            <tr>
+                                                <td>{produce.id}</td>
+                                                <td>{produce.name}</td>
+                                                <td>{produce.amount}</td>
+                                            </tr>
+                                        )
+                                    })
+                                } 
+                            </tbody>
+                        </Table>
+                </div>
+            </div>
+        )
+    }
+
     return (
         eventInfo && 
         (
@@ -238,6 +277,9 @@ const Event = (props) => {
                     </div>
                     <div className={`${styles.participantsWrapper}`}>
                         <PartcipatingVolunteers/>
+                    </div>
+                    <div className={`${styles.participantsWrapper}`}>
+                        <CropTable/>
                     </div>
                 </div>
             </div>
