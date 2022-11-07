@@ -145,7 +145,7 @@ export default function Create(props) {
                                 <YardIcon />
                             </Avatar>
                             <Typography component="h1" variant="h5">
-                                Sign in
+                                Create Event
                             </Typography>
                             <br>
                             </br>
