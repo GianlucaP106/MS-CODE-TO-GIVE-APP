@@ -14,6 +14,8 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
+import SearchBarUsers from '../Search/SearchBarUsers';
+import Button from '@mui/material';
 
 const Search = styled('div')(({ theme }) => ({
     position: 'relative',
@@ -119,23 +121,9 @@ export default function PrimarySearchAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                {/* <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                    <Badge badgeContent={4} color="error">
-                        <MailIcon />
-                    </Badge>
-                </IconButton> */}
                 <p>Home</p>
             </MenuItem>
             <MenuItem>
-                {/* <IconButton
-                    size="large"
-                    aria-label="show 17 new notifications"
-                    color="inherit"
-                >
-                    <Badge badgeContent={17} color="error">
-                        <NotificationsIcon />
-                    </Badge>
-                </IconButton> */}
                 <p>Start Gleaning</p>
             </MenuItem>
 
@@ -143,8 +131,8 @@ export default function PrimarySearchAppBar() {
     );
 
     return (
-        <Box sx={{ flexGrow: 1 }}>
-            <AppBar position="static">
+        <Box sx={{ flexGrow: 1, color:"success.main"}}> 
+            <AppBar position="static" style={{ background: '#2E3B55' }}>
                 <Toolbar>
                     <IconButton
                         size="large"
@@ -158,14 +146,6 @@ export default function PrimarySearchAppBar() {
                     >
                         <MenuIcon />
                     </IconButton>
-                    {/* <Typography
-                        variant="h6"
-                        noWrap
-                        component="div"
-                        sx={{ display: { xs: 'none', sm: 'block' } }}
-                    >
-
-                    </Typography> */}
                     <Search>
                         <SearchIconWrapper>
                             <SearchIcon />
@@ -175,8 +155,9 @@ export default function PrimarySearchAppBar() {
                             inputProps={{ 'aria-label': 'search' }}
                         />
                     </Search>
+                    <SearchBarUsers />
                     <Box sx={{ flexGrow: 1 }} />
-                    <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
+                    <Box sx={{ display: { xs: 'none', md: 'flex' } }} >
 
 
                         <IconButton
@@ -191,16 +172,18 @@ export default function PrimarySearchAppBar() {
                             <AccountCircle />
                         </IconButton>
                     </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                    <Box sx={{ display: { xs: 'flex', md: 'none' } }} >
                         <IconButton
                             size="large"
                             aria-label="show more"
+                            // aria-controls={mobileMenuId}
                             aria-controls={mobileMenuId}
                             aria-haspopup="true"
                             onClick={handleMobileMenuOpen}
                             color="inherit"
-                        >
-                            <MoreIcon />
+                        >   
+                            
+                            <MenuIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>

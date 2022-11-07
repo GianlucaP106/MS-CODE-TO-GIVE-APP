@@ -27,8 +27,9 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <Navibar/>
-        <SignInSide />
+        {/* <Navibar/> */}
+        <PrimarySearchAppBar/>
+        {/* <SignInSide /> */}
         {/* <Event id={2}/> */}
         {/*/!* <Search /> *!/*/}
         {/* <Navbar /> */}
@@ -36,7 +37,6 @@ export default function Home(props) {
         <Hero />
         <WhyGlean />
         <MeetTopVolunteers />
-        {/*<PrimarySearchAppBar/>*/}
         {/*<ProfilePage /> */}
         <Footer />
         {/* <SignInSide /> */}
