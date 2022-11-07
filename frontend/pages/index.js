@@ -12,7 +12,7 @@ import PageVisitsTable from "../components/Tables/PageVisitsTable";
 import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean";
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
-import { Navbar } from "@themesberg/react-bootstrap";
+import Navibar from "../components/NaviBar";
 export default function Home(props) {
   return (
     <div>
@@ -24,13 +24,10 @@ export default function Home(props) {
       </Head>
 
       <main>
-        <Navbar />
-        <Search />
+        <Navibar />
         <Hero />
         <WhyGlean />
         <MeetTopVolunteers />
-        {/* <PrimarySearchAppBar/> */}
-        {/* <ProfilePage /> */}
         <Footer />
       </main>
     </div>

@@ -172,7 +172,7 @@ export default function PermanentDrawerLeft(props) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: data,
+        body: data
       });
       response = await response.json();
     } catch (e) {
@@ -185,27 +185,27 @@ export default function PermanentDrawerLeft(props) {
     } else return;
   }
 
-  const [searchParameter, setSearchParameter] = React.useState("Event");
   const [textFieldInput, setTextFieldInput] = React.useState("");
   const [ event, setEvent ] = React.useState({});
 
-  React.useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
 
-        if (searchParameter == "Crop") {
-          getEventByCropTypeDataFromServer(textFieldInput);
-          console.log(textFieldInput);
-        }
+  const keyDownHandler = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
 
-        // 👇️ call submit function here to display points on map
-        console.log("Events Displayed On Map");
+      if (searchParameter == "Crop") {
+        getEventByCropTypeDataFromServer("apples");
+        console.log(textFieldInput);
       }
-    };
 
+      // 👇️ call submit function here to display points on map
+      console.log("Events Displayed On Map");
+    }
+  }
+
+  React.useEffect(() => {
     document.addEventListener("keydown", keyDownHandler);
-  });
+  }, []);
 
   React.useEffect(() => {
     setEvent(props.display);
