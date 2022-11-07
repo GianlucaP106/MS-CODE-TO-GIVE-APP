@@ -69,7 +69,7 @@ const Event = (props) => {
                     <div className={`${styles.farmName}`}>
                         {eventInfo.farm.farmName}
                     </div>
-                    <hr class="hr hr-blurry" />
+                    <hr className="hr hr-blurry" />
                     <div className="mt-5 text-center">
                         {` address:
                             ${eventInfo.farm.address},   

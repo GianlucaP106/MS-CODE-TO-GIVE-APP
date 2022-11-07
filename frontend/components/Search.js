@@ -9,7 +9,7 @@ import styles from "../styles/components/Search.module.css"
 export default function Search() {
 
   const [ displayEvent, setDisplayEvent ] = useState({});
-  const [queryResult, setQueryResult] = useState([]);
+  const [ queryResult, setQueryResult ] = useState([]);
 
   return (
     <>

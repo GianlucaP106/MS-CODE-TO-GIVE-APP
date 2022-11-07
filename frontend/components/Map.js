@@ -38,9 +38,14 @@ export default function Map(props){
     let toDisplay = []
 
     let querried = await Promise.resolve(queryRes);
-    if (querried.event) {
+    if (querried && querried.event) {
       console.log(querried)
       console.log(eventsCoord)
+
+      if (querried.event.length == 0) {
+        getEventsFromServer()
+        return
+      }
       for (let event of eventsCoord) {
         for (let queryEvent of querried.event){
           if (queryEvent.ID === event.id){
