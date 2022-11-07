@@ -23,7 +23,7 @@ const options = {
 };
 
 export default function Map(props){
-  const {size} = props;
+  const {size, queryRes, setDisplay} = props;
   const [location, setLocation] = useState(center);
   const [zoom, setZoom] = useState(10);
   const [ eventsCoord, setEventsCoord ] = useState([]);
@@ -36,6 +36,10 @@ export default function Map(props){
     { lat: 39.5019, lng: -73.5674  },
     { lat: 45.5019, lng: -80.5674  }
   ]
+
+  React.useEffect(() => {
+    setEventsCoord(eventsCoord)
+  }, [queryRes])
 
   React.useEffect(() => {
     navigator.geolocation
@@ -77,7 +81,7 @@ export default function Map(props){
     setEventsCoord(marks);
   } 
   function handleMarkerClick(eventData) {
-    props.setDisplay(eventData)
+    setDisplay(eventData)
   }
     
     return(

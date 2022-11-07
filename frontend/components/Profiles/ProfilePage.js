@@ -24,7 +24,7 @@ export default function ProfilePage({ info }) {
     // //   { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
     // // ];
    
-  
+    
 
     // useEffect(() => {
 

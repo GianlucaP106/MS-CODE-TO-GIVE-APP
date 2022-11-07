@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, {useState, useEffect} from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -11,6 +11,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
+
 
 const drawerWidth = 300;
 
@@ -164,6 +165,7 @@ const top100Films = [
     */
 
 export default function PermanentDrawerLeft(props) {
+  const {setQueryRes, display} = props; 
   async function getEventByCropTypeDataFromServer(data) {
     let response = null;
     try {
@@ -181,24 +183,59 @@ export default function PermanentDrawerLeft(props) {
 
     let incoming = null;
     if (response) {
-      incoming = response[`${data.type}s`][0];
-    } else return;
+      console.log(response)
+      return response
+    } else return null;
   }
 
-  const [textFieldInput, setTextFieldInput] = React.useState("");
+  async function getEventByNameFromServer(data) {
+    let response = null;
+    let out = {
+      name : data
+    }
+
+    try {
+      response = await fetch(`http://localhost:8080/event/get-by-filter`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(out)
+      });
+      response = await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+
+    if (response) {
+      console.log(response)
+      return response
+    } else return null;
+  }
+
+  const [textFieldInput, setTextFieldInput] = useState('');
   const [ event, setEvent ] = React.useState({});
 
+  const [searchParameter, setSearchParameter] = React.useState("Event");
+  const [searchDistance, setSearchDistance] = React.useState("");
+  const [calling, setCalling] = useState(false);
 
   const keyDownHandler = (event) => {
     if (event.key === "Enter") {
-      event.preventDefault();
+      let queryResponse;
 
       if (searchParameter == "Crop") {
-        getEventByCropTypeDataFromServer("apples");
+        queryResponse = getEventByCropTypeDataFromServer(textFieldInput);
+        console.log(textFieldInput);
+      }
+
+      if (searchParameter == "Event") {
+        queryResponse = getEventByNameFromServer(textFieldInput);
         console.log(textFieldInput);
       }
 
       // 👇️ call submit function here to display points on map
+      if (queryResponse !== null) setQueryRes(queryResponse);
       console.log("Events Displayed On Map");
     }
   }
@@ -208,8 +245,12 @@ export default function PermanentDrawerLeft(props) {
   }, []);
 
   React.useEffect(() => {
-    setEvent(props.display);
-  }, [props.display])
+    setEvent(display);
+  }, [display]);
+
+  const handleTextValueChange = (e) => {
+    setTextFieldInput(e.target.value)
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -233,7 +274,7 @@ export default function PermanentDrawerLeft(props) {
           options={top100Films.map((event) => event.title)}
           className={styles.searchField}
           renderInput={(params) => (
-            <TextField
+              <TextField
               {...params}
               id="inputField"
               label="Search input"
@@ -241,8 +282,10 @@ export default function PermanentDrawerLeft(props) {
                 ...params.InputProps,
                 type: "search",
               }}
-              onChange={(e) => setTextFieldInput(e.target.value)}
+              value={textFieldInput}
+              onChange={handleTextValueChange}
             />
+              
           )}
         />
         <FormControl className={styles.formControl}>
@@ -271,6 +314,7 @@ export default function PermanentDrawerLeft(props) {
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
+            onChange={(e) => setSearchDistance(e.target.value)}
           >
             <FormControlLabel value="50" control={<Radio />} label="50 km" />
             <FormControlLabel value="100" control={<Radio />} label="100 km" />
