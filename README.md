@@ -16,7 +16,7 @@ The goal of the project is to design a web applicaiton that will faciliate the m
 |Ayomide Ojo|[AyomideOjo](https://github.com/AyomideOjo)|Backend Developer
 |Matthew Cabral|[mattcab2002](https://github.com/mattcab2002)|Frontend Developer
 |Parsa Langari|[PLangari](https://github.com/PLangari)|Frontend Developer
-|Abhijeet Praveen||Frontend Developer
+|Abhijeet Praveen|[abhijeetpraveen](https://github.com/abhijeetpraveen)|Frontend Developer
 |Mahirul Islam|[mahirul101](https://github.com/mahirul101)|Frontend Developer
 |Paul Hansen||Frontend Developer
 
