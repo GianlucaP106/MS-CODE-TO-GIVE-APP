@@ -17,7 +17,7 @@
     "@mui/icons-material": "^5.10.9",
     "@mui/material": "^5.10.12",
     "@mui/x-data-grid": "^5.17.10",
-    "@react-google-maps/api": "^2.13.1",
+    "@react-google-maps/api": "^2.16.0",
     "@themesberg/react-bootstrap": "^1.4.1",
     "browser-polyfill": "^3.20.2",
     "cdbreact": "^1.5.3",

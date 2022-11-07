@@ -10,9 +10,9 @@ public class VolunteerTO {
     public String postalCode;
     public String address;
     public String city;
+    public String password;
     public Double latitude;
     public Double longitude;
-    public String password;
     public Integer participatedEvents;
 
     public VolunteerTO() {}
