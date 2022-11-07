@@ -69,6 +69,10 @@ export default function PrimarySearchAppBar(props) {
         setAnchorEl(event.currentTarget);
     };
 
+    const handleProfileMenuClose  = () => {
+        setAnchorEl(null);
+    }
+
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
@@ -89,7 +93,7 @@ export default function PrimarySearchAppBar(props) {
             anchorEl={anchorEl}
             anchorOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
             }}
             id={menuId}
             keepMounted
@@ -98,6 +102,7 @@ export default function PrimarySearchAppBar(props) {
                 horizontal: 'right',
             }}
             open={isMenuOpen}
+            onClick={handleProfileMenuClose}
         >
             <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
         </Menu>
@@ -115,7 +120,7 @@ export default function PrimarySearchAppBar(props) {
             keepMounted
             transformOrigin={{
                 vertical: 'top',
-                horizontal: 'right',
+                horizontal: 'left',
             }}
             open={isMobileMenuOpen}
             onClose={handleMobileMenuClose}
@@ -180,19 +185,6 @@ export default function PrimarySearchAppBar(props) {
                             color="inherit"
                         >
                             <AccountCircle />
-                        </IconButton>
-                    </Box>
-                    <Box sx={{ display: { xs: 'flex', md: 'none' } }} >
-                        <IconButton
-                            size="large"
-                            aria-label="show more"
-                            // aria-controls={mobileMenuId}
-                            aria-controls={mobileMenuId}
-                            aria-haspopup="true"
-                            onClick={handleMobileMenuOpen}
-                            color="inherit"
-                        >   
-                            <MenuIcon />
                         </IconButton>
                     </Box>
                 </Toolbar>
