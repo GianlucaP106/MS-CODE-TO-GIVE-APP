@@ -156,6 +156,14 @@ const Event = (props) => {
         )
     }
 
+    function PartcipatingVolunteers(){
+        return(
+            <div className={`${styles.volWrapper}`}>
+                
+            </div>
+        )
+    }
+
     return (
         eventInfo &&
         <div className={`${styles.wrapper}`}>
@@ -163,6 +171,7 @@ const Event = (props) => {
                 <EventCard />
                 <RelatedFarm />
                 <RelatedComments />
+                <PartcipatingVolunteers/>
             </div>
         </div>
     )
