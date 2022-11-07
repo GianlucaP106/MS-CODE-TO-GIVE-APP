@@ -60,7 +60,7 @@ export default function SignInSide() {
 
                 userInfo = await userInfo.json();
                 setUserInformation(userInfo);
-                console.log(userInformation);
+                window.location.href = "http://localhost:3000/HomePage";
         }
 
         if (account === "Organization") {

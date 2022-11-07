@@ -6,11 +6,12 @@ import { useState } from "react";
 export default function Search() {
 
   const [ displayEvent, setDisplayEvent ] = useState({});
+  const [queryResult, setQueryResult] = useState([]);
 
   return (
     <>
-      <Drawer display={displayEvent} />
-      <Map setDisplay={setDisplayEvent} size={{ width: "100%", height: "788px" }} />
+      <Drawer setQueryRes={setQueryResult} display={displayEvent} />
+      <Map setDisplay={setDisplayEvent} queryRes={queryResult} size={{ width: "100%", height: "788px" }} />
     </>
   );
 }

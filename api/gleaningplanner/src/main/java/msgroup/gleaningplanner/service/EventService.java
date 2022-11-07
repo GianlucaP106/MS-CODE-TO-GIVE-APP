@@ -111,16 +111,23 @@ public class EventService {
         if (date != null) {
             strDate = dateFormat.format(date);
         }
+
+        if (neededGleaners == null) neededGleaners = 0;
+        
         
         String nGleaners = null;
         String urgent = null;
         String mGleaners = null;
-        if (neededGleaners != null) nGleaners = Integer.toString(neededGleaners);
+        if (neededGleaners != null && neededGleaners > 0) nGleaners = Integer.toString(neededGleaners);
         if (isUrgent != null) urgent =  Boolean.toString(isUrgent);
         if (maxGleaners != null) mGleaners = Integer.toString(maxGleaners);
 
 
         List<String> incoming = Arrays.asList(eventName, nGleaners, description, urgent, strDate, mGleaners);
+        for (String str : incoming) {
+            System.out.println(str);
+        }
+
         List<String> eventInfo;
 
         for (Event event : eventRepository.findAll()) {
