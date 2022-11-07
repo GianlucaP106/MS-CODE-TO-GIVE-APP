@@ -34,19 +34,30 @@ export default function Map(props){
   // React.useEffect(() => {
   //   setEventsCoord(queryRes)
   // }, [queryRes])
-
-  React.useEffect(() => {
+  const fun = async (queryRes) => {
     let toDisplay = []
 
-    for (let event of allEvents) {
-      for (let queryEvent of queryRes){
-        if (queryEvent.ID == event.id){
-          toDisplay.push(event)
+    let querried = await Promise.resolve(queryRes);
+    if (querried.event && querried.event.length > 0) {
+      console.log(querried)
+      console.log(eventsCoord)
+      for (let event of eventsCoord) {
+        for (let queryEvent of querried.event){
+          if (queryEvent.ID === event.id){
+            toDisplay.push(event)
+          }
         }
       }
-    }
 
-    setEventsCoord(toDisplay)
+      console.log(toDisplay)
+
+      setEventsCoord(toDisplay)
+    }
+    
+  }
+
+  React.useEffect(() => {
+    fun(queryRes)
   }, [queryRes])
 
   React.useEffect(() => {
