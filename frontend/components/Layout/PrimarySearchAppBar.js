@@ -124,7 +124,7 @@ export default function PrimarySearchAppBar() {
                         <MailIcon />
                     </Badge>
                 </IconButton> */}
-                <p>Messages</p>
+                <p>Home</p>
             </MenuItem>
             <MenuItem>
                 {/* <IconButton
@@ -136,20 +136,9 @@ export default function PrimarySearchAppBar() {
                         <NotificationsIcon />
                     </Badge>
                 </IconButton> */}
-                <p>Notifications</p>
+                <p>Start Gleaning</p>
             </MenuItem>
-            <MenuItem>
-                {/* <IconButton
-                    size="large"
-                    aria-label="account of current user"
-                    aria-controls="primary-search-account-menu"
-                    aria-haspopup="true"
-                    color="inherit"
-                >
-                    <AccountCircle />
-                </IconButton> */}
-                <p>Profile</p>
-            </MenuItem>
+
         </Menu>
     );
 
@@ -188,20 +177,8 @@ export default function PrimarySearchAppBar() {
                     </Search>
                     <Box sx={{ flexGrow: 1 }} />
                     <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-                        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-                            <Badge badgeContent={4} color="error">
-                                <MailIcon />
-                            </Badge>
-                        </IconButton>
-                        <IconButton
-                            size="large"
-                            aria-label="show 17 new notifications"
-                            color="inherit"
-                        >
-                            <Badge badgeContent={17} color="error">
-                                <NotificationsIcon />
-                            </Badge>
-                        </IconButton>
+
+
                         <IconButton
                             size="large"
                             edge="end"
