@@ -83,7 +83,7 @@
 ```JSON
 {
     "volunteerId" : "volunteerId",
-    "eventID" : "eventID",
+    "eventID" : "eventID"
 }
 ```
 #### successful ? status(201) : status(406)
@@ -94,7 +94,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -109,7 +109,7 @@
             "imageURL": "imageURL",
             "address": "address",
             "postalCode": "postalCode",
-            "city": "city",
+            "city": "city"
         }
     ]
 }
@@ -122,7 +122,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -145,7 +145,7 @@
 {
     "volunteerId": "volunteerId",
     "producerId": "producerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -158,7 +158,7 @@
 {
     "volunteerId": "volunteerId",
     "organizationId": "organizationId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -171,7 +171,7 @@
 {
     "volunteerId": "volunteerId",
     "eventId": "eventId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -184,7 +184,7 @@
 {
     "volunteerId": "volunteerId",
     "gleanerGroupId": "gleanerGroupId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -197,7 +197,7 @@
 {
     "gleanerAcceptingId": "gleanerAcceptingId",
     "gleanerRequestingId": "gleanerRequestingId",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -210,7 +210,7 @@
 {
     "volunteerId": "volunteerId",
     "volunteerGroupNumber": "volunteerGroupNumber",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -222,7 +222,7 @@
 ```JSON
 {
     "volunteerId": "volunteerId",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)

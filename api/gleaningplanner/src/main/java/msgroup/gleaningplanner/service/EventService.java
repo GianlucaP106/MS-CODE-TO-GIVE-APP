@@ -248,6 +248,7 @@ public class EventService {
             );
         }
 
+        out.event = event;
         out.producer = producer;        
         out.farm = farm;
         out.organizations = orgs;

@@ -16,7 +16,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
     "postalCode": "postalCode",
     "maxDistance": "maxDistance",
-    "websiteLink": "websiteLink",
+    "websiteLink": "websiteLink"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -37,7 +37,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
     "postalCode": "postalCode",
     "maxDistance": "maxDistance",
-    "websiteLink": "websiteLink",
+    "websiteLink": "websiteLink"
 }
 ```
 ### return 
@@ -55,7 +55,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "city": "city",
             "postalCode": "postalCode",
             "maxDistance": "maxDistance",
-            "websiteLink": "websiteLink",
+            "websiteLink": "websiteLink"
         }
     ]
 }
@@ -135,7 +135,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
     "postalCode": "postalCode",
     "maxDistance": "maxDistance",
-    "websiteLink": "websiteLink",
+    "websiteLink": "websiteLink"
 }
 ```
 #### successful ? status(404) : status(404) // not found
@@ -147,7 +147,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```JSON
 {
     "organizationId" : "organizationId",
-    "eventID" : "eventID",
+    "eventID" : "eventID"
 }
 ```
 #### successful ? status(201) : status(406)
