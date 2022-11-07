@@ -26,17 +26,25 @@ export default function SignUp() {
         console.log({
             email: data.get('email'),
             password: data.get('password'),
+            first_name: data.get('firstName'),
+            last_name: data.get('lastName'),
+            org_group_name: data.get('orgName'),
+            description: data.get('Description'),
+            missionStatement: data.get('Mission Statement'),
+            phoneNumber: data.get('phone'),
+            address: data.get('address'),
+            postalCode: data.get('postal'),
+            city: data.get('City'),
+            username: data.get('username'),
+            maxDistance: data.get('maxDistance'),
+            websiteLink: data.get('websiteLink'),
+            region: data.get('Region'),
+
         });
     }
     const [account, setAccount] = React.useState('');
 
-    const [address, setAddress] = React.useState('');
-
     const [tel, setTel] = React.useState('CA');
-
-    const handleAddressChange = (newValue) => {
-        setAddress(newValue);
-    };
 
     const handleTelChange = (newValue) => {
         setTel(newValue);
@@ -44,8 +52,9 @@ export default function SignUp() {
 
     const handleChange = (event) => {
         setAccount(event.target.value);
+        console.log(account)
+        console.log(typeof account)
     };
-
 
     return (
         <ThemeProvider theme={theme}>
@@ -77,16 +86,55 @@ export default function SignUp() {
                                 label="Account Type"
                                 onChange={handleChange}
                             >
-                                <MenuItem value={1}>Producer</MenuItem>
-                                <MenuItem value={2}>Gleaner</MenuItem>
-                                <MenuItem value={3}>Organization</MenuItem>
-                                <MenuItem value={4}>Gleaning Group</MenuItem>
+                                <MenuItem value={"Producer"}>Producer</MenuItem>
+                                <MenuItem value={"Gleaner"}>Gleaner</MenuItem>
+                                <MenuItem value={"Organization"}>Organization</MenuItem>
+                                <MenuItem value={"Gleaning Group"}>Gleaning Group</MenuItem>
                             </Select>
                         </FormControl>
                     </Box>
                     <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
-                        <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                        <Grid container spacing={2} hidden={account === ''}>
+                            <Grid item xs={12} hidden={account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    autoComplete="given-name"
+                                    name="orgName"
+                                    required
+                                    fullWidth
+                                    id="orgName"
+                                    label="Name"
+                                    autoFocus
+                                />
+                            </Grid>
+                            <Grid item xs={12} hidden={account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    autoComplete="description"
+                                    name="Description"
+                                    required
+                                    fullWidth
+                                    id="Description"
+                                    label="Description"
+                                    autoFocus
+                                    multiline={true}
+                                    minRows={1}
+                                    maxRows={200}
+                                />
+                            </Grid>
+                            <Grid item xs={12} hidden={account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    autoComplete="missionStatement"
+                                    name="Mission Statement"
+                                    required
+                                    fullWidth
+                                    id="MissionStatement"
+                                    label="Mission Statement"
+                                    autoFocus
+                                    multiline={true}
+                                    minRows={1}
+                                    maxRows={200}
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6} hidden={account === "Gleaner Group" || account === "Organization"}>
                                 <TextField
                                     autoComplete="given-name"
                                     name="firstName"
@@ -97,7 +145,7 @@ export default function SignUp() {
                                     autoFocus
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={6} hidden={account === "Gleaner Group" || account === "Organization"}>
                                 <TextField
                                     required
                                     fullWidth
@@ -107,7 +155,7 @@ export default function SignUp() {
                                     autoComplete="family-name"
                                 />
                             </Grid>
-                            <Grid item xs={12}>
+                            <Grid item xs={12} hidden={account === "Gleaner Group" || account === "Organization"}>
                                 <TextField
                                     required
                                     fullWidth
@@ -117,7 +165,7 @@ export default function SignUp() {
                                     autoComplete="email"
                                 />
                             </Grid>
-                            <Grid item xs={12} hidden={false}>
+                            <Grid item xs={12} hidden={account === "Gleaning Group" || account === "Organization"}>
                                 <MuiTelInput
                                     required
                                     fullWidth
@@ -125,7 +173,7 @@ export default function SignUp() {
                                     value={tel}
                                     name="phone"
                                     label="Phone Number"
-                                    id="outlined-basic"
+                                    id="phoneNumber"
                                     autoComplete="Phone Number"
                                     onChange={handleTelChange}
                                 />
@@ -137,8 +185,19 @@ export default function SignUp() {
                                     name="address"
                                     label="Street Address"
                                     type="address"
-                                    id="outlined-basic"
+                                    id="address"
                                     autoComplete="address"
+                                />
+                            </Grid>
+                            <Grid item xs={12} sm={6} hidden={account === "Organization" || account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    autoComplete="region"
+                                    name="Region"
+                                    required
+                                    fullWidth
+                                    id="region"
+                                    label="Region"
+                                    autoFocus
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
@@ -147,7 +206,7 @@ export default function SignUp() {
                                     name="City"
                                     required
                                     fullWidth
-                                    id="firstName"
+                                    id="city"
                                     label="City"
                                     autoFocus
                                 />
@@ -158,7 +217,7 @@ export default function SignUp() {
                                     fullWidth
                                     id="postalCode"
                                     label="Postal Code"
-                                    name="postal code"
+                                    name="postal"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -168,7 +227,7 @@ export default function SignUp() {
                                     name="username"
                                     label="Username"
                                     type="username"
-                                    id="outlined-basic"
+                                    id="username"
                                     autoComplete="username"
                                 />
                             </Grid>
@@ -181,6 +240,37 @@ export default function SignUp() {
                                     type="password"
                                     id="password"
                                     autoComplete="new-password"
+                                />
+                            </Grid>
+                            <Grid
+                                    item xs={12}
+                                    hidden={account === "Gleaner Group" || account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    name="maxDistance"
+                                    required
+                                    fullWidth
+                                    id="maxDistance"
+                                    label="Max Distance"
+                                    autoFocus
+                                    multiline={true}
+                                    minRows={1}
+                                    maxRows={200}
+                                />
+                            </Grid>
+                            <Grid
+                                item xs={12}
+                                hidden={account === "Gleaner Group" || account === "Producer" || account === "Gleaner"}>
+                                <TextField
+                                    autoComplete="websiteLink"
+                                    name="websiteLink"
+                                    required
+                                    fullWidth
+                                    id="websiteLink"
+                                    label="Website Link"
+                                    autoFocus
+                                    multiline={true}
+                                    minRows={1}
+                                    maxRows={200}
                                 />
                             </Grid>
                         </Grid>

@@ -10,11 +10,23 @@ import Grid from '@mui/material/Grid';
 import YardIcon from '@mui/icons-material/Yard';
 import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import FormControl from "@mui/material/FormControl";
+import InputLabel from "@mui/material/InputLabel";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 
 const theme = createTheme();
 
 
 export default function SignInSide() {
+    const [account, setAccount] = React.useState('');
+
+    const handleChange = (event) => {
+        setAccount(event.target.value);
+        console.log(account)
+        console.log(typeof account)
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -58,6 +70,25 @@ export default function SignInSide() {
                         <Typography component="h1" variant="h5">
                             Sign in
                         </Typography>
+                        <br>
+                        </br>
+                        <Box sx={{ minWidth: 120 }}>
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Account Type</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={account}
+                                    label="Account Type"
+                                    onChange={handleChange}
+                                >
+                                    <MenuItem value={"Producer"}>Producer</MenuItem>
+                                    <MenuItem value={"Gleaner"}>Gleaner</MenuItem>
+                                    <MenuItem value={"Organization"}>Organization</MenuItem>
+                                    <MenuItem value={"Gleaning Group"}>Gleaning Group</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Box>
                         <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
