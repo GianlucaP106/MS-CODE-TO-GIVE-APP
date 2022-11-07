@@ -53,7 +53,7 @@ export default function ProfileInfoTable (props) {
     <div className="card-body">
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">{firstKey}</p>
+          <p className="mb-0">First Name:</p>
         </div>
         <div className="col-sm-9">
           <p className="text-muted mb-0">{firstVal}</p>
@@ -62,7 +62,7 @@ export default function ProfileInfoTable (props) {
       <hr/>      
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">{thirdKey}</p>
+          <p className="mb-0">Last Name:</p>
         </div>
         <div className="col-sm-9">
           <p className="text-muted mb-0">{thirdVal}</p>
@@ -71,7 +71,7 @@ export default function ProfileInfoTable (props) {
       <hr/>
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">{secondKey}</p>
+          <p className="mb-0">Email</p>
         </div>
         <div className="col-sm-9">
           <p className="text-muted mb-0">{secondVal}</p>
@@ -80,7 +80,7 @@ export default function ProfileInfoTable (props) {
       <hr/>
       <div className="row">
         <div className="col-sm-3">
-          <p className="mb-0">{fourthKey}</p>
+          <p className="mb-0">Username:</p>
         </div>
         <div className="col-sm-9">
           <p className="text-muted mb-0">{fourthVal}</p>
