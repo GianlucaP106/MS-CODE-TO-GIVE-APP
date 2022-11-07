@@ -1,30 +1,75 @@
 import React from 'react'
-import Leaderboard from './Leaderboard'
+import LeaderboardGleaner from './LeaderboardGleaner'
+import Avatar from "@mui/material/Avatar";
 import styles from '../../styles/components/Leaderboards/GleanerLeadboard.module.css'
+
 
 export default function GleanerLeaderboard() {
 
     const rows = [
-        { id: 1, name: 'Gleaner 1', total: '35', timeSpent: '5'},
-        { id: 2, name: 'Gleaner 2', total: '35', timeSpent: '5'},
-        { id: 3, name: 'Gleaner 3', total: '35', timeSpent: '5'},
-        { id: 4, name: 'Gleaner 4', total: '35', timeSpent: '5'},
+        { id: 1,
+            volunteer: {
+            username: "Harry Potter",
+            avatar:'./Gleaners/Imaginary1.png'
+          }, 
+          total: '412', 
+          timeSpent: '120'},
+        { id: 2,
+            volunteer: {
+            username: "Particia Walton",
+            avatar:'./Gleaners/Imaginary2.png'
+            },
+            total: '350',
+            timeSpent: '108'},
+        { id: 3,
+            volunteer: {
+            username: "Hellen Herman",
+            avatar:'./Gleaners/Imaginary3.png'
+            },
+            total: '342',
+            timeSpent: '106'},
+        { id: 4,
+            volunteer: {
+            username: "David Davis",
+            avatar:'./Gleaners/Imaginary4.png'
+            },
+            total: '267',
+            timeSpent: '98'},
+        { id: 5,
+            volunteer: {
+            username: "Petra Peterson",
+            avatar:'./Gleaners/Imaginary5.png'
+            },
+            total: '258',
+            timeSpent: '98'},
     ];
 
     const columns = [
-        { field: 'name', headerName: 'Gleaner Name', width: 150 },
-        { field: 'total', headerName: 'Harvest Gleaned', width: 150 },
+        {
+            field: "volunteer",
+            headerName: "Gleaner",
+            width: 200,
+            renderCell: (params) => {
+              return (
+                <>
+                  <Avatar src={params.value.avatar} />
+                    <span className={styles.username}>{params.value.username}</span>
+                </>
+              );
+            }
+          },
+        { field: 'total', headerName: 'Amount of crops saved (kg)', width: 150 },
         { field: 'timeSpent', headerName: 'Time Spent Gleaning (Hours)', width: 150 },
         { 
             field: 'average', 
-            headerName: 'Average Harvest Gleaned/Hour', 
+            headerName: 'Gleaning rate (kg/Hour)', 
             width: 150, 
             valueGetter: (params) =>
-            params.row.total/params.row.timeSpent,  
+            Math.round(params.row.total/params.row.timeSpent * 10) / 10,  
         },
     ];
 
     return (
-        <Leaderboard rows={rows} columns={columns} className={styles.leaderboard} />
+        <LeaderboardGleaner rows={rows} columns={columns} className={styles.leaderboard} />
     )
 }
