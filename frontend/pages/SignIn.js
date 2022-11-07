@@ -1,5 +1,6 @@
 import Head from "next/head";
 import SignInSide from "../components/Login";
+import PrimarySearchAppBar from "../components/Layout/PrimarySearchAppBar";
 
 
 import { useEffect } from "react";
@@ -20,6 +21,7 @@ const HomePage = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
+                <PrimarySearchAppBar/>
                 <SignInSide setCredentials={props.setCred}/>
             </main>
         </div>

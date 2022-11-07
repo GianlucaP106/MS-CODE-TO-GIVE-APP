@@ -351,6 +351,13 @@ export default function PermanentDrawerLeft(props) {
           </RadioGroup>
         </FormControl>
         <Divider />
+        <div className={`${styles.buttonWrapper} mt-3 mb-3`}>
+            <a href='/CreateEvent'>
+              <button className="btn btn-primary">
+                !!! Create an event !!!
+              </button>
+            </a>
+        </div>
         <div className={`${styles.eventInfo} text-center mt-5`}>
             <h5 className={`${styles.eventSelected}`}>Event Selected</h5>
             <p>

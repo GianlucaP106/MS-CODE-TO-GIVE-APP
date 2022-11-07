@@ -1,5 +1,6 @@
 import Search from "../components/Search";
 import Head from 'next/head';
+import PrimarySearchAppBar from "../components/Layout/PrimarySearchAppBar";
 
 export default function Home(props) {
     return (

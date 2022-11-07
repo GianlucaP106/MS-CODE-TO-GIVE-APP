@@ -12,8 +12,7 @@ import PageVisitsTable from "../components/Tables/PageVisitsTable";
 import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean";
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
-import SignInSide from "../components/SignUp";
-import SignUp from "../components/SignUp"
+import SignUp from "../components/SignUp";
 import Event from "../components/Event/Event.js";
 import Navibar from "../components/NaviBar";
 
@@ -36,7 +35,8 @@ const HomePage = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <SignInSide setCredentials={props.setCred}/>
+                <PrimarySearchAppBar/>
+                <SignUp setCredentials={props.setCred}/>
             </main>
         </div>
     )
