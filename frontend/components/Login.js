@@ -126,7 +126,7 @@ export default function SignInSide() {
                                 </Select>
                             </FormControl>
                         </Box>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box hidden={account === ""} component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
