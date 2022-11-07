@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { GoogleMap, LoadScript, Marker, Circle } from "@react-google-maps/api";
+import React from "react";
+import { GoogleMap, LoadScript, MarkerF, Bounds } from "@react-google-maps/api";
 
 const center = {
   // Montreal
@@ -13,45 +13,66 @@ const options = {
   strokeWeight: 2,
   fillColor: "#FF0000",
   fillOpacity: 0.35,
-  clickable: false,
+  clickable: true,
   draggable: false,
   editable: false,
   visible: true,
   radius: 30000,
-  zIndex: 1,
+  zIndex: 1
 };
 
-class Map extends Component {
-  state = {
-    location: center,
-    circleOptions: options,
-  };
+export default function Map(props){
+    const mapRef = React.useRef(null)
 
-  componentDidMount() {
-    navigator.geolocation.getCurrentPosition((geoLocation) => {
-      this.setState({
-        location: {
-          lat: geoLocation.coords.latitude,
-          lng: geoLocation.coords.longitude,
-        },
-      });
-    });
-  }
+    const {size} = props;
+    const [location, setLocation] = React.useState(center);
+    const [zoom, setZoom] = React.useState(10);
 
-  render() {
-    return (
-      <LoadScript googleMapsApiKey="">
-        <GoogleMap
-          mapContainerStyle={this.props.size}
-          center={this.state.location}
-          zoom={10}
-        >
-          <Marker position={this.state.location} />
-          <Circle position={this.state.location} options={options} />
-        </GoogleMap>
-      </LoadScript>
-    );
-  }
+    React.useEffect(()=>{
+        navigator.geolocation.getCurrentPosition((geoLocation) => {
+            setLocation({
+              location: {
+                lat: geoLocation.coords.latitude,
+                lng: geoLocation.coords.longitude,
+              },
+            });
+          }
+        );
+
+    }, [])
+
+
+    let markers = [
+      { lat: 45.5019, lng: -73.5674  },
+      { lat: 47.5019, lng: -73.5674  },
+      { lat: 45.5019, lng: -70.5674  },
+      { lat: 39.5019, lng: -73.5674  },
+      { lat: 45.5019, lng: -80.5674  }
+    ]
+
+
+    let bounds = mapRef.current.state.LatLngBounds()
+
+    for (var i = 0; i < markers.length; i++) {
+      bounds.extend(marker[i])
+    }
+
+    mapRef.current.fitBounds(bounds);
+
+    return(
+        <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GMAPS_KEY}>
+            <GoogleMap
+            mapContainerStyle={size}
+            center={location}
+            zoom={zoom}
+            ref={mapRef}
+            >
+            {markers && markers.map((location) => {
+                return (
+                <MarkerF position={location} />
+                )
+            })}
+            </GoogleMap>
+        </LoadScript>
+    )
 }
-
-export default Map;
