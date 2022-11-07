@@ -17,6 +17,7 @@ import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
+import msgroup.gleaningplanner.controller.TransferObject.UserTypeTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO.signInRequestProducer;
 import msgroup.gleaningplanner.model.Comment;
@@ -252,5 +253,27 @@ public class ProducerController {
         out.setEventID(comment.getEvent().getID());
 
         return new ResponseEntity<CommentTO>(out, HttpStatus.OK);
+    }
+
+    @PostMapping("/producer/get-by-farm")
+    public ResponseEntity<ProducerTO> getProducerByFarm(@RequestBody UserTypeTO id ) {
+        Producer producer = producerService.getProducerByFarm(id.getID());
+        return new ResponseEntity<ProducerTO>(
+            new ProducerTO(
+                producer.getID(),
+                producer.getUsername(),
+                producer.getFirstName(),
+                producer.getLastName(),
+                producer.getEmail(),
+                producer.getPhoneNumber(),
+                null,
+                producer.getCity(),
+                producer.getAddress(),
+                producer.getPostalCode(),
+                producer.getLatitude(),
+                producer.getLongitude()
+            ),
+            HttpStatus.OK
+        );
     }
 }

@@ -20,6 +20,7 @@ import msgroup.gleaningplanner.model.Volunteer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
 import msgroup.gleaningplanner.model.Produce.CropType;
 import msgroup.gleaningplanner.repository.EventRepository;
+import msgroup.gleaningplanner.repository.FarmRepository;
 import msgroup.gleaningplanner.repository.ProduceRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
@@ -37,6 +38,7 @@ public class ProducerService {
     private EventRepository eventRepository;
     private ProduceRepository produceRepository;
     private CommentRepository commentRepository;
+    private FarmRepository farmRepository;
 
     public ProducerService(
         ProducerRepository producerRepository, 
@@ -44,7 +46,8 @@ public class ProducerService {
         VolunteerRegistrationRepository volunteerRegistrationRepository,
         EventRepository eventRepository,
         ProduceRepository produceRepository,
-        CommentRepository commentRepository
+        CommentRepository commentRepository,
+        FarmRepository farmRepository
     ) {
         this.locationService = locationService;
         this.producerRepository = producerRepository;
@@ -52,6 +55,7 @@ public class ProducerService {
         this.eventRepository = eventRepository;
         this.produceRepository = produceRepository;
         this.commentRepository = commentRepository;
+        this.farmRepository = farmRepository;
     }
 
     public Producer createProducer(
@@ -250,6 +254,10 @@ public class ProducerService {
 
         return producer;
 
+    }
+
+    public Producer getProducerByFarm(Integer id) {
+        return farmRepository.findFarmByID(id).getProducer();
     }
 
 }

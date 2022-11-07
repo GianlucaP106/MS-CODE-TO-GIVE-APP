@@ -8,7 +8,6 @@ import { useState } from "react";
 
 function MyApp({ Component, pageProps }) {
   const [credentials, setCredentials] = React.useState({});
-
   return (
     <Component cred={credentials} setCred={setCredentials} {...pageProps} />
   );

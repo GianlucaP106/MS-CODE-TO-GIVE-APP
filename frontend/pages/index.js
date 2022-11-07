@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Map from "../components/Map";
 import Footer from "../components/Layout/Footer";
 import ReactDOM from "react-dom/client";
 import Search from "../components/Search";
@@ -11,7 +10,7 @@ import ProfilePage from "../components/Profiles/ProfilePage";
 import PrimarySearchAppBar from "../components/Layout/PrimarySearchAppBar";
 import PageVisitsTable from "../components/Tables/PageVisitsTable";
 import Hero from "../components/HomeSections/Hero";
-import WhyGlean from "../components/HomeSections/WhyGlean"
+import WhyGlean from "../components/HomeSections/WhyGlean";
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
 import { Navbar } from "@themesberg/react-bootstrap";
 import Event from "../components/Event/Event.js";

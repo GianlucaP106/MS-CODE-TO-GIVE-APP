@@ -145,9 +145,9 @@ const top100Films = [
 // get all events by radius  ---->
 // {
 //        get all events by crop type --- DONE
-//        pair crop type search with radius -- TO BE COMPLETED
-//        get all events by farm name --- TO BE COMPLETED
-//        get all events by event name -- TO BE COMPLETED
+//        pair crop type search with radius -- TO BE COMPLETED 
+//        get all events by farm name --- TO BE COMPLETED ****** important
+//        get all events by event name -- TO BE COMPLETED ***** important
 // }
 
 // first get all farms within radius {farm get by filter}
