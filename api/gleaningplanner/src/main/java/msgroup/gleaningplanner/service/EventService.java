@@ -21,6 +21,7 @@ import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.CommentRepository;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.FarmRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
@@ -39,6 +40,7 @@ public class EventService {
     private OrganizationRegistrationRepository organizationRegistrationRepository;
     private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
     private ProducerRepository producerRepository;
+    private CommentRepository commentRepository;
 
     public EventService(
         EventRepository eventRepository, 
@@ -47,7 +49,8 @@ public class EventService {
         VolunteerRegistrationRepository volunteerRegistrationRepository,
         OrganizationRegistrationRepository organizationRegistrationRepository,
         GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository,
-        OrganizationRepository organizationRepository
+        OrganizationRepository organizationRepository,
+        CommentRepository commentRepository
     ) {
         this.eventRepository = eventRepository;
         this.farmRepository = farmRepository;
@@ -56,6 +59,7 @@ public class EventService {
         this.gleanerGroupRegistrationRepository = gleanerGroupRegistrationRepository;
         this.producerRepository = producerRepository;
         this.organizationRepository = organizationRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Event createEvent(
@@ -261,6 +265,7 @@ public class EventService {
         out.organizations = orgs;
         out.gleanerGroups = groups;
         out.teams = teams;
+        out.comments = commentRepository.findAllCommentByEvent(event);
 
         return out;
     }

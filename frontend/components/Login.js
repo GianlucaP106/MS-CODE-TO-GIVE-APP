@@ -9,17 +9,20 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import YardIcon from '@mui/icons-material/Yard';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import {useState} from "react";
 
 const theme = createTheme();
 
 
 export default function SignInSide() {
     const [account, setAccount] = React.useState('');
+
+    const [ userInformation, setUserInformation ] = useState();
 
     const handleChange = (event) => {
         setAccount(event.target.value);
@@ -30,11 +33,45 @@ export default function SignInSide() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get('email'),
-            password: data.get('password'),
-        });
+        verifyUser(
+            data.get('username'),
+            data.get('password')
+        ).then((r) => {console.log("here now eh:", r)});
     };
+
+    async function verifyUser(username_input, password_input) {
+        let userInfo = null;
+
+        if (account === "Gleaner") {
+            console.log("im here");
+            console.log(username_input);
+            userInfo = await fetch(
+                "http://localhost:8080/volunteer/sign-in",
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        username : username_input, 
+                        password : password_input
+                    })
+                });
+
+                userInfo = await userInfo.json();
+                setUserInformation(userInfo);
+                window.location.href = "http://localhost:3000/HomePage";
+        }
+
+        if (account === "Organization") {
+
+        }
+
+        if (account === "Gleaning Group") {
+
+        }
+
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -89,15 +126,15 @@ export default function SignInSide() {
                                 </Select>
                             </FormControl>
                         </Box>
-                        <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
+                        <Box hidden={account === ""} component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 1 }}>
                             <TextField
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
                                 autoFocus
                             />
                             <TextField

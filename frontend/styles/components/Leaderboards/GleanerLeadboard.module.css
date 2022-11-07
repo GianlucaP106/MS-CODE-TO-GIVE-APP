@@ -2,3 +2,7 @@
     width: 62rem; /* add 2 rem to account for vertical scroll bar width */
     height: 30rem;
 }
+
+.username {
+    padding-left: 10px;
+}
