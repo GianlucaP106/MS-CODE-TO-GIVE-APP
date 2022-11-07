@@ -1,9 +1,13 @@
 [http statues](https://www.restapitutorial.com/httpstatuscodes.html)
+
 # Endpoints
 
-### method : GET 
+### method : Post
+
 ### path name : /event/get-with-filters
+
 ### request body
+
 ```JSON
 {
     "id" : "id",
@@ -19,7 +23,9 @@
     "radius" : "radius"
 }
 ```
-### return 
+
+### return
+
 ```JSON
 {
     "events": [
@@ -38,12 +44,15 @@
     ]
 }
 ```
+
 ### else status 404
 
-
 ### method: POST
+
 ### path name: /event/create-event
+
 ### request BODY:
+
 ```JSON
 {
     "farmId": "farmId",
@@ -59,12 +68,15 @@
     "date": "date",
 }
 ```
+
 #### response: successful ? status(201) : status(406)
 
-
 ### method: PUT
+
 ### path name: /producer/update-event
+
 ### request PARAMETERS:
+
 ```JSON
 {
     "id" : "id",
@@ -78,5 +90,5 @@
     "isUrgent": "isUrgent"
 }
 ```
-#### successful ? status(404) : status(404) // not found
 
+#### successful ? status(404) : status(404) // not found
