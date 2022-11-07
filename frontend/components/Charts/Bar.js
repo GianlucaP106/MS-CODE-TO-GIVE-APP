@@ -27,7 +27,7 @@ export default function BarChart(props) {
         labels: labels,
         datasets: [
             {
-                label: 'Amount of crops safed (kg)',
+                label: 'Amount of crops saved (kg)',
                 data: values,
                 backgroundColor: [
                 'rgba(54, 162, 235, 0.8)',

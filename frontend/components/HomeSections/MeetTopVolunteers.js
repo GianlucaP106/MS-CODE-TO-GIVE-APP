@@ -26,7 +26,7 @@ export default function MeetTopVolunteers() {
                 <GleanerLeaderboard />
             </div>
           <div className='p-3 col-lg-6'>
-              <h1 ><b className={styles.username}>Amount of crops safed (kg)</b></h1>
+              <h1 ><b className={styles.username}>Amount of crops saved (kg)</b></h1>
               <Bar className={""} labels={['Harry',"Particia","Hellen","David","Petra"]} values={[412, 350,342,267,258]} />
           </div>
       </div>
