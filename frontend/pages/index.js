@@ -28,6 +28,7 @@ export default function Home(props) {
       </Head>
       <main>
         <Navibar/>
+        <SignInSide />
         {/* <Event id={2}/> */}
         {/*/!* <Search /> *!/*/}
         {/* <Navbar /> */}

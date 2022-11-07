@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react"
 import styles from '../../styles/components/Event/Event.module.css';
 import Image from 'next/image'
@@ -120,7 +119,7 @@ const Event = (props) => {
                         <thead className={`${styles.commentHead}`}>
                             <tr>
                                 <th scope="col">Author type</th>
-                                <th scope="col">Comment</th>
+                                <th scope="col">Comments</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -134,6 +133,22 @@ const Event = (props) => {
                                     )
                                 })
                             } 
+                            <tr>
+                                <td>VOLUNTEER</td>
+                                <td>I loved that event. I had a great time and the producer great!</td>
+                            </tr>
+                            <tr>
+                                <td>ORGANIZATION</td>
+                                <td>Lots of food was given to charity!!</td>
+                            </tr>
+                            <tr>
+                                <td>VOLUNTEER</td>
+                                <td>Very tiring day but also very rewarding</td>
+                            </tr>
+                            <tr>
+                                <td>VOLUNTEER</td>
+                                <td>I had a great time with friends and good people!</td>
+                            </tr>
                         </tbody>
                     </Table>
                 </div>
@@ -152,6 +167,5 @@ const Event = (props) => {
         </div>
     )
 }
-
 
 export default Event;
