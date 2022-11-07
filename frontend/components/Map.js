@@ -29,16 +29,24 @@ export default function Map(props){
   const [ eventsCoord, setEventsCoord ] = useState([]);
 
 
-  let markers = [
-    { lat: 45.5019, lng: -73.5674  },
-    { lat: 47.5019, lng: -73.5674  },
-    { lat: 45.5019, lng: -70.5674  },
-    { lat: 39.5019, lng: -73.5674  },
-    { lat: 45.5019, lng: -80.5674  }
-  ]
+  let allEvents = [];
+
+  // React.useEffect(() => {
+  //   setEventsCoord(queryRes)
+  // }, [queryRes])
 
   React.useEffect(() => {
-    setEventsCoord(eventsCoord)
+    let toDisplay = []
+
+    for (let event of allEvents) {
+      for (let queryEvent of queryRes){
+        if (queryEvent.ID == event.id){
+          toDisplay.push(event)
+        }
+      }
+    }
+
+    setEventsCoord(toDisplay)
   }, [queryRes])
 
   React.useEffect(() => {
@@ -70,6 +78,7 @@ export default function Map(props){
           lat: event.farm.latitude,
           lng: event.farm.longitude
         },
+        id: event.id,
         name: event.eventName,
         description: event.description,
         date: event.date,
