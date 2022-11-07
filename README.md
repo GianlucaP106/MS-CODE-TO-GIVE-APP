@@ -9,9 +9,9 @@ The goal of the project is to design a web applicaiton that will faciliate the m
 ## Our Team
 |Name|GitHub Username|Role|
 |:-------:|:-------------:|:----------:|
-|Jared Matthews||Backend Developer
 |Nabil Amimer||Full-Stack Developer
 |Gianluca Piccirillo||Full-Stack Developer
+|Jared Matthews||Backend Developer
 |Aditya Negi||Backend Developer
 |Ayomide Ojo||Backend Developer
 |Matthew Cabral||Frontend Developer
