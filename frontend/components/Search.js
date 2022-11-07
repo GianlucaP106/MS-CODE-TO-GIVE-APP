@@ -9,7 +9,7 @@ export default function Search() {
 
   return (
     <>
-      <Drawer />
+      <Drawer display={displayEvent} />
       <Map setDisplay={setDisplayEvent} size={{ width: "100%", height: "788px" }} />
     </>
   );

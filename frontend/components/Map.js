@@ -63,16 +63,24 @@ export default function Map(props){
     }      
     let marks = [];
     for (let event of events) {
+      console.log(event);
       marks.push({
-        lat: event.farm.latitude,
-        lng: event.farm.longitude
+        loc: {
+          lat: event.farm.latitude,
+          lng: event.farm.longitude
+        },
+        name: event.eventName,
+        description: event.description,
+        date: event.date,
+        farmName: event.farm.farmName,
+        producer: `${event.farm.producer.firstName} ${event.farm.producer.lastName}`
       });
     }
     
     setEventsCoord(marks);
   } 
-  function handleMarkerClick() {
-    alert('marker clicked');
+  function handleMarkerClick(eventData) {
+    props.setDisplay(eventData)
   }
     
     return(
@@ -84,9 +92,9 @@ export default function Map(props){
             zoom={zoom}
             id={"google"}
             >
-            {eventsCoord && eventsCoord.map((location) => {
+            {eventsCoord && eventsCoord.map((item) => {
               return (
-                <MarkerF onClick={handleMarkerClick} position={location} />
+                <MarkerF onClick={() => handleMarkerClick(item)} position={item.loc} />
                 )
             })}
             </GoogleMap>
