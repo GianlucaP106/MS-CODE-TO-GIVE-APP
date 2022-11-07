@@ -38,7 +38,7 @@ export default function Map(props){
     let toDisplay = []
 
     let querried = await Promise.resolve(queryRes);
-    if (querried.event && querried.event.length > 0) {
+    if (querried.event) {
       console.log(querried)
       console.log(eventsCoord)
       for (let event of eventsCoord) {
@@ -104,7 +104,6 @@ export default function Map(props){
   }
     
     return(
-
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GMAPS_KEY}>
             <GoogleMap
             mapContainerStyle={size}
