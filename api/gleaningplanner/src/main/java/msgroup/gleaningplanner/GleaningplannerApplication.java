@@ -47,18 +47,22 @@ public class GleaningplannerApplication {
 			makeOrganization();
 			makeEvents();
 			makeComments();
-
 			registerOrganizations();
 			registerVolunteersToEvents();
 			OrgAddProduceToEventReg();
 			volunteerJoinAndCreateTeam();
+			producerAcceptTeam();
 		};
+	}
+
+
+	public void producerAcceptTeam(){
+		producerService.acceptVolunteerGroup(2, 1);
 	}
 
 
 	public void volunteerJoinAndCreateTeam() throws InterruptedException {
 		Thread.sleep(1000);
-
 		// EVENT 1
 		volunteerService.requestJoinGroup(
 			1,
@@ -76,6 +80,68 @@ public class GleaningplannerApplication {
 			2
 		);
 
+		// EVENT 2
+		volunteerService.requestJoinGroup(
+			2,
+			1,
+			1		
+		);
+
+		volunteerService.requestJoinGroup(
+			2,
+			2,
+			1		
+		);
+		volunteerService.acceptVolunteer(2, 2);
+		volunteerService.requestJoinGroup(
+			2,
+			3,
+			1		
+		);
+		volunteerService.acceptVolunteer(3, 2);
+		volunteerService.requestJoinGroup(
+			2,
+			4,
+			1		
+		);
+		volunteerService.acceptVolunteer(4,2 );
+		volunteerService.requestJoinGroup(
+			2,
+			5,
+			1		
+		);
+		volunteerService.acceptVolunteer(5, 2 );
+
+
+		//EVENT 3
+		volunteerService.requestJoinGroup(
+			3,
+			6,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			3,
+			2,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			3,
+			5,
+			1		
+		);
+
+
+		//EVENT 4
+		volunteerService.requestJoinGroup(
+			4,
+			5,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			4,
+			3,
+			1		
+		);
 
 	}
 
@@ -149,6 +215,8 @@ public class GleaningplannerApplication {
 		volunteerService.registerToEvent(
 			1,5
 		);
+
+		//EVENT 2
 		volunteerService.registerToEvent(
 			2,2
 		);
@@ -739,34 +807,303 @@ public class GleaningplannerApplication {
 		producerService.postCommentEvent(
 			1, 
 			1, 
-			"first comment",
+			"Great Farm/Farmers",
 			"PRODUCER"
 		);
 		producerService.postCommentEvent(
 			2, 
-			1, 
-			"second comment",
-			"PRODUCER"
+			4,
+			"gave us a lot of food 10/10",
+			"VOLUNTEER"
 		);
 		producerService.postCommentEvent(
 			2, 
 			2, 
-			"third comment",
+			"Beautiful farm, especially during the summer",
 			"VOLUNTEER"
 		);
 		producerService.postCommentEvent(
 			2, 
 			1, 
-			"fourth comment",
+			"Great Event. I loved to see how much work was done",
+			"VOLUNTEER"
+		);
+		producerService.postCommentEvent(
+			2, 
+			3, 
+			"Polite and professional people, would highlt recommend them",
+			"ORGANIZATION"
+		);
+		//VOLUNTEER COMMENTS HERE
+		volunteerService.postCommentEvent(
+			1, 
+			1, 
+			"Niceset guy, knowledgable, hardworking and talented", 
+			"VOLUNTEER"
+		);
+		volunteerService.postCommentEvent(
+			1,
+			2, 
+			"Very nice guy, very helpful", 
 			"VOLUNTEER"
 		);
 		volunteerService.postCommentEvent(1, 
 			1, 
-			"volunteer comment", 
+			"GREAT PEROSON GOOD SOUL", 
 			"VOLUNTEER"
 		);
+		volunteerService.postCommentEvent(
+			3, 
+			1, 
+			"came late, no equiptment and did little to no work ... don't like his music. 2/10", 
+			"VOLUNTEER"
+		);
+		volunteerService.postCommentEvent(
+			2,
+			5,
+            "She works hard and works great within a team. She is very friendly and easy to work with.",
+            "VOLUNTEER"
+		);
+		//ORGANIZATION COMMENTS HERE
+		organizationService.postCommentEvent(
+			"fast and efficient, great people, love what they are doing !!!",
+			"PRODUCER",
+			1,
+			1
+		);
+		organizationService.postCommentEvent(
+			"LOVE LOVE LOVE, :) easy to work with",
+			"PRODUCER",
+			2,
+			2
+		);
+		organizationService.postCommentEvent(
+			"they come on time and were easy to work with",
+			"VOLUNTEER",
+			3,
+			3
+		);
+		organizationService.postCommentEvent(
+			"Will never go to an event with this organization again :(, late, and complicated to work with",
+			"VOLUNTEER",
+			4,
+			4
+		);
+
 	}
 
+	public void addproducetoRegistration(){
+		organizationService.addProduceToRegistration(1, 1, "Soybeans", 20);
+		organizationService.addProduceToRegistration(2, 2, "Millet", 13);
+		organizationService.addProduceToRegistration(3, 3, "Peaches", 30);
+		organizationService.addProduceToRegistration(4, 4, "Hickory_Nuts", 10);
+	}
+
+	public void addProducertoEvent(){
+		producerService.addProduceToEvent(
+			1, 
+			"Eggplant", 
+			20
+		);
+		producerService.addProduceToEvent(
+			1, 
+			"Turnips", 
+			55
+		);
+		producerService.addProduceToEvent(
+			1, 
+			"Spinach", 
+			12
+		);
+		producerService.addProduceToEvent(
+			1, 
+			"Coriander", 
+			55
+		);
+		producerService.addProduceToEvent(
+			1, 
+			"Cucumbers", 
+			12
+		);
+		producerService.addProduceToEvent(
+			2, 
+			"Corn", 
+			19
+		);
+		producerService.addProduceToEvent(
+			2, 
+			"Canary_Seed", 
+			33
+		);
+		producerService.addProduceToEvent(
+			2, 
+			"Bran", 
+			12
+		);
+		producerService.addProduceToEvent(
+			3, 
+			"Parsnips", 
+			34
+		);
+		producerService.addProduceToEvent(
+			3, 
+			"Cranberries", 
+			14
+		);
+		producerService.addProduceToEvent(
+			3, 
+			"Walnuts", 
+			12
+		);
+		producerService.addProduceToEvent(
+			4, 
+			"Sweet_Potatoes_Fresh", 
+			9
+		);
+		producerService.addProduceToEvent(
+			4, 
+			"Muscadines", 
+			23
+		);
+		producerService.addProduceToEvent(
+			4, 
+			"Snap_Beans", 
+			16
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Field_Peas", 
+			7
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Sweet_Potatoes_Fresh", 
+			32
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Irish_Potatoes", 
+			45
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Beets", 
+			17
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Alfalfa", 
+			9
+		);
+		producerService.addProduceToEvent(
+			5, 
+			"Canola", 
+			23
+		);
+		producerService.addProduceToEvent(
+			6, 
+			"Tomatoes", 
+			26
+		);
+		producerService.addProduceToEvent(
+			6, 
+			"Bran", 
+			12
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Cantaloupe", 
+			21
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Rye", 
+			43
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Oats", 
+			10
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Crested_Wheat_Grass", 
+			31
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Crested_Wheat_Grass", 
+			32
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Spinach", 
+			32
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Grapes_With_Stem", 
+			27
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Parsnips", 
+			28
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Parsnips", 
+			27
+		);
+		producerService.addProduceToEvent(
+			7,
+			"Spelt", 
+			35
+		);
+	}
+	
+	public void registerVolunteer(){
+		volunteerService.registerToEvent(
+			1, 
+			1
+		);
+		volunteerService.registerToEvent(
+			2, 
+			2
+		);
+		volunteerService.registerToEvent(
+			3, 
+			2
+		);
+		volunteerService.registerToEvent(
+			3, 
+			3
+		);
+		volunteerService.registerToEvent(
+			4, 
+			4
+		);
+		volunteerService.registerToEvent(
+			5,
+			6
+		);
+		volunteerService.registerToEvent(
+			6,
+			6
+		);
+		volunteerService.registerToEvent(
+			5,
+			7
+		);
+		volunteerService.registerToEvent(
+			4,
+			12
+		);
+		volunteerService.registerToEvent(
+			3,
+			9
+		);
+	}
 	
 	public void registerOrganizations() throws InterruptedException{
 		Thread.sleep(1000);
@@ -794,6 +1131,5 @@ public class GleaningplannerApplication {
 			5,
 			6
 		);
-
 	}
 }

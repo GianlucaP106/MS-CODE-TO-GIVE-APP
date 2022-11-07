@@ -1,5 +1,4 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
+import React, {useState, useEffect, useRef} from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
@@ -11,6 +10,11 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
+import Input from "@mui/material/Input";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import SearchIcon from '@mui/icons-material/Search';
+
 
 const drawerWidth = 300;
 
@@ -142,28 +146,10 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-// get all events by radius  ---->
-// {
-//        get all events by crop type --- DONE
-//        pair crop type search with radius -- TO BE COMPLETED 
-//        get all events by farm name --- TO BE COMPLETED ****** important
-//        get all events by event name -- TO BE COMPLETED ***** important
-// }
 
-// first get all farms within radius {farm get by filter}
-// get all events
-/*
-        filter through all the events
 
-            List : eventinradius
-        for event in evenets
-            if event.farmid is in farms 
-                eventinradius.add(event)
-
-            return event;
-    */
-
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft(props) {
+  const {setQueryRes, display} = props; 
   async function getEventByCropTypeDataFromServer(data) {
     let response = null;
     try {
@@ -172,7 +158,7 @@ export default function PermanentDrawerLeft() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: data,
+        body: data
       });
       response = await response.json();
     } catch (e) {
@@ -181,30 +167,104 @@ export default function PermanentDrawerLeft() {
 
     let incoming = null;
     if (response) {
-      incoming = response[`${data.type}s`][0];
-    } else return;
+      console.log(response)
+      return response
+    } else return null;
   }
 
+  async function getEventByNameFromServer(data) {
+    let response = null;
+    let out = {
+      name : data
+    }
+
+    try {
+      response = await fetch(`http://localhost:8080/event/get-by-filter`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(out)
+      });
+      response = await response.json();
+    } catch (e) {
+      console.log(e);
+    }
+
+    if (response) {
+      console.log(response)
+      return response
+    } else return null;
+  }
+
+  const [textFieldInput, setTextFieldInput] = useState('');
+  const [ event, setEvent ] = React.useState({});
+
   const [searchParameter, setSearchParameter] = React.useState("Event");
-  const [textFieldInput, setTextFieldInput] = React.useState("");
+  const [searchDistance, setSearchDistance] = React.useState("");
+  const [calling, setCalling] = useState(false);
+
+  const keyDownHandler = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      let queryResponse;
+
+      if (searchParameter == "Crop") {
+        queryResponse = getEventByCropTypeDataFromServer(textFieldInput);
+        console.log(textFieldInput);
+      }
+
+      if (searchParameter == "Event") {
+        queryResponse = getEventByNameFromServer(textFieldInput);
+        console.log(textFieldInput);
+      }
+
+      // 👇️ call submit function here to display points on map
+      if (queryResponse !== null) setQueryRes(queryResponse);
+      console.log("Events Displayed On Map");
+    }
+  }
+
+  const searchRez = (data) => {
+    let queryResponse;
+
+      if (searchParameter == "Crop") {
+        queryResponse = getEventByCropTypeDataFromServer(data);
+        console.log(data);
+      }
+
+      if (searchParameter == "Event") {
+        queryResponse = getEventByNameFromServer(data);
+        console.log(data);
+      }
+
+      // 👇️ call submit function here to display points on map
+      if (queryResponse !== null) setQueryRes(queryResponse);
+      console.log("Events Displayed On Map");
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    searchRez(
+        data.get('query')
+    );
+};
 
   React.useEffect(() => {
-    const keyDownHandler = (event) => {
-      if (event.key === "Enter") {
-        event.preventDefault();
+    setEvent(display);
+  }, [display]);
 
-        if (searchParameter == "Crop") {
-          getEventByCropTypeDataFromServer(textFieldInput);
-          console.log(textFieldInput);
-        }
+  const handleTextValueChange = () => {
+    console.log("Were are here")
+    console.log(document.getElementById("inputField"))
+    // searchRez(inputRef.current.value)
+  }
 
-        // 👇️ call submit function here to display points on map
-        console.log("Events Displayed On Map");
-      }
-    };
-
-    document.addEventListener("keydown", keyDownHandler);
-  });
+  const handleTextValueChangeR = (e) => {
+    setTextFieldInput(e.target.value);
+    // searchRez(inputRef.current.value)
+  }
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -228,18 +288,31 @@ export default function PermanentDrawerLeft() {
           options={top100Films.map((event) => event.title)}
           className={styles.searchField}
           renderInput={(params) => (
-            <TextField
+            <Box component="form" noValidate onSubmit={handleSubmit}>
+              <TextField
               {...params}
+              margin="normal"
+              required
+              fullWidth
+              name="query"
+              autoFocus
               id="inputField"
               label="Search input"
               InputProps={{
                 ...params.InputProps,
-                type: "search",
+                type: "search"
               }}
-              onChange={(e) => setTextFieldInput(e.target.value)}
-            />
+              />
+              <Button type="submit"
+                fullWidth
+                variant="outlined"
+                sx={{ mt: 3, mb: 2 }}><SearchIcon /></Button>
+            </Box>
+              
           )}
-        />
+        />            
+        {/* <button onClick={handleTextValueChange}>Log message</button> */}
+
         <FormControl className={styles.formControl}>
           <FormLabel id="searchType-demo-radio-buttons-group-label">
             Search By:
@@ -266,6 +339,7 @@ export default function PermanentDrawerLeft() {
             aria-labelledby="demo-radio-buttons-group-label"
             name="radio-buttons-group"
             row
+            onChange={(e) => setSearchDistance(e.target.value)}
           >
             <FormControlLabel value="50" control={<Radio />} label="50 km" />
             <FormControlLabel value="100" control={<Radio />} label="100 km" />
@@ -277,6 +351,17 @@ export default function PermanentDrawerLeft() {
           </RadioGroup>
         </FormControl>
         <Divider />
+        <div className={`${styles.eventInfo} text-center mt-5`}>
+            <h5 className={`${styles.eventSelected}`}>Event Selected</h5>
+            <p>
+              <a href={`/Event/${event.id}`}>
+                Event Name: {event.name}
+              </a>
+            </p>
+            <p>Description: {event.description}</p>
+            <p>Producer: {event.producer}</p>
+            <p>Date: {event.date}</p>
+        </div>
       </Drawer>
     </Box>
   );

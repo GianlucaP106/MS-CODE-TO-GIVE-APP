@@ -5,3 +5,13 @@
 .searchField, .formControl {
     padding: 2rem;
 }
+
+.eventSelected{
+    font-size: 20px;
+}
+
+.eventInfo{
+    margin: auto;
+    width: 75%;
+    font-size: 10px;
+}

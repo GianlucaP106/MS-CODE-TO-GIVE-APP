@@ -15,3 +15,4 @@ export default function Leaderboard(props) {
     </Box>
   );
 }
+

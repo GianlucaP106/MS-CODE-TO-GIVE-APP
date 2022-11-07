@@ -4,6 +4,8 @@ import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
+import styles from '../../styles/components/HomeSections/WhyGlean.module.css';
+import { style } from '@mui/system';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -15,22 +17,28 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function WhyGlean() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-        <Grid item xs={5}>
-            <Item>
-                <h1><b>Why Should You Glean?</b></h1>
-                <h3>Lorem ipsum dolor sit amet, consectetur adip occum sociosqu ad minim veniam Lore Lorem ipsum dolor sit amet, consectetur adip</h3>
-                <hr/>
-                <h3>To learn more about the impacts of Gleaning, checkout <a href='www.google.com/?q="Gleaning"'></a></h3>
-            </Item>
+    <Box className={styles.box} sx={{ width: '100%' }}>
+      <h2 className={styles.title}>Why should you <span className={styles.bold}>GLEAN</span>?</h2>
+      <div className={styles.subtext}>The statistics are startling, yet revealing: According to estimates, nearly one-third of the U.S. food supply goes uneaten and wasted annually.
+        The concept with the intriguing and arguably catchy name <span className={styles.bold}>gleaning</span> gives nonprofits and volunteers the opportunity to pick ripe produce that would otherwise go uneaten.
+      </div>
+      <div className={styles.subtext2}>Here are some data the U.S. Department of Agriculture’s Economic Research Service assembled in early 2014 showing the importance of gleaning:</div>
+      <Box className={styles.body}>
+        <Grid container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+          <Grid className={styles.stats} item xs={4}>
+            <div className={styles.number}>31%</div>
+            <div className={styles.statDescription}>Thirty-one percent of the nation’s food supply went uneaten that particular study year. </div>
+          </Grid>
+          <Grid className={styles.stats} item xs={4}>
+            <div className={styles.number} style={{ fontSize: '5.5em' }}>133 billion pounds</div>
+            <div className={styles.statDescription}>Of the 430 billion pounds of produce available, 133 billion pounds were uneaten (the difference represents the 31-percent figure).  </div>
+          </Grid>
+          <Grid className={styles.stats} item xs={4}>
+            <div className={styles.number} style={{ fontSize: '6em' }}>$161.6 billion</div>
+            <div className={styles.statDescription}>In terms of retail prices, the wasted post-harvested food was valued at $161.6 billion. </div>
+          </Grid>
         </Grid>
-        <Grid item xs={7}>
-            <Item>
-                <Polar className={""} labels={["pie", "fruit"]} values={[10, 2]} />
-            </Item>
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </Box >
   );
 }

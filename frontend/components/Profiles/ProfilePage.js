@@ -4,6 +4,7 @@ import ProfileInfoTable from '../Tables/ProfileInfoTable'
 import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
+import PrimarySearchAppBar from "../Layout/PrimarySearchAppBar";
 
 export default function ProfilePage({ info }) {
 
@@ -24,7 +25,7 @@ export default function ProfilePage({ info }) {
     // //   { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
     // // ];
    
-  
+    
 
     // useEffect(() => {
 
@@ -44,6 +45,7 @@ export default function ProfilePage({ info }) {
     ];
 
     return (<>
+      <PrimarySearchAppBar/>
       <section styles="background-color: #eee;">
         <div className="container py-5">
           <div className="row">

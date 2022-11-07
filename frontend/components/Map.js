@@ -23,32 +23,51 @@ const options = {
 };
 
 export default function Map(props){
-
-
-
-  const {size} = props;
+  const {size, queryRes, setDisplay} = props;
   const [location, setLocation] = useState(center);
   const [zoom, setZoom] = useState(10);
   const [ eventsCoord, setEventsCoord ] = useState([]);
 
 
-  let markers = [
-    { lat: 45.5019, lng: -73.5674  },
-    { lat: 47.5019, lng: -73.5674  },
-    { lat: 45.5019, lng: -70.5674  },
-    { lat: 39.5019, lng: -73.5674  },
-    { lat: 45.5019, lng: -80.5674  }
-  ]
+  let allEvents = [];
+
+  // React.useEffect(() => {
+  //   setEventsCoord(queryRes)
+  // }, [queryRes])
+  const fun = async (queryRes) => {
+    let toDisplay = []
+
+    let querried = await Promise.resolve(queryRes);
+    if (querried.event) {
+      console.log(querried)
+      console.log(eventsCoord)
+      for (let event of eventsCoord) {
+        for (let queryEvent of querried.event){
+          if (queryEvent.ID === event.id){
+            toDisplay.push(event)
+          }
+        }
+      }
+
+      console.log(toDisplay)
+
+      setEventsCoord(toDisplay)
+    }
+    
+  }
+
+  React.useEffect(() => {
+    fun(queryRes)
+  }, [queryRes])
 
   React.useEffect(() => {
     navigator.geolocation
       .getCurrentPosition((geoLocation) => {
-        setLocation({
-          location: {
-            lat: geoLocation.coords.latitude,
-            lng: geoLocation.coords.longitude,
-          }
-        });
+        setLocation(center);
+          // location: {
+          //   lat: geoLocation.coords.latitude,
+          //   lng: geoLocation.coords.longitude,
+          // }
     }); 
     getEventsFromServer();
   }, []);
@@ -63,20 +82,28 @@ export default function Map(props){
     }      
     let marks = [];
     for (let event of events) {
+      console.log(event);
       marks.push({
-        lat: event.farm.latitude,
-        lng: event.farm.longitude
+        loc: {
+          lat: event.farm.latitude,
+          lng: event.farm.longitude
+        },
+        id: event.id,
+        name: event.eventName,
+        description: event.description,
+        date: event.date,
+        farmName: event.farm.farmName,
+        producer: `${event.farm.producer.firstName} ${event.farm.producer.lastName}`
       });
     }
     
     setEventsCoord(marks);
   } 
-  function handleMarkerClick() {
-    alert('marker clicked');
+  function handleMarkerClick(eventData) {
+    setDisplay(eventData)
   }
     
     return(
-
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GMAPS_KEY}>
             <GoogleMap
             mapContainerStyle={size}
@@ -84,9 +111,9 @@ export default function Map(props){
             zoom={zoom}
             id={"google"}
             >
-            {eventsCoord && eventsCoord.map((location) => {
+            {eventsCoord && eventsCoord.map((item) => {
               return (
-                <MarkerF onClick={handleMarkerClick} position={location} />
+                <MarkerF onClick={() => handleMarkerClick(item)} position={item.loc} />
                 )
             })}
             </GoogleMap>

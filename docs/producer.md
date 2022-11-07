@@ -56,7 +56,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -79,7 +79,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "volunteerId": "volunteerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -92,7 +92,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "gleanerGroupId": "gleanerGroupId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -105,7 +105,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "organizationId": "organizationId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)

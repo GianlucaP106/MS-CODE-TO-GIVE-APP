@@ -65,7 +65,7 @@
     "postalCode": "postalCode",
     "city": "city",
     "isUrgent": "isUrgent",
-    "date": "date",
+    "date": "date"
 }
 ```
 

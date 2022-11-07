@@ -4,7 +4,11 @@ export default function Hero(props) {
   const { heading, subHeading } = props;
   return (
     <div style={{
-      backgroundImage: `url(${"/greenbg.png"})`
+      backgroundImage: `url(${"/greenbg.png"})`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      height: "100vh"
     }}>
       <div
         id="intro-example"
@@ -43,7 +47,7 @@ export default function Hero(props) {
               <a
                 className="btn btn-outline-dark btn-lg m-3"
                 style={{ color: "black" }}
-                href="https://www.calculator.net/gdp-calculator.html"
+                href="/map"
                 role="button"
                 rel="nofollow"
                 target="_blank"

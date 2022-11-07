@@ -9,19 +9,24 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import msgroup.gleaningplanner.controller.TransferObject.EventTeamTO;
+import msgroup.gleaningplanner.controller.TransferObject.EventTeamTO.EventTeam;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Farm;
+import msgroup.gleaningplanner.model.GleanerGroup;
 import msgroup.gleaningplanner.model.GleanerGroupRegistration;
+import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
-import msgroup.gleaningplanner.model.User;
+import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.CommentRepository;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.FarmRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
 import msgroup.gleaningplanner.repository.OrganizationRegistrationRepository;
+import msgroup.gleaningplanner.repository.OrganizationRepository;
 import msgroup.gleaningplanner.repository.ProducerRepository;
 import msgroup.gleaningplanner.repository.VolunteerRegistrationRepository;
 
@@ -30,10 +35,12 @@ public class EventService {
     
     private EventRepository eventRepository;
     private FarmRepository farmRepository;
-    private ProducerRepository producerRepository;
+    private OrganizationRepository organizationRepository;
     private VolunteerRegistrationRepository volunteerRegistrationRepository;
     private OrganizationRegistrationRepository organizationRegistrationRepository;
     private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
+    private ProducerRepository producerRepository;
+    private CommentRepository commentRepository;
 
     public EventService(
         EventRepository eventRepository, 
@@ -41,14 +48,18 @@ public class EventService {
         ProducerRepository producerRepository,
         VolunteerRegistrationRepository volunteerRegistrationRepository,
         OrganizationRegistrationRepository organizationRegistrationRepository,
-        GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository
+        GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository,
+        OrganizationRepository organizationRepository,
+        CommentRepository commentRepository
     ) {
         this.eventRepository = eventRepository;
         this.farmRepository = farmRepository;
-        this.producerRepository = producerRepository;
         this.volunteerRegistrationRepository = volunteerRegistrationRepository;
         this.organizationRegistrationRepository = organizationRegistrationRepository;
         this.gleanerGroupRegistrationRepository = gleanerGroupRegistrationRepository;
+        this.producerRepository = producerRepository;
+        this.organizationRepository = organizationRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Event createEvent(
@@ -100,12 +111,27 @@ public class EventService {
         if (date != null) {
             strDate = dateFormat.format(date);
         }
+
+        if (neededGleaners == null) neededGleaners = 0;
         
-        List<String> incoming = Arrays.asList(Integer.toString(farmId), eventName, Integer.toString(neededGleaners), description, Boolean.toString(isUrgent), strDate, Integer.toString(maxGleaners));
+        
+        String nGleaners = null;
+        String urgent = null;
+        String mGleaners = null;
+        if (neededGleaners != null && neededGleaners > 0) nGleaners = Integer.toString(neededGleaners);
+        if (isUrgent != null) urgent =  Boolean.toString(isUrgent);
+        if (maxGleaners != null) mGleaners = Integer.toString(maxGleaners);
+
+
+        List<String> incoming = Arrays.asList(eventName, nGleaners, description, urgent, strDate, mGleaners);
+        for (String str : incoming) {
+            System.out.println(str);
+        }
+
         List<String> eventInfo;
 
         for (Event event : eventRepository.findAll()) {
-            eventInfo = Arrays.asList(Integer.toString(event.getFarm().getID()), event.getEventName(), Integer.toString(event.getRequiredGleaners()), event.getDescription(), Boolean.toString(event.isUrgent()), dateFormat.format(event.getDate()), Integer.toString(event.getMaxGleaners()));
+            eventInfo = Arrays.asList(event.getEventName(), Integer.toString(event.getRequiredGleaners()), event.getDescription(), Boolean.toString(event.isUrgent()), dateFormat.format(event.getDate()), Integer.toString(event.getMaxGleaners()));
             boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
 
@@ -157,6 +183,90 @@ public class EventService {
             }
         }
         return events;
+    }
 
+    public EventTeamTO getEventInfo(Integer iD) {
+        EventTeamTO out = new EventTeamTO();
+        Event event = eventRepository.findEventByID(iD);
+        Farm farm = farmRepository.findFarmByID(event.getFarm().getID());
+        Producer producer = producerRepository.findProducerByID(event.getFarm().getProducer().getID());
+
+
+        // find all teams and their member
+        List<VolunteerRegistration> volunteerReg =
+                        volunteerRegistrationRepository.findAllVolunteerRegistrationByEvent(event);
+
+        List<Integer> teamNumbers = new ArrayList<Integer>();
+        List<EventTeam> teams = new ArrayList<>();
+
+        for(VolunteerRegistration reg : volunteerReg) {
+            // get the number for the team
+            Integer groupNumber = reg.getVolunteerGroupNumber();
+
+            // see if this team exists in the list
+            if(!teamNumbers.contains(groupNumber)){
+
+                // if not add it to the list
+                teamNumbers.add(groupNumber);
+
+                //create new event team
+                EventTeam team = new EventTeam();
+
+                // add the team number
+                team.teamNumber = groupNumber;
+
+                // add this person
+                team.volunteers.add(reg.getVolunteer());
+
+                //set if this team was accepted
+                team.setIsTeamAccepted(reg.isEventAccepted());
+
+                //add the team...lol
+                teams.add(team);
+            }else{
+                for(EventTeam t : teams){
+                    if(t.teamNumber == groupNumber){
+                        // add this person
+                        t.volunteers.add(reg.getVolunteer());
+                    }
+                }
+            }
+        }
+
+
+        // find all orgs
+        List<OrganizationRegistration> organizationsReg = 
+                        organizationRegistrationRepository.findAllOrganizationRegistrationByEvent(event);
+
+        Set<Organization> orgs = new HashSet<Organization>();
+
+        for(OrganizationRegistration reg : organizationsReg){
+            orgs.add(
+                reg.getOrganization()
+            );
+        }
+
+
+        // all gleaner groups
+        List<GleanerGroupRegistration> groupsReg = 
+                        gleanerGroupRegistrationRepository.findAllGleanerGroupRegistrationByEvent(event);
+
+        Set<GleanerGroup> groups = new HashSet<GleanerGroup>();
+
+        for(GleanerGroupRegistration grp: groupsReg){
+            groups.add(
+                grp.getGleanerGroup()
+            );
+        }
+
+        out.event = event;
+        out.producer = producer;        
+        out.farm = farm;
+        out.organizations = orgs;
+        out.gleanerGroups = groups;
+        out.teams = teams;
+        out.comments = commentRepository.findAllCommentByEvent(event);
+
+        return out;
     }
 }
