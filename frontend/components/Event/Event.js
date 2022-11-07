@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import styles from '../../styles/components/Event/Event.module.css';
 import Image from 'next/image'
 import gleaningImage from '../../public/gleaning.png'
+import Navibar from "..//NaviBar";
 import { Col, Row, Card, Table } from '@themesberg/react-bootstrap';
 
 const Event = (props) => {
@@ -158,22 +159,89 @@ const Event = (props) => {
 
     function PartcipatingVolunteers(){
         return(
-            <div className={`${styles.volWrapper}`}>
-                
+            <div className={`${styles.participants}`}>
+                <div className={`mt-5 ${styles.volWrapper}`}>
+                    <Table className={`table ${styles.table}`}>
+                            <thead className={`${styles.commentHead}`}>
+                                <tr>
+                                    <th scope="col">Volunteer ID</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">Team Number</th>
+                                    <th scope="col">JoinTeam</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    eventInfo.teams[0].volunteers.map(volunteer => {
+                                        return (
+                                            <tr>
+                                                <td><a href={`/profile/${volunteer.id}?type=volunteer`}>{volunteer.id}</a></td>
+                                                <td>{volunteer.firstName}</td>
+                                                <td>{volunteer.lastName}</td>
+                                                <td>{volunteer.email}</td>
+                                                <td>{eventInfo.teams[0].teamNumber}</td>
+                                                <td>
+                                                    <button className="btn btn-primary">
+                                                        Join this Group
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                        )
+                                    })
+                                } 
+                            </tbody>
+                        </Table>
+                </div>
+
+                <div className={`mt-5 ${styles.volWrapper}`}>
+                    <Table className={`table ${styles.table}`}>
+                            <thead className={`${styles.commentHead}`}>
+                                <tr>
+                                    <th scope="col">Organization ID</th>
+                                    <th scope="col">Organization Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">website Link</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {
+                                    eventInfo.organizations.map(org => {
+                                        return (
+                                            <tr>
+                                                <td><a href={`/profile/${org.id}?type=organization`}>{org.id}</a></td>
+                                                <td>{org.organizationName}</td>
+                                                <td>{org.description}</td>
+                                                <td><a href={org.websiteLink}>{org.websiteLink}</a></td>
+                                            </tr>
+                                        )
+                                    })
+                                } 
+                            </tbody>
+                        </Table>
+                </div>
             </div>
         )
     }
 
     return (
-        eventInfo &&
-        <div className={`${styles.wrapper}`}>
-            <div className={`${styles.eventfarm}`}>
-                <EventCard />
-                <RelatedFarm />
-                <RelatedComments />
-                <PartcipatingVolunteers/>
+        eventInfo && 
+        (
+            <div>
+                <Navibar/>
+                <div className={`${styles.wrapper}`}>
+                    <div className={`${styles.eventfarm}`}>
+                        <EventCard />
+                        <RelatedFarm />
+                        <RelatedComments />
+                    </div>
+                    <div className={`${styles.participantsWrapper}`}>
+                        <PartcipatingVolunteers/>
+                    </div>
+                </div>
             </div>
-        </div>
+        )
     )
 }
 

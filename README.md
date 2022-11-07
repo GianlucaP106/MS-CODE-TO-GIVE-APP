@@ -12,7 +12,7 @@ The goal of the project is to design a web applicaiton that will faciliate the m
 |Nabil Amimer|[AmimerNabil](https://github.com/AmimerNabil)|Full-Stack Developer
 |Gianluca Piccirillo|[GianlucaP106](https://github.com/GianlucaP106)|Full-Stack Developer
 |Jared Matthews|[JMatt26](https://github.com/JMatt26)|Backend Developer
-|Aditya Negi|[adityanegii](https://github.com/adityanegii)|Backend Developer
+|Aditya Negi|[adityanegii](https://github.com/adityanegii)| Full-Stack Developer
 |Ayomide Ojo|[AyomideOjo](https://github.com/AyomideOjo)|Backend Developer
 |Matthew Cabral|[mattcab2002](https://github.com/mattcab2002)|Frontend Developer
 |Parsa Langari|[PLangari](https://github.com/PLangari)|Frontend Developer

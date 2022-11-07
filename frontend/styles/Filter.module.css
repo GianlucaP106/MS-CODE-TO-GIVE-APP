@@ -1,0 +1,62 @@
+
+
+.main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    display:inline-block;
+  }
+  
+  .popup{
+    position: absolute;
+    background-color: white;
+    display: flex;
+    position: static;
+    justify-content: center;
+    align-items: center;
+    display: block;
+  }
+  
+  .popup section {
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    display: block;
+  }
+  
+  .popup h3 {
+    margin-left: 20px;
+    padding: 10px 0;
+    display: inline-block;
+  }
+  
+  .filter {
+    margin-left: 20px;
+    margin-top: -20px;
+    margin-bottom: 20px
+  }
+  
+  .filter input {
+    appearance: none;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    border: 2px solid black;
+    transition: 0.2s all linear;
+    margin-right: 5px;
+    position: relative;
+    top: 4px;
+  }
+  
+  .filter input:checked {
+    border: 6px solid black;
+  }
+
+  .filter label {
+    font-size: 12px;
+  }
+
+  .button {
+    width: 35px;
+    height: 35px;
+  }
