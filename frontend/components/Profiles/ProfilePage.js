@@ -6,6 +6,8 @@ import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
 import PrimarySearchAppBar from "../Layout/PrimarySearchAppBar";
 
+import styles from '../../styles/components/profile/Profile.module.css'
+
 export default function ProfilePage({ info }) {
 
     const pageVisits = [
@@ -46,7 +48,7 @@ export default function ProfilePage({ info }) {
 
     return (<>
       <PrimarySearchAppBar/>
-      <section styles="background-color: #eee;">
+      <section className={`${styles.wrapper}`} styles="background-color: #eee;">
         <div className="container py-5">
           <div className="row">
             <div className="col-lg-4">

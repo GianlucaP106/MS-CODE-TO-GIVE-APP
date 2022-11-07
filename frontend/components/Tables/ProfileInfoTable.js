@@ -59,6 +59,15 @@ export default function ProfileInfoTable (props) {
           <p className="text-muted mb-0">{firstVal}</p>
         </div>
       </div>
+      <hr/>      
+      <div className="row">
+        <div className="col-sm-3">
+          <p className="mb-0">{thirdKey}</p>
+        </div>
+        <div className="col-sm-9">
+          <p className="text-muted mb-0">{thirdVal}</p>
+        </div>
+      </div>
       <hr/>
       <div className="row">
         <div className="col-sm-3">
@@ -66,15 +75,6 @@ export default function ProfileInfoTable (props) {
         </div>
         <div className="col-sm-9">
           <p className="text-muted mb-0">{secondVal}</p>
-        </div>
-      </div>
-      <hr/>
-      <div className="row">
-        <div className="col-sm-3">
-          <p className="mb-0">{thirdKey}</p>
-        </div>
-        <div className="col-sm-9">
-          <p className="text-muted mb-0">{thirdVal}</p>
         </div>
       </div>
       <hr/>
