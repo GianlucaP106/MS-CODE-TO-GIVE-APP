@@ -5,10 +5,10 @@ import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
-import VolunteerFilter from './filters/VolunteerFilters';
-import ProducerFilter from './filters/ProducerFilters';
-import OrganizationFilters from './filters/OrganizationFilters';
-import GleanerGroupFilters from './filters/GleanerGroupFilters';
+import VolunteerFilter from './Filters/VolunteerFilters';
+import ProducerFilter from './Filters/ProducerFilters';
+import OrganizationFilters from './Filters/OrganizationFilters';
+import GleanerGroupFilters from './Filters/GleanerGroupFilters';
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import PersonSearchIcon from '@mui/icons-material/PersonSearch';
 
