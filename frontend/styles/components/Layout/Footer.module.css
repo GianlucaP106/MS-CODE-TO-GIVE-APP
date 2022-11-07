@@ -1,0 +1,64 @@
+   
+
+@media (max-width: 1000px) {
+    .Box{
+        padding: 70px 30px;
+    }
+
+    .Row{
+        grid-template-columns: repeat(auto-fill, 
+                                minmax(200px, 1fr));
+    } 
+
+}
+
+.Box{
+
+    padding: 75px;
+    position: relative;
+    bottom: 0px;
+    width: 100px;
+}
+   
+.Container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.Column{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    margin-left: 60px;
+}
+      
+.Row{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 
+                           minmax(185px, 1fr));
+    grid-gap: 20px;
+}
+
+.FooterLink{
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    
+    
+}
+.FooterLink:hover {
+    color: green;
+    transition: 200ms ease-in;
+}
+
+
+.Heading{
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 40px;
+    font-weight: bold;
+}

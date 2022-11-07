@@ -31,7 +31,7 @@ public class Image {
     @ManyToOne
     private Event event;
 
-    private ImageType iamgeType; 
+    private ImageType imageType; 
 
     private String imageURL;
 
@@ -55,11 +55,12 @@ public class Image {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
-    public ImageType getIamgeType() {
-        return iamgeType;
+
+    public ImageType getImageType() {
+        return imageType;
     }
-    public void setIamgeType(ImageType iamgeType) {
-        this.iamgeType = iamgeType;
+    public void setImageType(ImageType imageType) {
+        this.imageType = imageType;
     }
     public Volunteer getGleaner() {
         return volunteer;

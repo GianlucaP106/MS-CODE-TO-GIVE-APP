@@ -5,14 +5,14 @@ import styles from '../../styles/components/Charts/Polar.module.css';
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
-export default function Polar() {
-
+export default function Polar(props) {
+  const { className, labels, values } = props;
   const data = {
-    labels: ['Carrots', 'Zucchini', 'Peppers', 'Strawberries', 'Corn'],
+    labels: labels,
     datasets: [
       {
         label: 'Harvest Gleaned (kg)',
-        data: [8 ,2, 4, 3, 5],
+        data: values,
         backgroundColor: [
           'rgba(255, 99, 132, 0.5)',
           'rgba(54, 162, 235, 0.5)',
@@ -32,5 +32,5 @@ export default function Polar() {
     ],
   };
 
-  return <Pie data={data} className={styles.polar} />;
+  return <Pie data={data} className={className} />;
 }

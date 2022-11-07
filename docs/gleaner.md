@@ -7,7 +7,7 @@
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
@@ -26,12 +26,11 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "id": "id",
+    "ID": "id",
     "firstName": "firsname",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password",
     "phoneNumber": "phoneNumber",
     "postalCode": "postalCode",
     "city": "city",
@@ -48,7 +47,6 @@
             "lastName": "lastname",
             "email": "email",
             "username": "username",
-            "password": "password",
             "phoneNumber": "phoneNumber",
             "postalCode": "postalCode",
             "city": "city",
@@ -85,7 +83,7 @@
 ```JSON
 {
     "volunteerId" : "volunteerId",
-    "eventID" : "eventID",
+    "eventID" : "eventID"
 }
 ```
 #### successful ? status(201) : status(406)
@@ -96,7 +94,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -104,14 +102,14 @@
 {
     "events": [
         {
-            "id" : "id",
+            "ID" : "id",
             "eventName": "eventName",
             "description": "description",
             "missionStatement": "missionStatement",
             "imageURL": "imageURL",
             "address": "address",
             "postalCode": "postalCode",
-            "city": "city",
+            "city": "city"
         }
     ]
 }
@@ -124,7 +122,7 @@
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -147,7 +145,7 @@
 {
     "volunteerId": "volunteerId",
     "producerId": "producerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -160,20 +158,20 @@
 {
     "volunteerId": "volunteerId",
     "organizationId": "organizationId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
 
 
 ### method: POST
-### path name: /volunteer/comment-event/?username=username
+### path name: /volunteer/comment-event/
 ### request BODY:
 ```JSON
 {
     "volunteerId": "volunteerId",
     "eventId": "eventId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -186,7 +184,7 @@
 {
     "volunteerId": "volunteerId",
     "gleanerGroupId": "gleanerGroupId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -199,7 +197,7 @@
 {
     "gleanerAcceptingId": "gleanerAcceptingId",
     "gleanerRequestingId": "gleanerRequestingId",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -212,7 +210,7 @@
 {
     "volunteerId": "volunteerId",
     "volunteerGroupNumber": "volunteerGroupNumber",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -224,7 +222,7 @@
 ```JSON
 {
     "volunteerId": "volunteerId",
-    "eventId": "eventId",
+    "eventId": "eventId"
 }
 ```
 #### response: successful ? status(201) : status(406)

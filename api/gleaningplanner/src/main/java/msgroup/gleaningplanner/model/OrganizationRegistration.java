@@ -42,6 +42,5 @@ public class OrganizationRegistration {
     public void setEvent(Event event) {
         this.event = event;
     }
-
     
 }

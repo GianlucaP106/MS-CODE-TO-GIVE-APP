@@ -1,0 +1,6 @@
+.multiBgExample {
+    background-color: rgba(0, 0,0,0);
+    width: auto;
+    height: 400px;
+    background-image: url(./public/greenbg.png);
+}

@@ -6,12 +6,15 @@ https://www.restapitutorial.com/httpstatuscodes.html
 #### body params (inputs): 
 ```JSON
 {
-    "firstName": "firsname",
+    "firstName": "firstName",
     "lastName": "lastname",
     "email": "email",
     "username": "username",
     "password": "password",
-    "phoneNumber": "phoneNumber"
+    "phoneNumber": "phoneNumber",
+    "postalCode": "postalCode",
+    "city": "city",
+    "address": "address"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -27,7 +30,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "lastName": "lastname",
     "email": "email",
     "username": "username",
-    "password": "password",
     "phoneNumber": "phoneNumber"
 }
 ```
@@ -41,7 +43,6 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "lastName": "lastname",
             "email": "email",
             "username": "username",
-            "password": "password",
             "phoneNumber": "phoneNumber"
         }
     ]
@@ -55,7 +56,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ### request PARAMETERS:
 ```JSON
 {
-    "username": "username",
+    "username": "username"
 }
 ```
 ### response BODY:
@@ -78,7 +79,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "volunteerId": "volunteerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -91,7 +92,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "gleanerGroupId": "gleanerGroupId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -104,7 +105,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "producerId": "producerId",
     "organizationId": "organizationId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -118,27 +119,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "producerId": "producerId",
     "eventId": "eventId",
     "comment": "comment",
-}
-```
-#### response: successful ? status(201) : status(406)
-
-
-### method: POST
-### path name: /producer/create-event
-### request BODY:
-```JSON
-{
-    "id" : "id",
-    "farmId": "farmId",
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
-    "isUrgent": "isUrgent"
+    "authorType": "authorType"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -150,36 +131,17 @@ https://www.restapitutorial.com/httpstatuscodes.html
 ```JSON
 {
     "id" : "id",
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
+    "firstName": "firstName",
+    "lastName": "lastname",
+    "email": "email",
+    "username": "username",
+    "password": "password",
+    "phoneNumber": "phoneNumber",
     "address": "address",
-    "postalCode": "postalCode",
     "city": "city",
-    "isUrgent": "isUrgent"
+    "postalCode": "postalCode"
 }
 ```
 #### successful ? status(404) : status(404) // not found
 
-
-### method: PUT
-### path name: /producer/update-event
-### request PARAMETERS:
-```JSON
-{
-    "id" : "id",
-    "eventName": "eventName",
-    "neededGleaners": "neededGleaners",
-    "description": "description",
-    "missionStatement": "missionStatement",
-    "imageURL": "imageURL",
-    "address": "address",
-    "postalCode": "postalCode",
-    "city": "city",
-    "isUrgent": "isUrgent"
-}
-```
-#### successful ? status(404) : status(404) // not found
 

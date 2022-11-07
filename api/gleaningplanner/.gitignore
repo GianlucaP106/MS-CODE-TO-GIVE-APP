@@ -1,4 +1,5 @@
-api/gleaningplanner/src/main/resources/application.properties
+#api/gleaningplanner/src/main/resources/application.properties
+application.properties
 HELP.md
 .gradle
 build/

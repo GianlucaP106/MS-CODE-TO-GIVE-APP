@@ -1,5 +1,6 @@
 package msgroup.gleaningplanner.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,11 @@ public class Producer extends User{
 
     private String firstName;
     private String lastName;
+
+    @Column(unique = true)
     private String email;
+
+    @Column(unique = true)
     private String phoneNumber;
 
     public Producer() {
