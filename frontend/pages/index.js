@@ -30,12 +30,11 @@ export default function Home(props) {
         {/*<Navbar />*/}
         {/*/!* <Search /> *!/*/}
         {/*<Hero />*/}
-        {/*<WhyGlean />*/}
+        <WhyGlean />
         {/*<MeetTopVolunteers />*/}
         {/*/!* <PrimarySearchAppBar/>*/}
         {/*<ProfilePage /> *!/*/}
         {/*<Footer />*/}
-          <SignInSide />
       </main>
     </div>
   );
