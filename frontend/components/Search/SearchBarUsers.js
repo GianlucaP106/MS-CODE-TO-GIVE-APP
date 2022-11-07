@@ -47,7 +47,7 @@ export default function SearchBarUsers() {
       console.log(ggFilters);
   };
 
-  const mobileMenuId = 'primary-search-account-menu-mobile';
+  const mobileMenuId = 'primary-searchBar-account-menu-mobile';
   const renderMobileMenu = (
       <Menu
           anchorEl={mobileMoreAnchorEl}

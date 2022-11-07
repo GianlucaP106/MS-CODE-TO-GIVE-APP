@@ -1,11 +1,9 @@
 import React from 'react';
-import Polar from '../Charts/Polar'
 import { styled } from '@mui/material/styles';
 import Grid from '@mui/material/Grid';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import styles from '../../styles/components/HomeSections/WhyGlean.module.css';
-import { style } from '@mui/system';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
@@ -26,15 +24,15 @@ export default function WhyGlean() {
       <Box className={styles.body}>
         <Grid className={`${styles.infoContainder}`} container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid className={styles.stats} item xs={4}>
-            <div className={styles.number}>31%</div>
+            <div className={styles.number}><p style={{marginTop: "33%"}}>31%</p></div>
             <div className={styles.statDescription}>Thirty-one percent of the nation’s food supply went uneaten that particular study year. </div>
           </Grid>
           <Grid className={styles.stats} item xs={4}>
-            <div className={styles.number} style={{ fontSize: '5.5em' }}>133 billion pounds</div>
+            <div className={styles.number} style={{ fontSize: '5.5em' }}><p>133 billion pounds</p></div>
             <div className={styles.statDescription}>Of the 430 billion pounds of produce available, 133 billion pounds were uneaten (the difference represents the 31-percent figure).  </div>
           </Grid>
           <Grid className={styles.stats} item xs={4}>
-            <div className={styles.number} style={{ fontSize: '6em' }}>$161.6 billion</div>
+            <div className={styles.number} style={{ fontSize: '6em' }}><p style={{marginTop: "17%"}}>$161.6 billion</p></div>
             <div className={styles.statDescription}>In terms of retail prices, the wasted post-harvested food was valued at $161.6 billion. </div>
           </Grid>
         </Grid>
