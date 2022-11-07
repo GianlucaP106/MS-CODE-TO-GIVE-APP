@@ -1,5 +1,6 @@
-import React from "react";
-import { GoogleMap, LoadScript, MarkerF, Bounds } from "@react-google-maps/api";
+import React, { useState, useEffect } from "react";
+import { GoogleMap, LoadScript, MarkerF, InfoWindow } from "@react-google-maps/api";
+// import { withGoogleMap, withScriptjs } from "react-google-maps";
 
 const center = {
   // Montreal
@@ -22,54 +23,78 @@ const options = {
 };
 
 export default function Map(props){
-    const mapRef = React.useRef(null)
 
-    const {size} = props;
-    const [location, setLocation] = React.useState(center);
-    const [zoom, setZoom] = React.useState(10);
 
-    React.useEffect(()=>{
-        navigator.geolocation.getCurrentPosition((geoLocation) => {
-            setLocation({
-              location: {
-                lat: geoLocation.coords.latitude,
-                lng: geoLocation.coords.longitude,
-              },
-            });
+
+  const {size} = props;
+  const [location, setLocation] = useState(center);
+  const [zoom, setZoom] = useState(10);
+  const [ eventsCoord, setEventsCoord ] = useState([]);
+
+
+  let markers = [
+    { lat: 45.5019, lng: -73.5674  },
+    { lat: 47.5019, lng: -73.5674  },
+    { lat: 45.5019, lng: -70.5674  },
+    { lat: 39.5019, lng: -73.5674  },
+    { lat: 45.5019, lng: -80.5674  }
+  ]
+
+  React.useEffect(() => {
+    navigator.geolocation
+      .getCurrentPosition((geoLocation) => {
+        setLocation({
+          location: {
+            lat: geoLocation.coords.latitude,
+            lng: geoLocation.coords.longitude,
           }
-        );
+        });
+    }); 
+    getEventsFromServer();
+  }, []);
 
-    }, [])
-
-
-    let markers = [
-      { lat: 45.5019, lng: -73.5674  },
-      { lat: 47.5019, lng: -73.5674  },
-      { lat: 45.5019, lng: -70.5674  },
-      { lat: 39.5019, lng: -73.5674  },
-      { lat: 45.5019, lng: -80.5674  }
-    ]
-
-
-    let bounds = mapRef.current.state.LatLngBounds()
-
-    for (var i = 0; i < markers.length; i++) {
-      bounds.extend(marker[i])
+  async function getEventsFromServer() {
+    let events = null;
+    try {
+      events = await fetch("http://localhost:8080/event/all/withfarm");
+      events = await events.json();
+    }catch (e) {
+      console.log(e);
+    }      
+    let marks = [];
+    for (let event of events) {
+      console.log(event);
+      marks.push({
+        loc: {
+          lat: event.farm.latitude,
+          lng: event.farm.longitude
+        },
+        name: event.eventName,
+        description: event.description,
+        date: event.date,
+        farmName: event.farm.farmName,
+        producer: `${event.farm.producer.firstName} ${event.farm.producer.lastName}`
+      });
     }
-
-    mapRef.current.fitBounds(bounds);
-
+    
+    setEventsCoord(marks);
+  } 
+  function handleMarkerClick(eventData) {
+    props.setDisplay(eventData)
+  }
+    
     return(
+
         <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GMAPS_KEY}>
             <GoogleMap
             mapContainerStyle={size}
             center={location}
             zoom={zoom}
-            ref={mapRef}
+            id={"google"}
             >
-            {markers && markers.map((location) => {
-                return (
-                <MarkerF position={location} />
+            {eventsCoord && eventsCoord.map((item) => {
+              return (
+                <MarkerF onClick={() => handleMarkerClick(item)} position={item.loc} />
                 )
             })}
             </GoogleMap>

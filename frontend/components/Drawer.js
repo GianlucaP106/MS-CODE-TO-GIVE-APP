@@ -163,7 +163,7 @@ const top100Films = [
             return event;
     */
 
-export default function PermanentDrawerLeft() {
+export default function PermanentDrawerLeft(props) {
   async function getEventByCropTypeDataFromServer(data) {
     let response = null;
     try {
@@ -187,6 +187,7 @@ export default function PermanentDrawerLeft() {
 
   const [searchParameter, setSearchParameter] = React.useState("Event");
   const [textFieldInput, setTextFieldInput] = React.useState("");
+  const [ event, setEvent ] = React.useState({});
 
   React.useEffect(() => {
     const keyDownHandler = (event) => {
@@ -205,6 +206,10 @@ export default function PermanentDrawerLeft() {
 
     document.addEventListener("keydown", keyDownHandler);
   });
+
+  React.useEffect(() => {
+    setEvent(props.display);
+  }, [props.display])
 
   return (
     <Box sx={{ display: "flex" }}>
@@ -277,6 +282,13 @@ export default function PermanentDrawerLeft() {
           </RadioGroup>
         </FormControl>
         <Divider />
+        <div>
+            <h5>Event Selected</h5>
+            <p>Event Name: {event.name}</p>
+            <p>Description: {event.description}</p>
+            <p>Producer: {event.producer}</p>
+            <p>Date: {event.date}</p>
+        </div>
       </Drawer>
     </Box>
   );

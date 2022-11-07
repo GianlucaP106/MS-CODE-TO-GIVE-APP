@@ -68,7 +68,7 @@ public class EventController {
     }
 
     @GetMapping("event/all")
-    public List<EventTO> getAllEvents() {
+    public List<EventTO> getAllEventTOs() {
         List<EventTO> events = new ArrayList<EventTO>();
         for(Event event : eventRepository.findAll()){
             events.add(new EventTO(
@@ -81,6 +81,16 @@ public class EventController {
                 event.isUrgent(),
                 event.getDate().toString()
             ));
+        }
+        return events;
+    }
+
+
+    @GetMapping("/event/all/withfarm")
+    public List<Event> getAllEvents() {
+        List<Event> events = new ArrayList<Event>();
+        for (Event event : eventRepository.findAll()) {
+            events.add(event);
         }
         return events;
     }
