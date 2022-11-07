@@ -271,10 +271,6 @@ export default function PermanentDrawerLeft(props) {
 };
 
   React.useEffect(() => {
-    document.addEventListener("keypress", keyDownHandler);
-  }, []);
-
-  React.useEffect(() => {
     setEvent(display);
   }, [display]);
 
