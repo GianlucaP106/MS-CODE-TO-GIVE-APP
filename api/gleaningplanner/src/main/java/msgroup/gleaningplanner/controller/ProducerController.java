@@ -17,6 +17,7 @@ import msgroup.gleaningplanner.controller.TransferObject.CommentTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProduceTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO;
+import msgroup.gleaningplanner.controller.TransferObject.UserTypeTO;
 import msgroup.gleaningplanner.controller.TransferObject.VolunteerTO;
 import msgroup.gleaningplanner.controller.TransferObject.ProducerTO.signInRequestProducer;
 import msgroup.gleaningplanner.model.Comment;
@@ -255,8 +256,8 @@ public class ProducerController {
     }
 
     @PostMapping("/producer/get-by-farm")
-    public ResponseEntity<ProducerTO> getProducerByFarm(int id ) {
-        Producer producer = producerService.getProducerByFarm(id);
+    public ResponseEntity<ProducerTO> getProducerByFarm(@RequestBody UserTypeTO id ) {
+        Producer producer = producerService.getProducerByFarm(id.getID());
         return new ResponseEntity<ProducerTO>(
             new ProducerTO(
                 producer.getID(),
