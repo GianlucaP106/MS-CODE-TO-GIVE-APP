@@ -56,7 +56,7 @@
     "postalCode": "postalCode",
     "city": "city",
     "isUrgent": "isUrgent",
-    "date": "date",
+    "date": "date"
 }
 ```
 #### response: successful ? status(201) : status(406)

@@ -13,8 +13,11 @@ import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean";
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
 import { Navbar } from "@themesberg/react-bootstrap";
-import Event from "../components/Event/Event.js";
-export default function Home() {
+import SignInSide from "../components/Login";
+import SignUp from "../components/SignUp"
+import Navibar from "../components/NaviBar";
+
+export default function Home(props) {
   return (
     <div>
       <Head>
@@ -23,17 +26,16 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <main>
-        <Event id={2}/>
-        {/* <Navbar /> */}
-        {/* <Search /> */}
-        {/* <Hero /> */}
-        {/* <WhyGlean /> */}
-        {/* <MeetTopVolunteers /> */}
-        {/* <PrimarySearchAppBar/>
-        <ProfilePage /> */}
-        {/* <Footer /> */}
+        {/*<Navbar />*/}
+        {/*/!* <Search /> *!/*/}
+        {/*<Hero />*/}
+        {/*<WhyGlean />*/}
+        {/*<MeetTopVolunteers />*/}
+        {/*/!* <PrimarySearchAppBar/>*/}
+        {/*<ProfilePage /> *!/*/}
+        {/*<Footer />*/}
+          <SignInSide />
       </main>
     </div>
   );

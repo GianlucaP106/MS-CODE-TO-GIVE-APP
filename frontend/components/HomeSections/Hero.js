@@ -4,7 +4,11 @@ export default function Hero(props) {
   const { heading, subHeading } = props;
   return (
     <div style={{
-      backgroundImage: `url(${"/greenbg.png"})`
+      backgroundImage: `url(${"/greenbg.png"})`,
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundSize: "cover",
+      height: "100vh"
     }}>
       <div
         id="intro-example"

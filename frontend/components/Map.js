@@ -23,9 +23,6 @@ const options = {
 };
 
 export default function Map(props){
-
-
-
   const {size} = props;
   const [location, setLocation] = useState(center);
   const [zoom, setZoom] = useState(10);

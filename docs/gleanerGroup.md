@@ -14,7 +14,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "city": "city",
     "postalCode": "postalCode",
     "description": "description",
-    "missionStatement": "missionStatement",
+    "missionStatement": "missionStatement"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -27,7 +27,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "gleanerGroupID": "gleanerGroupID",
     "producerId": "producerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -40,7 +40,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "gleanerId": "gleanerId",
     "organizationId": "organizationId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -67,7 +67,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
 {
     "gleanerId": "gleanerId",
     "gleanerId": "gleanerId",
-    "comment": "comment",
+    "comment": "comment"
 }
 ```
 #### response: successful ? status(201) : status(406)
@@ -103,7 +103,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
             "totalMembers": "totalMembers",
             "address": "address",
             "city": "city",
-            "postalCode": "postalCode",
+            "postalCode": "postalCode"
         }
     ]
 }
@@ -126,7 +126,7 @@ https://www.restapitutorial.com/httpstatuscodes.html
     "imageURL": "imageURL",
     "address": "address",
     "city": "city",
-    "postalCode": "postalCode",
+    "postalCode": "postalCode"
 }
 ```
 #### successful ? status(404) : status(404) // not found
