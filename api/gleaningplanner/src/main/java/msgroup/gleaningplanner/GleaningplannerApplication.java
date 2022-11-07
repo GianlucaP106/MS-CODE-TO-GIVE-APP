@@ -47,18 +47,22 @@ public class GleaningplannerApplication {
 			makeOrganization();
 			makeEvents();
 			makeComments();
-
 			registerOrganizations();
 			registerVolunteersToEvents();
 			OrgAddProduceToEventReg();
 			volunteerJoinAndCreateTeam();
+			producerAcceptTeam();
 		};
+	}
+
+
+	public void producerAcceptTeam(){
+		producerService.acceptVolunteerGroup(2, 1);
 	}
 
 
 	public void volunteerJoinAndCreateTeam() throws InterruptedException {
 		Thread.sleep(1000);
-
 		// EVENT 1
 		volunteerService.requestJoinGroup(
 			1,
@@ -76,6 +80,68 @@ public class GleaningplannerApplication {
 			2
 		);
 
+		// EVENT 2
+		volunteerService.requestJoinGroup(
+			2,
+			1,
+			1		
+		);
+
+		volunteerService.requestJoinGroup(
+			2,
+			2,
+			1		
+		);
+		volunteerService.acceptVolunteer(2, 2);
+		volunteerService.requestJoinGroup(
+			2,
+			3,
+			1		
+		);
+		volunteerService.acceptVolunteer(3, 2);
+		volunteerService.requestJoinGroup(
+			2,
+			4,
+			1		
+		);
+		volunteerService.acceptVolunteer(4,2 );
+		volunteerService.requestJoinGroup(
+			2,
+			5,
+			1		
+		);
+		volunteerService.acceptVolunteer(5, 2 );
+
+
+		//EVENT 3
+		volunteerService.requestJoinGroup(
+			3,
+			6,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			3,
+			2,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			3,
+			5,
+			1		
+		);
+
+
+		//EVENT 4
+		volunteerService.requestJoinGroup(
+			4,
+			5,
+			1		
+		);
+		volunteerService.requestJoinGroup(
+			4,
+			3,
+			1		
+		);
 
 	}
 
@@ -149,6 +215,8 @@ public class GleaningplannerApplication {
 		volunteerService.registerToEvent(
 			1,5
 		);
+
+		//EVENT 2
 		volunteerService.registerToEvent(
 			2,2
 		);

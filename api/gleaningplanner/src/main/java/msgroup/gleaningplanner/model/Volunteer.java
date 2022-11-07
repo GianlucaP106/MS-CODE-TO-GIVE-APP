@@ -22,7 +22,7 @@ public class Volunteer extends User{
     private String phoneNumber;
 
     
-    private Integer participatedEvent;
+    private int participatedEvent;
 
     public Volunteer() {
         super();
