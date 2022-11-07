@@ -15,13 +15,13 @@ const EventPage = ( props ) => {
             setEventID(router.query.event);
             console.log(eventID);
         }
-    }, [router.query]);
+    }, [router.query, props.cred]);
 
 
     return (
-        eventID &&
+        eventID && props.cred &&
         <div>
-            <Event id={eventID}/>
+            <Event cred={props.cred} id={eventID}/>
         </div>
     )
 }

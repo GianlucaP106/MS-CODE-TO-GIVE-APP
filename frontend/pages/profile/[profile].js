@@ -12,10 +12,11 @@ export default function Profile(props) {
 
   useEffect(() => {
     setPageInfo(router.query)
+    if(props) console.log(props);
     if (router.query) {
       getDataFromServer(router.query);
     }
-  }, [router.query]);
+  }, [router.query, props]);
 
 
   async function getDataFromServer(data) {
@@ -142,6 +143,7 @@ export default function Profile(props) {
 
 
     return (
+      props.cred && 
       <div key={pageInfo.pid}>
         <Head>
           <title>Title</title>
@@ -152,7 +154,7 @@ export default function Profile(props) {
   
 
         <main>
-          <ProfilePage info={passedData} /> 
+          <ProfilePage cred={props.cred} info={passedData} /> 
         </main>
       </div>
     );

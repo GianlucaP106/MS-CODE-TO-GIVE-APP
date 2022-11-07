@@ -18,10 +18,16 @@ import Event from "../components/Event/Event.js";
 import Navibar from "../components/NaviBar";
 
 
+import { useEffect } from "react";
 
+const HomePage = (props) => {
 
-const HomePage = () => {
+    useEffect(() => {
+       if(props) console.log(props); 
+    }, [props])
+
     return (
+        props.cred &&
         <div>
             <Head>
                 <title>Title</title>
@@ -30,7 +36,7 @@ const HomePage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <SignInSide />
+                <SignInSide setCredentials={props.setCred}/>
             </main>
         </div>
     )

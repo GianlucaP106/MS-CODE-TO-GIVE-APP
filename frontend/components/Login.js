@@ -19,9 +19,8 @@ import {useState} from "react";
 const theme = createTheme();
 
 
-export default function SignInSide() {
+export default function SignInSide(props) {
     const [account, setAccount] = React.useState('');
-
     const [ userInformation, setUserInformation ] = useState();
 
     const handleChange = (event) => {
@@ -59,7 +58,7 @@ export default function SignInSide() {
                 });
 
                 userInfo = await userInfo.json();
-                setUserInformation(userInfo);
+                props.setCredentials(userInfo);
                 console.log(userInfo);
                 const url = `http://localhost:3000/profile/${userInfo.ID}?type=volunteer`
                 window.location.href = url;
