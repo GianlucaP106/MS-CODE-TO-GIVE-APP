@@ -47,7 +47,7 @@ export default function Hero(props) {
               <a
                 className="btn btn-outline-dark btn-lg m-3"
                 style={{ color: "black" }}
-                href="https://www.calculator.net/gdp-calculator.html"
+                href="/map"
                 role="button"
                 rel="nofollow"
                 target="_blank"

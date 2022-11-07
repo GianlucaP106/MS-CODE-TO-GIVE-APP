@@ -30,11 +30,7 @@ const HomePage = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <Navibar />
-                <Hero />
-                <WhyGlean />
-                <MeetTopVolunteers />
-                <Footer />
+                <SignInSide />
             </main>
         </div>
     )

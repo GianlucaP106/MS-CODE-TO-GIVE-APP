@@ -75,6 +75,7 @@ export default function PrimarySearchAppBar() {
     const handleMenuClose = () => {
         setAnchorEl(null);
         handleMobileMenuClose();
+        window.location.href = 'http://localhost:3000/SignIn'
     };
 
     const handleMobileMenuOpen = (event) => {
@@ -96,10 +97,8 @@ export default function PrimarySearchAppBar() {
                 horizontal: 'right',
             }}
             open={isMenuOpen}
-            onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
         </Menu>
     );
 
@@ -121,10 +120,20 @@ export default function PrimarySearchAppBar() {
             onClose={handleMobileMenuClose}
         >
             <MenuItem>
-                <p>Home</p>
+                <a href='/' style={{
+                    textDecoration: "none",
+                    color: 'black'
+                }}>
+                    <p>Home</p>
+                </a>
             </MenuItem>
             <MenuItem>
-                <p>Start Gleaning</p>
+                <a href='/map' style={{
+                    textDecoration: "none",
+                    color: 'black'
+                }}>
+                    <p>Start Gleaning</p>
+                </a>
             </MenuItem>
 
         </Menu>
@@ -182,7 +191,6 @@ export default function PrimarySearchAppBar() {
                             onClick={handleMobileMenuOpen}
                             color="inherit"
                         >   
-                            
                             <MenuIcon />
                         </IconButton>
                     </Box>

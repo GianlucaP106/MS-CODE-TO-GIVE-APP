@@ -355,9 +355,13 @@ export default function PermanentDrawerLeft(props) {
           </RadioGroup>
         </FormControl>
         <Divider />
-        <div>
-            <h5>Event Selected</h5>
-            <p>Event Name: {event.name}</p>
+        <div className={`${styles.eventInfo} text-center mt-5`}>
+            <h5 className={`${styles.eventSelected}`}>Event Selected</h5>
+            <p>
+              <a href={`/Event/${event.id}`}>
+                Event Name: {event.name}
+              </a>
+            </p>
             <p>Description: {event.description}</p>
             <p>Producer: {event.producer}</p>
             <p>Date: {event.date}</p>

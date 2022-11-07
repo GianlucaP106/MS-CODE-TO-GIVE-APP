@@ -2,7 +2,7 @@ import { useState, useEffect } from "react"
 import styles from '../../styles/components/Event/Event.module.css';
 import Image from 'next/image'
 import gleaningImage from '../../public/gleaning.png'
-import Navibar from "..//NaviBar";
+import PrimarySearchAppBar from "../Layout/PrimarySearchAppBar";
 import { Col, Row, Card, Table } from '@themesberg/react-bootstrap';
 
 const Event = (props) => {
@@ -229,7 +229,7 @@ const Event = (props) => {
         eventInfo && 
         (
             <div>
-                <Navibar/>
+                <PrimarySearchAppBar/>
                 <div className={`${styles.wrapper}`}>
                     <div className={`${styles.eventfarm}`}>
                         <EventCard />
