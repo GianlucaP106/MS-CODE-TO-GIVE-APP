@@ -83,6 +83,12 @@ export default function PrimarySearchAppBar(props) {
         window.location.href = 'http://localhost:3000/SignIn'
     };
 
+    const handleMenuCloseq = () => {
+        setAnchorEl(null);
+        handleMobileMenuClose();
+        window.location.href = 'http://localhost:3000/SignUp'
+    };
+
     const handleMobileMenuOpen = (event) => {
         setMobileMoreAnchorEl(event.currentTarget);
     };
@@ -104,7 +110,8 @@ export default function PrimarySearchAppBar(props) {
             open={isMenuOpen}
             onClick={handleProfileMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Sign In</MenuItem>
+            <MenuItem onClick={handleMenuClose} style={{fontSize: "14px"}}>Sign In</MenuItem>
+            <MenuItem onClick={handleMenuCloseq} style={{fontSize: "14px"}}>Sign Up</MenuItem>
         </Menu>
     );
 
@@ -130,7 +137,7 @@ export default function PrimarySearchAppBar(props) {
                     textDecoration: "none",
                     color: 'black'
                 }}>
-                    <p>Home</p>
+                    <p style={{fontSize: "14px"}}>Home</p>
                 </a>
             </MenuItem>
             <MenuItem>
@@ -138,7 +145,15 @@ export default function PrimarySearchAppBar(props) {
                     textDecoration: "none",
                     color: 'black'
                 }}>
-                    <p>Start Gleaning</p>
+                    <p style={{fontSize: "14px"}}>Start Gleaning</p>
+                </a>
+            </MenuItem>
+            <MenuItem>
+                <a href='/CreateEvent' style={{
+                    textDecoration: "none",
+                    color: 'black'
+                }}>
+                    <p style={{fontSize: "14px"}}>Create Event</p>
                 </a>
             </MenuItem>
 
@@ -159,7 +174,7 @@ export default function PrimarySearchAppBar(props) {
                         onClick={handleMobileMenuOpen}
                         sx={{ mr: 2 }}
                     >
-                        <MenuIcon />
+                        <MenuIcon style = {{width: "35px", height: "35px"}} />
                     </IconButton>
                     <Search>
                         <SearchIconWrapper>
@@ -184,7 +199,7 @@ export default function PrimarySearchAppBar(props) {
                             onClick={handleProfileMenuOpen}
                             color="inherit"
                         >
-                            <AccountCircle />
+                            <AccountCircle style = {{width: "35px", height: "35px"}} />
                         </IconButton>
                     </Box>
                 </Toolbar>

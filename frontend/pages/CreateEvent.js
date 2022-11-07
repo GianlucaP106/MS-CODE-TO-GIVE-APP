@@ -1,10 +1,10 @@
 import Head from "next/head";
-import SignInSide from "../components/Login";
+import CreateEvent from "../components/CreateEvent";
 
 
 import { useEffect } from "react";
 
-const HomePage = (props) => {
+const CreateEventPage = (props) => {
 
     useEffect(() => {
        if(props) console.log(props); 
@@ -20,10 +20,10 @@ const HomePage = (props) => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <main>
-                <SignInSide setCredentials={props.setCred}/>
+                <CreateEvent />
             </main>
         </div>
     )
 }
 
-export default HomePage;
+export default CreateEventPage;

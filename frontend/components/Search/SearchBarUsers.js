@@ -4,7 +4,6 @@ import { TextField, Button } from '@mui/material'
 import React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import VolunteerFilter from './Filters/VolunteerFilters';
 import ProducerFilter from './Filters/ProducerFilters';
 import OrganizationFilters from './Filters/OrganizationFilters';
