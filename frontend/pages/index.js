@@ -14,6 +14,7 @@ import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean"
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
 import { Navbar } from "@themesberg/react-bootstrap";
+import Event from "../components/Event/Event.js";
 export default function Home() {
   return (
     <div>
@@ -25,14 +26,15 @@ export default function Home() {
       </Head>
 
       <main>
-        <Navbar />
+        <Event id={2}/>
+        {/* <Navbar /> */}
         {/* <Search /> */}
-        <Hero />
-        <WhyGlean />
-        <MeetTopVolunteers />
+        {/* <Hero /> */}
+        {/* <WhyGlean /> */}
+        {/* <MeetTopVolunteers /> */}
         {/* <PrimarySearchAppBar/>
         <ProfilePage /> */}
-        <Footer />
+        {/* <Footer /> */}
       </main>
     </div>
   );
