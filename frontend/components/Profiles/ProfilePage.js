@@ -5,6 +5,7 @@ import ProfileCard from "./ProfileCard"
 import ProfileComment from "../Profiles/ProfileComment"
 import Leaderboard from "../Leaderboards/Leaderboard"
 import PrimarySearchAppBar from "../Layout/PrimarySearchAppBar";
+import Link from "next/link";
 
 import styles from '../../styles/components/profile/Profile.module.css'
 
@@ -58,6 +59,7 @@ export default function ProfilePage({ info }) {
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={info.firstName} secondSpot={info.lastName} thirdSpot={info.username} fourthSpot={info.email} profileType={info.personType}/>
+              <Link href="/map" style={{marginLeft: "8px", marginBottom: "10px"}} className='text-black'>Find an event</Link>
               {info.rows &&  <Leaderboard rows={info.rows} columns={columns} />}
             </div>
           </div>
