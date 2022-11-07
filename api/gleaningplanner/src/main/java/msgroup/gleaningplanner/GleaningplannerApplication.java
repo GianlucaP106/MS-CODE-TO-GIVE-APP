@@ -567,7 +567,7 @@ public class GleaningplannerApplication {
 			15, 
 			"Gleaning is everyone's passion in these dire times", 
 			false, 
-			1, 
+			2, 
 			Date.from(Instant.now())
 		);
 
@@ -587,7 +587,7 @@ public class GleaningplannerApplication {
 			12, 
 			"COme help us fetch food for the people who need it the most!! ", 
 			false, 
-			1, 
+			2, 
 			Date.from(Instant.now())
 		);
 
@@ -597,7 +597,7 @@ public class GleaningplannerApplication {
 			12, 
 			"A regional gleaning event for all", 
 			false, 
-			1, 
+			2, 
 			Date.from(Instant.now())
 		);
 
@@ -606,16 +606,6 @@ public class GleaningplannerApplication {
 			10, 
 			15, 
 			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			2, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
 			false, 
 			2, 
 			Date.from(Instant.now())
@@ -646,16 +636,6 @@ public class GleaningplannerApplication {
 			10, 
 			15, 
 			"Gleaning is everyone's passion in these dire times", 
-			false, 
-			3, 
-			Date.from(Instant.now())
-		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
 			false, 
 			3, 
 			Date.from(Instant.now())
@@ -690,17 +670,6 @@ public class GleaningplannerApplication {
 			4, 
 			Date.from(Instant.now())
 		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			4, 
-			Date.from(Instant.now())
-		);
-
 		eventService.createEvent(
 			"Gleaning today.", 
 			11, 
@@ -731,15 +700,6 @@ public class GleaningplannerApplication {
 			Date.from(Instant.now())
 		);
 
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			false, 
-			5, 
-			Date.from(Instant.now())
-		);
 
 		eventService.createEvent(
 			"Gleaning today.", 
@@ -770,17 +730,7 @@ public class GleaningplannerApplication {
 			6, 
 			Date.from(Instant.now())
 		);
-
-		eventService.createEvent(
-			"Gleaning for all", 
-			11, 
-			12, 
-			"Come for a fun time of gleaning. All the food will be donated to a chirtable org.", 
-			true, 
-			6, 
-			Date.from(Instant.now())
-		);
-
+		
 		eventService.createEvent(
 			"Gleaning today.", 
 			11, 

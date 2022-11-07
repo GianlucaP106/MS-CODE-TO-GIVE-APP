@@ -49,6 +49,7 @@
     position: relative;
     padding: 70px;
     margin-bottom: 0;
+    margin: auto;
     border-radius: 50%;
     width: 250px;
     height: 250px;
@@ -76,4 +77,8 @@
     padding-top: 30px;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.boxInfo{
+    width: 40%;
 }

@@ -24,7 +24,7 @@ export default function WhyGlean() {
       </div>
       <div className={styles.subtext2}>Here are some data the U.S. Department of Agriculture’s Economic Research Service assembled in early 2014 showing the importance of gleaning:</div>
       <Box className={styles.body}>
-        <Grid container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+        <Grid className={`${styles.infoContainder}`} container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid className={styles.stats} item xs={4}>
             <div className={styles.number}>31%</div>
             <div className={styles.statDescription}>Thirty-one percent of the nation’s food supply went uneaten that particular study year. </div>

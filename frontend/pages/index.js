@@ -27,18 +27,11 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        {/* <Navibar/> */}
         <PrimarySearchAppBar/>
-        {/* <Event id={2}/> */}
-        {/*/!* <Search /> *!/*/}
-        {/* <Navbar /> */}
-        {/* <Search /> */}
         <Hero />
         <WhyGlean />
         <MeetTopVolunteers />
-        {/*<ProfilePage /> */}
         <Footer />
-        {/* <SignInSide /> */}
       </main>
     </div>
   );

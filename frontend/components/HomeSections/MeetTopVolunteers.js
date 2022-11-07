@@ -18,23 +18,17 @@ const Item = styled(Paper)(({ theme }) => ({
 
 export default function MeetTopVolunteers() {
   return (
-    <Box sx={{ width: '100%' }}>
-      <Grid container rowSpacing={0} columnSpacing={0}>
-        <Grid item xs={6}>
-            <Item>
-                <h1><b >Meet our top Gleaners</b></h1>
+      <div className="m-5 d-flex">
+            <div className='p-3 col-lg-6'>
+                <h1 className=''><b >Meet our top Gleaners</b></h1>
                 <h3>These individuals have made exeptional efforts to reduce food waste.</h3>
                 <hr/>
                 <GleanerLeaderboard />
-            </Item>
-        </Grid>
-        <Grid item xs={6}>
-            <div>
-                <h1 ><b className={styles.username}>Amount of crops safed (kg)</b></h1>
-                <Bar className={""} labels={['Harry',"Particia","Hellen","David","Petra"]} values={[412, 350,342,267,258]} />
             </div>
-        </Grid>
-      </Grid>
-    </Box>
+          <div className='p-3 col-lg-6'>
+              <h1 ><b className={styles.username}>Amount of crops safed (kg)</b></h1>
+              <Bar className={""} labels={['Harry',"Particia","Hellen","David","Petra"]} values={[412, 350,342,267,258]} />
+          </div>
+      </div>
   );
 }

@@ -191,7 +191,6 @@ public class EventService {
         Farm farm = farmRepository.findFarmByID(event.getFarm().getID());
         Producer producer = producerRepository.findProducerByID(event.getFarm().getProducer().getID());
 
-
         // find all teams and their member
         List<VolunteerRegistration> volunteerReg =
                         volunteerRegistrationRepository.findAllVolunteerRegistrationByEvent(event);
