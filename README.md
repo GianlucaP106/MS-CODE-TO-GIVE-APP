@@ -18,9 +18,9 @@ The goal of the project is to design a web applicaiton that will faciliate the m
 |Parsa Langari|[PLangari](https://github.com/PLangari)|Frontend Developer
 |Abhijeet Praveen|[abhijeetpraveen](https://github.com/abhijeetpraveen)|Frontend Developer
 |Mahirul Islam|[mahirul101](https://github.com/mahirul101)|Frontend Developer
-|Paul Hansen||Frontend Developer
+|Paul Hansen|[Karlxy0511](https://github.com/Karlxy0511)|Frontend Developer
 
 ## Wiki Pages
-### Domain Model
+### [Domain Model](https://github.com/GianlucaP106/MS-CODE-TO-GIVE-APP/wiki/Domain-Model)
 
-### Project Requirements
+### [Project Requirements](https://github.com/GianlucaP106/MS-CODE-TO-GIVE-APP/wiki/Requirements)
