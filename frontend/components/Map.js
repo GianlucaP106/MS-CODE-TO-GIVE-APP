@@ -34,12 +34,15 @@ export default function Map(props){
   // React.useEffect(() => {
   //   setEventsCoord(queryRes)
   // }, [queryRes])
-
-  React.useEffect(() => {
+  const fun = async (queryRes) => {
     let toDisplay = []
 
+    let querried = await Promise.resolve(queryRes);
+
+    console.log(querried)
+
     for (let event of allEvents) {
-      for (let queryEvent of queryRes){
+      for (let queryEvent of querried){
         if (queryEvent.ID == event.id){
           toDisplay.push(event)
         }
@@ -47,18 +50,22 @@ export default function Map(props){
     }
 
     setEventsCoord(toDisplay)
+  }
+
+  React.useEffect(() => {
+    fun(queryRes)
   }, [queryRes])
 
   React.useEffect(() => {
-    navigator.geolocation
-      .getCurrentPosition((geoLocation) => {
-        setLocation({
-          location: {
-            lat: geoLocation.coords.latitude,
-            lng: geoLocation.coords.longitude,
-          }
-        });
-    }); 
+    // navigator.geolocation
+    //   .getCurrentPosition((geoLocation) => {
+    //     setLocation({
+    //       location: {
+    //         lat: geoLocation.coords.latitude,
+    //         lng: geoLocation.coords.longitude,
+    //       }
+    //     });
+    // }); 
     getEventsFromServer();
   }, []);
 
