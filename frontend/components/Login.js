@@ -9,17 +9,20 @@ import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import YardIcon from '@mui/icons-material/Yard';
 import Typography from '@mui/material/Typography';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {createTheme, ThemeProvider} from '@mui/material/styles';
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import {useState} from "react";
 
 const theme = createTheme();
 
 
 export default function SignInSide() {
     const [account, setAccount] = React.useState('');
+
+    const [ userInformation, setUserInformation ] = useState();
 
     const handleChange = (event) => {
         setAccount(event.target.value);
@@ -30,11 +33,46 @@ export default function SignInSide() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
+        verifyUser(data).then((r) => {console.log("here now eh:", r)});
         console.log({
-            email: data.get('email'),
+            username: data.get('username'),
             password: data.get('password'),
         });
     };
+
+    async function verifyUser(data) {
+        let userInfo = null;
+        if (account === "Producer") {
+
+        }
+
+        if (account === "Gleaner") {
+            console.log("im here");
+            userInfo = await fetch(
+                "http://localhost:8080/volunteer/sign-in",
+                {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data.get('username'), data.get('password'))
+                });
+
+                userInfo = await userInfo.json();
+                setUserInformation(userInfo);
+                console.log(userInformation);
+
+        }
+
+        if (account === "Organization") {
+
+        }
+
+        if (account === "Gleaning Group") {
+
+        }
+
+    }
 
     return (
         <ThemeProvider theme={theme}>
@@ -94,10 +132,10 @@ export default function SignInSide() {
                                 margin="normal"
                                 required
                                 fullWidth
-                                id="email"
-                                label="Email Address"
-                                name="email"
-                                autoComplete="email"
+                                id="username"
+                                label="Username"
+                                name="username"
+                                autoComplete="username"
                                 autoFocus
                             />
                             <TextField

@@ -20,8 +20,9 @@ export default function WhyGlean() {
     <Box className={styles.box} sx={{ width: '100%' }}>
       <h2 className={styles.title}>Why should you <span className={styles.bold}>GLEAN</span>?</h2>
       <div className={styles.subtext}>The statistics are startling, yet revealing: According to estimates, nearly one-third of the U.S. food supply goes uneaten and wasted annually.
-        To combat this, a growing number of farmers and other professionals involved in food preparation are backing a practice aimed at putting the food that doesn’t
-        wind up on supermarket shelves into the hands of people who will benefit from it. </div>
+        The concept with the intriguing and arguably catchy name <span className={styles.bold}>gleaning</span> gives nonprofits and volunteers the opportunity to pick ripe produce that would otherwise go uneaten.
+      </div>
+      <div className={styles.subtext2}>Here are some data the U.S. Department of Agriculture’s Economic Research Service assembled in early 2014 showing the importance of gleaning:</div>
       <Box className={styles.body}>
         <Grid container rowSpacing={20} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
           <Grid className={styles.stats} item xs={4}>

@@ -19,6 +19,10 @@
     padding-right: 20px;
 }
 
+.body {
+    padding-right: 0;
+}
+
 .subtext {
     margin-left: 80px;
     margin-right: 80px;
@@ -27,6 +31,18 @@
     font-family: 'Luxurious Roman', cursive;
     font-size: 2.2em;
 }
+
+.subtext2 {
+    padding-top: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
+    position: relative;
+    text-align: center;
+    font-family: 'Luxurious Roman', cursive;
+    font-size: 2.2em;
+}
+
+
 
 .number {
     justify-content: center;

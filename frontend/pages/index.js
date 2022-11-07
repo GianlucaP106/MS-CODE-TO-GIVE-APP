@@ -30,11 +30,13 @@ export default function Home(props) {
         {/* <Navibar/> */}
         <Event id={2}/>
         {/*/!* <Search /> *!/*/}
+        {/*<Navbar />*/}
+        {/*<Search />*/}
         {/*<Hero />*/}
         {/* <WhyGlean /> */}
         {/*<MeetTopVolunteers />*/}
-        {/*/!* <PrimarySearchAppBar/>*/}
-        {/*<ProfilePage /> *!/*/}
+        {/*<PrimarySearchAppBar/>*/}
+        {/*<ProfilePage /> */}
         {/*<Footer />*/}
         {/* <SignInSide /> */}
       </main>
