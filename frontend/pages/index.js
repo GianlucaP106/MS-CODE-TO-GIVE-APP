@@ -28,7 +28,8 @@ export default function Home(props) {
       </Head>
       <main>
         {/* <Navibar/> */}
-        <Event id={2}/>
+        <SignInSide />
+        {/* <Event id={2}/> */}
         {/*/!* <Search /> *!/*/}
         {/*<Navbar />*/}
         {/*<Search />*/}
@@ -38,7 +39,6 @@ export default function Home(props) {
         {/*<PrimarySearchAppBar/>*/}
         {/*<ProfilePage /> */}
         {/*<Footer />*/}
-        {/* <SignInSide /> */}
       </main>
     </div>
   );

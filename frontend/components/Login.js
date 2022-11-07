@@ -33,21 +33,18 @@ export default function SignInSide() {
     const handleSubmit = (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        verifyUser(data).then((r) => {console.log("here now eh:", r)});
-        console.log({
-            username: data.get('username'),
-            password: data.get('password'),
-        });
+        verifyUser(
+            data.get('username'),
+            data.get('password')
+        ).then((r) => {console.log("here now eh:", r)});
     };
 
-    async function verifyUser(data) {
+    async function verifyUser(username_input, password_input) {
         let userInfo = null;
-        if (account === "Producer") {
-
-        }
 
         if (account === "Gleaner") {
             console.log("im here");
+            console.log(username_input);
             userInfo = await fetch(
                 "http://localhost:8080/volunteer/sign-in",
                 {
@@ -55,13 +52,15 @@ export default function SignInSide() {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(data.get('username'), data.get('password'))
+                    body: JSON.stringify({
+                        username : username_input, 
+                        password : password_input
+                    })
                 });
 
                 userInfo = await userInfo.json();
                 setUserInformation(userInfo);
                 console.log(userInformation);
-
         }
 
         if (account === "Organization") {
