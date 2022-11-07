@@ -146,26 +146,7 @@ const top100Films = [
   { title: "Monty Python and the Holy Grail", year: 1975 },
 ];
 
-// get all events by radius  ---->
-// {
-//        get all events by crop type --- DONE
-//        pair crop type search with radius -- TO BE COMPLETED 
-//        get all events by farm name --- TO BE COMPLETED ****** important
-//        get all events by event name -- TO BE COMPLETED ***** important
-// }
 
-// first get all farms within radius {farm get by filter}
-// get all events
-/*
-        filter through all the events
-
-            List : eventinradius
-        for event in evenets
-            if event.farmid is in farms 
-                eventinradius.add(event)
-
-            return event;
-    */
 
 export default function PermanentDrawerLeft(props) {
   const {setQueryRes, display} = props; 

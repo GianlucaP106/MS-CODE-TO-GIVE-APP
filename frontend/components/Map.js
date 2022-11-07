@@ -52,12 +52,11 @@ export default function Map(props){
   React.useEffect(() => {
     navigator.geolocation
       .getCurrentPosition((geoLocation) => {
-        setLocation({
-          location: {
-            lat: geoLocation.coords.latitude,
-            lng: geoLocation.coords.longitude,
-          }
-        });
+        setLocation(center);
+          // location: {
+          //   lat: geoLocation.coords.latitude,
+          //   lng: geoLocation.coords.longitude,
+          // }
     }); 
     getEventsFromServer();
   }, []);
