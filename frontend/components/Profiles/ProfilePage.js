@@ -17,23 +17,30 @@ export default function ProfilePage({ info }) {
     ];
 
 
-    console.log(info.rows);
-    // console.log(info.rows.length);
-    // const rows = [
-    //   { id: 1, col1: 'Ste-Eustache', col2: '4', col3: '134', col4: 'Hover' },
-    //   { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
-    // ];
+    // console.log(info.rows);
+    // // console.log(info.rows.length);
+    // // const rows = [
+    // //   { id: 1, col1: 'Ste-Eustache', col2: '4', col3: '134', col4: 'Hover' },
+    // //   { id: 2, col1: 'Laval', col2: '4', col3: '134', col4: 'Hover' },
+    // // ];
    
   
 
     // useEffect(() => {
+
+    //   if (info.rows) {
+
+    //   }
+
     // }, []);
 
     const columns = [
-      { field: 'col1', headerName: 'Event Name', width: 150 },
-      { field: 'col2', headerName: 'Description', width: 150 },
-      { field: 'col3', headerName: 'Date', width: 150 },
-      { field: 'col4', headerName: 'Gleaners required', width: 150 }
+      { field: 'col1', headerName: 'Event Name', width: 100 },
+      { field: 'col2', headerName: 'Description', width: 100 },
+      { field: 'col3', headerName: 'Date', width: 100 },
+      { field: 'col4', headerName: 'Producer Name', width: 100 },
+      { field: 'col5', headerName: 'Producer username', width: 100 },
+      
     ];
 
     return (<>
@@ -47,7 +54,7 @@ export default function ProfilePage({ info }) {
             </div>
             <div className="col-lg-8">
               <ProfileInfoTable firstSpot={info.firstName} secondSpot={info.lastName} thirdSpot={info.username} fourthSpot={info.email} profileType={info.personType}/>
-              {/* <Leaderboard rows={info.rows} columns={columns} /> */}
+              {info.rows &&  <Leaderboard rows={info.rows} columns={columns} />}
             </div>
           </div>
         </div>

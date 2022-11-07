@@ -153,10 +153,13 @@ public class VolunteerService {
         Integer volunteerID,
         Integer groupNumber
     ){
-        Volunteer volunteer = volunteerRepository.findVolunteerByID(volunteerID);
-        Event event = eventRepository.findEventByID(eventID);
 
-        VolunteerRegistration registration = volunteerRegistrationRepository.findAllVolunteerRegistrationByEventAndVolunteer(event, volunteer);
+        VolunteerRegistration registration = 
+            volunteerRegistrationRepository.findVolunteerRegistrationByEventAndVolunteer(
+                eventRepository.findEventByID(eventID),
+                volunteerRepository.findVolunteerByID(volunteerID)
+            );
+
         List<VolunteerRegistration> regs = volunteerRegistrationRepository.findAllVolunteerRegistrationByVolunteerGroupNumber(groupNumber);
 
         if(regs != null) {
@@ -166,7 +169,11 @@ public class VolunteerService {
                     regsEvent.add(reg);
                 }
             }
-            if(regsEvent.size() == 0 ) registration.setOwner(true);
+            if(regsEvent.size() == 0 ){
+                registration.setOwner(true);
+                registration.setVolunteerGroupAccepted(true);
+            }
+               
         }
 
         registration.setVolunteerGroupNumber(groupNumber);
@@ -175,18 +182,18 @@ public class VolunteerService {
 
     public VolunteerRegistration acceptVolunteer(int volunteerID, int eventID) {
 
+        VolunteerRegistration registrations = 
+            volunteerRegistrationRepository.findVolunteerRegistrationByEventAndVolunteer(
+                eventRepository.findEventByID(eventID),
+                volunteerRepository.findVolunteerByID(volunteerID)
+            );
 
-        List<VolunteerRegistration> registrations = volunteerRegistrationRepository.findAllVolunteerRegistrationByVolunteer(
-            volunteerRepository.findVolunteerByID(volunteerID)
-        );
-        if (registrations.size() > 0) {
-            registrations.get(0).setVolunteerGroupAccepted(true);
-            volunteerRegistrationRepository.save(registrations.get(0));
-        }
+        if(registrations  == null) return null;
 
-        return registrations.get(0);
+        registrations.setVolunteerGroupAccepted(true);
+        volunteerRegistrationRepository.save(registrations);
 
-
+        return registrations;
     }
 
 

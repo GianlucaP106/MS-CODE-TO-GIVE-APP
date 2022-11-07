@@ -13,10 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import msgroup.gleaningplanner.controller.TransferObject.EventFilterTO;
 import msgroup.gleaningplanner.controller.TransferObject.EventTO;
+import msgroup.gleaningplanner.controller.TransferObject.EventTeamTO;
 import msgroup.gleaningplanner.controller.TransferObject.UserTypeTO;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.repository.EventRepository;
@@ -66,7 +68,7 @@ public class EventController {
     }
 
     @GetMapping("event/all")
-    public List<EventTO> getAllEvents() {
+    public List<EventTO> getAllEventTOs() {
         List<EventTO> events = new ArrayList<EventTO>();
         for(Event event : eventRepository.findAll()){
             events.add(new EventTO(
@@ -79,6 +81,16 @@ public class EventController {
                 event.isUrgent(),
                 event.getDate().toString()
             ));
+        }
+        return events;
+    }
+
+
+    @GetMapping("/event/all/withfarm")
+    public List<Event> getAllEvents() {
+        List<Event> events = new ArrayList<Event>();
+        for (Event event : eventRepository.findAll()) {
+            events.add(event);
         }
         return events;
     }
@@ -145,6 +157,13 @@ public class EventController {
             HttpStatus.OK
         );
 
+    }
+
+
+    @PostMapping("/event/detail-event-info")
+    public ResponseEntity<EventTeamTO> getTeams(@RequestBody EventTO incoming){
+       EventTeamTO out = eventService.getEventInfo(incoming.ID);
+       return new ResponseEntity<EventTeamTO>(out, HttpStatus.OK);
     }
 
 }

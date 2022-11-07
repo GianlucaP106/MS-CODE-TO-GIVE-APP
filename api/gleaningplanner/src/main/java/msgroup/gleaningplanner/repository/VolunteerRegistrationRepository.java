@@ -26,6 +26,6 @@ public interface VolunteerRegistrationRepository extends CrudRepository<Voluntee
 
     public List<VolunteerRegistration> findAllVolunteerRegistrationByEvent(Event event);
 
-    public VolunteerRegistration findAllVolunteerRegistrationByEventAndVolunteer(Event event, Volunteer volunteer);
+    public VolunteerRegistration findVolunteerRegistrationByEventAndVolunteer(Event event, Volunteer volunteer);
 
 }
