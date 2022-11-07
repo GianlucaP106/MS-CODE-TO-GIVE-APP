@@ -1,5 +1,4 @@
-import React, {useState, useEffect} from "react";
-import Box from "@mui/material/Box";
+import React, {useState, useEffect, useRef} from "react";
 import Drawer from "@mui/material/Drawer";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
@@ -11,6 +10,10 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import styles from "../styles/components/Drawer.module.css";
+import Input from "@mui/material/Input";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import SearchIcon from '@mui/icons-material/Search';
 
 
 const drawerWidth = 300;
@@ -222,6 +225,7 @@ export default function PermanentDrawerLeft(props) {
 
   const keyDownHandler = (event) => {
     if (event.key === "Enter") {
+      event.preventDefault();
       let queryResponse;
 
       if (searchParameter == "Crop") {
@@ -240,16 +244,49 @@ export default function PermanentDrawerLeft(props) {
     }
   }
 
+  const searchRez = (data) => {
+    let queryResponse;
+
+      if (searchParameter == "Crop") {
+        queryResponse = getEventByCropTypeDataFromServer(data);
+        console.log(data);
+      }
+
+      if (searchParameter == "Event") {
+        queryResponse = getEventByNameFromServer(data);
+        console.log(data);
+      }
+
+      // 👇️ call submit function here to display points on map
+      if (queryResponse !== null) setQueryRes(queryResponse);
+      console.log("Events Displayed On Map");
+  }
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    searchRez(
+        data.get('query')
+    );
+};
+
   React.useEffect(() => {
-    document.addEventListener("keydown", keyDownHandler);
+    document.addEventListener("keypress", keyDownHandler);
   }, []);
 
   React.useEffect(() => {
     setEvent(display);
   }, [display]);
 
-  const handleTextValueChange = (e) => {
-    setTextFieldInput(e.target.value)
+  const handleTextValueChange = () => {
+    console.log("Were are here")
+    console.log(document.getElementById("inputField"))
+    // searchRez(inputRef.current.value)
+  }
+
+  const handleTextValueChangeR = (e) => {
+    setTextFieldInput(e.target.value);
+    // searchRez(inputRef.current.value)
   }
 
   return (
@@ -274,20 +311,31 @@ export default function PermanentDrawerLeft(props) {
           options={top100Films.map((event) => event.title)}
           className={styles.searchField}
           renderInput={(params) => (
+            <Box component="form" noValidate onSubmit={handleSubmit}>
               <TextField
               {...params}
+              margin="normal"
+              required
+              fullWidth
+              name="query"
+              autoFocus
               id="inputField"
               label="Search input"
               InputProps={{
                 ...params.InputProps,
-                type: "search",
+                type: "search"
               }}
-              value={textFieldInput}
-              onChange={handleTextValueChange}
-            />
+              />
+              <Button type="submit"
+                fullWidth
+                variant="outlined"
+                sx={{ mt: 3, mb: 2 }}><SearchIcon /></Button>
+            </Box>
               
           )}
-        />
+        />            
+        {/* <button onClick={handleTextValueChange}>Log message</button> */}
+
         <FormControl className={styles.formControl}>
           <FormLabel id="searchType-demo-radio-buttons-group-label">
             Search By:
