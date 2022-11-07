@@ -256,7 +256,7 @@ public class ProducerService {
 
     }
 
-    public Producer getProducerByFarm(int id) {
+    public Producer getProducerByFarm(Integer id) {
         return farmRepository.findFarmByID(id).getProducer();
     }
 

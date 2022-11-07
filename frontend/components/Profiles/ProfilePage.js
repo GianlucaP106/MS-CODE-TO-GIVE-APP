@@ -35,10 +35,12 @@ export default function ProfilePage({ info }) {
     // }, []);
 
     const columns = [
-      { field: 'col1', headerName: 'Event Name', width: 150 },
-      { field: 'col2', headerName: 'Description', width: 150 },
-      { field: 'col3', headerName: 'Date', width: 150 },
-      { field: 'col4', headerName: 'Producer', width: 150 }
+      { field: 'col1', headerName: 'Event Name', width: 100 },
+      { field: 'col2', headerName: 'Description', width: 100 },
+      { field: 'col3', headerName: 'Date', width: 100 },
+      { field: 'col4', headerName: 'Producer Name', width: 100 },
+      { field: 'col5', headerName: 'Producer username', width: 100 },
+      
     ];
 
     return (<>

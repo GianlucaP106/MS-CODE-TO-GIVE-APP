@@ -82,12 +82,34 @@ export default function Profile(props) {
     }
     let rows = [];
     for (let event of outEvents) {
+      let producer = null;
+      let farmInfo = {
+        "ID": event["farmId"],
+        "userType": "dummy"
+      }
+      try {
+        producer = await fetch("http://localhost:8080/producer/get-by-farm", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify(farmInfo)
+        });
+        producer = await producer.json();
+        console.log(producer);
+      }catch(e) {
+        console.log(e);
+      }
+
+      console.log(producer);
+
       rows.push({
         id: event["ID"],
         col1: event["name"],
         col2: event["description"],
         col3: event["date"],
-        col4: event["neededGleaners"]
+        col4: `${producer["firstName"]} ${producer["lastName"]}`,
+        col5: producer["username"],
       })
     }
     
