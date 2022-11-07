@@ -12,11 +12,10 @@ import PageVisitsTable from "../components/Tables/PageVisitsTable";
 import Hero from "../components/HomeSections/Hero";
 import WhyGlean from "../components/HomeSections/WhyGlean";
 import MeetTopVolunteers from "../components/HomeSections/MeetTopVolunteers";
-import { Navbar } from "@themesberg/react-bootstrap";
 import SignInSide from "../components/Login";
 import SignUp from "../components/SignUp"
-import Navibar from "../components/NaviBar";
 import Event from "../components/Event/Event.js";
+import Navibar from "../components/NaviBar";
 
 export default function Home(props) {
   return (
@@ -28,8 +27,8 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        {/* <Navibar/> */}
         <Event id={2}/>
-        {/*<Navbar />*/}
         {/*/!* <Search /> *!/*/}
         {/*<Hero />*/}
         {/* <WhyGlean /> */}
@@ -37,7 +36,7 @@ export default function Home(props) {
         {/*/!* <PrimarySearchAppBar/>*/}
         {/*<ProfilePage /> *!/*/}
         {/*<Footer />*/}
-          {/* <SignInSide /> */}
+        {/* <SignInSide /> */}
       </main>
     </div>
   );

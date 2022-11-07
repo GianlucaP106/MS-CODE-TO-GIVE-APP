@@ -3,9 +3,10 @@ import { useState, useEffect } from "react"
 import styles from '../../styles/components/Event/Event.module.css';
 import Image from 'next/image'
 import gleaningImage from '../../public/gleaning.png'
+import { Col, Row, Card, Table } from '@themesberg/react-bootstrap';
 
 const Event = (props) => {
-    const [ eventInfo, setEventInfo ] = useState();
+    const [eventInfo, setEventInfo] = useState();
 
     useEffect(() => {
         const id = props.id;
@@ -32,7 +33,7 @@ const Event = (props) => {
         console.log(eventInfo);
     }
 
-    function EventCard(){
+    function EventCard() {
         return (
             <div className={`${styles.eventCardWrapper}`}>
                 <div className={`mb-5 ${styles.eventImage}`}>
@@ -45,10 +46,10 @@ const Event = (props) => {
                 </div>
                 <div className={`${styles.eventDescription}`}>
                     <h3>
-                       <div> Event Name</div> {eventInfo["event"]["eventName"]}
+                        <div> Event Name</div> {eventInfo["event"]["eventName"]}
                     </h3>
                     <h3>
-                       <div> Event description</div>  {eventInfo["event"]["description"]}
+                        <div> Event description</div>  {eventInfo["event"]["description"]}
                     </h3>
                     <h3>
                         <div> Max Gleaners</div> {eventInfo["event"]["maxGleaners"]}
@@ -61,8 +62,8 @@ const Event = (props) => {
         )
     }
 
-    function RelatedFarm(){
-        return(
+    function RelatedFarm() {
+        return (
             <div className={`${styles.farmWrapper}`}>
                 <div className={`${styles.farmInfo}`}>
                     <div className={`${styles.farmName}`}>
@@ -80,11 +81,11 @@ const Event = (props) => {
                 <hr className="hr hr-blurry" />
                 <div className={`${styles.farmName}`}>
                     <a href={`/profile/${eventInfo.producer.id}?type=producer`}>
-                        {`${eventInfo.producer.firstName} ${eventInfo.producer.lastName}`} 
+                        {`${eventInfo.producer.firstName} ${eventInfo.producer.lastName}`}
                     </a>
                 </div>
                 <div className={`text-center mt-5`} >
-                        {` address:
+                    {` address:
                             ${eventInfo.producer.address},   
                             ${eventInfo.producer.city}, 
                             ${eventInfo.producer.postalCode} 
@@ -111,23 +112,42 @@ const Event = (props) => {
         )
     }
 
-    function RelatedComments(){
-        return(
+    function RelatedComments() {
+        return (
             <div className={`${styles.commentWrapper}`}>
                 <div className={`${styles.comments}`}>
-
+                    <Table className={`table ${styles.table}`}>
+                        <thead className={`${styles.commentHead}`}>
+                            <tr>
+                                <th scope="col">Author type</th>
+                                <th scope="col">Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {
+                                eventInfo.comments.map(comment => {
+                                    return (
+                                        <tr>
+                                            <td>{comment.authorType}</td>
+                                            <td>{comment.comment}</td>
+                                        </tr>
+                                    )
+                                })
+                            } 
+                        </tbody>
+                    </Table>
                 </div>
             </div>
         )
     }
 
     return (
-        eventInfo && 
+        eventInfo &&
         <div className={`${styles.wrapper}`}>
             <div className={`${styles.eventfarm}`}>
-                <EventCard/>
-                <RelatedFarm/>
-                <RelatedComments/>
+                <EventCard />
+                <RelatedFarm />
+                <RelatedComments />
             </div>
         </div>
     )

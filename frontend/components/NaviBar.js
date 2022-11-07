@@ -4,9 +4,9 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import Collapse from "react-bootstrap/Collapse";
 import Link from "next/link";
+import styles from '../styles/components/Navibar.module.css'
 
 import { useState, useEffect } from "react";
-
 
 export default function Navibar() {
 
@@ -14,8 +14,7 @@ export default function Navibar() {
     const [burger, setBurger] = useState(false);
 
     return(
-
-        <div className="myNavbar" id="">
+        <div className={`${styles.wrapper} myNavbar`} id="">
             <Navbar fixed="top" collapseOnSelect expand="lg" className="" variant="dark" >
                 <Container>
                     <Navbar.Brand href="/"><img src="/assets/logos/devproLogo.png" className="" alt="" height="60" /></Navbar.Brand>
