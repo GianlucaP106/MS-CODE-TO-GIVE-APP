@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import msgroup.gleaningplanner.model.Comment;
 import msgroup.gleaningplanner.model.Event;
 import msgroup.gleaningplanner.model.Farm;
 import msgroup.gleaningplanner.model.GleanerGroup;
@@ -20,6 +21,8 @@ public class EventTeamTO {
     public List<EventTeam> teams = new ArrayList<EventTeam>();
     public Set<Organization> organizations = new HashSet<>();
     public Set<GleanerGroup> gleanerGroups = new HashSet<>();
+    public List<Comment> comments;
+
 
     public static class EventTeam{
         public Integer teamNumber;

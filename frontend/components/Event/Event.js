@@ -56,7 +56,7 @@ const Event = (props) => {
                     <h3>
                         <div> Required Gleaners</div> {eventInfo["event"]["requiredGleaners"]}
                     </h3>
-                </div>
+                    <button type="button" className={`${styles.participate} btn btn-primary`}>Register</button> </div>
             </div>
         )
     }
@@ -65,9 +65,46 @@ const Event = (props) => {
         return(
             <div className={`${styles.farmWrapper}`}>
                 <div className={`${styles.farmInfo}`}>
-                    <h3> Farm </h3>
-                    <div className={``}>
-                         
+                    <div className={`${styles.farmName}`}>
+                        {eventInfo.farm.farmName}
+                    </div>
+                    <hr class="hr hr-blurry" />
+                    <div className="mt-5 text-center">
+                        {` address:
+                            ${eventInfo.farm.address},   
+                            ${eventInfo.farm.city}, 
+                            ${eventInfo.farm.postalCode} 
+                        `}
+                    </div>
+                </div>
+                <hr className="hr hr-blurry" />
+                <div className={`${styles.farmName}`}>
+                    <a href={`/profile/${eventInfo.producer.id}?type=producer`}>
+                        {`${eventInfo.producer.firstName} ${eventInfo.producer.lastName}`} 
+                    </a>
+                </div>
+                <div className={`text-center mt-5`} >
+                        {` address:
+                            ${eventInfo.producer.address},   
+                            ${eventInfo.producer.city}, 
+                            ${eventInfo.producer.postalCode} 
+                        `}
+                </div>
+                <hr className="hr hr-blurry" />
+                <div className={`text-center ${styles.producerInfo}`}>
+                    <div className="mt-5 text-center">
+                        Contact Information
+                    </div>
+                    <div className="mt-5">
+                        {` 
+                            phone number:  ${eventInfo.producer.phoneNumber}
+
+                        `}
+                    </div>
+                    <div className="">
+                        {` 
+                            email: ${eventInfo.producer.email}
+                        `}
                     </div>
                 </div>
             </div>
@@ -76,11 +113,9 @@ const Event = (props) => {
 
     function RelatedComments(){
         return(
-            <div className={`${styles.farmWrapper}`}>
-                <div className={`${styles.farmInfo}`}>
-                    <div className={``}>
-                         
-                    </div>
+            <div className={`${styles.commentWrapper}`}>
+                <div className={`${styles.comments}`}>
+
                 </div>
             </div>
         )

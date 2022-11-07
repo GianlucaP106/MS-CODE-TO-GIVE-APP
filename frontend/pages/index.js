@@ -16,6 +16,7 @@ import { Navbar } from "@themesberg/react-bootstrap";
 import SignInSide from "../components/Login";
 import SignUp from "../components/SignUp"
 import Navibar from "../components/NaviBar";
+import Event from "../components/Event/Event.js";
 
 export default function Home(props) {
   return (
@@ -27,6 +28,7 @@ export default function Home(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Event id={2}/>
         {/*<Navbar />*/}
         {/*/!* <Search /> *!/*/}
         {/*<Hero />*/}
@@ -35,7 +37,7 @@ export default function Home(props) {
         {/*/!* <PrimarySearchAppBar/>*/}
         {/*<ProfilePage /> *!/*/}
         {/*<Footer />*/}
-          <SignInSide />
+          {/* <SignInSide /> */}
       </main>
     </div>
   );
