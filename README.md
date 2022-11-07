@@ -9,15 +9,15 @@ The goal of the project is to design a web applicaiton that will faciliate the m
 ## Our Team
 |Name|GitHub Username|Role|
 |:-------:|:-------------:|:----------:|
-|Nabil Amimer||Full-Stack Developer
-|Gianluca Piccirillo||Full-Stack Developer
-|Jared Matthews||Backend Developer
-|Aditya Negi||Backend Developer
-|Ayomide Ojo||Backend Developer
-|Matthew Cabral||Frontend Developer
-|Parsa Langari||Frontend Developer
-|Abhijeet Praveen||Frontend Developer
-|Mahirul Islam||Frontend Developer
+|Nabil Amimer|[AmimerNabil](https://github.com/AmimerNabil)|Full-Stack Developer
+|Gianluca Piccirillo|[GianlucaP106](https://github.com/GianlucaP106)|Full-Stack Developer
+|Jared Matthews|[JMatt26](https://github.com/JMatt26)|Backend Developer
+|Aditya Negi|[adityanegii](https://github.com/adityanegii)|Backend Developer
+|Ayomide Ojo|[AyomideOjo](https://github.com/AyomideOjo)|Backend Developer
+|Matthew Cabral|[mattcab2002](https://github.com/mattcab2002)|Frontend Developer
+|Parsa Langari|[PLangari](https://github.com/PLangari)|Frontend Developer
+|Abhijeet Praveen|[abhijeetpraveen](https://github.com/abhijeetpraveen)|Frontend Developer
+|Mahirul Islam|[mahirul101](https://github.com/mahirul101)|Frontend Developer
 |Paul Hansen||Frontend Developer
 
 ## Wiki Pages

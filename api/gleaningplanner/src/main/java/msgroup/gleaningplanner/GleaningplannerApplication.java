@@ -825,7 +825,7 @@ public class GleaningplannerApplication {
 		producerService.postCommentEvent(
 			2, 
 			1, 
-			"fourth comment",
+			"Great Event. I loved to see how much work was done",
 			"VOLUNTEER"
 		);
 		producerService.postCommentEvent(
@@ -1131,6 +1131,5 @@ public class GleaningplannerApplication {
 			5,
 			6
 		);
-
 	}
 }

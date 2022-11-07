@@ -21,6 +21,7 @@ import msgroup.gleaningplanner.model.Organization;
 import msgroup.gleaningplanner.model.OrganizationRegistration;
 import msgroup.gleaningplanner.model.Producer;
 import msgroup.gleaningplanner.model.VolunteerRegistration;
+import msgroup.gleaningplanner.repository.CommentRepository;
 import msgroup.gleaningplanner.repository.EventRepository;
 import msgroup.gleaningplanner.repository.FarmRepository;
 import msgroup.gleaningplanner.repository.GleanerGroupRegistrationRepository;
@@ -39,6 +40,7 @@ public class EventService {
     private OrganizationRegistrationRepository organizationRegistrationRepository;
     private GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository;
     private ProducerRepository producerRepository;
+    private CommentRepository commentRepository;
 
     public EventService(
         EventRepository eventRepository, 
@@ -47,7 +49,8 @@ public class EventService {
         VolunteerRegistrationRepository volunteerRegistrationRepository,
         OrganizationRegistrationRepository organizationRegistrationRepository,
         GleanerGroupRegistrationRepository gleanerGroupRegistrationRepository,
-        OrganizationRepository organizationRepository
+        OrganizationRepository organizationRepository,
+        CommentRepository commentRepository
     ) {
         this.eventRepository = eventRepository;
         this.farmRepository = farmRepository;
@@ -56,6 +59,7 @@ public class EventService {
         this.gleanerGroupRegistrationRepository = gleanerGroupRegistrationRepository;
         this.producerRepository = producerRepository;
         this.organizationRepository = organizationRepository;
+        this.commentRepository = commentRepository;
     }
 
     public Event createEvent(
@@ -108,11 +112,19 @@ public class EventService {
             strDate = dateFormat.format(date);
         }
         
-        List<String> incoming = Arrays.asList(Integer.toString(farmId), eventName, Integer.toString(neededGleaners), description, Boolean.toString(isUrgent), strDate, Integer.toString(maxGleaners));
+        String nGleaners = null;
+        String urgent = null;
+        String mGleaners = null;
+        if (neededGleaners != null) nGleaners = Integer.toString(neededGleaners);
+        if (isUrgent != null) urgent =  Boolean.toString(isUrgent);
+        if (maxGleaners != null) mGleaners = Integer.toString(maxGleaners);
+
+
+        List<String> incoming = Arrays.asList(eventName, nGleaners, description, urgent, strDate, mGleaners);
         List<String> eventInfo;
 
         for (Event event : eventRepository.findAll()) {
-            eventInfo = Arrays.asList(Integer.toString(event.getFarm().getID()), event.getEventName(), Integer.toString(event.getRequiredGleaners()), event.getDescription(), Boolean.toString(event.isUrgent()), dateFormat.format(event.getDate()), Integer.toString(event.getMaxGleaners()));
+            eventInfo = Arrays.asList(event.getEventName(), Integer.toString(event.getRequiredGleaners()), event.getDescription(), Boolean.toString(event.isUrgent()), dateFormat.format(event.getDate()), Integer.toString(event.getMaxGleaners()));
             boolean valid = true;
             for (int index = 0; index < incoming.size(); index++) {
 
@@ -240,11 +252,13 @@ public class EventService {
             );
         }
 
+        out.event = event;
         out.producer = producer;        
         out.farm = farm;
         out.organizations = orgs;
         out.gleanerGroups = groups;
         out.teams = teams;
+        out.comments = commentRepository.findAllCommentByEvent(event);
 
         return out;
     }

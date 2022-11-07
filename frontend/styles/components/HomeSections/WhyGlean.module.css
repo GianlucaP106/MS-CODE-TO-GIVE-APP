@@ -1,11 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Luxurious+Roman&family=Montserrat&family=Neonderthaw&family=Nunito&family=Roboto+Condensed&family=Rubik&family=Sedgwick+Ave&display=swap');
 
-
-.glean {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.title {
+    position: center;
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    font-size: 6em;
+    font-style: italic;
 }
 
-.polar {
-    width: 60%;
+.bold {
+    color: #58CD36;
+}
+
+.box {
+    padding-bottom: 40px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.body {
+    padding-right: 0;
+}
+
+.subtext {
+    margin-left: 80px;
+    margin-right: 80px;
+    position: relative;
+    text-align: center;
+    font-family: 'Luxurious Roman', cursive;
+    font-size: 2.2em;
+}
+
+.subtext2 {
+    padding-top: 10px;
+    margin-left: 80px;
+    margin-right: 80px;
+    position: relative;
+    text-align: center;
+    font-family: 'Luxurious Roman', cursive;
+    font-size: 2.2em;
+}
+
+
+
+.number {
+    justify-content: center;
+    position: relative;
+    padding: 70px;
+    margin-bottom: 0;
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+    background-color: #AAFF00;
+    text-align: center;
+    font-size: 7em;
+    line-height: 1;
+    font-family: 'Luxurious Roman', cursive;
+}
+
+.stats {
+    margin-top: 50px;
+}
+
+.statDescription {
+    padding: 30px;
+    text-align: left;
+    justify-content: center;
+    position: relative;
+    font-family: 'Luxurious Roman', cursive;
+    font-size: 2em;
+}
+
+.body {
+    padding-top: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
