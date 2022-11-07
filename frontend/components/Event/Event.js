@@ -2,10 +2,10 @@
 import { useState, useEffect } from "react"
 import styles from '../../styles/components/Event/Event.module.css';
 
-
 const Event = (props) => {
 
     const [eventInfo, setEventInfo] = useState();
+    const {teamInfo, setTeamInfo} = useState();
 
     useEffect(() => {
         const id  = props.id;
@@ -19,7 +19,7 @@ const Event = (props) => {
         };
 
         //first fetch event info
-        let response = await fetch('http://localhost:8080/event/get-by-filter', {
+        let response = await fetch('http://localhost:8080/event/detail-event-info', {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -29,10 +29,16 @@ const Event = (props) => {
 
         response = await response.json();
         setEventInfo(response);
+
+        console.log(response);
     }
 
     return (
-        <div>
+        <div className={`${styles.wrapper}`}>
+
         </div>
     )
 }
+
+
+export default Event;
